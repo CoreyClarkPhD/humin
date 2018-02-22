@@ -92,6 +92,9 @@
             function makePlotly( x, y, standard_deviation ){
                 var plotDiv = document.getElementById("plot");
 
+                //
+                //  Original Size Placement Plots
+                //
                 var manualUpper =     {
                         x: DataSet.x,
                         y: DataSet.Manual.upper,
@@ -127,6 +130,57 @@
                         name: 'Mean Lower',
                         opacity: 0.5
                     };
+
+                //
+                //  Zoomed in placement plots
+                //
+                var manualUpperZoom =     {
+                        x: DataSet.x,
+                        y: DataSet.Manual.upper,
+                        type: 'scatter',
+                        mode: 'lines',
+                        name: 'Manual Upper',
+                        opacity: 0.5,
+                        yaxis: 'y3',
+                        xaxis: 'x3'
+                    };
+                var meanUpperZoom = {
+                        x: DataSet.x,
+                        y: DataSet.Mean.upper,
+                        fill: 'tonexty',
+                        type: 'scatter',
+                        mode: 'lines',
+                        name: 'Mean Upper',
+                        yaxis: 'y3',
+                        xaxis: 'x3',
+                        opacity: 0.5
+                    };
+                var manualLowerZoom =   {
+                        x: DataSet.x,
+                        y: DataSet.Manual.lower,
+                        type: 'scatter',
+                        mode: 'lines',
+                        name: 'Manual Lower',
+                        yaxis: 'y3',
+                        xaxis: 'x3',
+                        opacity: 0.5
+                    };
+                var meanLowerZoom =    {
+                        x: DataSet.x,
+                        y: DataSet.Mean.lower,
+                        fill: 'tonexty',
+                        type: 'scatter',
+                        mode: 'lines',
+                        name: 'Mean Lower',
+                        yaxis: 'y3',
+                        xaxis: 'x3',
+                        opacity: 0.5
+                    };
+
+                //
+                //  Error Plots
+                //  
+
                 var percentErrorLowerManual =    {
                         x: DataSet.x,
                         y: DataSet.Error.Lower.Percent.manual,
@@ -135,7 +189,7 @@
                         // mode: 'lines',
                         name: 'Error Lower',
                         opacity: 0.5,
-                       // xaxis: 'x2',
+                        xaxis: 'x2',
                         yaxis: 'y2'
                     };
                 var percentErrorUpperManual =    {
@@ -146,7 +200,7 @@
                         // mode: 'lines',
                         name: 'Error Upper',
                         opacity: 0.5,
-                        //xaxis: 'x2',
+                        xaxis: 'x2',
                         yaxis: 'y2'
                     };
                 var percentErrorAutoManualLower =    {
@@ -157,7 +211,7 @@
                         // mode: 'lines',
                         name: 'Error Lower Auto v Man',
                         opacity: 0.5,
-                        //xaxis: 'x2',
+                        xaxis: 'x2',
                         yaxis: 'y2'
                     };
                 var errorLowerManual =    {
@@ -168,7 +222,7 @@
                         // mode: 'lines',
                         name: 'Error Lower',
                         opacity: 0.5,
-                       // xaxis: 'x2',
+                        xaxis: 'x2',
                         yaxis: 'y2'
                     };
                 var errorUpperManual =    {
@@ -179,7 +233,7 @@
                         // mode: 'lines',
                         name: 'Error Upper',
                         opacity: 0.5,
-                        //xaxis: 'x2',
+                        xaxis: 'x2',
                         yaxis: 'y2'
                     };
                 var errorAutoManualLower  =  {
@@ -190,37 +244,63 @@
                         // mode: 'lines',
                         name: 'Error Lower Auto v Man',
                         opacity: 0.5,
-                        //xaxis: 'x2',
+                        xaxis: 'x2',
                         yaxis: 'y2'
                     }
                 
-               
+            
                 var traces = [];
                 traces.push(manualUpper);
                 traces.push(meanUpper);
                 traces.push(manualLower);
                 traces.push(meanLower);
+
+                traces.push(manualUpperZoom);
+                traces.push(meanUpperZoom);
+                traces.push(manualLowerZoom);
+                traces.push(meanLowerZoom);
+
                 //traces.push(percentErrorLowerManual);
                 //traces.push(percentErrorUpperManual);
                 //traces.push(percentErrorAutoManualLower);
-                // traces.push(errorLowerManual);
-                // traces.push(errorUpperManual);
-                // traces.push(errorAutoManualLower);
+                traces.push(errorLowerManual);
+                traces.push(errorUpperManual);
+                traces.push(errorAutoManualLower);
 
                 // {"x":0,"y":0.5,"layer":"below","sizex":1,"sizey":1,"height":1,"width":1,"opacity":0.25,"source": image6,"xanchor":"left","xref":"paper","yanchor":"middle","yref":"y0.5"}],"margin":{"r":50,"t":100,"b":50,"l":50},"title":"Analysis Image 6\nTotal Tests: 17\tUnique Testers: 17","width":768,"xaxis":{"autotick":true,"ticks":"","gridcolor":"rgba(102, 102, 102, 0.4)","gridwidth":1,"linecolor":"#000","range":[0,768]},"yaxis":{"autotick":true,"scaleanchor":"x","ticks":"","gridcolor":"rgba(102, 102, 102, 0.4)","gridwidth":1,"linecolor":"#000","zeroline":false,"range":[-496,0]}
                 
                 var layout = {
                     title: "Final Manual vs Mean",
                     width: 768,
-                    height: 496,
+                    height: 992,
                     margin:{
                         r:50,
                         t:50,
                         b:50,
                         l:50
                     },
-                    images:[{x:0,
-                                y:0.5,
+                    shapes: [
+                                // 1st highlight during Feb 4 - Feb 6
+                                {
+                                    type: 'rect',
+                                    // x-reference is assigned to the x-values
+                                    xref: 'x',
+                                    // y-reference is assigned to the plot paper [0,1]
+                                    yref: 'y',
+                                    x0: 195,
+                                    y0: 340,
+                                    x1: 505,
+                                    y1: 310,
+                                    //fillcolor: '#000000',
+                                    opacity: 0.8,
+                                    line: {
+                                        width: 3,
+                                        color: "#000000"
+                                    }
+                            }],
+                    images:[{
+                                x:0,
+                                y:1.0,
                                 layer:"below",
                                 sizex:1,
                                 sizey:1,
@@ -230,18 +310,35 @@
                                 source:image6,
                                 xanchor: "left",
                                 xref: "paper",
-                                yanchor: "middle",
+                                yanchor: "top",
                                 yref: "y0.5"}],
                     xaxis: {
                         range: [0,768]
                     },
                     yaxis: {
-                        range: [0,496]
+                        range: [0,496],
+                        domain: [0.635,1]
+                    },
+                    xaxis2: {
+                        range: [180,500],
+                        anchor: 'y2'
                     },
                     yaxis2: {
-                        range: [-50, 50],
-                        overlaying: 'y',
-                        side: 'right'
+                        range: [-20, 20],
+                        domain: [0.0,0.15],
+                        //overlaying: 'y',
+                        //side: 'right'
+                    },
+                    xaxis3: {
+                        range: [180,500],
+                        anchor: 'y3'
+                    },
+                    yaxis3: {
+                        //range: [-2,2],
+                        range: [305, 335],
+                        domain: [0.2,0.58],
+                        //overlaying: 'y',
+                        //side: 'bottom'
                     }
 
                 }
