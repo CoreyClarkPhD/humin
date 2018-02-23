@@ -64,7 +64,8 @@
                 "mode":"lines+markers",
                 "name":"Mean Overall Attempts",
                 "opacity":0.5,
-                "visible":"true"
+                "visible":"true",
+                yaxis: 'y2'
             }];
         var layout = {
             "autosize":false,
@@ -109,7 +110,15 @@
                 "linecolor":"#000",
                 "linewidth":1,
                 "zeroline":false
-            }
+            },
+            yaxis2: {
+                        //range: [290, 340],
+                        //range: [305, 335],
+                        //domain: [0.2,0.58],
+                        title: "Total Image Attempts",
+                        overlaying: 'y',
+                        side: 'right'
+                    }
         };
 
         Plotly.newPlot('myDiv', data, layout);
