@@ -376,8 +376,9 @@ code {
   margin-left: 20px;
 }
 #header-title .subtitle {
-  font-size: 16px;
+  font-size: 32px;
   font-style: italic;
+  font-weight: bold;
   line-height: 84px;
   color: rgba(255,255,255,0.7);
   text-shadow: 0 1px rgba(0,0,0,0.2);
