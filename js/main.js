@@ -13,7 +13,7 @@
     $('.article-entry').each(function(i) {
         $(this).find('img').each(function() {
             if (this.alt && !(!!$.prototype.justifiedGallery && $(this).parent('.justified-gallery').length)) {
-                $(this).after('<span class="caption">' + this.alt + '</span>');
+                // $(this).after('<span class="caption">' + this.alt + '</span>');
             }
 
             // 对于已经包含在链接内的图片不适用lightGallery
