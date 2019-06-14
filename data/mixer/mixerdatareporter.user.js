@@ -61,17 +61,19 @@ document.addEventListener('click', function (e) {
 
                 //4.  Submit Report to Study
                 let googleXHR = new XMLHttpRequest();
-                googleXHR.open('GET', 'https://script.google.com/macros/s/AKfycbyx_WnOGyI8xyDijaohOXwYMH0qhA7u_p06IGBVUuzbTY6cDwUZ/exec?' +
-                'username=' + reportObject.username + '&' +
-                'accountCreation=' + reportObject.accountCreation + '&' +
-                'experience=' + reportObject.experience + '&' +
-                'level=' + reportObject.level + '&' +
-                'sparks=' + reportObject.sparks + '&' +
-                'verified=' + reportObject.verified + '&' +
-                'message=' + reportObject.message + '&' +
-                'suspended=' + reportObject.suspended + '&' +
-                'channel=' + reportObject.channel + '&' +
-                'time=' + reportObject.time);
+                let url = 'https://script.google.com/macros/s/AKfycbyx_WnOGyI8xyDijaohOXwYMH0qhA7u_p06IGBVUuzbTY6cDwUZ/exec?' +
+                'username=' + encodeURI(reportObject.username) + '&' +
+                'accountCreation=' + encodeURI(reportObject.accountCreation) + '&' +
+                'experience=' + encodeURI(reportObject.experience) + '&' +
+                'level=' + encodeURI(reportObject.level) + '&' +
+                'sparks=' + encodeURI(reportObject.sparks) + '&' +
+                'verified=' + encodeURI(reportObject.verified) + '&' +
+                'message=' + encodeURI(reportObject.message) + '&' +
+                'suspended=' + encodeURI(reportObject.suspended) + '&' +
+                'channel=' + encodeURI(reportObject.channel) + '&' +
+                'time=' + encodeURI(reportObject.time);
+                
+                googleXHR.open('GET', url);
                 googleXHR.send();
                 googleXHR.onload = function() {
                     if (googleXHR.status != 200) { // analyze HTTP status of the response
