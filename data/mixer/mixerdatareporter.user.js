@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mixer Abuse Reporter
 // @namespace    http://humingamelab.com/
-// @version      0.1
+// @version      0.2
 // @description  Abuse reporting study
 // @author       You
 // @match        https://mixer.com/*
