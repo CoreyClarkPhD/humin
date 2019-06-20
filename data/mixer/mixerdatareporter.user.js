@@ -56,6 +56,8 @@ document.addEventListener('click', function (e) {
                     verified: user.verified,
                     message: abuseElementMessage,
                     suspended: data.suspended,
+                    audience: data.audience,
+                    game: data.type.name,
                     channel: window.location.pathname.substr(1),
                     time: (new Date(Date.now())).toISOString()
                 }
@@ -76,6 +78,8 @@ document.addEventListener('click', function (e) {
                 'message=' + encodeURI(reportObject.message) + '&' +
                 'suspended=' + encodeURI(reportObject.suspended) + '&' +
                 'channel=' + encodeURI(reportObject.channel) + '&' +
+                'game=' + encodeURI(reportObject.game) + '&' +
+                'audience=' + encodeURI(reportObject.audience) + '&' +
                 'time=' + encodeURI(reportObject.time);
 
                 googleXHR.open('GET', url);
