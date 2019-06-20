@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mixer Abuse Reporter
 // @namespace    http://humingamelab.com/
-// @version      0.3
+// @version      0.4
 // @description  Abuse reporting study
 // @author       HuMIn Game Lab
 // @downloadURL https://humingamelab.com/data/mixer/mixerdatareporter.user.js
