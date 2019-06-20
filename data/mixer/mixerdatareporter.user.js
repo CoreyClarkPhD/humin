@@ -3,7 +3,10 @@
 // @namespace    http://humingamelab.com/
 // @version      0.3
 // @description  Abuse reporting study
-// @author       You
+// @author       HuMIn Game Lab
+// @downloadURL https://humingamelab.com/data/mixer/mixerdatareporter.user.js
+// @updateURL https://humingamelab.com/data/mixer/mixerdatareporter.user.js
+
 // @match        https://mixer.com/*
 // ==/UserScript==
 
