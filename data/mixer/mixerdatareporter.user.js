@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mixer Abuse Reporter
 // @namespace    http://humingamelab.com/
-// @version      0.2
+// @version      0.3
 // @description  Abuse reporting study
 // @author       You
 // @match        https://mixer.com/*
@@ -35,6 +35,9 @@ document.addEventListener('click', function (e) {
         let abuseElementUser = abuseElementMessageWrapper.children[1].childNodes[0].childNodes[0].data;
         let abuseElementMessage = abuseElementMessageWrapper.children[1].children[1].outerText;
 
+        let gameName = (document.getElementsByClassName('game-name'))[0].children[0].childNodes[0].data;
+        let audience = (document.getElementsByClassName('role-text'))[0].innerText;
+
         //2.  Grab user public profile information
         let xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://mixer.com/api/v1/channels/' + abuseElementUser);
@@ -56,8 +59,8 @@ document.addEventListener('click', function (e) {
                     verified: user.verified,
                     message: abuseElementMessage,
                     suspended: data.suspended,
-                    audience: data.audience,
-                    game: data.type.name,
+                    audience: audience,
+                    game: gameName,
                     channel: window.location.pathname.substr(1),
                     time: (new Date(Date.now())).toISOString()
                 }
