@@ -68,6 +68,8 @@ document.addEventListener('click', function (e) {
                     time: (new Date(Date.now())).toISOString()
                 }
 
+                //console.log(reportObject);
+
                 //4.  Submit Report to Study
                 let googleXHR = new XMLHttpRequest();
                 //Development Sheet url
