@@ -469,6 +469,7 @@ App.Compile = function(){
     App.CompileWindow.elements.content.html().innerHTML = "COMPILING CODE PLEASE WAIT";
     App.CompileWindow.UnDock();
     os.console.Comment("\n\nCompiling " + App.Files.CPP.total + " cpp files");
+    os.console.Comment("clang++ -std=c++14 " + code['compiler-option-raw'].replace('error.cpp', '').replace(/\n\r/g, ' '))
 
     
 }
