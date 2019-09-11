@@ -555,7 +555,7 @@ App.Init = function(){
     var help = "Compile Loaded Files\nExample >> compile";
     os.console.AddCommand("Compile", App.Compile, App.Compile, help);
     App.HTML.Main.window.innerHTML = '<div style="padding: 20px"><p><span style="font-size: 18pt;"><strong>Web Compiler</strong>:</span> <a href="https://humingamelab.com/WebCompiler/">https://humingamelab.com/WebCompiler/</a><br/></p> ' +
-    '<p>To use this compiler the <i>main</i> function must be located in file called <i>main.cpp</i>.&nbsp; It will only accept .ccp and .h/.hpp files</p> ' +
+    '<p>To use this compiler the <i>main</i> function must be located in file called <i>main.cpp</i>.&nbsp; It will only accept .cpp and .h/.hpp files</p> ' +
     ' <p><br/>Instructions: ' +
     '<ol> ' +
     '<li>Drag and Drop (or use folder explorer dialogue) all of the .cpp and .h files</li> ' +
