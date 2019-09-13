@@ -401,7 +401,8 @@ App.Compile = function(){
 
     var code = {
         code: App.Files.CPP.main,
-        compiler: "clang-head",
+        compiler: 'clang-8.0.0',
+        //compiler: "clang-head",
         options: "c++14",
         stdin: ""
     }
