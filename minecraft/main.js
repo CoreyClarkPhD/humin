@@ -1475,7 +1475,7 @@ class ItemImageComponent {
     }
 }
 ItemImageComponent.ɵfac = function ItemImageComponent_Factory(t) { return new (t || ItemImageComponent)(); };
-ItemImageComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ItemImageComponent, selectors: [["item-image"]], inputs: { selectedItem: "selectedItem", criticalPath: "criticalPath" }, decls: 3, vars: 2, consts: [[1, "image-container", 3, "ngClass"], [1, "pixelated"], ["src", "assets/images/transparent_32x32.png", 1, "image", 3, "ngStyle"]], template: function ItemImageComponent_Template(rf, ctx) { if (rf & 1) {
+ItemImageComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ItemImageComponent, selectors: [["item-image"]], inputs: { selectedItem: "selectedItem", criticalPath: "criticalPath" }, decls: 3, vars: 2, consts: [[1, "image-container", 3, "ngClass"], [1, "pixelated"], ["src", "./assets/images/transparent_32x32.png", 1, "image", 3, "ngStyle"]], template: function ItemImageComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 2);
@@ -3492,7 +3492,7 @@ InventoryDisplayComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵ
     } if (rf & 2) {
         var _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵloadQuery"]()) && (ctx.minecraftItemViews = _t);
-    } }, decls: 4, vars: 1, consts: [[1, "inventory-wrapper"], ["src", "/assets/images/minecraft_inventory_window.png", 1, "inventory-visual"], [1, "inventory-offset"], ["class", "minecraft-item", "draggable", "true", 3, "ngStyle", "dragstart", 4, "ngFor", "ngForOf"], ["draggable", "true", 1, "minecraft-item", 3, "ngStyle", "dragstart"], [3, "selectedItem"], [1, "text-node-title", "inventory-count"]], template: function InventoryDisplayComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 4, vars: 1, consts: [[1, "inventory-wrapper"], ["src", "./assets/images/minecraft_inventory_window.png", 1, "inventory-visual"], [1, "inventory-offset"], ["class", "minecraft-item", "draggable", "true", 3, "ngStyle", "dragstart", 4, "ngFor", "ngForOf"], ["draggable", "true", 1, "minecraft-item", 3, "ngStyle", "dragstart"], [3, "selectedItem"], [1, "text-node-title", "inventory-count"]], template: function InventoryDisplayComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](1, "img", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 2);
