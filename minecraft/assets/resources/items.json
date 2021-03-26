@@ -1,0 +1,154 @@
+{
+  "version": "1.0",
+  "items":[
+    {
+      "id": 1,
+      "name": "Stone",
+      "index": [0, 0],
+      "craftable": false,
+      "primaryColor": "#7851a9",
+      "secondaryColor": "#FF7034"
+    },
+    {
+      "id": 2,
+      "name": "Grass",
+      "index": [1, 0],
+      "craftable": false,
+      "primaryColor": "#7851a9",
+      "secondaryColor": "#FF7034"
+    },
+    {
+      "id": 3,
+      "name": "Dirt",
+      "index": [2, 0],
+      "craftable": false,
+      "primaryColor": "#7851a9",
+      "secondaryColor": "#FF7034"
+    },
+    {
+      "id": 4,
+      "name": "Cobblestone",
+      "index": [3, 0],
+      "craftable": false,
+      "primaryColor": "#7851a9",
+      "secondaryColor": "#FF7034"
+    },
+    {
+      "id": 5,
+      "name": "Planks",
+      "index": [4, 0],
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 4,
+        "ingredients": [
+          {
+            "id": 23,
+            "amount": 1
+          }
+        ]
+      },
+      "primaryColor": "#7851a9",
+      "secondaryColor": "#FF7034"
+    },
+    {
+      "id": 23,
+      "name": "Logs",
+      "index": [6, 1],
+      "craftable": false,
+      "primaryColor": "#7851a9",
+      "secondaryColor": "#FF7034"
+    },
+    {
+      "id": 92,
+      "name": "Bookshelf",
+      "index": [11, 5],
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 1,
+        "ingredients": [
+          {
+            "id": 340,
+            "amount": 3
+          },
+          {
+            "id": 5,
+            "amount": 6
+          }
+        ]
+      },
+      "primaryColor": "#7851a9",
+      "secondaryColor": "#FF7034"
+    },
+    {
+      "id": 103,
+      "name": "Crafting Bench",
+      "index": [6, 6],
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 1,
+        "ingredients": [
+          {
+            "id": 5,
+            "amount": 4
+          }
+        ]
+      },
+      "primaryColor": "#7851a9",
+      "secondaryColor": "#FF7034"
+    },
+    {
+      "id": 334,
+      "name": "Leather",
+      "index": [14, 18],
+      "craftable": false,
+      "primaryColor": "#7851a9",
+      "secondaryColor": "#FF7034"
+    },
+    {
+      "id": 338,
+      "name": "Sugar Cane",
+      "index": [2, 19],
+      "craftable": false,
+      "primaryColor": "#7851a9",
+      "secondaryColor": "#FF7034"
+    },
+    {
+      "id": 339,
+      "name": "Paper",
+      "index": [3, 19],
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 3,
+        "ingredients": [
+          {
+            "id": 338,
+            "amount": 3
+          }
+        ]
+      },
+      "primaryColor": "#7851a9",
+      "secondaryColor": "#FF7034"
+    },
+    {
+      "id": 340,
+      "name": "Book",
+      "index": [4, 19],
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 1,
+        "ingredients": [
+          {
+            "id": 334,
+            "amount": 1
+          },
+          {
+            "id": 339,
+            "amount": 3
+          }
+        ]
+      },
+      "primaryColor": "#7851a9",
+      "secondaryColor": "#FF7034"
+    }
+  ]
+}
