@@ -1825,7 +1825,9 @@ GridComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineComp
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _general_service_session_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./general/service/session.service */ "fnjm");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _general_service_session_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./general/service/session.service */ "fnjm");
+
 
 
 
@@ -1873,10 +1875,17 @@ function AppComponent_div_2_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
 class AppComponent {
-    constructor(sessionService) {
+    constructor(route, sessionService) {
+        this.route = route;
         this.sessionService = sessionService;
         this.enteredId = false;
         this.idString = "";
+        this.route.queryParams.subscribe(params => {
+            if (params.id) {
+                this.sessionService.setSession(params.id);
+                this.enteredId = true;
+            }
+        });
     }
     submitDisabled() {
         return this.idString === '';
@@ -1886,7 +1895,7 @@ class AppComponent {
         this.enteredId = true;
     }
 }
-AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_general_service_session_service__WEBPACK_IMPORTED_MODULE_1__["SessionService"])); };
+AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_general_service_session_service__WEBPACK_IMPORTED_MODULE_2__["SessionService"])); };
 AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 3, vars: 2, consts: [[1, "fill-width", "fill-height"], ["class", "manual-id-input-container", 4, "ngIf"], ["id", "fullsite", "class", "fill-width fill-height", 4, "ngIf"], [1, "manual-id-input-container"], [1, "input-group", "input-group", "mb-3"], [1, "input-group-prepend"], ["id", "inputGroup-sizing", 1, "input-group-text"], ["type", "text", "oninput", "this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\\..*)\\./g, '$1');", "placeholder", "123456789", "aria-label", "Small", "aria-describedby", "inputGroup-sizing-sm", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "btn", "btn-primary", "submit", 3, "disabled", "click"], ["id", "fullsite", 1, "fill-width", "fill-height"], ["id", "workspace"], ["id", "resource-workspace"], ["id", "node-browser-workspace", 1, "left"], ["id", "minecraft-inventory-workspace", 1, "right"], ["id", "resultspace"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, AppComponent_div_1_Template, 8, 2, "div", 1);
@@ -1905,7 +1914,7 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompo
                 templateUrl: './app.component.html',
                 styleUrls: ['./app.component.sass']
             }]
-    }], function () { return [{ type: _general_service_session_service__WEBPACK_IMPORTED_MODULE_1__["SessionService"] }]; }, null); })();
+    }], function () { return [{ type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"] }, { type: _general_service_session_service__WEBPACK_IMPORTED_MODULE_2__["SessionService"] }]; }, null); })();
 
 
 /***/ }),
@@ -2635,7 +2644,7 @@ SessionService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineIn
         args: [{
                 providedIn: 'root'
             }]
-    }], null, null); })();
+    }], function () { return []; }, null); })();
 
 
 /***/ }),
@@ -2765,6 +2774,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "ofXK");
 /* harmony import */ var _service_session_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./service/session.service */ "fnjm");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app-routing.module */ "vY5A");
+
 
 
 
@@ -2776,11 +2787,13 @@ class GeneralModule {
 }
 GeneralModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineNgModule"]({ type: GeneralModule });
 GeneralModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjector"]({ factory: function GeneralModule_Factory(t) { return new (t || GeneralModule)(); }, providers: [_service_session_service__WEBPACK_IMPORTED_MODULE_5__["SessionService"]], imports: [[
-            _angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"]
+            _angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"],
         ]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵsetNgModuleScope"](GeneralModule, { declarations: [_icon_button_icon_button_component__WEBPACK_IMPORTED_MODULE_2__["IconButtonComponent"],
         _item_image_component_item_image_component__WEBPACK_IMPORTED_MODULE_1__["ItemImageComponent"],
-        _pipe_highlight_text_pipe__WEBPACK_IMPORTED_MODULE_0__["HighlightSearchPipe"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"]], exports: [_icon_button_icon_button_component__WEBPACK_IMPORTED_MODULE_2__["IconButtonComponent"], _item_image_component_item_image_component__WEBPACK_IMPORTED_MODULE_1__["ItemImageComponent"], _pipe_highlight_text_pipe__WEBPACK_IMPORTED_MODULE_0__["HighlightSearchPipe"]] }); })();
+        _pipe_highlight_text_pipe__WEBPACK_IMPORTED_MODULE_0__["HighlightSearchPipe"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"],
+        _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"]], exports: [_icon_button_icon_button_component__WEBPACK_IMPORTED_MODULE_2__["IconButtonComponent"], _item_image_component_item_image_component__WEBPACK_IMPORTED_MODULE_1__["ItemImageComponent"], _pipe_highlight_text_pipe__WEBPACK_IMPORTED_MODULE_0__["HighlightSearchPipe"]] }); })();
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵsetClassMetadata"](GeneralModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"],
         args: [{
@@ -2790,7 +2803,8 @@ GeneralModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInje
                     _pipe_highlight_text_pipe__WEBPACK_IMPORTED_MODULE_0__["HighlightSearchPipe"],
                 ],
                 imports: [
-                    _angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"]
+                    _angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"],
+                    _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"],
                 ],
                 providers: [_service_session_service__WEBPACK_IMPORTED_MODULE_5__["SessionService"]],
                 exports: [_icon_button_icon_button_component__WEBPACK_IMPORTED_MODULE_2__["IconButtonComponent"], _item_image_component_item_image_component__WEBPACK_IMPORTED_MODULE_1__["ItemImageComponent"], _pipe_highlight_text_pipe__WEBPACK_IMPORTED_MODULE_0__["HighlightSearchPipe"]]
@@ -4250,6 +4264,44 @@ MinecraftInventoryService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
                 providedIn: 'root'
             }]
     }], function () { return []; }, null); })();
+
+
+/***/ }),
+
+/***/ "vY5A":
+/*!***************************************!*\
+  !*** ./src/app/app-routing.module.ts ***!
+  \***************************************/
+/*! exports provided: AppRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppRoutingModule", function() { return AppRoutingModule; });
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component */ "Sy1n");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "tyNb");
+
+
+ // CLI imports router
+
+
+const routes = [
+    { path: '', component: _app_component__WEBPACK_IMPORTED_MODULE_0__["AppComponent"] }
+]; // sets up routes constant where you define your routes
+// configures NgModule imports and exports
+class AppRoutingModule {
+}
+AppRoutingModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({ type: AppRoutingModule });
+AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({ factory: function AppRoutingModule_Factory(t) { return new (t || AppRoutingModule)(); }, imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes)], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]] }); })();
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](AppRoutingModule, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"],
+        args: [{
+                imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes)],
+                exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+            }]
+    }], null, null); })();
 
 
 /***/ }),
