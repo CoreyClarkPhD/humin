@@ -6,32 +6,32 @@
       "name": "Stone",
       "index": [0, 0],
       "craftable": false,
-      "primaryColor": "#7851a9",
-      "secondaryColor": "#FF7034"
+      "primaryColor": "#858585",
+      "secondaryColor": "#4e4e4e"
     },
     {
       "id": 2,
       "name": "Grass",
       "index": [1, 0],
       "craftable": false,
-      "primaryColor": "#7851a9",
-      "secondaryColor": "#FF7034"
+      "primaryColor": "#629554",
+      "secondaryColor": "#3a3521"
     },
     {
       "id": 3,
       "name": "Dirt",
       "index": [2, 0],
       "craftable": false,
-      "primaryColor": "#7851a9",
-      "secondaryColor": "#FF7034"
+      "primaryColor": "#9f724f",
+      "secondaryColor": "#473121"
     },
     {
       "id": 4,
       "name": "Cobblestone",
       "index": [3, 0],
       "craftable": false,
-      "primaryColor": "#7851a9",
-      "secondaryColor": "#FF7034"
+      "primaryColor": "#8b8b8b",
+      "secondaryColor": "#464646"
     },
     {
       "id": 5,
@@ -47,22 +47,35 @@
           }
         ]
       },
-      "primaryColor": "#7851a9",
-      "secondaryColor": "#FF7034"
+      "primaryColor": "#987c4a",
+      "secondaryColor": "#514129"
     },
     {
       "id": 23,
       "name": "Logs",
       "index": [6, 1],
       "craftable": false,
-      "primaryColor": "#7851a9",
-      "secondaryColor": "#FF7034"
+      "primaryColor": "#3a2e1c",
+      "secondaryColor": "#8c7045"
     },
     {
       "id": 50,
       "name": "Torches",
       "index": [14, 5],
-      "craftable": false,
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 4,
+        "ingredients": [
+          {
+            "id": 263,
+            "amount": 1
+          },
+          {
+            "id": 280,
+            "amount": 1
+          }
+        ]
+      },
       "primaryColor": "#ffd800",
       "secondaryColor": "#ffff97"
     },
@@ -70,7 +83,16 @@
       "id": 54,
       "name": "Chest",
       "index": [2, 6],
-      "craftable": false,
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 1,
+        "ingredients": [
+          {
+            "id": 5,
+            "amount": 8
+          }
+        ]
+      },
       "primaryColor": "#9d6c26",
       "secondaryColor": "#7a7a7a"
     },
@@ -78,7 +100,16 @@
       "id": 61,
       "name": "Furnace",
       "index": [9, 6],
-      "craftable": false,
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 1,
+        "ingredients": [
+          {
+            "id": 4,
+            "amount": 8
+          }
+        ]
+      },
       "primaryColor": "#545454",
       "secondaryColor": "#511616"
     },
@@ -86,7 +117,20 @@
       "id": 69,
       "name": "Lever",
       "index": [1, 7],
-      "craftable": false,
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 1,
+        "ingredients": [
+          {
+            "id": 4,
+            "amount": 1
+          },
+          {
+            "id": 280,
+            "amount": 1
+          }
+        ]
+      },
       "primaryColor": "#3a3732",
       "secondaryColor": "#626262"
     },
@@ -94,7 +138,16 @@
       "id": 70,
       "name": "Stone Pressure Plate",
       "index": [2, 7],
-      "craftable": false,
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 1,
+        "ingredients": [
+          {
+            "id": 1,
+            "amount": 2
+          }
+        ]
+      },
       "primaryColor": "7a7a7a",
       "secondaryColor": "#6d6d6d"
     },
@@ -102,7 +155,16 @@
       "id": 72,
       "name": "Wooden Pressure Plate",
       "index": [4, 7],
-      "craftable": false,
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 1,
+        "ingredients": [
+          {
+            "id": 5,
+            "amount": 2
+          }
+        ]
+      },
       "primaryColor": "#aa8958",
       "secondaryColor": "#997e4b"
     },
@@ -110,7 +172,20 @@
       "id": 76,
       "name": "Redstone Torch",
       "index": [8, 7],
-      "craftable": false,
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 1,
+        "ingredients": [
+          {
+            "id": 280,
+            "amount": 1
+          },
+          {
+            "id": 331,
+            "amount": 1
+          }
+        ]
+      },
       "primaryColor": "#fd0000",
       "secondaryColor": "#af0000"
     },
@@ -118,7 +193,20 @@
       "id": 85,
       "name": "Fence",
       "index": [1, 8],
-      "craftable": false,
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 3,
+        "ingredients": [
+          {
+            "id": 280,
+            "amount": 2
+          },
+          {
+            "id": 5,
+            "amount": 4
+          }
+        ]
+      },
       "primaryColor": "#765f3e",
       "secondaryColor": "#645330"
     },
@@ -126,7 +214,16 @@
       "id": 96,
       "name": "Trapdoor",
       "index": [12, 8],
-      "craftable": false,
+      "craftable": true,
+      "recipe": {
+        "createdAmount": 2,
+        "ingredients": [
+          {
+            "id": 5,
+            "amount": 6
+          }
+        ]
+      },
       "primaryColor": "#886734",
       "secondaryColor": "#251a0b"
     },
@@ -148,8 +245,8 @@
           }
         ]
       },
-      "primaryColor": "#7851a9",
-      "secondaryColor": "#FF7034"
+      "primaryColor": "#28180c",
+      "secondaryColor": "#4d3825"
     },
     {
       "id": 103,
@@ -165,24 +262,57 @@
           }
         ]
       },
-      "primaryColor": "#7851a9",
-      "secondaryColor": "#FF7034"
+      "primaryColor": "#734428",
+      "secondaryColor": "#33291a"
+    },
+    {
+      "id": 263,
+      "name": "Coal",
+      "index": [6, 14],
+      "craftable": false,
+      "primaryColor": "#141414",
+      "secondaryColor": "#2e2e2e"
+    },
+    {
+      "id": 280,
+      "name": "Stick",
+      "index": [8, 15],
+      "craftable": true,
+      "recipe" : {
+        "createdAmount": 4,
+        "ingredients": [
+          {
+            "id": 5,
+            "amount": 2
+          }
+        ]
+      },
+      "primaryColor": "#141414",
+      "secondaryColor": "#2e2e2e"
+    },
+    {
+      "id": 331,
+      "name": "Redstone",
+      "index": [11, 18],
+      "craftable": false,
+      "primaryColor": "#ff0000",
+      "secondaryColor": "#720000"
     },
     {
       "id": 334,
       "name": "Leather",
       "index": [14, 18],
       "craftable": false,
-      "primaryColor": "#7851a9",
-      "secondaryColor": "#FF7034"
+      "primaryColor": "#c65c35",
+      "secondaryColor": "#9e492a"
     },
     {
       "id": 338,
       "name": "Sugar Cane",
       "index": [2, 19],
       "craftable": false,
-      "primaryColor": "#7851a9",
-      "secondaryColor": "#FF7034"
+      "primaryColor": "#c7ff87",
+      "secondaryColor": "#82a859"
     },
     {
       "id": 339,
@@ -198,8 +328,8 @@
           }
         ]
       },
-      "primaryColor": "#7851a9",
-      "secondaryColor": "#FF7034"
+      "primaryColor": "#d6d6d6",
+      "secondaryColor": "#eaeaea"
     },
     {
       "id": 340,
@@ -219,8 +349,8 @@
           }
         ]
       },
-      "primaryColor": "#7851a9",
-      "secondaryColor": "#FF7034"
+      "primaryColor": "#654b17",
+      "secondaryColor": "#b7b7b7"
     }
   ]
 }
