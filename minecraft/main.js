@@ -4065,7 +4065,8 @@ class HttpMinecraftInventoryService extends _minecraft_inventory_service__WEBPAC
         }
         // TODO: Temorary addition to provide rates to all inventory items
         //    return Promise.resolve(0);
-        return Promise.resolve(1 + Math.round(Math.random() * 25));
+        //return Promise.resolve(1 + Math.round(Math.random()*25));
+        return Promise.resolve(20);
     }
     UpdateLocalStorageIfNeeded(id, forceUpdate) {
         let body = this.sessionService.buildPostWithSession("", null);
@@ -4085,14 +4086,6 @@ class HttpMinecraftInventoryService extends _minecraft_inventory_service__WEBPAC
                         "slotIndex": 6
                     });
                     this.localDataBaseStorage.averages['23'] = 0.000085;
-                }
-                if (this.sessionService.getSession() == "123") {
-                    this.localDataBaseStorage.averages = {};
-                    this.localDataBaseStorage.averages['0'] = 0.000085;
-                    this.localDataBaseStorage.averages['1'] = 0.000085;
-                    this.localDataBaseStorage.averages['2'] = 0.000085;
-                    this.localDataBaseStorage.averages['3'] = 0.000085;
-                    this.localDataBaseStorage.averages['7'] = 0.000085;
                 }
                 this.InventoryUpdateCallbacks();
                 return this.GetFromLocalStorage(id);
