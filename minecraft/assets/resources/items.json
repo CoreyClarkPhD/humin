@@ -2,6 +2,14 @@
   "version": "1.0",
   "items":[
     {
+      "id": 1,
+      "name": "Stone",
+      "index": [0, 0],
+      "craftable": false,
+      "primaryColor": "#8b8b8b",
+      "secondaryColor": "#464646"
+    },
+    {
       "id": 2,
       "name": "Grass",
       "index": [1, 0],
