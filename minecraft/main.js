@@ -919,7 +919,7 @@ class CrafterNode extends rete__WEBPACK_IMPORTED_MODULE_1__["Component"] {
         // Update the control with the rate
         var node_ref = this.editor.nodes.find(n => n.id === node.id);
         let control = node_ref.controls.get('resource');
-        control.setRate(perHourBottleneck);
+        control.setRate(perHourBottleneck * recipe.createdAmount);
         outputs['resource'] = datagram;
     }
     updateNodeStructure(node) {
@@ -2370,7 +2370,6 @@ class GraphItemComponent {
         let nodePerHour = nodeData['perHour'];
         let outputData = new LineChartData(nodeData['resource']['name'], nodePerHour, 6, 10);
         this.primaryData.push(outputData);
-        console.log(this.itemService.GetItemPrimaryColor(nodeData['resource']['id']).toHex());
         this.colorSchemeLine.domain.push(this.itemService.GetItemPrimaryColor(nodeData['resource']['id']).toHex());
         let localNode = this.nodeService.getNodeTreeItem(this.node.id);
         let result = this.nodeService.calculateCustomNodeFromOutputs(localNode ? [localNode] : []);
@@ -2393,11 +2392,12 @@ class GraphItemComponent {
                 if (inputRate > highestRate) {
                     highestRate = inputRate;
                 }
-                totalRates += inputRate;
                 inputRate -= nodePerHour;
+                totalRates += inputRate;
                 inputRates[inputId] = inputRate;
             });
         }
+        totalRates += nodePerHour;
         for (let inputId in inputRates) {
             let inputRate = inputRates[inputId];
             let inputItem = this.itemService.GetItemFromId(parseInt(inputId));
@@ -2407,9 +2407,9 @@ class GraphItemComponent {
                 this.primaryData.push(outputData);
                 this.colorSchemeLine.domain.push(this.itemService.GetItemPrimaryColor(inputItem.id).toHex());
             }
-            inputRate /= highestRate;
-            if (Math.abs(inputRate - 1) > .00001) {
-                this.secondaryData.push({ "name": inputItem.name, "value": 1 - inputRate });
+            let utilization = inputRate / highestRate;
+            if (Math.abs(utilization - 1) > .00001) {
+                this.secondaryData.push({ "name": inputItem.name, "value": (1 - utilization) * 100 });
                 let color = this.itemService.GetItemPrimaryColor(inputItem.id);
                 this.AddToLegend(inputItem.name, color);
                 this.colorSchemeBar.domain.push(this.itemService.GetItemPrimaryColor(inputItem.id).toHex());
@@ -2421,8 +2421,9 @@ class GraphItemComponent {
                 this.colorSchemePie.domain.push(this.itemService.GetItemPrimaryColor(inputItem.id).toHex());
             }
         }
+        // Add the output item to the output ratios
         if (nodePerHour != Infinity) {
-            this.tertiaryData.push({ "name": nodeData['resource']['name'], "value": nodePerHour / highestRate });
+            this.tertiaryData.push({ "name": nodeData['resource']['name'], "value": nodePerHour / totalRates });
             let color = this.itemService.GetItemPrimaryColor(nodeData['resource']['id']);
             this.AddToLegend(nodeData['resource']['name'], color);
             this.colorSchemePie.domain.push(color.toHex());
@@ -4083,9 +4084,8 @@ class HttpMinecraftInventoryService extends _minecraft_inventory_service__WEBPAC
                         "slotCount": 23,
                         "slotIndex": 6
                     });
+                    this.localDataBaseStorage.averages['23'] = 0.000085;
                 }
-                this.localDataBaseStorage.averages['23'] = 0.000085;
-                console.log(this.localDataBaseStorage);
                 this.InventoryUpdateCallbacks();
                 return this.GetFromLocalStorage(id);
             });
