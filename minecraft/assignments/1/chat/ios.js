@@ -44,18 +44,18 @@ function responsiveChat(element) {
     }
     showLatestMessage(element);
 
-    //$(element + ' input[type="text"]').keypress(function (event) {
-    $('textinput').keypress(function (event) {
+    $(element + ' input[type="text"]').keypress(function (event) {
+    //$('textinput').keypress(function (event) {
         if (event.which == 13) {
             event.preventDefault();
             $('textinput').click();
         }
     });
-    //$(element + ' input[type="submit"]').click(function (event) {
-    $('chatwindow').click(function (event) {
+    $(element + ' input[type="submit"]').click(function (event) {
+    //$('chatwindow').click(function (event) {
         event.preventDefault();
-        var message = $('textinput').val();
-        if ($('textinput').val()) {
+        var message = $(element + ' input[type="text"]').val();
+        if ($(element + ' input[type="text"]').val()) {
             var d = new Date();
             var clock = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
             var month = d.getMonth() + 1;
