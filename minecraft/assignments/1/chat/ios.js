@@ -32,7 +32,8 @@ function getCurrentTime(){
 }
 
 function showLatestMessage(element) {
-    $('.responsive-html5-chat').find('.messages').scrollTop($('.responsive-html5-chat .messages')[0].scrollHeight);
+    //$('.responsive-html5-chat').find('.messages').scrollTop($('.responsive-html5-chat .messages')[0].scrollHeight);
+    $('.responsive-html5-chat').find('.messages').animate({scrollTop: $('.responsive-html5-chat .messages')[0].scrollHeight},1000);
   }
 
 
@@ -112,6 +113,7 @@ function responsiveChatPush(element, sender, origin, date, message, time, callba
             originClass = 'fromThem';
         }
         $(element + ' .messages').append('<div class="message"><div class="' + originClass + '"><p>' + message + '</p><date><b>' + sender + '</b> ' + date + '</date></div></div>');
+        showLatestMessage(element);
         if(callback){callback();}
     }, time * 1000);
 }
