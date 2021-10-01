@@ -33,7 +33,7 @@ function getCurrentTime(){
 
 function showLatestMessage(element) {
     //$('.responsive-html5-chat').find('.messages').scrollTop($('.responsive-html5-chat .messages')[0].scrollHeight);
-    $('.responsive-html5-chat').find('.messages').animate({scrollTop: $('.responsive-html5-chat .messages')[0].scrollHeight},1000);
+    $('.responsive-html5-chat').find('.messages').animate({scrollTop: $('.responsive-html5-chat .messages')[0].scrollHeight},1 * 1000);
   }
 
 
@@ -98,7 +98,9 @@ function responsiveChatNoBubblePush(element, sender, origin, date, message) {
     } else {
         originClass = 'fromThem';
     }
+    //showLatestMessage(element);
     $(element + ' .messages').append('<div class="message"><div class="' + originClass + '"><p>' + message + '</p><date><b>' + sender + '</b> ' + date + '</date></div></div>');
+    
 }
 
 function responsiveChatPush(element, sender, origin, date, message, time, callback) {
@@ -138,6 +140,7 @@ function responsiveChatHTMLPush(element, sender, origin, date, message, time) {
 }
 
 function responsiveChatNoBubbleHTMLPush(element, sender, origin, date, message) {
+    showLatestMessage(element);
     var originClass;
     if (origin == 'me') {
         originClass = 'myMessage';
@@ -199,8 +202,9 @@ responsiveChatNoBubblePush('.chat', 'Goodway', 'you', getCurrentTime(), '<form n
                 
             }
             else{
+                
                 responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Hmmm, Ryder said he can\'t find any recipes in our system that use ' + this.value + ' for chest, can you look again?',2);
-                showLatestMessage('.chat');
+                //showLatestMessage('.chat');
             }
             
         };
@@ -215,14 +219,14 @@ responsiveChatNoBubblePush('.chat', 'Goodway', 'you', getCurrentTime(), '<form n
                     for(var i = 0; i < log_amount_radio.length; i++) {
                         log_amount_radio[i].onclick = null;
                     }
-                    responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), '40, that is right at what Ryder was thinking too... Really appreciate your help verifying our information.',4, function(){
+                    responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), '40, that is right at what Ryder was thinking too... Really appreciate your help verifying our information.',2, function(){
                         responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'It looks like you are getting the hang of using the new MFP system,' +
                                                                                         ' our data is really outdated and it shows multiple recipes for planks, can you take alook at the following'+
                                                                                         ' Plank recipes and let us know which one is correct, so we can update our record?',2, function(){
-
+                                                                                            //showLatestMessage('.chat');
                                                                                             responsiveChatNoBubbleHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), 
                                                                                                 '<form name="PlankRecipeForm">'+ 
-                                                                                                    '<p>How many Log/hr are needed?</p>'+ 
+                                                                                                    '<p>Waht is the correct recipe?</p>'+ 
                                                                                                      '  <input type="radio" id="plank_recipe_1" name="plank_recipe" value="log_planks">'+ 
                                                                                                      '  <label for="plank_recipe_1">Logs -> Planks</label><br>'+ 
                                                                                                      '  <input type="radio" id="plank_recipe_2" name="plank_recipe" value="sticks_planks">'+ 
@@ -231,15 +235,15 @@ responsiveChatNoBubblePush('.chat', 'Goodway', 'you', getCurrentTime(), '<form n
                                                                                                      '  <label for="plank_recipe_3">Logs ->  Sticks -> Planks</label><br>'+ 
                                                                                                 '</form>');
                                                                                                 AddPlankRecipeRadioCallbacks();
-                                                                                                showLatestMessage('.chat');
-                                                                                        });
+                                                                                                //showLatestMessage('.chat');
+                        });
                     });
                     
                     
                 }
                 else{
                     responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Hmmm, Ryder is getting a different estimate than ' + this.value + ' for logs/hr, can you look again?');
-                    showLatestMessage('.chat');
+                    //showLatestMessage('.chat');
                 }
                 
             };
@@ -266,14 +270,14 @@ responsiveChatNoBubblePush('.chat', 'Goodway', 'you', getCurrentTime(), '<form n
                                                                                                 '   <input id="plank_ratio_submit" type="submit" value="Submit" style="width:100%;" ></input><br>'+
                                                                                             '</form>');
                                                                                             AddPlankRatioCallbacks();
-                                                                                            showLatestMessage('.chat');
+                                                                                            //showLatestMessage('.chat');
 
                                                                                         });
                     
                 }
                 else{
                     responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Hmmm, are you sure we need sticks? Can you look again?');
-                    showLatestMessage('.chat');
+                    //showLatestMessage('.chat');
                 }
                 
             };
@@ -290,7 +294,7 @@ responsiveChatNoBubblePush('.chat', 'Goodway', 'you', getCurrentTime(), '<form n
                 responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Thanks!  I will write that down and see if that format will work with our system.',2, function(){
                     responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'I think we have everything we need at the moment, if we can get the budget approved we will move forward and have' + 
                                                                                     ' you start constructing Beds, Chest and Planks for Tiny Town, I will keep you posted!', 2);
-                    showLatestMessage('.chat');
+                    //showLatestMessage('.chat');
                     plank_ratio_textbox_submit.onclick = null;
                 });
                 

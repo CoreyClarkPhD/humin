@@ -343,8 +343,8 @@ form.chat *{
   .dots{
     /* width:300px;
     height:609px; */
-    width:50px;
-    height: 25px;
+    width:70px;
+    height: 35px;
     background-image:url('dots.gif');
     background-size:100% 100%;
     margin:0 auto;
