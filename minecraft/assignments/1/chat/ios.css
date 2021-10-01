@@ -340,3 +340,14 @@ form.chat *{
     border-radius: 25px;
     font: 400 15px 'Open Sans', sans-serif;
   }
+  .dots{
+    /* width:300px;
+    height:609px; */
+    width:50px;
+    height: 25px;
+    background-image:url('dots.gif');
+    background-size:100% 100%;
+    margin:0 auto;
+    position:relative;
+    float: left;
+  }

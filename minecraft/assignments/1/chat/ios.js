@@ -89,7 +89,7 @@ function responsiveChat(element) {
     });
 }
 
-function responsiveChatPush(element, sender, origin, date, message) {
+function responsiveChatNoBubblePush(element, sender, origin, date, message) {
     var originClass;
     if (origin == 'me') {
         originClass = 'myMessage';
@@ -97,10 +97,44 @@ function responsiveChatPush(element, sender, origin, date, message) {
         originClass = 'fromThem';
     }
     $(element + ' .messages').append('<div class="message"><div class="' + originClass + '"><p>' + message + '</p><date><b>' + sender + '</b> ' + date + '</date></div></div>');
-    //showLatestMessage(element);
 }
 
-function responsiveChatHTMLPush(element, sender, origin, date, message) {
+function responsiveChatPush(element, sender, origin, date, message, time, callback) {
+
+    $(element + ' .messages').append('<div id="dots" class="dots"></div>');
+    showLatestMessage(element);
+    setTimeout(function(){
+        $('.dots').remove();
+        var originClass;
+        if (origin == 'me') {
+            originClass = 'myMessage';
+        } else {
+            originClass = 'fromThem';
+        }
+        $(element + ' .messages').append('<div class="message"><div class="' + originClass + '"><p>' + message + '</p><date><b>' + sender + '</b> ' + date + '</date></div></div>');
+        if(callback){callback();}
+    }, time * 1000);
+}
+
+function responsiveChatHTMLPush(element, sender, origin, date, message, time) {
+    $(element + ' .messages').append('<div id="dots" class="dots"></div>');
+    showLatestMessage(element);
+    setTimeout(function(){
+        $('.dots').remove();
+        var originClass;
+        if (origin == 'me') {
+            originClass = 'myMessage';
+        } else {
+            originClass = 'fromThem';
+        }
+        $(element + ' .messages').append('<div class="message"><div class="' + originClass + '">' + message + '<date><b>' + sender + '</b> ' + date + '</date></div></div>');
+        if(callback){callback();}
+    }, time * 1000);
+    
+    showLatestMessage(element);
+}
+
+function responsiveChatNoBubbleHTMLPush(element, sender, origin, date, message) {
     var originClass;
     if (origin == 'me') {
         originClass = 'myMessage';
@@ -108,7 +142,8 @@ function responsiveChatHTMLPush(element, sender, origin, date, message) {
         originClass = 'fromThem';
     }
     $(element + ' .messages').append('<div class="message"><div class="' + originClass + '">' + message + '<date><b>' + sender + '</b> ' + date + '</date></div></div>');
-    //showLatestMessage(element);
+    showLatestMessage(element);
+
 }
 
 
@@ -116,12 +151,12 @@ function responsiveChatHTMLPush(element, sender, origin, date, message) {
 responsiveChat('.responsive-html5-chat');
 
 /* Let's push some dummy data */
-responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Hey!  Last night Tiny Town got hit by a really big storm!  They are asking all the towns in the area if we can help with supplies');
-responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'They need us to get: <br>10 Beds, <br>20 Chest <br>100 Planks');
-responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'We will have 1 hour of factory time to produce this order, Can you help me figure out what we are going to need... I have Ryder, our purchasing officer here in my office, he has some questions, maybe you can use the Minecraft'+ 
+responsiveChatNoBubblePush('.chat', 'Goodway', 'you', getCurrentTime(), 'Hey!  Last night Tiny Town got hit by a really big storm!  They are asking all the towns in the area if we can help with supplies');
+responsiveChatNoBubblePush('.chat', 'Goodway', 'you', getCurrentTime(), 'They need us to get: <br>10 Beds, <br>20 Chest <br>100 Planks');
+responsiveChatNoBubblePush('.chat', 'Goodway', 'you', getCurrentTime(), 'We will have 1 hour of factory time to produce this order, Can you help me figure out what we are going to need... I have Ryder, our purchasing officer here in my office, he has some questions, maybe you can use the Minecraft'+ 
                                                                 'Factory Planner (MFP) to help figure out the answers so we can figure out what is possible.  Here is a link in case you need it: <a href="https://humingamelab.com/minecraft/?id=jZpqv7DLKnygxd7a6XMFOs7gxKjkQR13aXg43CaM" target="_blank"  >MFP</a>');
 
-responsiveChatHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), '<form name="ChestResourceForm">'+ 
+responsiveChatNoBubblePush('.chat', 'Goodway', 'you', getCurrentTime(), '<form name="ChestResourceForm">'+ 
                                                                     '<p>What Resources do we need for Chest?</p>'+ 
                                                                      '  <input type="radio" id="chest_anvil" name="chest_resource" value="Anvils">'+ 
                                                                      '  <label for="chest_anvil">Anvil</label><br>'+ 
@@ -142,8 +177,8 @@ responsiveChatHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), '<form name=
                 for(var i = 0; i < chest_resource_radio.length; i++) {
                     chest_resource_radio[i].onclick = null;
                 }
-                responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Logs, yeah... that is exactly what we need, Ryder wants to know how many logs per hour are needed to get our factory producing 20 Chest / hr?');
-                responsiveChatHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), 
+                responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Logs, yeah... that is exactly what we need, Ryder wants to know how many logs per hour are needed to get our factory producing 20 Chest / hr?', 2,function(){
+                    responsiveChatNoBubbleHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), 
                                                                 '<form name="LogAmountForm">'+ 
                                                                     '<p>How many Log/hr are needed?</p>'+ 
                                                                      '  <input type="radio" id="logs_10" name="log_amount" value="10">'+ 
@@ -155,11 +190,13 @@ responsiveChatHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), '<form name=
                                                                      '  <input type="radio" id="logs_40" name="log_amount" value="40">'+ 
                                                                      '  <label for="logs_40">40</label>'+ 
                                                                 '</form>');
-                AddLogAmountRadioCallbacks();
-                showLatestMessage('.chat');
+                    AddLogAmountRadioCallbacks();
+                    showLatestMessage('.chat');
+                });
+                
             }
             else{
-                responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Hmmm, Ryder said he can\'t find any recipes in our system that use ' + this.value + ' for chest, can you look again?');
+                responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Hmmm, Ryder said he can\'t find any recipes in our system that use ' + this.value + ' for chest, can you look again?',2);
                 showLatestMessage('.chat');
             }
             
@@ -175,22 +212,27 @@ responsiveChatHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), '<form name=
                     for(var i = 0; i < log_amount_radio.length; i++) {
                         log_amount_radio[i].onclick = null;
                     }
-                    responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), '40, that is right at what Ryder was thinking too... Really appreciate your help verifying our information.');
-                    responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'It looks like you are getting the hang of using the new MFP system,' +
+                    responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), '40, that is right at what Ryder was thinking too... Really appreciate your help verifying our information.',4, function(){
+                        responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'It looks like you are getting the hang of using the new MFP system,' +
                                                                                         ' our data is really outdated and it shows multiple recipes for planks, can you take alook at the following'+
-                                                                                        ' Plank recipes and let us know which one is correct, so we can update our record?');
-                    responsiveChatHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), 
-                                                                                        '<form name="PlankRecipeForm">'+ 
-                                                                                            '<p>How many Log/hr are needed?</p>'+ 
-                                                                                             '  <input type="radio" id="plank_recipe_1" name="plank_recipe" value="log_planks">'+ 
-                                                                                             '  <label for="plank_recipe_1">Logs -> Planks</label><br>'+ 
-                                                                                             '  <input type="radio" id="plank_recipe_2" name="plank_recipe" value="sticks_planks">'+ 
-                                                                                              ' <label for="plank_recipe_2">Sticks -> Planks</label><br>'+ 
-                                                                                             '  <input type="radio" id="plank_recipe_3" name="plank_recipe" value="logs_sticks_planks">'+ 
-                                                                                             '  <label for="plank_recipe_3">Logs ->  Sticks -> Planks</label><br>'+ 
-                                                                                        '</form>');
-                    AddPlankRecipeRadioCallbacks();
-                    showLatestMessage('.chat');
+                                                                                        ' Plank recipes and let us know which one is correct, so we can update our record?',2, function(){
+
+                                                                                            responsiveChatNoBubbleHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), 
+                                                                                                '<form name="PlankRecipeForm">'+ 
+                                                                                                    '<p>How many Log/hr are needed?</p>'+ 
+                                                                                                     '  <input type="radio" id="plank_recipe_1" name="plank_recipe" value="log_planks">'+ 
+                                                                                                     '  <label for="plank_recipe_1">Logs -> Planks</label><br>'+ 
+                                                                                                     '  <input type="radio" id="plank_recipe_2" name="plank_recipe" value="sticks_planks">'+ 
+                                                                                                      ' <label for="plank_recipe_2">Sticks -> Planks</label><br>'+ 
+                                                                                                     '  <input type="radio" id="plank_recipe_3" name="plank_recipe" value="logs_sticks_planks">'+ 
+                                                                                                     '  <label for="plank_recipe_3">Logs ->  Sticks -> Planks</label><br>'+ 
+                                                                                                '</form>');
+                                                                                                AddPlankRecipeRadioCallbacks();
+                                                                                                showLatestMessage('.chat');
+                                                                                        });
+                    });
+                    
+                    
                 }
                 else{
                     responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Hmmm, Ryder is getting a different estimate than ' + this.value + ' for logs/hr, can you look again?');
@@ -212,16 +254,19 @@ responsiveChatHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), '<form name=
                         plank_recipe_radio[i].onclick = null;
                     }
                     responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'That makes sense, our system stores all recipes as ratios.... ' +
-                                                                                        'Do you have any suggestions on how we could take the plank recipe and store as ratio? ');
-                    responsiveChatHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), 
-                                                                                        '<form name="PlankRatioForm">'+ 
-                                                                                            '<p>Plank Recipe Ratio</p>'+ 
-                                                                                             '  <input type="text" id="plank_ratio" name="plank_ratio" >'+ 
-                                                                                            //  '  <label for="plank_ratio">Ratio</label><br>'+ 
-                                                                                            '   <input id="plank_ratio_submit" type="submit" value="Submit" style="width:100%;" ></input><br>'+
-                                                                                        '</form>');
-                    AddPlankRatioCallbacks();
-                    showLatestMessage('.chat');
+                                                                                        'Do you have any suggestions on how we could take the plank recipe and store as ratio? ',2, function(){
+                                                                                            responsiveChatNoBubbleHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), 
+                                                                                            '<form name="PlankRatioForm">'+ 
+                                                                                                '<p>Plank Recipe Ratio</p>'+ 
+                                                                                                 '  <input type="text" id="plank_ratio" name="plank_ratio" >'+ 
+                                                                                                //  '  <label for="plank_ratio">Ratio</label><br>'+ 
+                                                                                                '   <input id="plank_ratio_submit" type="submit" value="Submit" style="width:100%;" ></input><br>'+
+                                                                                            '</form>');
+                                                                                            AddPlankRatioCallbacks();
+                                                                                            showLatestMessage('.chat');
+
+                                                                                        });
+                    
                 }
                 else{
                     responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Hmmm, are you sure we need sticks? Can you look again?');
@@ -239,11 +284,13 @@ responsiveChatHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), '<form name=
             plank_ratio_textbox_submit.onclick = function (event) {
                 event.stopPropagation();
                 event.preventDefault();
-                responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Thanks!  I will write that down and see if that format will work with our system.');
-                responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'I think we have everything we need at the moment, if we can get the budget approved we will move forward and have' + 
-                                                                                    ' you start constructing Beds, Chest and Planks for Tiny Town, I will keep you posted!');
-                showLatestMessage('.chat');
-                plank_ratio_textbox_submit.onclick = null;
+                responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Thanks!  I will write that down and see if that format will work with our system.',2, function(){
+                    responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'I think we have everything we need at the moment, if we can get the budget approved we will move forward and have' + 
+                                                                                    ' you start constructing Beds, Chest and Planks for Tiny Town, I will keep you posted!', 2);
+                    showLatestMessage('.chat');
+                    plank_ratio_textbox_submit.onclick = null;
+                });
+                
             };
         
     }
