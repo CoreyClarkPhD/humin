@@ -41,7 +41,8 @@ function responsiveChat(element) {
     $(element).html('<form class="chat"><span></span><div class="messages"></div><input id="textinput" type="text" placeholder="Your message"><input type="submit" value="Send"></form>');
 
     function showLatestMessage(element) {
-      $('.responsive-html5-chat').find('.messages').scrollTop($('.responsive-html5-chat .messages')[0].scrollHeight);
+      //$('.responsive-html5-chat').find('.messages').scrollTop($('.responsive-html5-chat .messages')[0].scrollHeight);
+      $('.responsive-html5-chat').find('.messages').animate({scrollTop: $('.responsive-html5-chat .messages')[0].scrollHeight},1000);
     }
     showLatestMessage(element);
 
@@ -49,7 +50,7 @@ function responsiveChat(element) {
     //$('textinput').keypress(function (event) {
         if (event.which == 13) {
             event.preventDefault();
-            $('textinput').click();
+            $(element + ' input[type="submit"]').click();
         }
     });
     $(element + ' input[type="submit"]').click(function (event) {
