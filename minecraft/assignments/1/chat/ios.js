@@ -224,7 +224,7 @@ responsiveChatHTMLPush('.chat', 'Goodway', 'you', getCurrentTime(), '<form name=
                     showLatestMessage('.chat');
                 }
                 else{
-                    responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Hmmm, are you ure we need sticks? Can you look again?');
+                    responsiveChatPush('.chat', 'Goodway', 'you', getCurrentTime(), 'Hmmm, are you sure we need sticks? Can you look again?');
                     showLatestMessage('.chat');
                 }
                 
