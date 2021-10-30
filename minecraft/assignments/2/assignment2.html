@@ -3,11 +3,18 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Disater Strikes</title>
+        <title>Help is on the Way!</title>
     </head>
     <body>
-        <iframe style="width: 100%!important; height:300px!important; border:0;" src="https://humingamelab.com/minecraft/assignments/chat/1/" title="Disater Strikes"></iframe>
+        <iframe style="width: 100%!important; height:300px!important; border:0;" src="https://humingamelab.com/minecraft/assignments/chat/2/" title="Disater Strikes"></iframe>
         <iframe style="width: 100%!important; height:1000px!important; border:0;" src="https://humingamelab.com/minecraft/?id=jZpqv7DLKnygxd7a6XMFOs7gxKjkQR13aXg43CaM" title="Disater Strikes"></iframe>
     </body>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if(params.has('id')){
+            document.getElementById('chatiframe').src =    "https://humingamelab.com/minecraft/assignments/chat/1/?id=" + params.get('id');
+            document.getElementById('mfpiframe').src =     "https://humingamelab.com/minecraft/?id=" + params.get('id');
+        }
+    </script>
     <!-- <script src="assignment1.js"></script> -->
 </html>
