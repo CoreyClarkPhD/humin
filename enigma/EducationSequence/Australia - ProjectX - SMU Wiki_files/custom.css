@@ -1,0 +1,46 @@
+
+#forgot-password {
+display:none;
+}
+
+.editor-fullheight {
+height:100%;
+}
+
+label#email-label {
+display: none;
+}
+
+span#email {
+display: none;
+}
+
+.profile-macro div.vcard div.values a.email {
+display: none;
+}
+
+.highlight {
+background-color: yellow;
+}
+
+.highlightorange {
+background-color: #FCB441;
+}
+
+.highlightyellow {background-color:#ffff00;
+}
+
+.highlightblue {background-color:#418cf0;
+}
+
+.highlightgreen{	background-color:#00ff40;
+}
+
+.highlightred{	background-color:orange;
+}
+
+.highlightpink{	background-color:#ff0080;
+}
+
+
+
