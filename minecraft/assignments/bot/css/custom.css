@@ -17,3 +17,15 @@ a[aria-expanded=true] .fa-chevron-down {
  a[aria-expanded=false] .fa-xmark {
     display: none;
  }
+
+ #bot {
+    position: absolute;
+    /* z-index: 1000; */
+    width: 500px;
+    background-color: white;
+    left: 82px;
+    overflow: scroll;
+ }
+ .hide {
+     display: none;
+ }

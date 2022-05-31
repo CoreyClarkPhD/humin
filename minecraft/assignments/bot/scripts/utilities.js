@@ -140,12 +140,12 @@ var setLineItemRed = function(id){
 
 //Change Panels Green/Red
 var setPanelItemGreen = function(id){
-    $('#'+ id ).removeClass('panel-danger')
-    $('#'+ id ).addClass('panel-success')
+    $('#'+ id ).removeClass('bg-danger')
+    $('#'+ id ).addClass('bg-success')
 }
 var setPanelItemRed = function(id){
-    $('#'+ id ).removeClass('panel-success')
-    $('#'+ id ).addClass('panel-danger')
+    $('#'+ id ).removeClass('bg-success')
+    $('#'+ id ).addClass('bg-danger')
 }
 
 //

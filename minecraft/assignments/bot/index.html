@@ -4,11 +4,15 @@
   <title>MFP Builder Bot</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/6f6f03dd9d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./css/custom.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
   
 </head>
 <body>
@@ -16,75 +20,75 @@
 <div id="bot" class="container">
     
   <ul id="menuTabs" class="nav nav-tabs"   aria-expanded="false" aria-controls="botContent">
-    <li>
+    <li class="nav-item">
       <a id='menuControl' data-toggle="collapse" href="#botContent" aria-expanded="false" aria-controls="botContent">
         <i class="fa-solid fa-xmark pull-right"></i>
         <i class="fa-solid fa-chevron-down pull-right"></i>
       </a>
     </li>
-    <li><a data-toggle="tab" href="#task"><i class="fa-solid fa-list-check"></i>   Task  </i></a></li>
-    <li><a data-toggle="tab" href="#unitTest"><i class="fa-solid fa-bars-progress"></i>    Unit Test</a></li>
-    <li><a data-toggle="tab" href="#debugger"><i class="fa-solid fa-bug"></i>   Debugger</a></li>
-    <li><a data-toggle="tab" href="#support"><i class="fa-solid fa-robot"></i>   BB</a></li>
+    <li class="nav-item"><a class='nav-link' data-toggle="tab" href="#task"><i class="fa-solid fa-list-check"></i>   Task  </i></a></li>
+    <li class="nav-item"><a class='nav-link' data-toggle="tab" href="#unitTest"><i class="fa-solid fa-bars-progress"></i>    Unit Test</a></li>
+    <li class="nav-item"><a class='nav-link' data-toggle="tab" href="#debugger"><i class="fa-solid fa-bug"></i>   Debugger</a></li>
+    <li class="nav-item"><a class='nav-link' data-toggle="tab" href="#support"><i class="fa-solid fa-robot"></i>   BB</a></li>
   </ul>
 
-  <div id="botContent" class="tab-content collapse" aria-expanded="false" style="height: 0px;">
+  <div id="botContent" class="tab-content collapse" aria-expanded="false" >
 
     <div id="task" class="tab-pane fade">
       <h3><i class="fa-solid fa-list-check"></i>  Assigned Task </h3>
 
-      <div class="panel panel-primary">
+      <div class="card">
         
-        <div class="panel-heading">
-          <h3 class="panel-title">Task 1: Build Plank Contraption</h3>
+        <div class="card-header  bg-primary text-white">
+          <h3 class="card-title text-white">Task 1: Build Plank Contraption</h3>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
           <p>Using MFP create a planks model.  Utilize the Resource, Crafter and Output nodes in the 
             material explorer inside of the MFP to create a model that is capable of producing 8 planks per hour.  
             Once the model is finished, save it as a custom node and name the contraption "plank_contraption" </p>
           <div class="btn-group" role="group">
             <button id="task1Claim" type="button" class="btn btn-default btn-primary">Claim</button>
-            <button id="task1Submit" type="button" class="btn btn-default btn-info disabled">Submit</button>
+            <button id="task1Submit" type="button" class="btn btn-default btn-info" aria-disabled="true" disabled>Submit</button>
           </div>
           
         </div>
         
-        <div class="panel-heading">
-          <h3 class="panel-title">Task 2: Build Stick Contraption</h3>
+        <div class="card-header  bg-primary text-white">
+          <h3 class="card-title text-white">Task 2: Build Stick Contraption</h3>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
           <p>Using MFP create a sticks model.  Utilize the Resource, Crafter and Output nodes in the 
             material explorer inside of the MFP to create a model that is capable of producing 32 sticks per hour.  
             Once the model is finished, save it as a custom node and name the contraption "stick_contraption" </p>
           <div class="btn-group" role="group">
             <button id="task2Claim" type="button" class="btn btn-default btn-primary">Claim</button>
-            <button id="task2Submit" type="button" class="btn btn-default btn-info disabled">Submit</button>
+            <button id="task2Submit" type="button" class="btn btn-default btn-info" disabled>Submit</button>
           </div>
         </div> 
 
-        <div class="panel-heading">
-          <h3 class="panel-title">Task 3: Build Diamond Axe Contraption</h3>
+        <div class="card-header  bg-primary text-white">
+          <h3 class="card-title text-white">Task 3: Build Diamond Axe Contraption</h3>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
           <p>Using MFP create a diamond axe model.  Utilize the Resource, Crafter and Output nodes in the 
             material explorer inside of the MFP to create a model that is capable of producing 2 axe's per hour.  
             Once the model is finished, save it as a custom node and name the contraption "axe_contraption" </p>
           <div class="btn-group" role="group">
             <button id="task3Claim" type="button" class="btn btn-default btn-primary">Claim</button>
-            <button id="task3Submit" type="button" class="btn btn-default btn-info disabled">Submit</button>
+            <button id="task3Submit" type="button" class="btn btn-default btn-info" disabled>Submit</button>
           </div>
         </div>
 
-        <div class="panel-heading">
-          <h3 class="panel-title">Task 4: Build Chest Contraption</h3>
+        <div class="card-header  bg-primary text-white">
+          <h3 class="card-title text-white">Task 4: Build Chest Contraption</h3>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
           <p>Using MFP create a chest model.  Utilize the Resource, Crafter and Output nodes in the 
             material explorer inside of the MFP to create a model that is capable of producing 10 chest per hour.  
             Once the model is finished, save it as a custom node and name the contraption "chest_contraption" </p>
           <div class="btn-group" role="group">
             <button id="task4Claim" type="button" class="btn btn-default btn-primary">Claim</button>
-            <button id="task4Submit" type="button" class="btn btn-default btn-info disabled">Submit</button>
+            <button id="task4Submit" type="button" class="btn btn-default btn-info" disabled>Submit</button>
           </div>
         </div>
 
@@ -95,20 +99,20 @@
     <div id="unitTest" class="tab-pane fade">
       <h3>Unit Test  <i class="fa-solid fa-bars-progress"></i></h3>
 
-      <div id="unitTestTask1" class="panel panel-info hide">
-        <div class="panel-heading">
-          <h3 class="panel-title">Task 1: Build Plank Contraption</h3>
+      <div id="unitTestTask1" class="card card-info hide">
+        <div class="card-header  bg-primary text-white">
+          <h3 class="card-title">Task 1: Build Plank Contraption</h3>
         </div>
         
-        <div class="panel-body">    
+        <div class="card-body">    
           <p><button id='exeTask1UnitTest' type="button" class="btn btn-primary">Run Task 1 Unit Test</button></p>
 
           <!-- Proper Nodes in Model -->
-          <div id='unitTestTask1NodeTypes' class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Proper Nodes in Model</h3>
+          <div id='unitTestTask1NodeTypes' class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white">Proper Nodes in Model</h3>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               <ul class="list-group">
                 <li id='unitTestTask1ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
                 <li id='unitTestTask1CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
@@ -117,43 +121,43 @@
             </div>
           </div>
           <!-- Proper Connected Model -->
-          <div id='unitTestTask1ModelConnected'class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Model Connected Properly</h3>
+          <div id='unitTestTask1ModelConnected'class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Model Connected Properly</h3>
             </div>
           </div>
           
           <!-- Proper Capcity -->
-          <div id='unitTestTask1Capcity' class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Correct Planks Per Hour</h3>
+          <div id='unitTestTask1Capcity' class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Correct Planks Per Hour</h3>
             </div>
           </div>
 
           <!-- Custom Node Created -->
-          <div id='unitTestTask1CustomNode' class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Custom Node Created</h3>
+          <div id='unitTestTask1CustomNode' class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Custom Node Created</h3>
             </div>
           </div>
 
         </div>
       </div>
 
-      <div id="unitTestTask2" class="panel panel-info hide">
-        <div class="panel-heading">
-          <h3 class="panel-title">Task 2: Build Stick Contraption</h3>
+      <div id="unitTestTask2" class="card card-info hide">
+        <div class="card-header bg-primary text-white">
+          <h3 class="card-title text-white">Task 2: Build Stick Contraption</h3>
         </div>
         
-        <div class="panel-body">    
+        <div class="card-body">    
           <p><button id='exeTask2UnitTest' type="button" class="btn btn-primary">Run Task 2 Unit Test</button></p>
 
           <!-- Proper Nodes in Model -->
-          <div id='unitTestTask2NodeTypes' class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Proper Nodes in Model</h3>
+          <div id='unitTestTask2NodeTypes' class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Proper Nodes in Model</h3>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               <ul class="list-group">
                 <li id='unitTestTask2ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
                 <li id='unitTestTask2CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
@@ -162,43 +166,43 @@
             </div>
           </div>
           <!-- Proper Connected Model -->
-          <div id='unitTestTask2ModelConnected'class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Model Connected Properly</h3>
+          <div id='unitTestTask2ModelConnected'class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Model Connected Properly</h3>
             </div>
           </div>
           
           <!-- Proper Capcity -->
-          <div id='unitTestTask2Capcity' class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Correct Sticks Per Hour</h3>
+          <div id='unitTestTask2Capcity' class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Correct Sticks Per Hour</h3>
             </div>
           </div>
 
           <!-- Custom Node Created -->
-          <div id='unitTestTask2CustomNode' class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Custom Node Created</h3>
+          <div id='unitTestTask2CustomNode' class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Custom Node Created</h3>
             </div>
           </div>
 
         </div>
       </div>
 
-      <div id="unitTestTask3" class="panel panel-info hide">
-        <div class="panel-heading">
-          <h3 class="panel-title">Task 3: Build Diamone Axe Contraption</h3>
+      <div id="unitTestTask3" class="card card-info hide">
+        <div class="card-header bg-primary text-white">
+          <h3 class="card-title text-white">Task 3: Build Diamone Axe Contraption</h3>
         </div>
         
-        <div class="panel-body">    
+        <div class="card-body">    
           <p><button id='exeTask3UnitTest' type="button" class="btn btn-primary">Run Task 3 Unit Test</button></p>
 
           <!-- Proper Nodes in Model -->
-          <div id='unitTestTask3NodeTypes' class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Proper Nodes in Model</h3>
+          <div id='unitTestTask3NodeTypes' class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Proper Nodes in Model</h3>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               <ul class="list-group">
                 <li id='unitTestTask3ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
                 <li id='unitTestTask3CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
@@ -207,43 +211,43 @@
             </div>
           </div>
           <!-- Proper Connected Model -->
-          <div id='unitTestTask3ModelConnected'class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Model Connected Properly</h3>
+          <div id='unitTestTask3ModelConnected'class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Model Connected Properly</h3>
             </div>
           </div>
           
           <!-- Proper Capcity -->
-          <div id='unitTestTask3Capcity' class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Correct Axe Per Hour</h3>
+          <div id='unitTestTask3Capcity' class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Correct Axe Per Hour</h3>
             </div>
           </div>
 
           <!-- Custom Node Created -->
-          <div id='unitTestTask3CustomNode' class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Custom Node Created</h3>
+          <div id='unitTestTask3CustomNode' class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Custom Node Created</h3>
             </div>
           </div>
 
         </div>
       </div>
 
-      <div id="unitTestTask4" class="panel panel-info hide">
-        <div class="panel-heading">
-          <h3 class="panel-title">Task 1: Build Plank Contraption</h3>
+      <div id="unitTestTask4" class="card card-info hide">
+        <div class="card-header bg-primary text-white">
+          <h3 class="card-title text-white">Task 1: Build Plank Contraption</h3>
         </div>
         
-        <div class="panel-body">    
+        <div class="card-body">    
           <p><button id='exeTask4UnitTest' type="button" class="btn btn-primary">Run Task 4 Unit Test</button></p>
 
           <!-- Proper Nodes in Model -->
-          <div id='unitTestTask4NodeTypes' class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Proper Nodes in Model</h3>
+          <div id='unitTestTask4NodeTypes' class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Proper Nodes in Model</h3>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               <ul class="list-group">
                 <li id='unitTestTask4ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
                 <li id='unitTestTask4CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
@@ -252,23 +256,23 @@
             </div>
           </div>
           <!-- Proper Connected Model -->
-          <div id='unitTestTask4ModelConnected'class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Model Connected Properly</h3>
+          <div id='unitTestTask4ModelConnected'class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Model Connected Properly</h3>
             </div>
           </div>
           
           <!-- Proper Capcity -->
-          <div id='unitTestTask4Capcity' class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Correct Chest Per Hour</h3>
+          <div id='unitTestTask4Capcity' class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Correct Chest Per Hour</h3>
             </div>
           </div>
 
           <!-- Custom Node Created -->
-          <div id='unitTestTask4CustomNode' class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title ">Custom Node Created</h3>
+          <div id='unitTestTask4CustomNode' class="card bg-danger">
+            <div class="card-header">
+              <h3 class="card-title text-white ">Custom Node Created</h3>
             </div>
           </div>
 

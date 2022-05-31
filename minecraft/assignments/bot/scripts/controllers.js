@@ -12,7 +12,7 @@ BB.States.Task1 = new CState("Task1");
 BB.States.Task1.Enter = function(){
     
     //Enable the task to be submitted
-    $('#task1Submit').removeClass('disabled')
+    $('#task1Submit').prop("disabled", false)
 
     //Enable Unit Test for Task 1
     $('#unitTestTask1').removeClass('hide')
@@ -43,7 +43,7 @@ BB.States.Task1.Execute = function(){
 }
 BB.States.Task1.Exit = function(){
     //Disable Task 1 Content
-    $('#task1Submit').addClass('disabled')
+    $('#task1Submit').prop("disabled", true)
 
     //Enable Unit Test for Task 1
     $('#unitTestTask1').addClass('hide')
@@ -140,7 +140,7 @@ BB.States.Task2 = new CState("Task2");
 
 BB.States.Task2.Enter = function(){
     //Enable the task to be submitted
-    $('#task2Submit').removeClass('disabled')
+    $('#task2Submit').prop("disabled", false)
 
     //Enable Unit Test for Task 1
     $('#unitTestTask2').removeClass('hide')
@@ -168,7 +168,7 @@ BB.States.Task2.Execute = function(){
 }
 BB.States.Task2.Exit = function(){
     //Disable Task 2 Content
-    $('#task2Submit').addClass('disabled')
+    $('#task2Submit').prop("disabled", true)
 
     //Enable Unit Test for Task 2
     $('#unitTestTask2').addClass('hide')
