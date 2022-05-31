@@ -21,9 +21,14 @@ a[aria-expanded=true] .fa-chevron-down {
  #bot {
     position: absolute;
     /* z-index: 1000; */
-    width: 500px;
     background-color: white;
-    left: 82px;
+    left: 100px;
+    top: 0px;
+    width: 530px;
+ }
+ #botContent{
+    width: 500px;
+    height: 700px;
     overflow: scroll;
  }
  .hide {

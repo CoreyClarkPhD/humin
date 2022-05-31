@@ -22,11 +22,11 @@
   <ul id="menuTabs" class="nav nav-tabs"   aria-expanded="false" aria-controls="botContent">
     <li class="nav-item">
       <a id='menuControl' data-toggle="collapse" href="#botContent" aria-expanded="false" aria-controls="botContent">
-        <i class="fa-solid fa-xmark pull-right"></i>
-        <i class="fa-solid fa-chevron-down pull-right"></i>
+        <i class="fa-solid fa-xmark pull-right">&nbsp; &nbsp; &nbsp; </i>
+        <i class="fa-solid fa-chevron-down pull-right">&nbsp; &nbsp;</i>
       </a>
     </li>
-    <li class="nav-item"><a class='nav-link' data-toggle="tab" href="#task"><i class="fa-solid fa-list-check"></i>   Task  </i></a></li>
+    <li class="nav-item"><a class='nav-link active' data-toggle="tab" href="#task"><i class="fa-solid fa-list-check"></i>   Task  </i></a></li>
     <li class="nav-item"><a class='nav-link' data-toggle="tab" href="#unitTest"><i class="fa-solid fa-bars-progress"></i>    Unit Test</a></li>
     <li class="nav-item"><a class='nav-link' data-toggle="tab" href="#debugger"><i class="fa-solid fa-bug"></i>   Debugger</a></li>
     <li class="nav-item"><a class='nav-link' data-toggle="tab" href="#support"><i class="fa-solid fa-robot"></i>   BB</a></li>
@@ -34,7 +34,7 @@
 
   <div id="botContent" class="tab-content collapse" aria-expanded="false" >
 
-    <div id="task" class="tab-pane fade">
+    <div id="task" class="tab-pane fade active show">
       <h3><i class="fa-solid fa-list-check"></i>  Assigned Task </h3>
 
       <div class="card">
@@ -97,9 +97,9 @@
     </div>
 
     <div id="unitTest" class="tab-pane fade">
-      <h3>Unit Test  <i class="fa-solid fa-bars-progress"></i></h3>
+      <h3><i class="fa-solid fa-bars-progress"></i>  Unit Test</h3>
 
-      <div id="unitTestTask1" class="card card-info hide">
+      <div id="unitTestTask1" class="card card-info" style="display: none;">
         <div class="card-header  bg-primary text-white">
           <h3 class="card-title">Task 1: Build Plank Contraption</h3>
         </div>
@@ -114,9 +114,9 @@
             </div>
             <div class="card-body">
               <ul class="list-group">
-                <li id='unitTestTask1ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
-                <li id='unitTestTask1CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
                 <li id='unitTestTask1OutputNodes' class="list-group-item list-group-item-danger">Proper Output Nodes</li>
+                <li id='unitTestTask1CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
+                <li id='unitTestTask1ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
               </ul>
             </div>
           </div>
@@ -144,7 +144,7 @@
         </div>
       </div>
 
-      <div id="unitTestTask2" class="card card-info hide">
+      <div id="unitTestTask2" class="card card-info" style="display: none;">
         <div class="card-header bg-primary text-white">
           <h3 class="card-title text-white">Task 2: Build Stick Contraption</h3>
         </div>
@@ -189,7 +189,7 @@
         </div>
       </div>
 
-      <div id="unitTestTask3" class="card card-info hide">
+      <div id="unitTestTask3" class="card card-info" style="display: none;">
         <div class="card-header bg-primary text-white">
           <h3 class="card-title text-white">Task 3: Build Diamone Axe Contraption</h3>
         </div>
@@ -234,7 +234,7 @@
         </div>
       </div>
 
-      <div id="unitTestTask4" class="card card-info hide">
+      <div id="unitTestTask4" class="card card-info" style="display: none;">
         <div class="card-header bg-primary text-white">
           <h3 class="card-title text-white">Task 1: Build Plank Contraption</h3>
         </div>
@@ -283,9 +283,81 @@
     </div>
 
     <div id="debugger" class="tab-pane fade">
-      <h3>Debugger <i class="fa-solid fa-bug"></i></h3>
-      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      <h3><i class="fa-solid fa-bug"></i>  Debugger</h3>
+
+      <!-- Node Types -->
+      <div id='debuggerNodeTypes' class="card bg-danger" >
+        
+        <div id='debuggerOutputNode' class="card-body" >
+          <div class="card-header">
+            <h3 class="card-title text-white">Incorrect Output Node</h3>
+          </div>
+          <ul class="list-group">
+            <li id='debuggerMissingOutputNode' class="list-group-item list-group-item-danger">The required Output Node(s) is missing</li>
+            <li id='debuggerIncorrectOutputNode' class="list-group-item list-group-item-danger">The incorrect Output Node(s) is loaded</li>
+          </ul>
+        </div>
+
+        <div id='debuggerCraftableNode' class="card-body" >
+          <div class="card-header">
+            <h3 class="card-title text-white">Incorrect Craftable Node</h3>
+          </div>
+          <ul class="list-group">
+            <li id='debuggerMissingCraftableNode' class="list-group-item list-group-item-danger">The required Craftable Node(s) is missing</li>
+            <li id='debuggerIncorrectCraftableNode' class="list-group-item list-group-item-danger">The incorrect Craftable Node(s) is loaded</li>
+          </ul>
+        </div>
+
+        <div id='debuggerResourceNode' class="card-body" >
+          <div class="card-header">
+            <h3 class="card-title text-white">Incorrect Resource Node</h3>
+          </div>
+          <ul class="list-group">
+            <li id='debuggerMissingResourceNode' class="list-group-item list-group-item-danger">The required Resource Node(s) is missing</li>
+            <li id='debuggerIncorrectResourceNode' class="list-group-item list-group-item-danger">The incorrect Resource Node(s) is loaded</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Model Connectivity -->
+      <div id='debuggerConnectivity' class="card bg-danger" >
+        <div class="card-body">
+          <div class="card-header">
+            <h3 class="card-title text-white">Model Connections Incorrect</h3>
+          </div>
+          <ul class="list-group">
+            <li id='debuggerMissingConncections' class="list-group-item list-group-item-danger">The model is missing connections between nodes</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Capcity -->
+      <div id='debuggerCapacity' class="card bg-danger" >
+        
+        <div class="card-body">
+          <div class="card-header">
+            <h3 class="card-title text-white">Model Output Incorrect</h3>
+          </div>
+          <ul class="list-group">
+            <li id='debuggerCapacityInputMissing' class="list-group-item list-group-item-danger">Missing inputs into model</li>
+            <li id='debuggerCapacityTooHigh' class="list-group-item list-group-item-danger">The model is producing too many items</li>
+            <li id='debuggerCapacityTooLow' class="list-group-item list-group-item-danger">The model is producing too few items</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Custom Node -->
+      <div id='debuggerCustomNode' class="card bg-danger" >
+        
+        <div class="card-body">
+          <div class="card-header">
+            <h3 class="card-title text-white">Incorrect Custom Node</h3>
+          </div>
+          <ul class="list-group">
+            <li id='debuggerMissingCustomNode' class="list-group-item list-group-item-danger">The Custom Node module is missing</li>
+          </ul>
+        </div>
+      </div>
     </div>
+    
 
     <div id="support" class="tab-pane fade">
       <h3>Support <i class="fa-solid fa-robot"></i></h3>
