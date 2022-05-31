@@ -4,11 +4,18 @@
   <!-- CSS only -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+  
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://humingamelab.com/minecraft/assignments/bot/css/custom.css">
+  <!-- <link rel="stylesheet" href="http://127.0.0.1/Git/HuMIn/GitLab/minecraft-assignments/bot/css/custom.css"> -->
   <!-- JS, Popper.js, and jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+  <script src="https://kit.fontawesome.com/6f6f03dd9d.js" crossorigin="anonymous"></script>
 
   <meta charset="utf-8">
   <title>Minecraft Factory Planner</title>
@@ -17,6 +24,409 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+  
   <app-root></app-root>
+
+  <div id="bot" class="container">
+    
+    <ul id="menuTabs" class="nav nav-tabs"   aria-expanded="false" aria-controls="botContent">
+      <li class="nav-item">
+        <a id='menuControl' data-toggle="collapse" href="#botContent" aria-expanded="false" aria-controls="botContent">
+          <i class="fa-solid fa-xmark pull-right">&nbsp; &nbsp; &nbsp; </i>
+          <i class="fa-solid fa-chevron-down pull-right">&nbsp; &nbsp;</i>
+        </a>
+      </li>
+      <li class="nav-item"><a class='nav-link active' data-toggle="tab" href="#task"><i class="fa-solid fa-list-check"></i>   Task  </i></a></li>
+      <li class="nav-item"><a class='nav-link' data-toggle="tab" href="#unitTest"><i class="fa-solid fa-bars-progress"></i>    Unit Test</a></li>
+      <li class="nav-item"><a class='nav-link' data-toggle="tab" href="#debugger"><i class="fa-solid fa-bug"></i>   Debugger</a></li>
+      <li class="nav-item"><a class='nav-link' data-toggle="tab" href="#support"><i class="fa-solid fa-robot"></i>   BB</a></li>
+    </ul>
+  
+    <div id="botContent" class="tab-content collapse" aria-expanded="false" >
+  
+      <div id="task" class="tab-pane fade active show">
+        <h3><i class="fa-solid fa-list-check"></i>  Assigned Task </h3>
+  
+        <div class="card">
+          
+          <div class="card-header  bg-primary text-white">
+            <h3 class="card-title text-white">Task 1: Build Plank Contraption</h3>
+          </div>
+          <div class="card-body">
+            <p>Using MFP create a planks model.  Utilize the Resource, Crafter and Output nodes in the 
+              material explorer inside of the MFP to create a model that is capable of producing 8 planks per hour.  
+              Once the model is finished, save it as a custom node and name the contraption "plank_contraption" </p>
+            <div class="btn-group" role="group">
+              <button id="task1Claim" type="button" class="btn btn-default btn-primary">Claim</button>
+              <button id="task1Submit" type="button" class="btn btn-default btn-info" aria-disabled="true" disabled>Submit</button>
+            </div>
+            
+          </div>
+          
+          <div class="card-header  bg-primary text-white">
+            <h3 class="card-title text-white">Task 2: Build Stick Contraption</h3>
+          </div>
+          <div class="card-body">
+            <p>Using MFP create a sticks model.  Utilize the Resource, Crafter and Output nodes in the 
+              material explorer inside of the MFP to create a model that is capable of producing 32 sticks per hour.  
+              Once the model is finished, save it as a custom node and name the contraption "stick_contraption" </p>
+            <div class="btn-group" role="group">
+              <button id="task2Claim" type="button" class="btn btn-default btn-primary">Claim</button>
+              <button id="task2Submit" type="button" class="btn btn-default btn-info" disabled>Submit</button>
+            </div>
+          </div> 
+  
+          <div class="card-header  bg-primary text-white">
+            <h3 class="card-title text-white">Task 3: Build Diamond Axe Contraption</h3>
+          </div>
+          <div class="card-body">
+            <p>Using MFP create a diamond axe model.  Utilize the Resource, Crafter and Output nodes in the 
+              material explorer inside of the MFP to create a model that is capable of producing 2 axe's per hour.  
+              Once the model is finished, save it as a custom node and name the contraption "axe_contraption" </p>
+            <div class="btn-group" role="group">
+              <button id="task3Claim" type="button" class="btn btn-default btn-primary">Claim</button>
+              <button id="task3Submit" type="button" class="btn btn-default btn-info" disabled>Submit</button>
+            </div>
+          </div>
+  
+          <div class="card-header  bg-primary text-white">
+            <h3 class="card-title text-white">Task 4: Build Chest Contraption</h3>
+          </div>
+          <div class="card-body">
+            <p>Using MFP create a chest model.  Utilize the Resource, Crafter and Output nodes in the 
+              material explorer inside of the MFP to create a model that is capable of producing 10 chest per hour.  
+              Once the model is finished, save it as a custom node and name the contraption "chest_contraption" </p>
+            <div class="btn-group" role="group">
+              <button id="task4Claim" type="button" class="btn btn-default btn-primary">Claim</button>
+              <button id="task4Submit" type="button" class="btn btn-default btn-info" disabled>Submit</button>
+            </div>
+          </div>
+  
+        </div>
+      
+      </div>
+  
+      <div id="unitTest" class="tab-pane fade">
+        <h3><i class="fa-solid fa-bars-progress"></i>  Unit Test</h3>
+  
+        <div id="unitTestTask1" class="card card-info" style="display: none;">
+          <div class="card-header  bg-primary text-white">
+            <h3 class="card-title">Task 1: Build Plank Contraption</h3>
+          </div>
+          
+          <div class="card-body">    
+            <p><button id='exeTask1UnitTest' type="button" class="btn btn-primary">Run Task 1 Unit Test</button></p>
+  
+            <!-- Proper Nodes in Model -->
+            <div id='unitTestTask1NodeTypes' class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white">Proper Nodes in Model</h3>
+              </div>
+              <div class="card-body">
+                <ul class="list-group">
+                  <li id='unitTestTask1OutputNodes' class="list-group-item list-group-item-danger">Proper Output Nodes</li>
+                  <li id='unitTestTask1CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
+                  <li id='unitTestTask1ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Proper Connected Model -->
+            <div id='unitTestTask1ModelConnected'class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Model Connected Properly</h3>
+              </div>
+            </div>
+            
+            <!-- Proper Capcity -->
+            <div id='unitTestTask1Capcity' class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Correct Planks Per Hour</h3>
+              </div>
+            </div>
+  
+            <!-- Custom Node Created -->
+            <div id='unitTestTask1CustomNode' class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Custom Node Created</h3>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+  
+        <div id="unitTestTask2" class="card card-info" style="display: none;">
+          <div class="card-header bg-primary text-white">
+            <h3 class="card-title text-white">Task 2: Build Stick Contraption</h3>
+          </div>
+          
+          <div class="card-body">    
+            <p><button id='exeTask2UnitTest' type="button" class="btn btn-primary">Run Task 2 Unit Test</button></p>
+  
+            <!-- Proper Nodes in Model -->
+            <div id='unitTestTask2NodeTypes' class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Proper Nodes in Model</h3>
+              </div>
+              <div class="card-body">
+                <ul class="list-group">
+                  <li id='unitTestTask2ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
+                  <li id='unitTestTask2CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
+                  <li id='unitTestTask2OutputNodes' class="list-group-item list-group-item-danger">Proper Output Nodes</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Proper Connected Model -->
+            <div id='unitTestTask2ModelConnected'class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Model Connected Properly</h3>
+              </div>
+            </div>
+            
+            <!-- Proper Capcity -->
+            <div id='unitTestTask2Capcity' class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Correct Sticks Per Hour</h3>
+              </div>
+            </div>
+  
+            <!-- Custom Node Created -->
+            <div id='unitTestTask2CustomNode' class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Custom Node Created</h3>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+  
+        <div id="unitTestTask3" class="card card-info" style="display: none;">
+          <div class="card-header bg-primary text-white">
+            <h3 class="card-title text-white">Task 3: Build Diamone Axe Contraption</h3>
+          </div>
+          
+          <div class="card-body">    
+            <p><button id='exeTask3UnitTest' type="button" class="btn btn-primary">Run Task 3 Unit Test</button></p>
+  
+            <!-- Proper Nodes in Model -->
+            <div id='unitTestTask3NodeTypes' class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Proper Nodes in Model</h3>
+              </div>
+              <div class="card-body">
+                <ul class="list-group">
+                  <li id='unitTestTask3ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
+                  <li id='unitTestTask3CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
+                  <li id='unitTestTask3OutputNodes' class="list-group-item list-group-item-danger">Proper Output Nodes</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Proper Connected Model -->
+            <div id='unitTestTask3ModelConnected'class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Model Connected Properly</h3>
+              </div>
+            </div>
+            
+            <!-- Proper Capcity -->
+            <div id='unitTestTask3Capcity' class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Correct Axe Per Hour</h3>
+              </div>
+            </div>
+  
+            <!-- Custom Node Created -->
+            <div id='unitTestTask3CustomNode' class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Custom Node Created</h3>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+  
+        <div id="unitTestTask4" class="card card-info" style="display: none;">
+          <div class="card-header bg-primary text-white">
+            <h3 class="card-title text-white">Task 1: Build Plank Contraption</h3>
+          </div>
+          
+          <div class="card-body">    
+            <p><button id='exeTask4UnitTest' type="button" class="btn btn-primary">Run Task 4 Unit Test</button></p>
+  
+            <!-- Proper Nodes in Model -->
+            <div id='unitTestTask4NodeTypes' class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Proper Nodes in Model</h3>
+              </div>
+              <div class="card-body">
+                <ul class="list-group">
+                  <li id='unitTestTask4ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
+                  <li id='unitTestTask4CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
+                  <li id='unitTestTask4OutputNodes' class="list-group-item list-group-item-danger">Proper Output Nodes</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Proper Connected Model -->
+            <div id='unitTestTask4ModelConnected'class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Model Connected Properly</h3>
+              </div>
+            </div>
+            
+            <!-- Proper Capcity -->
+            <div id='unitTestTask4Capcity' class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Correct Chest Per Hour</h3>
+              </div>
+            </div>
+  
+            <!-- Custom Node Created -->
+            <div id='unitTestTask4CustomNode' class="card bg-danger">
+              <div class="card-header">
+                <h3 class="card-title text-white ">Custom Node Created</h3>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+  
+        
+      </div>
+  
+      <div id="debugger" class="tab-pane fade">
+        <h3><i class="fa-solid fa-bug"></i>  Debugger</h3>
+  
+        <!-- Node Types -->
+        <div id='debuggerNodeTypes' class="card bg-danger" >
+          
+          <div id='debuggerOutputNode' class="card-body" >
+            <div class="card-header">
+              <h3 class="card-title text-white">Incorrect Output Node</h3>
+            </div>
+            <ul class="list-group">
+              <li id='debuggerMissingOutputNode' class="list-group-item list-group-item-danger">The required Output Node(s) is missing</li>
+              <li id='debuggerIncorrectOutputNode' class="list-group-item list-group-item-danger">The incorrect Output Node(s) is loaded</li>
+            </ul>
+          </div>
+  
+          <div id='debuggerCraftableNode' class="card-body" >
+            <div class="card-header">
+              <h3 class="card-title text-white">Incorrect Craftable Node</h3>
+            </div>
+            <ul class="list-group">
+              <li id='debuggerMissingCraftableNode' class="list-group-item list-group-item-danger">The required Craftable Node(s) is missing</li>
+              <li id='debuggerIncorrectCraftableNode' class="list-group-item list-group-item-danger">The incorrect Craftable Node(s) is loaded</li>
+            </ul>
+          </div>
+  
+          <div id='debuggerResourceNode' class="card-body" >
+            <div class="card-header">
+              <h3 class="card-title text-white">Incorrect Resource Node</h3>
+            </div>
+            <ul class="list-group">
+              <li id='debuggerMissingResourceNode' class="list-group-item list-group-item-danger">The required Resource Node(s) is missing</li>
+              <li id='debuggerIncorrectResourceNode' class="list-group-item list-group-item-danger">The incorrect Resource Node(s) is loaded</li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Model Connectivity -->
+        <div id='debuggerConnectivity' class="card bg-danger" >
+          <div class="card-body">
+            <div class="card-header">
+              <h3 class="card-title text-white">Model Connections Incorrect</h3>
+            </div>
+            <ul class="list-group">
+              <li id='debuggerMissingConncections' class="list-group-item list-group-item-danger">The model is missing connections between nodes</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Capcity -->
+        <div id='debuggerCapacity' class="card bg-danger" >
+          
+          <div class="card-body">
+            <div class="card-header">
+              <h3 class="card-title text-white">Model Output Incorrect</h3>
+            </div>
+            <ul class="list-group">
+              <li id='debuggerCapacityInputMissing' class="list-group-item list-group-item-danger">Missing inputs into model</li>
+              <li id='debuggerCapacityTooHigh' class="list-group-item list-group-item-danger">The model is producing too many items</li>
+              <li id='debuggerCapacityTooLow' class="list-group-item list-group-item-danger">The model is producing too few items</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Custom Node -->
+        <div id='debuggerCustomNode' class="card bg-danger" >
+          
+          <div class="card-body">
+            <div class="card-header">
+              <h3 class="card-title text-white">Incorrect Custom Node</h3>
+            </div>
+            <ul class="list-group">
+              <li id='debuggerMissingCustomNode' class="list-group-item list-group-item-danger">The Custom Node module is missing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+  
+      <div id="support" class="tab-pane fade">
+        <h3>Support <i class="fa-solid fa-robot"></i></h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+  
+    <!-- All Task Complete Modal -->
+    <div class="modal fade bd-example-modal-sm" id="allTaskCompleteModal" tabindex="-1" role="dialog" aria-labelledby="allTaskComplete" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="allTaskCompleteLongTitle">All Task Complete</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- UNIT TEST MODALS -->
+        <!-- Unit Test Failed Modal -->
+    <div class="modal fade bd-example-modal-sm" id="failedUnitTestModal" tabindex="-1" role="dialog" aria-labelledby="failedUnitTestModal" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="passedUnitTestModalTitle">Unit Test Failed</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Unit Test for current selected task failed, please check debugger to help resolve any errors
+          </div>
+        </div>
+      </div>
+    </div>
+        <!-- Unit Test Succeed Modal -->
+    <div class="modal fade bd-example-modal-sm" id="passedUnitTestModal" tabindex="-1" role="dialog" aria-labelledby="passedUnitTestModal" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="apassedUnitTestModalTitle">Unit Test Passed</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            All Unit Test for selected Task Passed, please claim next assigned task
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
 <script src="runtime.js" defer></script><script src="polyfills.js" defer></script><script src="styles.js" defer></script><script src="vendor.js" defer></script><script src="main.js" defer></script></body>
+<script src="https://humingamelab.com/minecraft/assignments/bot/scripts/utilities.js"></script>
+<script src="https://humingamelab.com/minecraft/assignments/bot/scripts/controllers.js"></script>
+<!-- <script src="http://127.0.0.1/Git/HuMIn/GitLab/minecraft-assignments/bot/scripts/utilities.js"></script>
+<script src="http://127.0.0.1/Git/HuMIn/GitLab/minecraft-assignments/bot/scripts/controllers.js"></script> -->
 </html>
