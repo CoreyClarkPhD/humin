@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MFP Builder Bot</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://kit.fontawesome.com/6f6f03dd9d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/custom.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+
+<div id="bot" class="container">
+    
+  <ul id="menuTabs" class="nav nav-tabs"   aria-expanded="false" aria-controls="botContent">
+    <li>
+      <a id='menuControl' data-toggle="collapse" href="#botContent" aria-expanded="false" aria-controls="botContent">
+        <i class="fa-solid fa-xmark pull-right"></i>
+        <i class="fa-solid fa-chevron-down pull-right"></i>
+      </a>
+    </li>
+    <li><a data-toggle="tab" href="#task"><i class="fa-solid fa-list-check"></i>   Task  </i></a></li>
+    <li><a data-toggle="tab" href="#unitTest"><i class="fa-solid fa-bars-progress"></i>    Unit Test</a></li>
+    <li><a data-toggle="tab" href="#debugger"><i class="fa-solid fa-bug"></i>   Debugger</a></li>
+    <li><a data-toggle="tab" href="#support"><i class="fa-solid fa-robot"></i>   BB</a></li>
+  </ul>
+
+  <div id="botContent" class="tab-content collapse" aria-expanded="false" style="height: 0px;">
+
+    <div id="task" class="tab-pane fade">
+      <h3><i class="fa-solid fa-list-check"></i>  Assigned Task </h3>
+
+      <div class="panel panel-primary">
+        
+        <div class="panel-heading">
+          <h3 class="panel-title">Task 1: Build Plank Contraption</h3>
+        </div>
+        <div class="panel-body">
+          <p>Using MFP create a planks model.  Utilize the Resource, Crafter and Output nodes in the 
+            material explorer inside of the MFP to create a model that is capable of producing 8 planks per hour.  
+            Once the model is finished, save it as a custom node and name the contraption "plank_contraption" </p>
+          <div class="btn-group" role="group">
+            <button id="task1Claim" type="button" class="btn btn-default btn-primary">Claim</button>
+            <button id="task1Submit" type="button" class="btn btn-default btn-info disabled">Submit</button>
+          </div>
+          
+        </div>
+        
+        <div class="panel-heading">
+          <h3 class="panel-title">Task 2: Build Stick Contraption</h3>
+        </div>
+        <div class="panel-body">
+          <p>Using MFP create a sticks model.  Utilize the Resource, Crafter and Output nodes in the 
+            material explorer inside of the MFP to create a model that is capable of producing 32 sticks per hour.  
+            Once the model is finished, save it as a custom node and name the contraption "stick_contraption" </p>
+          <div class="btn-group" role="group">
+            <button id="task2Claim" type="button" class="btn btn-default btn-primary">Claim</button>
+            <button id="task2Submit" type="button" class="btn btn-default btn-info disabled">Submit</button>
+          </div>
+        </div> 
+
+        <div class="panel-heading">
+          <h3 class="panel-title">Task 3: Build Diamond Axe Contraption</h3>
+        </div>
+        <div class="panel-body">
+          <p>Using MFP create a diamond axe model.  Utilize the Resource, Crafter and Output nodes in the 
+            material explorer inside of the MFP to create a model that is capable of producing 2 axe's per hour.  
+            Once the model is finished, save it as a custom node and name the contraption "axe_contraption" </p>
+          <div class="btn-group" role="group">
+            <button id="task3Claim" type="button" class="btn btn-default btn-primary">Claim</button>
+            <button id="task3Submit" type="button" class="btn btn-default btn-info disabled">Submit</button>
+          </div>
+        </div>
+
+        <div class="panel-heading">
+          <h3 class="panel-title">Task 4: Build Chest Contraption</h3>
+        </div>
+        <div class="panel-body">
+          <p>Using MFP create a chest model.  Utilize the Resource, Crafter and Output nodes in the 
+            material explorer inside of the MFP to create a model that is capable of producing 10 chest per hour.  
+            Once the model is finished, save it as a custom node and name the contraption "chest_contraption" </p>
+          <div class="btn-group" role="group">
+            <button id="task4Claim" type="button" class="btn btn-default btn-primary">Claim</button>
+            <button id="task4Submit" type="button" class="btn btn-default btn-info disabled">Submit</button>
+          </div>
+        </div>
+
+      </div>
+    
+    </div>
+
+    <div id="unitTest" class="tab-pane fade">
+      <h3>Unit Test  <i class="fa-solid fa-bars-progress"></i></h3>
+
+      <div id="unitTestTask1" class="panel panel-info hide">
+        <div class="panel-heading">
+          <h3 class="panel-title">Task 1: Build Plank Contraption</h3>
+        </div>
+        
+        <div class="panel-body">    
+          <p><button id='exeTask1UnitTest' type="button" class="btn btn-primary">Run Task 1 Unit Test</button></p>
+
+          <!-- Proper Nodes in Model -->
+          <div id='unitTestTask1NodeTypes' class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Proper Nodes in Model</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li id='unitTestTask1ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
+                <li id='unitTestTask1CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
+                <li id='unitTestTask1OutputNodes' class="list-group-item list-group-item-danger">Proper Output Nodes</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Proper Connected Model -->
+          <div id='unitTestTask1ModelConnected'class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Model Connected Properly</h3>
+            </div>
+          </div>
+          
+          <!-- Proper Capcity -->
+          <div id='unitTestTask1Capcity' class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Correct Planks Per Hour</h3>
+            </div>
+          </div>
+
+          <!-- Custom Node Created -->
+          <div id='unitTestTask1CustomNode' class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Custom Node Created</h3>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="unitTestTask2" class="panel panel-info hide">
+        <div class="panel-heading">
+          <h3 class="panel-title">Task 2: Build Stick Contraption</h3>
+        </div>
+        
+        <div class="panel-body">    
+          <p><button id='exeTask2UnitTest' type="button" class="btn btn-primary">Run Task 2 Unit Test</button></p>
+
+          <!-- Proper Nodes in Model -->
+          <div id='unitTestTask2NodeTypes' class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Proper Nodes in Model</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li id='unitTestTask2ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
+                <li id='unitTestTask2CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
+                <li id='unitTestTask2OutputNodes' class="list-group-item list-group-item-danger">Proper Output Nodes</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Proper Connected Model -->
+          <div id='unitTestTask2ModelConnected'class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Model Connected Properly</h3>
+            </div>
+          </div>
+          
+          <!-- Proper Capcity -->
+          <div id='unitTestTask2Capcity' class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Correct Sticks Per Hour</h3>
+            </div>
+          </div>
+
+          <!-- Custom Node Created -->
+          <div id='unitTestTask2CustomNode' class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Custom Node Created</h3>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="unitTestTask3" class="panel panel-info hide">
+        <div class="panel-heading">
+          <h3 class="panel-title">Task 3: Build Diamone Axe Contraption</h3>
+        </div>
+        
+        <div class="panel-body">    
+          <p><button id='exeTask3UnitTest' type="button" class="btn btn-primary">Run Task 3 Unit Test</button></p>
+
+          <!-- Proper Nodes in Model -->
+          <div id='unitTestTask3NodeTypes' class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Proper Nodes in Model</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li id='unitTestTask3ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
+                <li id='unitTestTask3CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
+                <li id='unitTestTask3OutputNodes' class="list-group-item list-group-item-danger">Proper Output Nodes</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Proper Connected Model -->
+          <div id='unitTestTask3ModelConnected'class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Model Connected Properly</h3>
+            </div>
+          </div>
+          
+          <!-- Proper Capcity -->
+          <div id='unitTestTask3Capcity' class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Correct Axe Per Hour</h3>
+            </div>
+          </div>
+
+          <!-- Custom Node Created -->
+          <div id='unitTestTask3CustomNode' class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Custom Node Created</h3>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="unitTestTask4" class="panel panel-info hide">
+        <div class="panel-heading">
+          <h3 class="panel-title">Task 1: Build Plank Contraption</h3>
+        </div>
+        
+        <div class="panel-body">    
+          <p><button id='exeTask4UnitTest' type="button" class="btn btn-primary">Run Task 4 Unit Test</button></p>
+
+          <!-- Proper Nodes in Model -->
+          <div id='unitTestTask4NodeTypes' class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Proper Nodes in Model</h3>
+            </div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li id='unitTestTask4ResourceNodes' class="list-group-item list-group-item-danger">Proper Resource Nodes</li>
+                <li id='unitTestTask4CraftableNodes' class="list-group-item list-group-item-danger">Proper Craftable Nodes</li>
+                <li id='unitTestTask4OutputNodes' class="list-group-item list-group-item-danger">Proper Output Nodes</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Proper Connected Model -->
+          <div id='unitTestTask4ModelConnected'class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Model Connected Properly</h3>
+            </div>
+          </div>
+          
+          <!-- Proper Capcity -->
+          <div id='unitTestTask4Capcity' class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Correct Chest Per Hour</h3>
+            </div>
+          </div>
+
+          <!-- Custom Node Created -->
+          <div id='unitTestTask4CustomNode' class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title ">Custom Node Created</h3>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="debugger" class="tab-pane fade">
+      <h3>Debugger <i class="fa-solid fa-bug"></i></h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+    </div>
+
+    <div id="support" class="tab-pane fade">
+      <h3>Support <i class="fa-solid fa-robot"></i></h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+  </div>
+
+  <!-- All Task Complete Modal -->
+  <div class="modal fade bd-example-modal-sm" id="allTaskCompleteModal" tabindex="-1" role="dialog" aria-labelledby="allTaskComplete" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="allTaskCompleteLongTitle">All Task Complete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNIT TEST MODALS -->
+      <!-- Unit Test Failed Modal -->
+  <div class="modal fade bd-example-modal-sm" id="failedUnitTestModal" tabindex="-1" role="dialog" aria-labelledby="failedUnitTestModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="passedUnitTestModalTitle">Unit Test Failed</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Unit Test for current selected task failed, please check debugger to help resolve any errors
+        </div>
+      </div>
+    </div>
+  </div>
+      <!-- Unit Test Succeed Modal -->
+  <div class="modal fade bd-example-modal-sm" id="passedUnitTestModal" tabindex="-1" role="dialog" aria-labelledby="passedUnitTestModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="apassedUnitTestModalTitle">Unit Test Passed</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          All Unit Test for selected Task Passed, please claim next assigned task
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+</body>
+<script src="./scripts/utilities.js"></script>
+<script src="./scripts/controllers.js"></script>
+</html>
