@@ -28,6 +28,7 @@ BB.States.Task1.Enter = function(){
     
 }
 BB.States.Task1.Execute = function(){
+
     //Run Unit Test
     BB.States.Task1.complete = BB.States.Task1.RunUnitTest();
 
@@ -123,7 +124,9 @@ BB.States.Task1.RunUnitTest = function(){
     // BB.tree = BB.treeMissingConnection;
     // BB.tree = BB.treeDiamondPixAxeCorrect;
 
-
+    //Build Node Tree
+    ParseTree();
+    
     var status = BB.States.Task1.UnitTestStatus;
     //Proper Nodes in Model
     status.resourceNodes   = DoCorrectResourceNodesExist(BB.States.Task1.TestConditions);
@@ -213,6 +216,7 @@ BB.States.Task2.Enter = function(){
     ClearDebugger();
 }
 BB.States.Task2.Execute = function(){
+
     //Run Unit Test
     BB.States.Task2.complete = BB.States.Task2.RunUnitTest();
 
@@ -303,7 +307,9 @@ BB.States.Task2.UnitTestStatus = {
 BB.States.Task2.RunUnitTest = function(){
     console.log("running task 2 unit test");
     
-
+    //Build Node Tree
+    ParseTree();
+    
     var status = BB.States.Task2.UnitTestStatus;
     //Proper Nodes in Model
     status.resourceNodes   = DoCorrectResourceNodesExist(BB.States.Task2.TestConditions);
@@ -493,6 +499,9 @@ BB.States.Task3.RunUnitTest = function(){
     //Debugging
     // BB.tree = BB.treeDiamondPixAxeCorrect;
 
+    //Build Node Tree
+    ParseTree();
+    
     var status = BB.States.Task3.UnitTestStatus;
     //Proper Nodes in Model
     status.resourceNodes   = DoCorrectResourceNodesExist(BB.States.Task3.TestConditions);
@@ -675,7 +684,10 @@ BB.States.Task4.RunUnitTest = function(){
     console.log("running task 4 unit test");
     //Debugging
     // BB.tree = BB.treeChestCorrect;
-
+    
+    //Build Node Tree
+    ParseTree();
+    
     var status = BB.States.Task4.UnitTestStatus;
     //Proper Nodes in Model
     status.resourceNodes   = DoCorrectResourceNodesExist(BB.States.Task4.TestConditions);
