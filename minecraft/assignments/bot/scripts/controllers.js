@@ -253,10 +253,10 @@ BB.States.Task2.Exit = function(){
 BB.States.Task2.complete = false;
 BB.States.Task2.TestConditions = {
     resourceNodes: ['logs'],
-    craftableNodes: ['planks', 'sticks'],
-    outputNodes:    ['sticks'],
+    craftableNodes: ['planks', 'stick'],
+    outputNodes:    ['stick'],
     capacity:[
-        {name: 'sticks',
+        {name: 'stick',
         amount: 32}
     ],
     connections:[
@@ -264,10 +264,10 @@ BB.States.Task2.TestConditions = {
             dest: 'planks'
         },
         {   src: 'planks',
-            dest: 'sticks'
+            dest: 'stick'
         },
-        {   src: 'sticks',
-            dest: 'sticks'
+        {   src: 'stick',
+            dest: 'stick'
         },
     ],
     customNode: 'stick_contraption',
