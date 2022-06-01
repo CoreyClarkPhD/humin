@@ -216,6 +216,12 @@ BB.States = {};
 
 BB.Load = function(){
     ClearDebugger();
+
+    $('#task1Submit').hide();
+    $('#task2Submit').hide();
+    $('#task3Submit').hide();
+    $('#task4Submit').hide();
+
     BB.treePlanksCorrect = {
         "Nodes": [
             null,
@@ -259,8 +265,8 @@ BB.Load = function(){
                         }
                     },
                     "position": [
-                        240,
-                        111
+                        123,
+                        271
                     ],
                     "name": "Resource"
                 },
@@ -270,7 +276,7 @@ BB.Load = function(){
                 "type": "Resource",
                 "inputs": [],
                 "outputs": [
-                    1
+                    2
                 ]
             },
             {
@@ -342,8 +348,8 @@ BB.Load = function(){
                         }
                     },
                     "position": [
-                        514.9929361814783,
-                        182.89147929434807
+                        400,
+                        193
                     ],
                     "name": "Crafter"
                 },
@@ -355,7 +361,7 @@ BB.Load = function(){
                     1
                 ],
                 "outputs": [
-                    2
+                    3
                 ]
             },
             {
@@ -428,8 +434,8 @@ BB.Load = function(){
                     },
                     "outputs": {},
                     "position": [
-                        798.4924623115578,
-                        146.62814070351757
+                        706,
+                        111
                     ],
                     "name": "Output"
                 },
@@ -513,8 +519,8 @@ BB.Load = function(){
                         }
                     },
                     "position": [
-                        514.9929361814783,
-                        182.89147929434807
+                        400,
+                        193
                     ],
                     "name": "Crafter"
                 },
@@ -526,7 +532,7 @@ BB.Load = function(){
                     1
                 ],
                 "outputs": [
-                    2
+                    3
                 ]
             }
         ],
@@ -571,8 +577,8 @@ BB.Load = function(){
                         }
                     },
                     "position": [
-                        240,
-                        111
+                        123,
+                        271
                     ],
                     "name": "Resource"
                 },
@@ -582,7 +588,7 @@ BB.Load = function(){
                 "type": "Resource",
                 "inputs": [],
                 "outputs": [
-                    1
+                    2
                 ]
             }
         ],
@@ -657,8 +663,8 @@ BB.Load = function(){
                     },
                     "outputs": {},
                     "position": [
-                        798.4924623115578,
-                        146.62814070351757
+                        706,
+                        111
                     ],
                     "name": "Output"
                 },
@@ -674,7 +680,7 @@ BB.Load = function(){
         ]
     }
 
-    BB.treePlanksNoOutpout = {
+    BB.treePlanksNoOutput = {
         "Nodes": [
             null,
             {
@@ -2256,6 +2262,2160 @@ BB.Load = function(){
                 "type": "Output",
                 "inputs": [
                     2
+                ],
+                "outputs": []
+            }
+        ]
+    }
+
+    BB.treeMissingConnection = {
+        "Nodes": [
+            null,
+            {
+                "node": {
+                    "id": 1,
+                    "data": {
+                        "resource": {
+                            "id": 23,
+                            "name": "Logs",
+                            "index": [
+                                6,
+                                1
+                            ],
+                            "craftable": false,
+                            "primaryColor": {
+                                "r": 58,
+                                "g": 46,
+                                "b": 28
+                            },
+                            "secondaryColor": {
+                                "r": 140,
+                                "g": 112,
+                                "b": 69
+                            }
+                        },
+                        "name": "Resource",
+                        "amount": 1,
+                        "perHour": 2
+                    },
+                    "inputs": {},
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 2,
+                                    "input": "23",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        123,
+                        271
+                    ],
+                    "name": "Resource"
+                },
+                "id": 1,
+                "name": "Logs",
+                "capacity": 2,
+                "type": "Resource",
+                "inputs": [],
+                "outputs": []
+            },
+            {
+                "node": {
+                    "id": 2,
+                    "data": {
+                        "resource": {
+                            "id": 5,
+                            "name": "Planks",
+                            "index": [
+                                4,
+                                0
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 4,
+                                "ingredients": [
+                                    {
+                                        "id": 23,
+                                        "amount": 1
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 152,
+                                "g": 124,
+                                "b": 74
+                            },
+                            "secondaryColor": {
+                                "r": 81,
+                                "g": 65,
+                                "b": 41
+                            }
+                        },
+                        "name": "Crafter",
+                        "amount": 4,
+                        "perHour": 8,
+                        "inputTree": [
+                            {
+                                "nodeId": 1,
+                                "itemId": 23,
+                                "amount": 1,
+                                "perHour": 2,
+                                "transitionCost": [],
+                                "tree": []
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "23": {
+                            "connections": [
+                                {
+                                    "node": 1,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "resource": {
+                            "connections": []
+                        }
+                    },
+                    "position": [
+                        400,
+                        193
+                    ],
+                    "name": "Crafter"
+                },
+                "id": 2,
+                "name": "Planks",
+                "capacity": 8,
+                "type": "Crafter",
+                "inputs": [],
+                "outputs": []
+            },
+            {
+                "node": {
+                    "id": 3,
+                    "data": {
+                        "resource": {
+                            "id": 5,
+                            "name": "Planks",
+                            "index": [
+                                4,
+                                0
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 4,
+                                "ingredients": [
+                                    {
+                                        "id": 23,
+                                        "amount": 1
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 152,
+                                "g": 124,
+                                "b": 74
+                            },
+                            "secondaryColor": {
+                                "r": 81,
+                                "g": 65,
+                                "b": 41
+                            }
+                        },
+                        "name": "Output",
+                        "amount": 1,
+                        "perHour": null,
+                        "inputTree": null
+                    },
+                    "inputs": {
+                        "resource": {
+                            "connections": []
+                        }
+                    },
+                    "outputs": {},
+                    "position": [
+                        706,
+                        111
+                    ],
+                    "name": "Output"
+                },
+                "id": 3,
+                "name": "Planks",
+                "capacity": null,
+                "type": "Output",
+                "inputs": [],
+                "outputs": []
+            }
+        ],
+        "Crafter": [
+            {
+                "node": {
+                    "id": 2,
+                    "data": {
+                        "resource": {
+                            "id": 5,
+                            "name": "Planks",
+                            "index": [
+                                4,
+                                0
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 4,
+                                "ingredients": [
+                                    {
+                                        "id": 23,
+                                        "amount": 1
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 152,
+                                "g": 124,
+                                "b": 74
+                            },
+                            "secondaryColor": {
+                                "r": 81,
+                                "g": 65,
+                                "b": 41
+                            }
+                        },
+                        "name": "Crafter",
+                        "amount": 4,
+                        "perHour": 8,
+                        "inputTree": [
+                            {
+                                "nodeId": 1,
+                                "itemId": 23,
+                                "amount": 1,
+                                "perHour": 2,
+                                "transitionCost": [],
+                                "tree": []
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "23": {
+                            "connections": [
+                                {
+                                    "node": 1,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "resource": {
+                            "connections": []
+                        }
+                    },
+                    "position": [
+                        400,
+                        193
+                    ],
+                    "name": "Crafter"
+                },
+                "id": 2,
+                "name": "Planks",
+                "capacity": 8,
+                "type": "Crafter",
+                "inputs": [],
+                "outputs": []
+            }
+        ],
+        "Resource": [
+            {
+                "node": {
+                    "id": 1,
+                    "data": {
+                        "resource": {
+                            "id": 23,
+                            "name": "Logs",
+                            "index": [
+                                6,
+                                1
+                            ],
+                            "craftable": false,
+                            "primaryColor": {
+                                "r": 58,
+                                "g": 46,
+                                "b": 28
+                            },
+                            "secondaryColor": {
+                                "r": 140,
+                                "g": 112,
+                                "b": 69
+                            }
+                        },
+                        "name": "Resource",
+                        "amount": 1,
+                        "perHour": 2
+                    },
+                    "inputs": {},
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 2,
+                                    "input": "23",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        123,
+                        271
+                    ],
+                    "name": "Resource"
+                },
+                "id": 1,
+                "name": "Logs",
+                "capacity": 2,
+                "type": "Resource",
+                "inputs": [],
+                "outputs": []
+            }
+        ],
+        "Output": [
+            {
+                "node": {
+                    "id": 3,
+                    "data": {
+                        "resource": {
+                            "id": 5,
+                            "name": "Planks",
+                            "index": [
+                                4,
+                                0
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 4,
+                                "ingredients": [
+                                    {
+                                        "id": 23,
+                                        "amount": 1
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 152,
+                                "g": 124,
+                                "b": 74
+                            },
+                            "secondaryColor": {
+                                "r": 81,
+                                "g": 65,
+                                "b": 41
+                            }
+                        },
+                        "name": "Output",
+                        "amount": 1,
+                        "perHour": null,
+                        "inputTree": null
+                    },
+                    "inputs": {
+                        "resource": {
+                            "connections": []
+                        }
+                    },
+                    "outputs": {},
+                    "position": [
+                        706,
+                        111
+                    ],
+                    "name": "Output"
+                },
+                "id": 3,
+                "name": "Planks",
+                "capacity": null,
+                "type": "Output",
+                "inputs": [],
+                "outputs": []
+            }
+        ]
+    }
+    BB.treeDiamondPixAxeCorrect = {
+        "Nodes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+                "node": {
+                    "id": 8,
+                    "data": {
+                        "resource": {
+                            "id": 279,
+                            "name": "Diamond Axe",
+                            "index": [
+                                7,
+                                15
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 1,
+                                "ingredients": [
+                                    {
+                                        "id": 264,
+                                        "amount": 3
+                                    },
+                                    {
+                                        "id": 280,
+                                        "amount": 2
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 39,
+                                "g": 178,
+                                "b": 154
+                            },
+                            "secondaryColor": {
+                                "r": 104,
+                                "g": 78,
+                                "b": 30
+                            }
+                        },
+                        "name": "Output",
+                        "amount": 1,
+                        "perHour": 2,
+                        "inputTree": [
+                            {
+                                "nodeId": 9,
+                                "itemId": 279,
+                                "amount": 1,
+                                "perHour": 2,
+                                "transitionCost": [
+                                    0.3333333333333333,
+                                    0.5
+                                ],
+                                "tree": [
+                                    {
+                                        "nodeId": 12,
+                                        "itemId": 264,
+                                        "amount": 1,
+                                        "perHour": 6,
+                                        "transitionCost": [],
+                                        "tree": []
+                                    },
+                                    {
+                                        "nodeId": 10,
+                                        "itemId": 280,
+                                        "amount": 4,
+                                        "perHour": 4,
+                                        "transitionCost": [
+                                            0.5
+                                        ],
+                                        "tree": [
+                                            {
+                                                "nodeId": 11,
+                                                "itemId": 5,
+                                                "amount": 4,
+                                                "perHour": 2,
+                                                "transitionCost": [
+                                                    1
+                                                ],
+                                                "tree": [
+                                                    {
+                                                        "nodeId": 13,
+                                                        "itemId": 23,
+                                                        "amount": 1,
+                                                        "perHour": 2,
+                                                        "transitionCost": [],
+                                                        "tree": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 9,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {},
+                    "position": [
+                        892.3671875,
+                        224.74609375
+                    ],
+                    "name": "Output"
+                },
+                "id": 8,
+                "name": "Diamond Axe",
+                "capacity": 2,
+                "type": "Output",
+                "inputs": [
+                    9
+                ],
+                "outputs": []
+            },
+            {
+                "node": {
+                    "id": 9,
+                    "data": {
+                        "resource": {
+                            "id": 279,
+                            "name": "Diamond Axe",
+                            "index": [
+                                7,
+                                15
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 1,
+                                "ingredients": [
+                                    {
+                                        "id": 264,
+                                        "amount": 3
+                                    },
+                                    {
+                                        "id": 280,
+                                        "amount": 2
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 39,
+                                "g": 178,
+                                "b": 154
+                            },
+                            "secondaryColor": {
+                                "r": 104,
+                                "g": 78,
+                                "b": 30
+                            }
+                        },
+                        "name": "Crafter",
+                        "amount": 1,
+                        "perHour": 2,
+                        "inputTree": [
+                            {
+                                "nodeId": 12,
+                                "itemId": 264,
+                                "amount": 1,
+                                "perHour": 6,
+                                "transitionCost": [],
+                                "tree": []
+                            },
+                            {
+                                "nodeId": 10,
+                                "itemId": 280,
+                                "amount": 4,
+                                "perHour": 4,
+                                "transitionCost": [
+                                    0.5
+                                ],
+                                "tree": [
+                                    {
+                                        "nodeId": 11,
+                                        "itemId": 5,
+                                        "amount": 4,
+                                        "perHour": 2,
+                                        "transitionCost": [
+                                            1
+                                        ],
+                                        "tree": [
+                                            {
+                                                "nodeId": 13,
+                                                "itemId": 23,
+                                                "amount": 1,
+                                                "perHour": 2,
+                                                "transitionCost": [],
+                                                "tree": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "264": {
+                            "connections": [
+                                {
+                                    "node": 12,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        },
+                        "280": {
+                            "connections": [
+                                {
+                                    "node": 10,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 8,
+                                    "input": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        634.75,
+                        185.16015625
+                    ],
+                    "name": "Crafter"
+                },
+                "id": 9,
+                "name": "Diamond Axe",
+                "capacity": 2,
+                "type": "Crafter",
+                "inputs": [
+                    12,
+                    10
+                ],
+                "outputs": [
+                    8
+                ]
+            },
+            {
+                "node": {
+                    "id": 10,
+                    "data": {
+                        "resource": {
+                            "id": 280,
+                            "name": "Stick",
+                            "index": [
+                                8,
+                                15
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 4,
+                                "ingredients": [
+                                    {
+                                        "id": 5,
+                                        "amount": 2
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 20,
+                                "g": 20,
+                                "b": 20
+                            },
+                            "secondaryColor": {
+                                "r": 46,
+                                "g": 46,
+                                "b": 46
+                            }
+                        },
+                        "name": "Crafter",
+                        "amount": 4,
+                        "perHour": 16,
+                        "inputTree": [
+                            {
+                                "nodeId": 11,
+                                "itemId": 5,
+                                "amount": 4,
+                                "perHour": 2,
+                                "transitionCost": [
+                                    1
+                                ],
+                                "tree": [
+                                    {
+                                        "nodeId": 13,
+                                        "itemId": 23,
+                                        "amount": 1,
+                                        "perHour": 2,
+                                        "transitionCost": [],
+                                        "tree": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "5": {
+                            "connections": [
+                                {
+                                    "node": 11,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 9,
+                                    "input": "280",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        290.0752213554107,
+                        333.3719809112643
+                    ],
+                    "name": "Crafter"
+                },
+                "id": 10,
+                "name": "Stick",
+                "capacity": 16,
+                "type": "Crafter",
+                "inputs": [
+                    11
+                ],
+                "outputs": [
+                    9
+                ]
+            },
+            {
+                "node": {
+                    "id": 11,
+                    "data": {
+                        "resource": {
+                            "id": 5,
+                            "name": "Planks",
+                            "index": [
+                                4,
+                                0
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 4,
+                                "ingredients": [
+                                    {
+                                        "id": 23,
+                                        "amount": 1
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 152,
+                                "g": 124,
+                                "b": 74
+                            },
+                            "secondaryColor": {
+                                "r": 81,
+                                "g": 65,
+                                "b": 41
+                            }
+                        },
+                        "name": "Crafter",
+                        "amount": 4,
+                        "perHour": 8,
+                        "inputTree": [
+                            {
+                                "nodeId": 13,
+                                "itemId": 23,
+                                "amount": 1,
+                                "perHour": 2,
+                                "transitionCost": [],
+                                "tree": []
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "23": {
+                            "connections": [
+                                {
+                                    "node": 13,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 10,
+                                    "input": "5",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        5.686537567878396,
+                        349.20249550487245
+                    ],
+                    "name": "Crafter"
+                },
+                "id": 11,
+                "name": "Planks",
+                "capacity": 8,
+                "type": "Crafter",
+                "inputs": [
+                    13
+                ],
+                "outputs": [
+                    10
+                ]
+            },
+            {
+                "node": {
+                    "id": 12,
+                    "data": {
+                        "resource": {
+                            "id": 264,
+                            "name": "Diamond",
+                            "index": [
+                                8,
+                                14
+                            ],
+                            "craftable": false,
+                            "primaryColor": {
+                                "r": 140,
+                                "g": 244,
+                                "b": 226
+                            },
+                            "secondaryColor": {
+                                "r": 44,
+                                "g": 205,
+                                "b": 177
+                            }
+                        },
+                        "name": "Resource",
+                        "amount": 1,
+                        "perHour": 6
+                    },
+                    "inputs": {},
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 9,
+                                    "input": "264",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        119.50369174839669,
+                        -4.801556465113696
+                    ],
+                    "name": "Resource"
+                },
+                "id": 12,
+                "name": "Diamond",
+                "capacity": 6,
+                "type": "Resource",
+                "inputs": [],
+                "outputs": [
+                    9
+                ]
+            },
+            {
+                "node": {
+                    "id": 13,
+                    "data": {
+                        "resource": {
+                            "id": 23,
+                            "name": "Logs",
+                            "index": [
+                                6,
+                                1
+                            ],
+                            "craftable": false,
+                            "primaryColor": {
+                                "r": 58,
+                                "g": 46,
+                                "b": 28
+                            },
+                            "secondaryColor": {
+                                "r": 140,
+                                "g": 112,
+                                "b": 69
+                            }
+                        },
+                        "name": "Resource",
+                        "amount": 1,
+                        "perHour": 2
+                    },
+                    "inputs": {},
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 11,
+                                    "input": "23",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        -272.1581391532924,
+                        368.46901709259714
+                    ],
+                    "name": "Resource"
+                },
+                "id": 13,
+                "name": "Logs",
+                "capacity": 2,
+                "type": "Resource",
+                "inputs": [],
+                "outputs": [
+                    11
+                ]
+            }
+        ],
+        "Crafter": [
+            {
+                "node": {
+                    "id": 9,
+                    "data": {
+                        "resource": {
+                            "id": 279,
+                            "name": "Diamond Axe",
+                            "index": [
+                                7,
+                                15
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 1,
+                                "ingredients": [
+                                    {
+                                        "id": 264,
+                                        "amount": 3
+                                    },
+                                    {
+                                        "id": 280,
+                                        "amount": 2
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 39,
+                                "g": 178,
+                                "b": 154
+                            },
+                            "secondaryColor": {
+                                "r": 104,
+                                "g": 78,
+                                "b": 30
+                            }
+                        },
+                        "name": "Crafter",
+                        "amount": 1,
+                        "perHour": 2,
+                        "inputTree": [
+                            {
+                                "nodeId": 12,
+                                "itemId": 264,
+                                "amount": 1,
+                                "perHour": 6,
+                                "transitionCost": [],
+                                "tree": []
+                            },
+                            {
+                                "nodeId": 10,
+                                "itemId": 280,
+                                "amount": 4,
+                                "perHour": 4,
+                                "transitionCost": [
+                                    0.5
+                                ],
+                                "tree": [
+                                    {
+                                        "nodeId": 11,
+                                        "itemId": 5,
+                                        "amount": 4,
+                                        "perHour": 2,
+                                        "transitionCost": [
+                                            1
+                                        ],
+                                        "tree": [
+                                            {
+                                                "nodeId": 13,
+                                                "itemId": 23,
+                                                "amount": 1,
+                                                "perHour": 2,
+                                                "transitionCost": [],
+                                                "tree": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "264": {
+                            "connections": [
+                                {
+                                    "node": 12,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        },
+                        "280": {
+                            "connections": [
+                                {
+                                    "node": 10,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 8,
+                                    "input": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        634.75,
+                        185.16015625
+                    ],
+                    "name": "Crafter"
+                },
+                "id": 9,
+                "name": "Diamond Axe",
+                "capacity": 2,
+                "type": "Crafter",
+                "inputs": [
+                    12,
+                    10
+                ],
+                "outputs": [
+                    8
+                ]
+            },
+            {
+                "node": {
+                    "id": 10,
+                    "data": {
+                        "resource": {
+                            "id": 280,
+                            "name": "Stick",
+                            "index": [
+                                8,
+                                15
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 4,
+                                "ingredients": [
+                                    {
+                                        "id": 5,
+                                        "amount": 2
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 20,
+                                "g": 20,
+                                "b": 20
+                            },
+                            "secondaryColor": {
+                                "r": 46,
+                                "g": 46,
+                                "b": 46
+                            }
+                        },
+                        "name": "Crafter",
+                        "amount": 4,
+                        "perHour": 16,
+                        "inputTree": [
+                            {
+                                "nodeId": 11,
+                                "itemId": 5,
+                                "amount": 4,
+                                "perHour": 2,
+                                "transitionCost": [
+                                    1
+                                ],
+                                "tree": [
+                                    {
+                                        "nodeId": 13,
+                                        "itemId": 23,
+                                        "amount": 1,
+                                        "perHour": 2,
+                                        "transitionCost": [],
+                                        "tree": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "5": {
+                            "connections": [
+                                {
+                                    "node": 11,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 9,
+                                    "input": "280",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        290.0752213554107,
+                        333.3719809112643
+                    ],
+                    "name": "Crafter"
+                },
+                "id": 10,
+                "name": "Stick",
+                "capacity": 16,
+                "type": "Crafter",
+                "inputs": [
+                    11
+                ],
+                "outputs": [
+                    9
+                ]
+            },
+            {
+                "node": {
+                    "id": 11,
+                    "data": {
+                        "resource": {
+                            "id": 5,
+                            "name": "Planks",
+                            "index": [
+                                4,
+                                0
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 4,
+                                "ingredients": [
+                                    {
+                                        "id": 23,
+                                        "amount": 1
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 152,
+                                "g": 124,
+                                "b": 74
+                            },
+                            "secondaryColor": {
+                                "r": 81,
+                                "g": 65,
+                                "b": 41
+                            }
+                        },
+                        "name": "Crafter",
+                        "amount": 4,
+                        "perHour": 8,
+                        "inputTree": [
+                            {
+                                "nodeId": 13,
+                                "itemId": 23,
+                                "amount": 1,
+                                "perHour": 2,
+                                "transitionCost": [],
+                                "tree": []
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "23": {
+                            "connections": [
+                                {
+                                    "node": 13,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 10,
+                                    "input": "5",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        5.686537567878396,
+                        349.20249550487245
+                    ],
+                    "name": "Crafter"
+                },
+                "id": 11,
+                "name": "Planks",
+                "capacity": 8,
+                "type": "Crafter",
+                "inputs": [
+                    13
+                ],
+                "outputs": [
+                    10
+                ]
+            }
+        ],
+        "Resource": [
+            {
+                "node": {
+                    "id": 12,
+                    "data": {
+                        "resource": {
+                            "id": 264,
+                            "name": "Diamond",
+                            "index": [
+                                8,
+                                14
+                            ],
+                            "craftable": false,
+                            "primaryColor": {
+                                "r": 140,
+                                "g": 244,
+                                "b": 226
+                            },
+                            "secondaryColor": {
+                                "r": 44,
+                                "g": 205,
+                                "b": 177
+                            }
+                        },
+                        "name": "Resource",
+                        "amount": 1,
+                        "perHour": 6
+                    },
+                    "inputs": {},
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 9,
+                                    "input": "264",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        119.50369174839669,
+                        -4.801556465113696
+                    ],
+                    "name": "Resource"
+                },
+                "id": 12,
+                "name": "Diamond",
+                "capacity": 6,
+                "type": "Resource",
+                "inputs": [],
+                "outputs": [
+                    9
+                ]
+            },
+            {
+                "node": {
+                    "id": 13,
+                    "data": {
+                        "resource": {
+                            "id": 23,
+                            "name": "Logs",
+                            "index": [
+                                6,
+                                1
+                            ],
+                            "craftable": false,
+                            "primaryColor": {
+                                "r": 58,
+                                "g": 46,
+                                "b": 28
+                            },
+                            "secondaryColor": {
+                                "r": 140,
+                                "g": 112,
+                                "b": 69
+                            }
+                        },
+                        "name": "Resource",
+                        "amount": 1,
+                        "perHour": 2
+                    },
+                    "inputs": {},
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 11,
+                                    "input": "23",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        -272.1581391532924,
+                        368.46901709259714
+                    ],
+                    "name": "Resource"
+                },
+                "id": 13,
+                "name": "Logs",
+                "capacity": 2,
+                "type": "Resource",
+                "inputs": [],
+                "outputs": [
+                    11
+                ]
+            }
+        ],
+        "Output": [
+            {
+                "node": {
+                    "id": 8,
+                    "data": {
+                        "resource": {
+                            "id": 279,
+                            "name": "Diamond Axe",
+                            "index": [
+                                7,
+                                15
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 1,
+                                "ingredients": [
+                                    {
+                                        "id": 264,
+                                        "amount": 3
+                                    },
+                                    {
+                                        "id": 280,
+                                        "amount": 2
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 39,
+                                "g": 178,
+                                "b": 154
+                            },
+                            "secondaryColor": {
+                                "r": 104,
+                                "g": 78,
+                                "b": 30
+                            }
+                        },
+                        "name": "Output",
+                        "amount": 1,
+                        "perHour": 2,
+                        "inputTree": [
+                            {
+                                "nodeId": 9,
+                                "itemId": 279,
+                                "amount": 1,
+                                "perHour": 2,
+                                "transitionCost": [
+                                    0.3333333333333333,
+                                    0.5
+                                ],
+                                "tree": [
+                                    {
+                                        "nodeId": 12,
+                                        "itemId": 264,
+                                        "amount": 1,
+                                        "perHour": 6,
+                                        "transitionCost": [],
+                                        "tree": []
+                                    },
+                                    {
+                                        "nodeId": 10,
+                                        "itemId": 280,
+                                        "amount": 4,
+                                        "perHour": 4,
+                                        "transitionCost": [
+                                            0.5
+                                        ],
+                                        "tree": [
+                                            {
+                                                "nodeId": 11,
+                                                "itemId": 5,
+                                                "amount": 4,
+                                                "perHour": 2,
+                                                "transitionCost": [
+                                                    1
+                                                ],
+                                                "tree": [
+                                                    {
+                                                        "nodeId": 13,
+                                                        "itemId": 23,
+                                                        "amount": 1,
+                                                        "perHour": 2,
+                                                        "transitionCost": [],
+                                                        "tree": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 9,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {},
+                    "position": [
+                        892.3671875,
+                        224.74609375
+                    ],
+                    "name": "Output"
+                },
+                "id": 8,
+                "name": "Diamond Axe",
+                "capacity": 2,
+                "type": "Output",
+                "inputs": [
+                    9
+                ],
+                "outputs": []
+            }
+        ]
+    }
+    BB.treeChestCorrect = {
+        "Nodes": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+                "node": {
+                    "id": 14,
+                    "data": {
+                        "resource": {
+                            "id": 54,
+                            "name": "Chest",
+                            "index": [
+                                2,
+                                6
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 1,
+                                "ingredients": [
+                                    {
+                                        "id": 5,
+                                        "amount": 8
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 157,
+                                "g": 108,
+                                "b": 38
+                            },
+                            "secondaryColor": {
+                                "r": 122,
+                                "g": 122,
+                                "b": 122
+                            }
+                        },
+                        "name": "Output",
+                        "amount": 1,
+                        "perHour": 10,
+                        "inputTree": [
+                            {
+                                "nodeId": 15,
+                                "itemId": 54,
+                                "amount": 1,
+                                "perHour": 10,
+                                "transitionCost": [
+                                    0.125
+                                ],
+                                "tree": [
+                                    {
+                                        "nodeId": 16,
+                                        "itemId": 5,
+                                        "amount": 4,
+                                        "perHour": 20,
+                                        "transitionCost": [
+                                            1
+                                        ],
+                                        "tree": [
+                                            {
+                                                "nodeId": 17,
+                                                "itemId": 23,
+                                                "amount": 1,
+                                                "perHour": 20,
+                                                "transitionCost": [],
+                                                "tree": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 15,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {},
+                    "position": [
+                        637.9325207594314,
+                        105.26248400715016
+                    ],
+                    "name": "Output"
+                },
+                "id": 14,
+                "name": "Chest",
+                "capacity": 10,
+                "type": "Output",
+                "inputs": [
+                    15
+                ],
+                "outputs": []
+            },
+            {
+                "node": {
+                    "id": 15,
+                    "data": {
+                        "resource": {
+                            "id": 54,
+                            "name": "Chest",
+                            "index": [
+                                2,
+                                6
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 1,
+                                "ingredients": [
+                                    {
+                                        "id": 5,
+                                        "amount": 8
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 157,
+                                "g": 108,
+                                "b": 38
+                            },
+                            "secondaryColor": {
+                                "r": 122,
+                                "g": 122,
+                                "b": 122
+                            }
+                        },
+                        "name": "Crafter",
+                        "amount": 1,
+                        "perHour": 10,
+                        "inputTree": [
+                            {
+                                "nodeId": 16,
+                                "itemId": 5,
+                                "amount": 4,
+                                "perHour": 20,
+                                "transitionCost": [
+                                    1
+                                ],
+                                "tree": [
+                                    {
+                                        "nodeId": 17,
+                                        "itemId": 23,
+                                        "amount": 1,
+                                        "perHour": 20,
+                                        "transitionCost": [],
+                                        "tree": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "5": {
+                            "connections": [
+                                {
+                                    "node": 16,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 14,
+                                    "input": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        337.9011798452045,
+                        96.98029323194719
+                    ],
+                    "name": "Crafter"
+                },
+                "id": 15,
+                "name": "Chest",
+                "capacity": 10,
+                "type": "Crafter",
+                "inputs": [
+                    16
+                ],
+                "outputs": [
+                    14
+                ]
+            },
+            {
+                "node": {
+                    "id": 16,
+                    "data": {
+                        "resource": {
+                            "id": 5,
+                            "name": "Planks",
+                            "index": [
+                                4,
+                                0
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 4,
+                                "ingredients": [
+                                    {
+                                        "id": 23,
+                                        "amount": 1
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 152,
+                                "g": 124,
+                                "b": 74
+                            },
+                            "secondaryColor": {
+                                "r": 81,
+                                "g": 65,
+                                "b": 41
+                            }
+                        },
+                        "name": "Crafter",
+                        "amount": 4,
+                        "perHour": 80,
+                        "inputTree": [
+                            {
+                                "nodeId": 17,
+                                "itemId": 23,
+                                "amount": 1,
+                                "perHour": 20,
+                                "transitionCost": [],
+                                "tree": []
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "23": {
+                            "connections": [
+                                {
+                                    "node": 17,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 15,
+                                    "input": "5",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        60.38971573997103,
+                        120.76698883988736
+                    ],
+                    "name": "Crafter"
+                },
+                "id": 16,
+                "name": "Planks",
+                "capacity": 80,
+                "type": "Crafter",
+                "inputs": [
+                    17
+                ],
+                "outputs": [
+                    15
+                ]
+            },
+            {
+                "node": {
+                    "id": 17,
+                    "data": {
+                        "resource": {
+                            "id": 23,
+                            "name": "Logs",
+                            "index": [
+                                6,
+                                1
+                            ],
+                            "craftable": false,
+                            "primaryColor": {
+                                "r": 58,
+                                "g": 46,
+                                "b": 28
+                            },
+                            "secondaryColor": {
+                                "r": 140,
+                                "g": 112,
+                                "b": 69
+                            }
+                        },
+                        "name": "Resource",
+                        "amount": 1,
+                        "perHour": 20
+                    },
+                    "inputs": {},
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 16,
+                                    "input": "23",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        -204.27703075084622,
+                        126.00077703839268
+                    ],
+                    "name": "Resource"
+                },
+                "id": 17,
+                "name": "Logs",
+                "capacity": 20,
+                "type": "Resource",
+                "inputs": [],
+                "outputs": [
+                    16
+                ]
+            }
+        ],
+        "Crafter": [
+            {
+                "node": {
+                    "id": 15,
+                    "data": {
+                        "resource": {
+                            "id": 54,
+                            "name": "Chest",
+                            "index": [
+                                2,
+                                6
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 1,
+                                "ingredients": [
+                                    {
+                                        "id": 5,
+                                        "amount": 8
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 157,
+                                "g": 108,
+                                "b": 38
+                            },
+                            "secondaryColor": {
+                                "r": 122,
+                                "g": 122,
+                                "b": 122
+                            }
+                        },
+                        "name": "Crafter",
+                        "amount": 1,
+                        "perHour": 10,
+                        "inputTree": [
+                            {
+                                "nodeId": 16,
+                                "itemId": 5,
+                                "amount": 4,
+                                "perHour": 20,
+                                "transitionCost": [
+                                    1
+                                ],
+                                "tree": [
+                                    {
+                                        "nodeId": 17,
+                                        "itemId": 23,
+                                        "amount": 1,
+                                        "perHour": 20,
+                                        "transitionCost": [],
+                                        "tree": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "5": {
+                            "connections": [
+                                {
+                                    "node": 16,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 14,
+                                    "input": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        337.9011798452045,
+                        96.98029323194719
+                    ],
+                    "name": "Crafter"
+                },
+                "id": 15,
+                "name": "Chest",
+                "capacity": 10,
+                "type": "Crafter",
+                "inputs": [
+                    16
+                ],
+                "outputs": [
+                    14
+                ]
+            },
+            {
+                "node": {
+                    "id": 16,
+                    "data": {
+                        "resource": {
+                            "id": 5,
+                            "name": "Planks",
+                            "index": [
+                                4,
+                                0
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 4,
+                                "ingredients": [
+                                    {
+                                        "id": 23,
+                                        "amount": 1
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 152,
+                                "g": 124,
+                                "b": 74
+                            },
+                            "secondaryColor": {
+                                "r": 81,
+                                "g": 65,
+                                "b": 41
+                            }
+                        },
+                        "name": "Crafter",
+                        "amount": 4,
+                        "perHour": 80,
+                        "inputTree": [
+                            {
+                                "nodeId": 17,
+                                "itemId": 23,
+                                "amount": 1,
+                                "perHour": 20,
+                                "transitionCost": [],
+                                "tree": []
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "23": {
+                            "connections": [
+                                {
+                                    "node": 17,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 15,
+                                    "input": "5",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        60.38971573997103,
+                        120.76698883988736
+                    ],
+                    "name": "Crafter"
+                },
+                "id": 16,
+                "name": "Planks",
+                "capacity": 80,
+                "type": "Crafter",
+                "inputs": [
+                    17
+                ],
+                "outputs": [
+                    15
+                ]
+            }
+        ],
+        "Resource": [
+            {
+                "node": {
+                    "id": 17,
+                    "data": {
+                        "resource": {
+                            "id": 23,
+                            "name": "Logs",
+                            "index": [
+                                6,
+                                1
+                            ],
+                            "craftable": false,
+                            "primaryColor": {
+                                "r": 58,
+                                "g": 46,
+                                "b": 28
+                            },
+                            "secondaryColor": {
+                                "r": 140,
+                                "g": 112,
+                                "b": 69
+                            }
+                        },
+                        "name": "Resource",
+                        "amount": 1,
+                        "perHour": 20
+                    },
+                    "inputs": {},
+                    "outputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 16,
+                                    "input": "23",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "position": [
+                        -204.27703075084622,
+                        126.00077703839268
+                    ],
+                    "name": "Resource"
+                },
+                "id": 17,
+                "name": "Logs",
+                "capacity": 20,
+                "type": "Resource",
+                "inputs": [],
+                "outputs": [
+                    16
+                ]
+            }
+        ],
+        "Output": [
+            {
+                "node": {
+                    "id": 14,
+                    "data": {
+                        "resource": {
+                            "id": 54,
+                            "name": "Chest",
+                            "index": [
+                                2,
+                                6
+                            ],
+                            "craftable": true,
+                            "recipe": {
+                                "createdAmount": 1,
+                                "ingredients": [
+                                    {
+                                        "id": 5,
+                                        "amount": 8
+                                    }
+                                ]
+                            },
+                            "primaryColor": {
+                                "r": 157,
+                                "g": 108,
+                                "b": 38
+                            },
+                            "secondaryColor": {
+                                "r": 122,
+                                "g": 122,
+                                "b": 122
+                            }
+                        },
+                        "name": "Output",
+                        "amount": 1,
+                        "perHour": 10,
+                        "inputTree": [
+                            {
+                                "nodeId": 15,
+                                "itemId": 54,
+                                "amount": 1,
+                                "perHour": 10,
+                                "transitionCost": [
+                                    0.125
+                                ],
+                                "tree": [
+                                    {
+                                        "nodeId": 16,
+                                        "itemId": 5,
+                                        "amount": 4,
+                                        "perHour": 20,
+                                        "transitionCost": [
+                                            1
+                                        ],
+                                        "tree": [
+                                            {
+                                                "nodeId": 17,
+                                                "itemId": 23,
+                                                "amount": 1,
+                                                "perHour": 20,
+                                                "transitionCost": [],
+                                                "tree": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "inputs": {
+                        "resource": {
+                            "connections": [
+                                {
+                                    "node": 15,
+                                    "output": "resource",
+                                    "data": {}
+                                }
+                            ]
+                        }
+                    },
+                    "outputs": {},
+                    "position": [
+                        637.9325207594314,
+                        105.26248400715016
+                    ],
+                    "name": "Output"
+                },
+                "id": 14,
+                "name": "Chest",
+                "capacity": 10,
+                "type": "Output",
+                "inputs": [
+                    15
                 ],
                 "outputs": []
             }
