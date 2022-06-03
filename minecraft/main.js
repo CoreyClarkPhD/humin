@@ -1499,7 +1499,7 @@ class GridComponent {
                 yield this.engine.process(this.editor.toJSON());
                 this.nodeService.parseFromEditor(this.editor.toJSON());
                 this.updateCriticalPath();
-                this.nodeService.postCriticalPath_tl("testing");
+                // this.nodeService.postCriticalPath_tl("testing");
                 console.log("hello world");
                 console.log(this.editor.toJSON());
                 console.log(this.nodeService.getCriticalPath());
