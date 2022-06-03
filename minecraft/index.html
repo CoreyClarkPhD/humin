@@ -49,10 +49,10 @@
   
         <div class="card">
           
-          <div class="card-header  bg-primary text-white">
+          <div id='Task1Header' class="card-header  bg-primary text-white">
             <h3 class="card-title text-white">Task 1: Build Plank Contraption</h3>
           </div>
-          <div class="card-body">
+          <div id='Task1Body' class="card-body">
             <p>Using MFP create a planks model.  Utilize the Resource, Crafter and Output nodes in the 
               material explorer inside of the MFP to create a model that is capable of producing 8 planks per hour.  
               Once the model is finished, submit it so we can use it in our future builds. </p>
@@ -63,10 +63,10 @@
             
           </div>
           
-          <div class="card-header  bg-primary text-white">
+          <div id='Task2Header' class="card-header  bg-primary text-white">
             <h3 class="card-title text-white">Task 2: Build Stick Contraption</h3>
           </div>
-          <div class="card-body">
+          <div id='Task2Body' class="card-body">
             <p>Using MFP create a sticks model.  Utilize the Resource, Crafter and Output nodes in the 
               material explorer inside of the MFP to create a model that is capable of producing 32 sticks per hour.  
               Once the model is finished, submit it so we can use it in our future builds. </p>
@@ -76,10 +76,10 @@
             </div>
           </div> 
   
-          <div class="card-header  bg-primary text-white">
+          <div id='Task3Header' class="card-header  bg-primary text-white">
             <h3 class="card-title text-white">Task 3: Build Diamond Axe Contraption</h3>
           </div>
-          <div class="card-body">
+          <div id='Task3Body' class="card-body">
             <p>Using MFP create a diamond axe model.  Utilize the Resource, Crafter and Output nodes in the 
               material explorer inside of the MFP to create a model that is capable of producing 2 axe's per hour.  
               Once the model is finished, submit it so we can use it in our future builds. </p>
@@ -89,10 +89,10 @@
             </div>
           </div>
   
-          <div class="card-header  bg-primary text-white">
+          <div id='Task4Header' class="card-header  bg-primary text-white">
             <h3 class="card-title text-white">Task 4: Build Chest Contraption</h3>
           </div>
-          <div class="card-body">
+          <div id='Task4Body' class="card-body">
             <p>Using MFP create a chest model.  Utilize the Resource, Crafter and Output nodes in the 
               material explorer inside of the MFP to create a model that is capable of producing 10 chest per hour.  
               Once the model is finished, submit it so we can use it in our future builds. </p>
@@ -112,10 +112,10 @@
         <div id="unitTestTask1" class="card card-info" style="display: none;">
           <div class="card-header  bg-primary text-white">
             <h3 class="card-title">Task 1: Build Plank Contraption</h3>
+            <p><button id='exeTask1UnitTest' type="button" class="btn bg-light">Run Task 1 Unit Test</button></p>
           </div>
           
-          <div class="card-body">    
-            <p><button id='exeTask1UnitTest' type="button" class="btn btn-primary">Run Task 1 Unit Test</button></p>
+          <div id="unitTestTask1Test" class="card-body" style="display: none;">    
   
             <!-- Proper Nodes in Model -->
             <div id='unitTestTask1NodeTypes' class="card bg-danger">
@@ -156,11 +156,11 @@
   
         <div id="unitTestTask2" class="card card-info" style="display: none;">
           <div class="card-header bg-primary text-white">
-            <h3 class="card-title text-white">Task 2: Build Stick Contraption</h3>
+            <h3 class="card-title text-white">Task 2: Build Stick Contraption</h3>    
+            <p><button id='exeTask2UnitTest' type="button" class="btn bg-light">Run Task 2 Unit Test</button></p>
           </div>
           
-          <div class="card-body">    
-            <p><button id='exeTask2UnitTest' type="button" class="btn btn-primary">Run Task 2 Unit Test</button></p>
+          <div id="unitTestTask2Test" class="card-body" style="display: none;">
   
             <!-- Proper Nodes in Model -->
             <div id='unitTestTask2NodeTypes' class="card bg-danger">
@@ -201,11 +201,11 @@
   
         <div id="unitTestTask3" class="card card-info" style="display: none;">
           <div class="card-header bg-primary text-white">
-            <h3 class="card-title text-white">Task 3: Build Diamone Axe Contraption</h3>
+            <h3 class="card-title text-white">Task 3: Build Diamone Axe Contraption</h3>    
+            <p><button id='exeTask3UnitTest' type="button" class="btn bg-light">Run Task 3 Unit Test</button></p>
           </div>
           
-          <div class="card-body">    
-            <p><button id='exeTask3UnitTest' type="button" class="btn btn-primary">Run Task 3 Unit Test</button></p>
+          <div id="unitTestTask3Test" class="card-body" style="display: none;">
   
             <!-- Proper Nodes in Model -->
             <div id='unitTestTask3NodeTypes' class="card bg-danger">
@@ -246,11 +246,11 @@
   
         <div id="unitTestTask4" class="card card-info" style="display: none;">
           <div class="card-header bg-primary text-white">
-            <h3 class="card-title text-white">Task 4: Build Chest Contraption</h3>
+            <h3 class="card-title text-white">Task 4: Build Chest Contraption</h3>    
+            <p><button id='exeTask4UnitTest' type="button" class="btn bg-light">Run Task 4 Unit Test</button></p>
           </div>
           
-          <div class="card-body">    
-            <p><button id='exeTask4UnitTest' type="button" class="btn btn-primary">Run Task 4 Unit Test</button></p>
+          <div id="unitTestTask4Test" class="card-body" style="display: none;">
   
             <!-- Proper Nodes in Model -->
             <div id='unitTestTask4NodeTypes' class="card bg-danger">
@@ -425,8 +425,8 @@
   
   </div>
 <script src="runtime.js" defer></script><script src="polyfills.js" defer></script><script src="styles.js" defer></script><script src="vendor.js" defer></script><script src="main.js" defer></script></body>
-<script src="https://humingamelab.com/minecraft/assignments/bot/scripts/utilities.js"></script>
-<script src="https://humingamelab.com/minecraft/assignments/bot/scripts/controllers.js"></script>
-<!-- <script src="http://127.0.0.1/Git/HuMIn/GitLab/minecraft-assignments/bot/scripts/utilities.js"></script>
-<script src="http://127.0.0.1/Git/HuMIn/GitLab/minecraft-assignments/bot/scripts/controllers.js"></script> -->
+<!-- <script src="https://humingamelab.com/minecraft/assignments/bot/scripts/utilities.js"></script>
+<script src="https://humingamelab.com/minecraft/assignments/bot/scripts/controllers.js"></script> -->
+<script src="http://127.0.0.1/Git/HuMIn/GitLab/minecraft-assignments/bot/scripts/utilities.js"></script>
+<script src="http://127.0.0.1/Git/HuMIn/GitLab/minecraft-assignments/bot/scripts/controllers.js"></script>
 </html>

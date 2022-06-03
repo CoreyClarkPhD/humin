@@ -20,9 +20,6 @@ BB.States.Task1.Enter = function(){
     $('#task1Submit').show();
     $('#task1Submit').prop("disabled", false);
 
-    //Enable Unit Test for Task 1
-    $('#unitTestTask1').css('display', 'block')
-
     //Clear Debugger for Task 1
     ClearDebugger();
     
@@ -36,12 +33,19 @@ BB.States.Task1.Execute = function(){
         //Test to see if all Task are Complete
     if(AllTaskComplete()){
         $('#allTaskCompleteModal').modal('show');
+
+        //Remove Task from List
+        HideTaskCard(1);
+
         BB.editor.clear();
     }
     else if(BB.States.Task1.complete){
         //Show completed modeal
         $('#passedUnitTestModal').modal('show');
-        
+
+        //Remove Task from List
+        HideTaskCard(1);
+
         //Clear Editor for next task
         BB.editor.clear();
     }
@@ -55,8 +59,9 @@ BB.States.Task1.Exit = function(){
     $('#task1Submit').prop("disabled", true);
     $('#task1Submit').hide();
 
-    //Enable Unit Test for Task 1
+    //Disable Unit Test for Task 1
     $('#unitTestTask1').css('display', 'none');
+    $('#unitTestTask1Test').css('display', 'none');
 
     //Enable Debugger for Task 1
     
@@ -118,11 +123,14 @@ BB.States.Task1.RunUnitTest = function(){
     //Debugging
     // BB.tree = BB.treePlanksCorrect; //Correct Planks Test
     // BB.tree = BB.treePlanksNoOutput;  //Missing Output Planks node in MFP
-    //  BB.tree = BB.treePlanksWrongOutput; //Wrong output node
+    // BB.tree = BB.treePlanksWrongOutput; //Wrong output node
     // BB.tree = BB.treePlanksWrongCapacity;
     // BB.tree = BB.treePlanksInfiniteCapacity;
     // BB.tree = BB.treeMissingConnection;
     // BB.tree = BB.treeDiamondPixAxeCorrect;
+
+    //Show Unit Test Results
+    $('#unitTestTask1Test').css('display', 'block');
 
     //Build Node Tree
     ParseTree();
@@ -209,9 +217,6 @@ BB.States.Task2.Enter = function(){
     $('#task2Submit').prop("disabled", false)
     $('#task2Submit').show();
 
-    //Enable Unit Test for Task 1
-    $('#unitTestTask2').css('display', 'block');
-
     //Enable Debugger for Task 1
     ClearDebugger();
 }
@@ -224,11 +229,18 @@ BB.States.Task2.Execute = function(){
         //Test to see if all Task are Complete
     if(AllTaskComplete()){
         $('#allTaskCompleteModal').modal('show');
+
+        //Remove Task from List
+        HideTaskCard(2);
+
         BB.editor.clear();
     }
     else if(BB.States.Task2.complete){
         //Show complteted modal
         $('#passedUnitTestModal').modal('show');
+
+        //Remove Task from List
+        HideTaskCard(2);
 
         //Clear Editor for next task
         BB.editor.clear();
@@ -244,8 +256,9 @@ BB.States.Task2.Exit = function(){
     $('#task2Submit').prop("disabled", true)
     $('#task2Submit').hide();
 
-    //Enable Unit Test for Task 2
+    //Disable Unit Test for Task 2
     $('#unitTestTask2').css('display', 'none');
+    $('#unitTestTask2Test').css('display', 'none');
 
     //Enable Debugger for Task 2
     
@@ -306,6 +319,9 @@ BB.States.Task2.UnitTestStatus = {
 }
 BB.States.Task2.RunUnitTest = function(){
     console.log("running task 2 unit test");
+
+    //Show Unit Test Results
+    $('#unitTestTask2Test').css('display', 'block');
     
     //Build Node Tree
     ParseTree();
@@ -394,9 +410,6 @@ BB.States.Task3.Enter = function(){
     $('#task3Submit').prop("disabled", false)
     $('#task3Submit').show();
 
-    //Enable Unit Test for Task 1
-    $('#unitTestTask3').css('display', 'block');
-
     //Enable Debugger for Task 1
     ClearDebugger();
 }
@@ -408,11 +421,18 @@ BB.States.Task3.Execute = function(){
         //Test to see if all Task are Complete
     if(AllTaskComplete()){
         $('#allTaskCompleteModal').modal('show');
+
+        //Remove Task from List
+        HideTaskCard(3);
+
         BB.editor.clear();
     }
     else if(BB.States.Task3.complete){
         //Show complteted modal
         $('#passedUnitTestModal').modal('show');
+
+        //Remove Task from List
+        HideTaskCard(3);
 
         //Clear Editor for next task
         BB.editor.clear();
@@ -428,8 +448,9 @@ BB.States.Task3.Exit = function(){
     $('#task3Submit').prop("disabled", true)
     $('#task3Submit').hide();
 
-    //Enable Unit Test for Task 3
+    //Disable Unit Test for Task 3
     $('#unitTestTask3').css('display', 'none');
+    $('#unitTestTask3Test').css('display', 'none');
 
     //Enable Debugger for Task 3
     
@@ -498,6 +519,9 @@ BB.States.Task3.RunUnitTest = function(){
     console.log("running task 3 unit test");
     //Debugging
     // BB.tree = BB.treeDiamondPixAxeCorrect;
+
+    //Show Unit Test Results
+    $('#unitTestTask3Test').css('display', 'block');
 
     //Build Node Tree
     ParseTree();
@@ -586,9 +610,6 @@ BB.States.Task4.Enter = function(){
     $('#task4Submit').prop("disabled", false)
     $('#task4Submit').show();
 
-    //Enable Unit Test for Task 1
-    $('#unitTestTask4').css('display', 'block');
-
     //Enable Debugger for Task 1
     ClearDebugger();
 }
@@ -600,11 +621,18 @@ BB.States.Task4.Execute = function(){
         //Test to see if all Task are Complete
     if(AllTaskComplete()){
         $('#allTaskCompleteModal').modal('show');
+
+        //Remove Task from List
+        HideTaskCard(4);
+
         BB.editor.clear();
     }
     else if(BB.States.Task4.complete){
         //Show complteted modal
         $('#passedUnitTestModal').modal('show');
+
+        //Remove Task from List
+        HideTaskCard(4);
 
         //Clear Editor for next task
         BB.editor.clear();
@@ -620,8 +648,9 @@ BB.States.Task4.Exit = function(){
     $('#task4Submit').prop("disabled", true)
     $('#task4Submit').hide();
 
-    //Enable Unit Test for Task 4
+    //Disable Unit Test for Task 4
     $('#unitTestTask4').css('display', 'none');
+    $('#unitTestTask4Test').css('display', 'none');
 
     //Enable Debugger for Task 4
     
@@ -684,6 +713,9 @@ BB.States.Task4.RunUnitTest = function(){
     console.log("running task 4 unit test");
     //Debugging
     // BB.tree = BB.treeChestCorrect;
+
+    //Show Unit Test Results
+    $('#unitTestTask4Test').css('display', 'block');
     
     //Build Node Tree
     ParseTree();
@@ -857,6 +889,12 @@ var ClearDebugger = function(){
     
     $('#debuggerCustomNode').css('display', 'none');
     $('#debuggerMissingCustomNode').css('display', 'none');
+}
+
+//Hide Task Card
+var HideTaskCard = function(id){
+    $('#Task' + id + 'Header').css('display', 'none');
+    $('#Task' + id + 'Body').css('display', 'none');
 }
 
 
@@ -1270,6 +1308,9 @@ var DoesCustomNodeExist = function(test){
 //  TASK 1 EVENT
 //
 $('#task1Claim').on('click', function () {
+    //Enable Unit Test for Task 1
+    $('#unitTestTask1').css('display', 'block');
+
     //Enable Task 1
     BB.FSM.Transition('Task1');
   })
@@ -1281,7 +1322,10 @@ $('#task1Submit').on('click', function () {
 //  TASK 2 EVENT
 //
 $('#task2Claim').on('click', function () {
-    //Enable Task 1
+    //Enable Unit Test for Task 2
+    $('#unitTestTask2').css('display', 'block');
+
+    //Enable Task 2
     BB.FSM.Transition('Task2');
   })
 $('#task2Submit').on('click', function () {
@@ -1292,7 +1336,10 @@ $('#task2Submit').on('click', function () {
 //  TASK 3 EVENT
 //
 $('#task3Claim').on('click', function () {
-    //Enable Task 1
+    //Enable Unit Test for Task 3
+    $('#unitTestTask3').css('display', 'block');
+
+    //Enable Task 3
     BB.FSM.Transition('Task3');
   })
 $('#task3Submit').on('click', function () {
@@ -1303,7 +1350,10 @@ $('#task3Submit').on('click', function () {
 //  TASK 4 EVENT
 //
 $('#task4Claim').on('click', function () {
-    //Enable Task 1
+    //Enable Unit Test for Task 4
+    $('#unitTestTask4').css('display', 'block');
+
+    //Enable Task 4
     BB.FSM.Transition('Task4');
   })
 $('#task4Submit').on('click', function () {
@@ -1317,8 +1367,10 @@ $('#task4Submit').on('click', function () {
 //
 //****************************************** */
 $('#exeTask1UnitTest').on('click', function () {
+
     //Run Task 1 Unit Test
     BB.States.Task1.RunUnitTest();
+
   });
 $('#exeTask2UnitTest').on('click', function () {
     //Run Task 2 Unit Test
