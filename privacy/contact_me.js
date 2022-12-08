@@ -19,7 +19,8 @@ $(function() {
             // }
             $.ajax({
                 // url: "././mail/contact_me.php",
-                url: "./index.html?removedata",
+                url: "https://zk2qx4ml4b.execute-api.us-east-1.amazonaws.com/Prod/minecraft/getInventory?removedata",
+                // url: "./index.html?removedata",
                 type: "POST",
                 data: {
                     // name: name,
