@@ -35,7 +35,7 @@ $(function() {
                     $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
                     $('#success > .alert-success')
-                        .append("<strong>Your request has been submitted. </strong>");
+                        .append("<strong>Your account data has been deleted. </strong>");
                     $('#success > .alert-success')
                         .append('</div>');
 
