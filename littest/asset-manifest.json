@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "./static/css/main.3383c459.css",
+    "main.js": "./static/js/main.d8698a91.js",
+    "static/js/441.b98ef95b.chunk.js": "./static/js/441.b98ef95b.chunk.js",
+    "static/js/578.e57ff166.chunk.js": "./static/js/578.e57ff166.chunk.js",
+    "static/js/945.35c61448.chunk.js": "./static/js/945.35c61448.chunk.js",
+    "static/js/454.5a477108.chunk.js": "./static/js/454.5a477108.chunk.js",
+    "static/js/989.226b22cc.chunk.js": "./static/js/989.226b22cc.chunk.js",
+    "static/js/825.ac1d42bb.chunk.js": "./static/js/825.ac1d42bb.chunk.js",
+    "static/js/847.018b535f.chunk.js": "./static/js/847.018b535f.chunk.js",
+    "static/js/571.d46b087e.chunk.js": "./static/js/571.d46b087e.chunk.js",
+    "static/js/358.5bd50f73.chunk.js": "./static/js/358.5bd50f73.chunk.js",
+    "static/js/841.316cfb4b.chunk.js": "./static/js/841.316cfb4b.chunk.js",
+    "static/js/845.84d94263.chunk.js": "./static/js/845.84d94263.chunk.js",
+    "static/media/audioFallback.mp3": "./static/media/audioFallback.48adf3a9d34f95e8ef8a.mp3",
+    "static/media/7.mp3": "./static/media/7.37210172330c490b3141.mp3",
+    "static/media/8.mp3": "./static/media/8.37210172330c490b3141.mp3",
+    "static/media/Help.mp3": "./static/media/Help.37210172330c490b3141.mp3",
+    "static/media/alpha.mp3": "./static/media/alpha.37210172330c490b3141.mp3",
+    "static/media/beta.mp3": "./static/media/beta.37210172330c490b3141.mp3",
+    "static/media/delta.mp3": "./static/media/delta.37210172330c490b3141.mp3",
+    "static/media/epsilon.mp3": "./static/media/epsilon.37210172330c490b3141.mp3",
+    "static/media/gamma.mp3": "./static/media/gamma.37210172330c490b3141.mp3",
+    "static/media/zeta.mp3": "./static/media/zeta.37210172330c490b3141.mp3",
+    "static/media/Help.svg": "./static/media/Help.8aad2bfa694f7c2a10c5e4f1f543cee1.svg",
+    "index.html": "./index.html",
+    "static/media/Volume.svg": "./static/media/Volume.2d29c3e7cd0f6369605606c78f0fcd43.svg",
+    "static/media/Check.svg": "./static/media/Check.987422c70b5f192ed1c5c539a56498e6.svg",
+    "main.3383c459.css.map": "./static/css/main.3383c459.css.map",
+    "main.d8698a91.js.map": "./static/js/main.d8698a91.js.map",
+    "845.84d94263.chunk.js.map": "./static/js/845.84d94263.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3383c459.css",
+    "static/js/main.d8698a91.js"
+  ]
+}

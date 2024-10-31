@@ -1,0 +1,464 @@
+{
+  "title": "Enigma Literacy Test",
+  "timerLength": 180,
+  "tests": [
+    {
+      "type": "info",
+      "paragraph": "\tI am going to ask you to spell some words.  Spell them the best you can.  Some of the words may be esy to spell; some may be difficult.  When you do not know how to spell a word, spell it the best you can"
+    },
+    {
+      "type": "spelling",
+      "words": [
+        "fan",
+        "pet",
+        "dig",
+        "rob",
+        "hope",
+        "wait",
+        "gum",
+        "sled",
+        "stick",
+        "shine",
+        "dream",
+        "blade",
+        "coach",
+        "fright",
+        "chewed",
+        "crawl",
+        "wishes",
+        "thorn",
+        "shouted",
+        "spoil",
+        "growl",
+        "third",
+        "camped",
+        "tries",
+        "clapping",
+        "riding"
+      ],
+      "audioFileNames": [
+        "alpha.mp3",
+        "beta.mp3",
+        "gamma.mp3",
+        "delta.mp3",
+        "epsilon.mp3",
+        "alpha.mp3",
+        "beta.mp3",
+        "gamma.mp3",
+        "delta.mp3",
+        "epsilon.mp3",
+        "alpha.mp3",
+        "beta.mp3",
+        "gamma.mp3",
+        "delta.mp3",
+        "epsilon.mp3",
+        "alpha.mp3",
+        "beta.mp3",
+        "gamma.mp3",
+        "delta.mp3",
+        "epsilon.mp3",
+        "alpha.mp3",
+        "beta.mp3",
+        "gamma.mp3",
+        "delta.mp3",
+        "epsilon.mp3",
+        "zeta.mp3"
+      ]
+    },
+    {
+      "type": "spelling",
+      "words": [
+        "bed",
+        "ship",
+        "when",
+        "lump",
+        "float",
+        "train",
+        "place",
+        "drive",
+        "bright",
+        "shopping",
+        "spoil",
+        "serving",
+        "chewed",
+        "carries",
+        "marched",
+        "shower",
+        "bottle",
+        "favor",
+        "ripen",
+        "cellar",
+        "pleasure",
+        "fortunate",
+        "confident",
+        "civilize",
+        "opposition"
+      ],
+      "audioFileNames": [
+        "alpha.mp3",
+        "beta.mp3",
+        "gamma.mp3",
+        "delta.mp3",
+        "epsilon.mp3",
+        "alpha.mp3",
+        "beta.mp3",
+        "gamma.mp3",
+        "delta.mp3",
+        "epsilon.mp3",
+        "alpha.mp3",
+        "beta.mp3",
+        "gamma.mp3",
+        "delta.mp3",
+        "epsilon.mp3",
+        "alpha.mp3",
+        "beta.mp3",
+        "gamma.mp3",
+        "delta.mp3",
+        "epsilon.mp3",
+        "alpha.mp3",
+        "beta.mp3",
+        "gamma.mp3",
+        "delta.mp3",
+        "zeta.mp3"
+      ]
+    },
+    {
+      "type": "info",
+      "paragraph": "\tINSTRUCTIONS HERE. What should go here?"
+    },
+    {
+      "type": "literacy",
+      "title": "Practice Passage",
+      "paragraph": "\tTom goes to school far from his house.  Every morning, he takes a % to go to school.  In the %, he also takes a bus home",
+      "questions": [
+        {
+          "answer": "bus",
+          "choices": [
+            "art",
+            "bus",
+            "work"
+          ]
+        },
+        {
+          "answer": "afternoon",
+          "choices": [
+            "afternoon",
+            "library",
+            "morning"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "literacy",
+      "title": "Maze Benchmark",
+      "paragraph": "\tAnnabelle liked to work on cars with her dad.  Her dad owned a classic 1965 Mustang % he was busily restoring, and she % helping him with the work.  They % together in the garage with the % wide open to let in some %, and fans blowing on them.  On % days Annabelle wore an old, torn % of blue jeans and a faded %.  She tied her hair up in % bun to keep it out of % eyes.  Her dad wore sweatpants and % frayed flannel shirt that was missing two %, and a pair of old carpet % that he didn't mind ruining.  By % end of a day of work % both looked as if they had % crawling around in puddles of oil % grease for hours at a time, % of course they had.  Whenever her % asked for a part or tool, % would rummage in the tool box % find it and then hand it % to him as quickly as possible.  % knew the names of all the % in his toolbox and all of the % tools on his workbench as well.  % knew about hammers and pullers, about % that raised the car up and % that let her father slide underneath % chassis.  She knew how to handle % these items safely. \n\tAnnabelle was proud % all the skils she'd learned in % a short time - in under a %.  Her father was proud of her, %.  He often said things to Annabelle %, 'Good work,' or 'You're learning this % ,' or 'Thatta girl'.  Working on cars % her dad lifted Annabelle's spirits.  It % hard not",
+      "questions": [
+        {
+          "answer": "that",
+          "choices": [
+            "before",
+            "that",
+            "until"
+          ]
+        },
+        {
+          "answer": "enjoyed",
+          "choices": [ 
+            "assumed",
+            "enjoyed",
+            "refused"
+          ]
+        },
+        {
+          "answer": "worked",
+          "choices": [ 
+            "cooked",
+            "shopped",
+            "worked"
+          ]
+        },
+        {
+          "answer": "door",
+          "choices": [ 
+            "box",
+            "door",
+            "floor"
+          ]
+        },
+        {
+          "answer": "air",
+          "choices": [ 
+            "air",
+            "food",
+            "trees"
+          ]
+        },
+        {
+          "answer": "those",
+          "choices": [ 
+            "ever",
+            "our",
+            "those"
+          ]
+        },
+        {
+          "answer": "pair",
+          "choices": [ 
+            "pair",
+            "gate",
+            "song"
+          ]
+        },
+        {
+          "answer": "shirt",
+          "choices": [ 
+            "poem",
+            "shirt",
+            "town"
+          ]
+        },
+        {
+          "answer": "a",
+          "choices": [ 
+            "a",
+            "it",
+            "on"
+          ]
+        },
+        {
+          "answer": "her",
+          "choices": [ 
+            "her",
+            "my",
+            "our"
+          ]
+        },
+        {
+          "answer": "a",
+          "choices": [ 
+            "a",
+            "in",
+            "to"
+          ]
+        },
+        {
+          "answer": "buttons",
+          "choices": [ 
+            "apples",
+            "buttons",
+            "lights"
+          ]
+        },
+        {
+          "answer": "slippers",
+          "choices": [ 
+            "guitars",
+            "ladders",
+            "slippers"
+          ]
+        },
+        {
+          "answer": "the",
+          "choices": [ 
+            "at",
+            "it",
+            "the"
+          ]
+        },
+        {
+          "answer": "they",
+          "choices": [ 
+            "she",
+            "they",
+            "when"
+          ]
+        },
+        {
+          "answer": "been",
+          "choices": [ 
+            "been",
+            "did",
+            "would"
+          ]
+        },
+        {
+          "answer": "and",
+          "choices": [ 
+            "and",
+            "since",
+            "our"
+          ]
+        },
+        {
+          "answer": "which",
+          "choices": [ 
+            "before",
+            "unless",
+            "which"
+          ]
+        },
+        {
+          "answer": "dad",
+          "choices": [ 
+            "car",
+            "dad",
+            "hair"
+          ]
+        },
+        {
+          "answer": "she",
+          "choices": [ 
+            "he",
+            "she",
+            "who"
+          ]
+        },
+        {
+          "answer": "to",
+          "choices": [ 
+            "also",
+            "to",
+            "up"
+          ]
+        },
+        {
+          "answer": "over",
+          "choices": [ 
+            "after",
+            "even",
+            "over"
+          ]
+        },
+        {
+          "answer": "She",
+          "choices": [ 
+            "I",
+            "She",
+            "This"
+          ]
+        },
+        {
+          "answer": "tools",
+          "choices": [ 
+            "hats",
+            "phones",
+            "tools"
+          ]
+        },
+        {
+          "answer": "power",
+          "choices": [ 
+            "happy",
+            "power",
+            "sudden"
+          ]
+        },
+        {
+          "answer": "She",
+          "choices": [ 
+            "All",
+            "She",
+            "You"
+          ]
+        },
+        {
+          "answer": "jacks",
+          "choices": [ 
+            "birds",
+            "clothes",
+            "jacks"
+          ]
+        },
+        {
+          "answer": "dollies",
+          "choices": [ 
+            "chapters",
+            "dollies",
+            "speakers"
+          ]
+        },
+        {
+          "answer": "the",
+          "choices": [
+            "as",
+            "my",
+            "the" 
+          ]
+        },
+        {
+          "answer": "all",
+          "choices": [ 
+            "all",
+            "nice",
+            "old"
+          ]
+        },
+        {
+          "answer": "of",
+          "choices": [ 
+            "by",
+            "of",
+            "to"
+          ]
+        },
+        {
+          "answer": "such",
+          "choices": [ 
+            "large",
+            "nice",
+            "such"
+          ]
+        },
+        {
+          "answer": "month",
+          "choices": [ 
+            "bread",
+            "month",
+            "road"
+          ]
+        },
+        {
+          "answer": "too",
+          "choices": [ 
+            "just",
+            "out",
+            "too"
+          ]
+        },
+        {
+          "answer": "like",
+          "choices": [ 
+            "into",
+            "like",
+            "over"
+          ]
+        },
+        {
+          "answer": "fast",
+          "choices": [ 
+            "fast",
+            "strong",
+            "tall"
+          ]
+        },
+        {
+          "answer": "with",
+          "choices": [ 
+            "except",
+            "out",
+            "with"
+          ]
+        },
+        {
+          "answer": "was",
+          "choices": [ 
+            "did",
+            "had",
+            "was"
+          ]
+        }
+      ]
+    }
+  ]
+}
