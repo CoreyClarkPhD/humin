@@ -69,7 +69,7 @@
     {
       "type": "info",
       "audioFileName": "mazeDemo.mp3",
-      "paragraph": "\tYou’ll be reading a passage with some missing words. For each missing word, you’ll see a box with three word choices. Choose the word that makes the most sense in the passage. Let’s try a practice sentence together.  Read the next sentence silently. When you come to a box, read all three options and click on the word that fits best.  Press the button to start button when you are read.",
+      "paragraph": "\tYou’ll be reading a passage with some missing words. For each missing word, you’ll see a box with three word choices. Choose the word that makes the most sense in the passage. Let’s try a practice sentence together.  Read the next sentence silently. When you come to a box, read all three options and click on the word that fits best.  Press the Start button below when you are ready.",
       "buttonName": "Start"
     },
     {
@@ -99,7 +99,7 @@
     {
       "type": "info",
       "audioFileName": "mazeInstructions.mp3",
-      "paragraph": "\tGreat! You’ll have 3 minutes to complete the next passage.  Read the passage silently, choosing the best word from each box by clicking on it. When you come to the end of the passage, click the SUBMIT button. If you do not finish within 3 minutes, the timer will end to complete the activity. When you are ready to begin, click the START button.",
+      "paragraph": "\tGreat! You’ll have 3 minutes to complete the next passage.  Read the passage silently, choosing the best word from each box by clicking on it. When you come to the end of the passage, click the SUBMIT button. If you do not finish within 3 minutes, the timer will end to complete the activity. When you are ready to begin, click the START button below.",
       "buttonName": "Start"
     },
     {
