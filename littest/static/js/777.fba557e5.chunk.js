@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkliteracy_test=self.webpackChunkliteracy_test||[]).push([[777],{2777:(e,t,s)=>{e.exports=s.p+"static/media/favor.0ca14bd7b35db4b128c4.mp3"}}]);
