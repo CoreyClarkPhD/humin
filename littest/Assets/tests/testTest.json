@@ -1,11 +1,81 @@
 {
   "title": "Enigma Literacy Test",
-  "introText": "Instructions for entire test goes here",
+  "introText": "Enigma Literacy Test",
   "tests": [
+    {
+      "type": "info",
+      "audioFileName": "esiInstructions.mp3",
+      "paragraph": "\tI am going to ask you to spell some words.  Spell them the best you can.  Some of the words may be easy to spell; some may be difficult.  When you do not know how to spell a word, spell it the best you can",
+      "buttonName": "Start"
+    },
+    {
+      "type": "spelling",
+      "timeLimitSeconds": 900,
+      "words": [
+        "bed",
+        "ship",
+        "when",
+        "lump",
+        "float",
+        "train",
+        "place",
+        "drive",
+        "bright",
+        "shopping",
+        "spoil",
+        "serving",
+        "chewed",
+        "carries",
+        "marched",
+        "shower",
+        "bottle",
+        "favor",
+        "ripen",
+        "cellar",
+        "pleasure",
+        "fortunate",
+        "confident",
+        "civilize",
+        "opposition"
+      ],
+      "audioFileNames": [
+        "bed.mp3",
+        "ship.mp3",
+        "when.mp3",
+        "lump.mp3",
+        "float.mp3",
+        "train.mp3",
+        "place.mp3",
+        "drive.mp3",
+        "bright.mp3",
+        "shopping.mp3",
+        "spoil.mp3",
+        "serving.mp3",
+        "chewed.mp3",
+        "carries.mp3",
+        "marched.mp3",
+        "shower.mp3",
+        "bottle.mp3",
+        "favor.mp3",
+        "ripen.mp3",
+        "cellar.mp3",
+        "pleasure.mp3",
+        "fortunate.mp3",
+        "confident.mp3",
+        "civilize.mp3",
+        "opposition.mp3"
+      ]
+    },
+    {
+      "type": "info",
+      "audioFileName": "mazeDemo.mp3",
+      "paragraph": "\tYou’ll be reading a passage with some missing words. For each missing word, you’ll see a box with three word choices. Choose the word that makes the most sense in the passage. Let’s try a practice sentence together.  Read the next sentence silently. When you come to a box, read all three options and click on the word that fits best.  Press the button to start button when you are read.",
+      "buttonName": "Start"
+    },
     {
       "type": "literacy",
       "title": "Practice Passage",
-      "timeLimitSeconds": 240,
+      "timeLimitSeconds": 180,
       "paragraph": "\tTom goes to school far from his house.  Every morning, he takes a % to go to school.  In the %, he also takes a bus home.",
       "questions": [
         {
@@ -28,19 +98,15 @@
     },
     {
       "type": "info",
-      "audioFileName": "7.mp3",
-      "paragraph": "\tI am going to ask you to spell some words.  Spell them the best you can.  Some of the words may be easy to spell; some may be difficult.  When you do not know how to spell a word, spell it the best you can",
-      "buttonName": "Test Button Text"
-    },
-    {
-      "type": "info",
-      "paragraph": "\tINSTRUCTIONS HERE. What should go here?"
+      "audioFileName": "mazeInstructions.mp3",
+      "paragraph": "\tGreat! You’ll have 3 minutes to complete the next passage.  Read the passage silently, choosing the best word from each box by clicking on it. When you come to the end of the passage, click the SUBMIT button. If you do not finish within 3 minutes, the timer will end to complete the activity. When you are ready to begin, click the START button.",
+      "buttonName": "Start"
     },
     {
       "type": "literacy",
       "title": "Maze Benchmark",
-      "timeLimitSeconds": 240,
-      "paragraph": "\tAnnabelle liked to work on cars with her dad.  Her dad owned a classic 1965 Mustang % he was busily restoring, and she % helping him with the work.  They % together in the garage with the % wide open to let in some %, and fans blowing on them.  On % days Annabelle wore an old, torn % of blue jeans and a faded %.  She tied her hair up in % bun to keep it out of % eyes.  Her dad wore sweatpants and % frayed flannel shirt that was missing two %, and a pair of old carpet % that he didn't mind ruining.  By % end of a day of work % both looked as if they had % crawling around in puddles of oil % grease for hours at a time, % of course they had.  Whenever her % asked for a part or tool, % would rummage in the tool box % find it and then hand it % to him as quickly as possible.  % knew the names of all the % in his toolbox and all of the % tools on his workbench as well.  % knew about hammers and pullers, about % that raised the car up and % that let her father slide underneath % chassis.  She knew how to handle % these items safely. \n\tAnnabelle was proud % all the skils she'd learned in % a short time - in under a %.  Her father was proud of her, %.  He often said things to Annabelle %, 'Good work,' or 'You're learning this % ,' or 'Thatta girl'.  Working on cars % her dad lifted Annabelle's spirits.  It % hard not",
+      "timeLimitSeconds": 180,
+      "paragraph": "\tAnnabelle liked to work on cars with her dad.  Her dad owned a classic 1965 Mustang % he was busily restoring, and she % helping him with the work.  They % together in the garage with the % wide open to let in some %, and fans blowing on them.  On % days Annabelle wore an old, torn % of blue jeans and a faded %.  She tied her hair up in % bun to keep it out of % eyes.  Her dad wore sweatpants and % frayed flannel shirt that was missing two %, and a pair of old carpet % that he didn't mind ruining.  By % end of a day of work % both looked as if they had % crawling around in puddles of oil % grease for hours at a time, % of course they had.  Whenever her % asked for a part or tool, % would rummage in the tool box % find it and then hand it % to him as quickly as possible.  % knew the names of all the % in his toolbox and all of the % tools on his workbench as well.  % knew about hammers and pullers, about % that raised the car up and % that let her father slide underneath % chassis.  She knew how to handle % these items safely. \n\tAnnabelle was proud % all the skils she'd learned in % a short time - in under a %.  Her father was proud of her, %.  He often said things to Annabelle %, 'Good work,' or 'You're learning this % ,' or 'Thatta girl'.  Working on cars % her dad lifted Annabelle's spirits.  It % hard not to feel good when % were together like this on a % day with the smell of grease % the clatter of tools and the % playing loudly.\n\tOne day, they were% together when a boy from the % walked by.  He stopped in front % the garage door and stared at Annabelle.  % had grease on her shirt and % was handing a ball peen hammer % her father.  \n\t'Hey!' the boy said.  '% don't work on cars.' \n\tAnnabelle shook % head.  'Whatever gave you that strange %?' she said.  'I'm a girl, and % is a car that I'm working %.  So, I guess we do.' \n\tThe % thought about what Annabell had said.  Then laughed and asked, 'Can you teach me how to do it sometime?' ",
       "questions": [
         {
           "answer": "that",
@@ -344,6 +410,134 @@
             "did",
             "had",
             "was"
+          ]
+        },
+        {
+          "answer": "they",
+          "choices": [
+            "hers",
+            "they",
+            "our"
+          ]
+        },
+        {
+          "answer": "summer",
+          "choices": [
+            "basic",
+            "friendly",
+            "summer"
+          ]
+        },
+        {
+          "answer": "and",
+          "choices": [
+            "and",
+            "but",
+            "than"
+          ]
+        },
+        {
+          "answer": "radio",
+          "choices": [
+            "cookie",
+            "radio",
+            "season"
+          ]
+        },
+        {
+          "answer": "working",
+          "choices": [
+            "renting",
+            "stopping",
+            "working"
+          ]
+        },
+        {
+          "answer": "neighborhood",
+          "choices": [
+            "conversation",
+            "grandmother",
+            "neighborhood"
+          ]
+        },
+        {
+          "answer": "of",
+          "choices": [
+            "as",
+            "but",
+            "of"
+          ]
+        },
+        {
+          "answer": "She",
+          "choices": [
+            "Any",
+            "She",
+            "What"
+          ]
+        },
+        {
+          "answer": "she",
+          "choices": [
+            "his",
+            "she",
+            "that"
+          ]
+        },
+        {
+          "answer": "to",
+          "choices": [
+            "at",
+            "to",
+            "up"
+          ]
+        },
+        {
+          "answer": "Girls",
+          "choices": [
+            "Girls",
+            "Months",
+            "Shirts"
+          ]
+        },
+        {
+          "answer": "her",
+          "choices": [
+            "an",
+            "from",
+            "her"
+          ]
+        },
+        {
+          "answer": "idea",
+          "choices": [
+            "basket",
+            "driver",
+            "idea"
+          ]
+        },
+        {
+          "answer": "this",
+          "choices": [
+            "both",
+            "most",
+            "this"
+          ]
+        },
+        {
+          "answer": "on",
+          "choices": [
+            "as",
+            "for",
+            "on"
+          ]
+        },
+        {
+          "answer": "boy",
+          "choices": [
+            "boy",
+            "car",
+            "road"
           ]
         }
       ]
