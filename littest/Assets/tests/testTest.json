@@ -5,7 +5,7 @@
     {
       "type": "info",
       "audioFileName": "esiInstructions.mp3",
-      "paragraph": "\tI am going to ask you to spell some words.  Spell them the best you can.  Some of the words may be easy to spell; some may be difficult.  When you do not know how to spell a word, spell it the best you can",
+      "paragraph": "\tI am going to ask you to spell some words.  Spell them the best you can.  Some of the words may be easy to spell; some may be difficult.  When you do not know how to spell a word, spell it the best you can.  You can press the triangle play button in the middle of the screen to replay the word.  Press the Start button below when you are ready.",
       "buttonName": "Start"
     },
     {
