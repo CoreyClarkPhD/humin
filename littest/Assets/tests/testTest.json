@@ -82,6 +82,7 @@
       "type": "literacy",
       "title": "Practice Passage",
       "timeLimitSeconds": 180,
+      "isTimerHidden": true,
       "paragraph": "\tTom goes to school far from his house.  Every morning, he takes a % to go to school.  In the %, he also takes a bus home.",
       "questions": [
         {
