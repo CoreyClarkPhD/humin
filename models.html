@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KĀDI Model Benchmark Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e4e4e7;
+            padding: 40px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            color: #a1a1aa;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        .success-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #10b981, #059669);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        .stats-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 16px 24px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #06b6d4;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th {
+            background: rgba(139, 92, 246, 0.3);
+            padding: 14px 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .model-name {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: #06b6d4;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 3px;
+        }
+        .model-name:hover {
+            color: #22d3ee;
+            text-decoration-style: solid;
+        }
+        .status-ok {
+            color: #10b981;
+            font-weight: bold;
+        }
+        .status-warn {
+            color: #f59e0b;
+            font-weight: bold;
+        }
+        .type-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .type-chat { background: rgba(59, 130, 246, 0.3); color: #60a5fa; }
+        .type-code { background: rgba(16, 185, 129, 0.3); color: #34d399; }
+        .type-reasoning { background: rgba(245, 158, 11, 0.3); color: #fbbf24; }
+        .type-sql { background: rgba(236, 72, 153, 0.3); color: #f472b6; }
+        .type-vision { background: rgba(168, 85, 247, 0.3); color: #c084fc; }
+        .type-embed { background: rgba(107, 114, 128, 0.3); color: #9ca3af; }
+        .highlight {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin: 40px 0 20px 0;
+            color: #8b5cf6;
+        }
+        .tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .tier-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid;
+        }
+        .tier-fast { border-color: #10b981; }
+        .tier-medium { border-color: #f59e0b; }
+        .tier-slow { border-color: #6366f1; }
+        .tier-heavy { border-color: #ef4444; }
+        .tier-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .tier-card p {
+            color: #a1a1aa;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .winners {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        .winner-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .winner-category {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+        }
+        .winner-model {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: #06b6d4;
+            font-size: 0.8rem;
+        }
+        .winner-speed {
+            background: linear-gradient(90deg, #10b981, #059669);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #71717a;
+            font-size: 0.9rem;
+        }
+        .section-divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin: 40px 0;
+        }
+        .note {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #fbbf24;
+        }
+        .click-hint {
+            background: rgba(6, 182, 212, 0.1);
+            border-left: 3px solid #06b6d4;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #22d3ee;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal {
+            background: linear-gradient(135deg, #1e1e3f 0%, #1a1a2e 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .modal-header {
+            padding: 24px 24px 16px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .modal-title {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 1.2rem;
+            color: #06b6d4;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: #71717a;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: #e4e4e7;
+        }
+        .modal-body {
+            padding: 24px;
+        }
+        .modal-section {
+            margin-bottom: 20px;
+        }
+        .modal-section:last-child {
+            margin-bottom: 0;
+        }
+        .modal-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #8b5cf6;
+            margin-bottom: 6px;
+        }
+        .modal-value {
+            font-size: 0.95rem;
+            color: #e4e4e7;
+            line-height: 1.6;
+        }
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .modal-tag {
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .modal-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .modal-stat {
+            text-align: center;
+        }
+        .modal-stat-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #06b6d4;
+        }
+        .modal-stat-label {
+            font-size: 0.75rem;
+            color: #71717a;
+        }
+        .modal-developer {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 14px;
+            border-radius: 8px;
+        }
+        .modal-developer-logo {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>KĀDI Model Benchmark Results</h1>
+        <p class="subtitle">Distributed AI Inference Network Performance Test</p>
+        
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-number">27</div>
+                <div class="stat-label">Chat Models Working</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Embedding/Reranker</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">31</div>
+                <div class="stat-label">Total Models</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">23.5</div>
+                <div class="stat-label">Max Tok/s</div>
+            </div>
+        </div>
+
+        <span class="success-badge">🎉 27/27 Chat Models Operational (100%)</span>
+
+        <h2>Chat & Vision Models</h2>
+        <div class="click-hint">💡 Click on any model name to see detailed information about capabilities and use cases</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    <th>Size</th>
+                    <th>Context</th>
+                    <th>Time</th>
+                    <th>Tokens</th>
+                    <th>Tok/s</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="model-name" onclick="showModal('mirothinker')">humin-mirothinker15-30b-q8:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-reasoning">Reasoning</span></td>
+                    <td>30B</td>
+                    <td>32K</td>
+                    <td>~17s</td>
+                    <td>400</td>
+                    <td class="highlight">23.5</td>
+                    <td>Shows &lt;think&gt; CoT, excellent</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('qwen3-coder')">humin-qwen3-coder:30b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-code">Code</span></td>
+                    <td>30B</td>
+                    <td>128K</td>
+                    <td>~7s</td>
+                    <td>150</td>
+                    <td class="highlight">21.4</td>
+                    <td>Newest Qwen coder, very fast</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('codeqwen')">humin-codeqwen:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-code">Code</span></td>
+                    <td>~7B</td>
+                    <td>64K</td>
+                    <td>~8s</td>
+                    <td>150</td>
+                    <td class="highlight">18.8</td>
+                    <td>Fast, clean code output</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('llama32-vision')">humin-llama3.2-vision:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-vision">Vision</span></td>
+                    <td>11B</td>
+                    <td>128K</td>
+                    <td>~5s</td>
+                    <td>89</td>
+                    <td class="highlight">17.8</td>
+                    <td>Fast vision model</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('gpt-oss-20b')">humin-gpt-oss:20b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>20B</td>
+                    <td>128K</td>
+                    <td>~6s</td>
+                    <td>100</td>
+                    <td class="highlight">16.7</td>
+                    <td>Fastest chat model</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('qwen25vl-7b')">humin-qwen2.5vl:7b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-vision">Vision</span></td>
+                    <td>7B</td>
+                    <td>32K</td>
+                    <td>~5s</td>
+                    <td>67</td>
+                    <td>13.4</td>
+                    <td>Small vision model</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('devstral-small')">humin-devstral-small-2:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-code">Code</span></td>
+                    <td>~24B</td>
+                    <td>128K</td>
+                    <td>~14s</td>
+                    <td>150</td>
+                    <td>10.7</td>
+                    <td>Mistral's small coder</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('mistral-small31')">humin-mistral-small3.1:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>24B</td>
+                    <td>128K</td>
+                    <td>~13s</td>
+                    <td>150</td>
+                    <td>11.5</td>
+                    <td>Mistral 3.1 small model</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('sqlcoder')">humin-sqlcoder:15b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-sql">SQL</span></td>
+                    <td>15B</td>
+                    <td>16K</td>
+                    <td>~16s</td>
+                    <td>150</td>
+                    <td>9.4</td>
+                    <td>SQL specialist</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('deepseek-r1')">humin-deepseek-r1:32b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-reasoning">Reasoning</span></td>
+                    <td>32B</td>
+                    <td>128K</td>
+                    <td>~50s</td>
+                    <td>374</td>
+                    <td>7.5</td>
+                    <td>Deep reasoning, shows thinking</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('mistral-small32')">humin-mistral-small3.2:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>24B</td>
+                    <td>128K</td>
+                    <td>~11s</td>
+                    <td>80</td>
+                    <td>7.3</td>
+                    <td>Latest Mistral small</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('gemma3')">humin-gemma3:27b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>27B</td>
+                    <td>128K</td>
+                    <td>~9s</td>
+                    <td>71</td>
+                    <td>7.9</td>
+                    <td>Google's latest Gemma</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('phi4')">humin-phi4:14b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>14B</td>
+                    <td>16K</td>
+                    <td>~14s</td>
+                    <td>84</td>
+                    <td>6.0</td>
+                    <td>Microsoft's efficient model</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('gpt-oss-120b')">humin-gpt-oss:120b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>120B</td>
+                    <td>128K</td>
+                    <td>~17s</td>
+                    <td>100</td>
+                    <td>5.9</td>
+                    <td>Largest model, solid quality</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('qwen25vl-32b')">humin-qwen2.5vl:32b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-vision">Vision</span></td>
+                    <td>32B</td>
+                    <td>32K</td>
+                    <td>~12s</td>
+                    <td>71</td>
+                    <td>5.9</td>
+                    <td>Large vision model</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('olmo2')">humin-olmo2:13b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>13B</td>
+                    <td>4K</td>
+                    <td>~12s</td>
+                    <td>62</td>
+                    <td>5.2</td>
+                    <td>AI2's open model</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('codestral')">humin-codestral:22b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-code">Code</span></td>
+                    <td>22B</td>
+                    <td>32K</td>
+                    <td>~18s</td>
+                    <td>92</td>
+                    <td>5.1</td>
+                    <td>Clean, concise code</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('devstral')">humin-devstral:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-code">Code</span></td>
+                    <td>~24B</td>
+                    <td>128K</td>
+                    <td>~32s</td>
+                    <td>150</td>
+                    <td>4.7</td>
+                    <td>Mistral's dev coder</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('llama4')">humin-llama4:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>109B</td>
+                    <td>128K</td>
+                    <td>~22s</td>
+                    <td>104</td>
+                    <td>4.7</td>
+                    <td>Meta's Llama 4 Scout</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('qwen25-coder')">humin-qwen2.5-coder:32b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-code">Code</span></td>
+                    <td>32B</td>
+                    <td>128K</td>
+                    <td>~34s</td>
+                    <td>150</td>
+                    <td>4.4</td>
+                    <td>Best code quality, verbose</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('granite-vision')">humin-granite3.2-vision:2b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-vision">Vision</span></td>
+                    <td>2B</td>
+                    <td>8K</td>
+                    <td>~11s</td>
+                    <td>48</td>
+                    <td>4.4</td>
+                    <td>IBM's tiny vision model</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('mixtral')">humin-mixtral:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>8x7B</td>
+                    <td>32K</td>
+                    <td>~32s</td>
+                    <td>100</td>
+                    <td>3.1</td>
+                    <td>MoE architecture</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('nemotron')">humin-nemotron-3-nano:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>~8B</td>
+                    <td>16K</td>
+                    <td>~31s</td>
+                    <td>96</td>
+                    <td>3.1</td>
+                    <td>NVIDIA's efficient model</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('mistral-small')">humin-mistral-small:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>22B</td>
+                    <td>32K</td>
+                    <td>~22s</td>
+                    <td>62</td>
+                    <td>2.8</td>
+                    <td>Previous Mistral small</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('gemma2')">humin-gemma2:27b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>27B</td>
+                    <td>8K</td>
+                    <td>~24s</td>
+                    <td>64</td>
+                    <td>2.7</td>
+                    <td>Google model, good quality</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('llama33')">humin-llama3.3:70b-instruct-q4_K_M</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>70B</td>
+                    <td>128K</td>
+                    <td>~61s</td>
+                    <td>96</td>
+                    <td>1.6</td>
+                    <td>High quality, slower</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('qwen25-72b')">humin-qwen2.5:72b-instruct-q4_K_M</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>72B</td>
+                    <td>128K</td>
+                    <td>~62s</td>
+                    <td>60</td>
+                    <td>1.0</td>
+                    <td>Slowest, but quality output</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Embedding & Reranker Models</h2>
+        <div class="note">⚠️ These models are for embeddings/reranking and don't support chat completion API</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="model-name" onclick="showModal('bge-m3')">humin-bge-m3:latest</td>
+                    <td class="status-warn">⚠️</td>
+                    <td><span class="type-badge type-embed">Embedding</span></td>
+                    <td>Use with embedding API, not chat</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('mxbai-embed')">humin-mxbai-embed-large:latest</td>
+                    <td class="status-warn">⚠️</td>
+                    <td><span class="type-badge type-embed">Embedding</span></td>
+                    <td>Use with embedding API, not chat</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('nomic-embed')">humin-nomic-embed-text-v2-moe:latest</td>
+                    <td class="status-warn">⚠️</td>
+                    <td><span class="type-badge type-embed">Embedding</span></td>
+                    <td>MoE embedding model</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('bge-reranker')">humin-qllama/bge-reranker-v2-m3:latest</td>
+                    <td class="status-warn">⚠️</td>
+                    <td><span class="type-badge type-embed">Reranker</span></td>
+                    <td>Use with reranking API, not chat</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="section-divider">
+
+        <h2>Performance Tiers</h2>
+        <div class="tiers">
+            <div class="tier-card tier-fast">
+                <h3>🚀 Fast (15-24 tok/s)</h3>
+                <p>mirothinker, qwen3-coder:30b, codeqwen, llama3.2-vision, gpt-oss:20b, qwen2.5vl:7b</p>
+                <p style="margin-top: 8px; color: #10b981;">Best for: Daily tasks, quick responses</p>
+            </div>
+            <div class="tier-card tier-medium">
+                <h3>⚡ Medium (5-10 tok/s)</h3>
+                <p>devstral-small-2, sqlcoder, deepseek-r1, mistral-small3.2, phi4, gpt-oss:120b, qwen2.5vl:32b, olmo2</p>
+                <p style="margin-top: 8px; color: #f59e0b;">Best for: Balanced speed/quality</p>
+            </div>
+            <div class="tier-card tier-slow">
+                <h3>🐢 Slow (2-5 tok/s)</h3>
+                <p>codestral, devstral, qwen2.5-coder:32b, granite3.2-vision, mixtral, nemotron-3-nano, mistral-small, gemma2</p>
+                <p style="margin-top: 8px; color: #818cf8;">Best for: Quality over speed</p>
+            </div>
+            <div class="tier-card tier-heavy">
+                <h3>🐌 Heavy (1-2 tok/s)</h3>
+                <p>llama3.3:70b, qwen2.5:72b</p>
+                <p style="margin-top: 8px; color: #f87171;">Best for: Maximum quality tasks</p>
+            </div>
+        </div>
+
+        <h2>Category Winners</h2>
+        <div class="winners">
+            <div class="winner-card">
+                <div>
+                    <div class="winner-category">🏆 Fastest Overall</div>
+                    <div class="winner-model">humin-mirothinker15-30b-q8</div>
+                </div>
+                <span class="winner-speed">23.5 tok/s</span>
+            </div>
+            <div class="winner-card">
+                <div>
+                    <div class="winner-category">💬 Fastest Chat</div>
+                    <div class="winner-model">humin-gpt-oss:20b</div>
+                </div>
+                <span class="winner-speed">16.7 tok/s</span>
+            </div>
+            <div class="winner-card">
+                <div>
+                    <div class="winner-category">💻 Fastest Code</div>
+                    <div class="winner-model">humin-qwen3-coder:30b</div>
+                </div>
+                <span class="winner-speed">21.4 tok/s</span>
+            </div>
+            <div class="winner-card">
+                <div>
+                    <div class="winner-category">👁️ Fastest Vision</div>
+                    <div class="winner-model">humin-llama3.2-vision:latest</div>
+                </div>
+                <span class="winner-speed">17.8 tok/s</span>
+            </div>
+            <div class="winner-card">
+                <div>
+                    <div class="winner-category">🧠 Best Reasoning</div>
+                    <div class="winner-model">humin-deepseek-r1:32b</div>
+                </div>
+                <span class="winner-speed">7.5 tok/s</span>
+            </div>
+            <div class="winner-card">
+                <div>
+                    <div class="winner-category">⚡ Best Efficiency</div>
+                    <div class="winner-model">humin-gpt-oss:120b</div>
+                </div>
+                <span class="winner-speed">5.9 tok/s @ 120B</span>
+            </div>
+            <div class="winner-card">
+                <div>
+                    <div class="winner-category">✨ Best Quality Chat</div>
+                    <div class="winner-model">humin-llama3.3:70b</div>
+                </div>
+                <span class="winner-speed">1.6 tok/s</span>
+            </div>
+            <div class="winner-card">
+                <div>
+                    <div class="winner-category">📝 Best Quality Code</div>
+                    <div class="winner-model">humin-qwen2.5-coder:32b</div>
+                </div>
+                <span class="winner-speed">4.4 tok/s</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Tested on M2 Max MacBook Pro with 96GB RAM via KĀDI Distributed Inference Network</p>
+            <p style="margin-top: 8px;">Generated: January 2026</p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal-overlay" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-title" id="modal-title">Model Name</div>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modelData = {
+            'mirothinker': {
+                name: 'MiroThinker 1.5 30B Q8',
+                developer: 'MiroAI',
+                type: 'Reasoning',
+                size: '30B',
+                tokensPerSec: 23.5,
+                description: 'A reasoning-focused model based on Qwen3-30B-A3B-Thinking-2507, optimized for deep analysis and step-by-step reasoning. Outputs its thinking process in <think> tags before providing final answers.',
+                useCases: ['Complex reasoning tasks', 'Mathematical problem solving', 'Logic puzzles', 'Step-by-step analysis', 'Decision making'],
+                strengths: ['Transparent reasoning process', 'Excellent for debugging thought processes', 'High accuracy on complex tasks', 'Fast for its capability level'],
+                context: '32K tokens'
+            },
+            'qwen3-coder': {
+                name: 'Qwen3 Coder 30B',
+                developer: 'Alibaba',
+                type: 'Code',
+                size: '30B',
+                tokensPerSec: 21.4,
+                description: 'The latest and most capable coding model in the Qwen family. Excels at code generation, understanding, and modification across multiple programming languages.',
+                useCases: ['Code generation', 'Debugging', 'Code review', 'Refactoring', 'Multi-language projects'],
+                strengths: ['Excellent code quality', 'Fast inference', 'Strong across languages', 'Good at explaining code'],
+                context: '128K tokens'
+            },
+            'codeqwen': {
+                name: 'CodeQwen 7B',
+                developer: 'Alibaba',
+                type: 'Code',
+                size: '7B',
+                tokensPerSec: 18.8,
+                description: 'A compact, fast coding model optimized for quick code completions and simple programming tasks. Great for daily coding assistance.',
+                useCases: ['Quick code completions', 'Simple scripts', 'Code snippets', 'Syntax help', 'Boilerplate generation'],
+                strengths: ['Very fast', 'Low resource usage', 'Good for simple tasks', 'Clean output'],
+                context: '64K tokens'
+            },
+            'llama32-vision': {
+                name: 'Llama 3.2 Vision 11B',
+                developer: 'Meta',
+                type: 'Vision',
+                size: '11B',
+                tokensPerSec: 17.8,
+                description: 'Meta\'s multimodal Llama model with vision capabilities. Can understand and analyze images while maintaining strong text performance.',
+                useCases: ['Image analysis', 'Visual Q&A', 'Document understanding', 'Chart/graph interpretation', 'OCR tasks'],
+                strengths: ['Fast vision processing', 'Good image understanding', 'Balanced multimodal', 'Strong text capability'],
+                context: '128K tokens'
+            },
+            'gpt-oss-20b': {
+                name: 'GPT-OSS 20B',
+                developer: 'Open Source Community',
+                type: 'Chat',
+                size: '20B',
+                tokensPerSec: 16.7,
+                description: 'An open-source reproduction of GPT-4 architecture. General-purpose chat model suitable for a wide range of conversational tasks.',
+                useCases: ['General conversation', 'Writing assistance', 'Analysis', 'Brainstorming', 'Summarization'],
+                strengths: ['Fastest chat model', 'Good general quality', 'Versatile', 'Reliable'],
+                context: '32K tokens'
+            },
+            'qwen25vl-7b': {
+                name: 'Qwen 2.5 VL 7B',
+                developer: 'Alibaba',
+                type: 'Vision',
+                size: '7B',
+                tokensPerSec: 13.4,
+                description: 'A compact vision-language model with strong multimodal understanding. Efficient for image analysis tasks.',
+                useCases: ['Image captioning', 'Visual reasoning', 'OCR', 'Document analysis', 'Quick image queries'],
+                strengths: ['Fast and efficient', 'Good accuracy for size', 'Low resource usage', 'Strong OCR'],
+                context: '32K tokens'
+            },
+            'devstral-small': {
+                name: 'Devstral Small 2',
+                developer: 'Mistral AI',
+                type: 'Code',
+                size: '24B',
+                tokensPerSec: 10.7,
+                description: 'Mistral\'s compact development-focused coding model optimized for agentic coding workflows and tool use.',
+                useCases: ['Agentic coding', 'Tool use', 'IDE integration', 'Automated refactoring', 'Code agents'],
+                strengths: ['Good for agents', 'Function calling', 'Balanced speed/quality', 'IDE friendly'],
+                context: '32K tokens'
+            },
+            'mistral-small31': {
+                name: 'Mistral Small 3.1',
+                developer: 'Mistral AI',
+                type: 'Chat',
+                size: '24B',
+                tokensPerSec: 11.5,
+                description: 'Mistral\'s 3.1 generation small model with improved instruction following and reasoning capabilities.',
+                useCases: ['General chat', 'Instruction following', 'Analysis', 'Writing assistance', 'Code explanation'],
+                strengths: ['Fast', 'Good instruction following', 'Balanced quality', 'Efficient'],
+                context: '128K tokens'
+            },
+            'sqlcoder': {
+                name: 'SQLCoder 15B',
+                developer: 'Defog',
+                type: 'SQL',
+                size: '15B',
+                tokensPerSec: 9.4,
+                description: 'Specialized model trained specifically for text-to-SQL generation. Excels at converting natural language queries to SQL.',
+                useCases: ['Text-to-SQL', 'Database querying', 'Schema understanding', 'Query optimization', 'SQL learning'],
+                strengths: ['Best-in-class SQL generation', 'Schema aware', 'Complex query support', 'Multiple SQL dialects'],
+                context: '16K tokens'
+            },
+            'deepseek-r1': {
+                name: 'DeepSeek R1 32B',
+                developer: 'DeepSeek',
+                type: 'Reasoning',
+                size: '32B',
+                tokensPerSec: 7.5,
+                description: 'Advanced reasoning model that shows its thinking process. Excellent for complex problem-solving requiring step-by-step logic.',
+                useCases: ['Math problems', 'Scientific reasoning', 'Complex analysis', 'Research tasks', 'Logical deduction'],
+                strengths: ['Deep reasoning', 'Transparent thinking', 'High accuracy', 'Good at math'],
+                context: '64K tokens'
+            },
+            'mistral-small32': {
+                name: 'Mistral Small 3.2',
+                developer: 'Mistral AI',
+                type: 'Chat',
+                size: '24B',
+                tokensPerSec: 7.3,
+                description: 'Latest generation of Mistral\'s small model with improved function calling and reasoning capabilities.',
+                useCases: ['General chat', 'Tool use', 'Structured outputs', 'Function calling', 'API integration'],
+                strengths: ['Great function calling', 'Fast', 'Good reasoning', 'JSON outputs'],
+                context: '32K tokens'
+            },
+            'phi4': {
+                name: 'Phi-4 14B',
+                developer: 'Microsoft',
+                type: 'Chat',
+                size: '14B',
+                tokensPerSec: 6.0,
+                description: 'Microsoft\'s compact model that punches well above its weight class. Known for strong reasoning despite smaller size.',
+                useCases: ['Reasoning tasks', 'Edge deployment', 'Resource-constrained environments', 'Teaching/learning', 'Analysis'],
+                strengths: ['Excellent for size', 'Strong reasoning', 'Efficient', 'Good for edge'],
+                context: '16K tokens'
+            },
+            'gpt-oss-120b': {
+                name: 'GPT-OSS 120B',
+                developer: 'Open Source Community',
+                type: 'Chat',
+                size: '120B',
+                tokensPerSec: 5.9,
+                description: 'Large GPT-4 style model for maximum quality outputs. Surprisingly efficient given its massive size.',
+                useCases: ['Complex tasks', 'High-quality writing', 'Nuanced analysis', 'Important outputs', 'Expert-level tasks'],
+                strengths: ['Highest quality', 'Surprisingly fast for size', 'Deep understanding', 'Nuanced outputs'],
+                context: '32K tokens'
+            },
+            'qwen25vl-32b': {
+                name: 'Qwen 2.5 VL 32B',
+                developer: 'Alibaba',
+                type: 'Vision',
+                size: '32B',
+                tokensPerSec: 5.9,
+                description: 'Large vision-language model with strong multimodal understanding and reasoning capabilities.',
+                useCases: ['Complex image analysis', 'Document understanding', 'Visual reasoning', 'Multi-image tasks', 'Detailed descriptions'],
+                strengths: ['High accuracy', 'Complex reasoning', 'Good at details', 'Strong OCR'],
+                context: '32K tokens'
+            },
+            'olmo2': {
+                name: 'OLMo 2 13B',
+                developer: 'AI2 (Allen Institute)',
+                type: 'Chat',
+                size: '13B',
+                tokensPerSec: 5.2,
+                description: 'Fully open model with publicly available weights, training data, and code. Ideal for research and transparency-critical applications.',
+                useCases: ['Research', 'Transparency-critical apps', 'Fine-tuning base', 'Education', 'Reproducible AI'],
+                strengths: ['Fully open', 'Research friendly', 'Reproducible', 'Well documented'],
+                context: '32K tokens'
+            },
+            'codestral': {
+                name: 'Codestral 22B',
+                developer: 'Mistral AI',
+                type: 'Code',
+                size: '22B',
+                tokensPerSec: 5.1,
+                description: 'Mistral\'s dedicated coding model optimized for production code generation across multiple languages.',
+                useCases: ['Production code', 'Multi-language projects', 'Code explanation', 'Documentation', 'Testing'],
+                strengths: ['Clean output', 'Production ready', 'Good explanations', 'Multiple languages'],
+                context: '32K tokens'
+            },
+            'devstral': {
+                name: 'Devstral',
+                developer: 'Mistral AI',
+                type: 'Code',
+                size: '24B',
+                tokensPerSec: 4.7,
+                description: 'Development-focused model designed for agentic coding workflows with strong tool use capabilities.',
+                useCases: ['Autonomous coding agents', 'Complex refactoring', 'Multi-file changes', 'Build systems', 'DevOps'],
+                strengths: ['Agentic capabilities', 'Tool use', 'Multi-file context', 'Build awareness'],
+                context: '32K tokens'
+            },
+            'qwen25-coder': {
+                name: 'Qwen 2.5 Coder 32B',
+                developer: 'Alibaba',
+                type: 'Code',
+                size: '32B',
+                tokensPerSec: 4.4,
+                description: 'High-quality coding model known for thorough, well-documented code generation. Previous best-in-class before Qwen 3.',
+                useCases: ['Complex codebases', 'Detailed documentation', 'Architecture design', 'Code review', 'Best practices'],
+                strengths: ['Best code quality', 'Thorough', 'Good docs', 'Well-structured'],
+                context: '128K tokens'
+            },
+            'granite-vision': {
+                name: 'Granite 3.2 Vision 2B',
+                developer: 'IBM',
+                type: 'Vision',
+                size: '2B',
+                tokensPerSec: 4.4,
+                description: 'Tiny vision model designed for edge and embedded use cases. Runs efficiently on limited hardware.',
+                useCases: ['Edge deployment', 'Mobile apps', 'Embedded systems', 'IoT devices', 'Quick image tasks'],
+                strengths: ['Tiny footprint', 'Fast', 'Low resource', 'Edge optimized'],
+                context: '8K tokens'
+            },
+            'mixtral': {
+                name: 'Mixtral 8x7B',
+                developer: 'Mistral AI',
+                type: 'Chat',
+                size: '8x7B MoE',
+                tokensPerSec: 3.1,
+                description: 'Mixture of Experts model that activates only 2 experts per token. Efficient architecture for diverse tasks.',
+                useCases: ['General chat', 'Diverse tasks', 'Efficient inference', 'Multi-domain', 'Cost-effective quality'],
+                strengths: ['MoE efficiency', 'Good quality', 'Diverse knowledge', 'Cost effective'],
+                context: '32K tokens'
+            },
+            'nemotron': {
+                name: 'Nemotron 3 Nano',
+                developer: 'NVIDIA',
+                type: 'Chat',
+                size: '8B',
+                tokensPerSec: 3.1,
+                description: 'NVIDIA\'s efficient small model optimized for their hardware stack. Good for NVIDIA deployments.',
+                useCases: ['NVIDIA deployments', 'TensorRT optimization', 'Data center', 'Fast inference', 'Cost efficiency'],
+                strengths: ['NVIDIA optimized', 'Efficient', 'TensorRT ready', 'Good quality'],
+                context: '16K tokens'
+            },
+            'mistral-small': {
+                name: 'Mistral Small (Previous)',
+                developer: 'Mistral AI',
+                type: 'Chat',
+                size: '22B',
+                tokensPerSec: 2.8,
+                description: 'Previous generation small model from Mistral. Still capable but superseded by 3.2 version.',
+                useCases: ['General chat', 'Legacy compatibility', 'Proven reliability', 'Simple tasks'],
+                strengths: ['Proven', 'Stable', 'Good general quality', 'Well tested'],
+                context: '32K tokens'
+            },
+            'gemma2': {
+                name: 'Gemma 2 27B',
+                developer: 'Google DeepMind',
+                type: 'Chat',
+                size: '27B',
+                tokensPerSec: 2.7,
+                description: 'Google\'s open model with strong benchmark performance. Good integration with Google ecosystem.',
+                useCases: ['Research', 'General tasks', 'Google ecosystem', 'Benchmarking', 'Fine-tuning'],
+                strengths: ['Strong benchmarks', 'Google support', 'Well documented', 'Research friendly'],
+                context: '8K tokens'
+            },
+            'gemma3': {
+                name: 'Gemma 3 27B',
+                developer: 'Google DeepMind',
+                type: 'Chat',
+                size: '27B',
+                tokensPerSec: 7.9,
+                description: 'Google\'s latest Gemma model with improved reasoning and instruction following. Significantly faster than Gemma 2.',
+                useCases: ['General chat', 'Reasoning tasks', 'Code assistance', 'Analysis', 'Research'],
+                strengths: ['Much faster than Gemma 2', 'Improved reasoning', 'Better instruction following', 'Good quality'],
+                context: '128K tokens'
+            },
+            'llama33': {
+                name: 'Llama 3.3 70B Instruct',
+                developer: 'Meta',
+                type: 'Chat',
+                size: '70B',
+                tokensPerSec: 1.6,
+                description: 'Meta\'s latest flagship model with significantly improved instruction following. High quality for demanding tasks.',
+                useCases: ['High-quality chat', 'Complex reasoning', 'Important outputs', 'Nuanced tasks', 'Expert assistance'],
+                strengths: ['Excellent quality', 'Great instruction following', 'Nuanced', 'Reliable'],
+                context: '128K tokens'
+            },
+            'llama4': {
+                name: 'Llama 4 Scout 109B',
+                developer: 'Meta',
+                type: 'Chat',
+                size: '109B (17B active)',
+                tokensPerSec: 4.7,
+                description: 'Meta\'s latest Llama 4 Scout model using Mixture of Experts architecture. Multimodal capable with efficient inference.',
+                useCases: ['General chat', 'Multimodal tasks', 'Complex reasoning', 'Analysis', 'Vision tasks'],
+                strengths: ['MoE efficiency', 'Multimodal', 'Good quality', 'Fast for size'],
+                context: '128K tokens'
+            },
+            'qwen25-72b': {
+                name: 'Qwen 2.5 72B Instruct',
+                developer: 'Alibaba',
+                type: 'Chat',
+                size: '72B',
+                tokensPerSec: 1.0,
+                description: 'Large multilingual model from Alibaba. Excellent for non-English tasks and global content.',
+                useCases: ['Multilingual tasks', 'Translation', 'Global content', 'Non-English chat', 'Cross-lingual'],
+                strengths: ['Best multilingual', 'Many languages', 'Cultural awareness', 'Translation'],
+                context: '128K tokens'
+            },
+            'bge-m3': {
+                name: 'BGE-M3',
+                developer: 'BAAI',
+                type: 'Embedding',
+                size: 'N/A',
+                tokensPerSec: null,
+                description: 'Multilingual embedding model supporting 100+ languages. Excellent for semantic search and RAG applications.',
+                useCases: ['Semantic search', 'RAG systems', 'Multilingual retrieval', 'Document similarity', 'Clustering'],
+                strengths: ['100+ languages', 'High quality embeddings', 'Good for RAG', 'Production ready'],
+                context: '8K tokens'
+            },
+            'mxbai-embed': {
+                name: 'MxBai Embed Large',
+                developer: 'Mixedbread AI',
+                type: 'Embedding',
+                size: 'N/A',
+                tokensPerSec: null,
+                description: 'High-quality embedding model optimized for English text. Great for document embedding and similarity search.',
+                useCases: ['Document embedding', 'Similarity search', 'RAG', 'Semantic matching', 'Classification'],
+                strengths: ['High quality', 'Fast', 'English optimized', 'Good for RAG'],
+                context: '512 tokens'
+            },
+            'nomic-embed': {
+                name: 'Nomic Embed Text V2 MoE',
+                developer: 'Nomic AI',
+                type: 'Embedding',
+                size: 'N/A',
+                tokensPerSec: null,
+                description: 'MoE architecture embedding model with extended context support. Good for longer documents.',
+                useCases: ['Long document embedding', 'Extended context', 'Efficient retrieval', 'Large documents'],
+                strengths: ['Long context', 'MoE efficiency', 'Good quality', 'Large docs'],
+                context: '8K tokens'
+            },
+            'bge-reranker': {
+                name: 'BGE Reranker V2 M3',
+                developer: 'BAAI',
+                type: 'Reranker',
+                size: 'N/A',
+                tokensPerSec: null,
+                description: 'Cross-encoder reranker for improving search result quality. Use after initial retrieval to refine rankings.',
+                useCases: ['Search reranking', 'RAG improvement', 'Result refinement', 'Two-stage retrieval'],
+                strengths: ['Improves retrieval', 'Cross-encoder quality', 'Production ready', 'Easy integration'],
+                context: '512 tokens'
+            }
+        };
+
+        function showModal(modelId) {
+            const data = modelData[modelId];
+            if (!data) return;
+
+            document.getElementById('modal-title').textContent = data.name;
+            
+            const statsHtml = data.tokensPerSec ? `
+                <div class="modal-stats">
+                    <div class="modal-stat">
+                        <div class="modal-stat-value">${data.size}</div>
+                        <div class="modal-stat-label">Parameters</div>
+                    </div>
+                    <div class="modal-stat">
+                        <div class="modal-stat-value">${data.tokensPerSec}</div>
+                        <div class="modal-stat-label">Tokens/sec</div>
+                    </div>
+                    <div class="modal-stat">
+                        <div class="modal-stat-value">${data.context}</div>
+                        <div class="modal-stat-label">Context</div>
+                    </div>
+                </div>
+            ` : `
+                <div class="modal-stats">
+                    <div class="modal-stat">
+                        <div class="modal-stat-value">${data.type}</div>
+                        <div class="modal-stat-label">Type</div>
+                    </div>
+                    <div class="modal-stat">
+                        <div class="modal-stat-value">${data.context}</div>
+                        <div class="modal-stat-label">Max Input</div>
+                    </div>
+                    <div class="modal-stat">
+                        <div class="modal-stat-value">N/A</div>
+                        <div class="modal-stat-label">Tokens/sec</div>
+                    </div>
+                </div>
+            `;
+
+            const bodyHtml = `
+                <div class="modal-section">
+                    <div class="modal-label">Developer</div>
+                    <div class="modal-developer">${data.developer}</div>
+                </div>
+                <div class="modal-section">
+                    ${statsHtml}
+                </div>
+                <div class="modal-section">
+                    <div class="modal-label">Description</div>
+                    <div class="modal-value">${data.description}</div>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-label">Best Use Cases</div>
+                    <div class="modal-tags">
+                        ${data.useCases.map(u => `<span class="modal-tag">${u}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-label">Key Strengths</div>
+                    <div class="modal-tags">
+                        ${data.strengths.map(s => `<span class="modal-tag">${s}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('modal-body').innerHTML = bodyHtml;
+            document.getElementById('modal-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('modal-overlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
