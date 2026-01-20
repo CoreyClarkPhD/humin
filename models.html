@@ -346,7 +346,7 @@
         
         <div class="stats-row">
             <div class="stat-card">
-                <div class="stat-number">27</div>
+                <div class="stat-number">33</div>
                 <div class="stat-label">Chat Models Working</div>
             </div>
             <div class="stat-card">
@@ -354,16 +354,16 @@
                 <div class="stat-label">Embedding/Reranker</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">31</div>
+                <div class="stat-number">37</div>
                 <div class="stat-label">Total Models</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">23.5</div>
+                <div class="stat-number">37.5</div>
                 <div class="stat-label">Max Tok/s</div>
             </div>
         </div>
 
-        <span class="success-badge">🎉 27/27 Chat Models Operational (100%)</span>
+        <span class="success-badge">🎉 33/33 Chat Models Operational (100%)</span>
 
         <h2>Chat & Vision Models</h2>
         <div class="click-hint">💡 Click on any model name to see detailed information about capabilities and use cases</div>
@@ -382,6 +382,28 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td class="model-name" onclick="showModal('deepseek-ocr')">humin-deepseek-ocr:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-vision">Vision/OCR</span></td>
+                    <td>~8B</td>
+                    <td>16K</td>
+                    <td>~4s</td>
+                    <td>150</td>
+                    <td class="highlight">37.5</td>
+                    <td>OCR specialist, fast but hallucinates</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('qwen3-vl-8b')">humin-qwen3-vl:8b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-vision">Vision</span></td>
+                    <td>8B</td>
+                    <td>32K</td>
+                    <td>~6s</td>
+                    <td>150</td>
+                    <td class="highlight">25.0</td>
+                    <td>Fastest accurate vision model</td>
+                </tr>
                 <tr>
                     <td class="model-name" onclick="showModal('mirothinker')">humin-mirothinker15-30b-q8:latest</td>
                     <td class="status-ok">✅</td>
@@ -515,6 +537,17 @@
                     <td>Google's latest Gemma</td>
                 </tr>
                 <tr>
+                    <td class="model-name" onclick="showModal('qwen3-vl-32b')">humin-qwen3-vl:32b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-vision">Vision</span></td>
+                    <td>32B</td>
+                    <td>32K</td>
+                    <td>~16s</td>
+                    <td>132</td>
+                    <td>8.3</td>
+                    <td>Large Qwen3 vision model</td>
+                </tr>
+                <tr>
                     <td class="model-name" onclick="showModal('phi4')">humin-phi4:14b</td>
                     <td class="status-ok">✅</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
@@ -524,6 +557,17 @@
                     <td>84</td>
                     <td>6.0</td>
                     <td>Microsoft's efficient model</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('moondream')">humin-moondream:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-vision">Vision</span></td>
+                    <td>~2B</td>
+                    <td>8K</td>
+                    <td>~10s</td>
+                    <td>62</td>
+                    <td>6.2</td>
+                    <td>Tiny but capable vision model</td>
                 </tr>
                 <tr>
                     <td class="model-name" onclick="showModal('gpt-oss-120b')">humin-gpt-oss:120b</td>
@@ -658,6 +702,17 @@
                     <td>Google model, good quality</td>
                 </tr>
                 <tr>
+                    <td class="model-name" onclick="showModal('qwen25vl-72b')">humin-qwen2.5vl:72b</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-vision">Vision</span></td>
+                    <td>72B</td>
+                    <td>32K</td>
+                    <td>~20s</td>
+                    <td>41</td>
+                    <td>2.1</td>
+                    <td>Largest vision model, excellent quality</td>
+                </tr>
+                <tr>
                     <td class="model-name" onclick="showModal('llama33')">humin-llama3.3:70b-instruct-q4_K_M</td>
                     <td class="status-ok">✅</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
@@ -667,6 +722,17 @@
                     <td>96</td>
                     <td>1.6</td>
                     <td>High quality, slower</td>
+                </tr>
+                <tr>
+                    <td class="model-name" onclick="showModal('minicpm-v')">humin-minicpm-v:latest</td>
+                    <td class="status-ok">✅</td>
+                    <td><span class="type-badge type-vision">Vision</span></td>
+                    <td>~8B</td>
+                    <td>8K</td>
+                    <td>~15s</td>
+                    <td>22</td>
+                    <td>1.5</td>
+                    <td>Compact vision model</td>
                 </tr>
                 <tr>
                     <td class="model-name" onclick="showModal('qwen25-72b')">humin-qwen2.5:72b-instruct-q4_K_M</td>
@@ -828,6 +894,28 @@
 
     <script>
         const modelData = {
+            'deepseek-ocr': {
+                name: 'DeepSeek OCR',
+                developer: 'DeepSeek',
+                type: 'Vision/OCR',
+                size: '~8B',
+                tokensPerSec: 37.5,
+                description: 'A specialized OCR model optimized for text extraction from images. Extremely fast but may hallucinate on non-text content. Best used for document processing and text extraction tasks.',
+                useCases: ['Document OCR', 'Text extraction', 'Receipt scanning', 'Form processing', 'Screenshot text capture'],
+                strengths: ['Fastest vision model', 'Excellent OCR accuracy', 'Good document understanding', 'Low latency'],
+                context: '16K tokens'
+            },
+            'qwen3-vl-8b': {
+                name: 'Qwen3 VL 8B',
+                developer: 'Alibaba',
+                type: 'Vision',
+                size: '8B',
+                tokensPerSec: 25.0,
+                description: 'The fastest accurate general-purpose vision model. Excellent balance of speed and quality for image understanding tasks.',
+                useCases: ['Image analysis', 'Visual Q&A', 'Object detection', 'Scene understanding', 'Chart interpretation'],
+                strengths: ['Fastest accurate vision', 'Great quality for size', 'Low resource usage', 'Versatile'],
+                context: '32K tokens'
+            },
             'mirothinker': {
                 name: 'MiroThinker 1.5 30B Q8',
                 developer: 'MiroAI',
@@ -960,6 +1048,17 @@
                 strengths: ['Excellent for size', 'Strong reasoning', 'Efficient', 'Good for edge'],
                 context: '16K tokens'
             },
+            'moondream': {
+                name: 'Moondream',
+                developer: 'vikhyat',
+                type: 'Vision',
+                size: '~2B',
+                tokensPerSec: 6.2,
+                description: 'An incredibly tiny vision-language model that delivers surprising capabilities for its size. Great for edge deployment and resource-constrained environments.',
+                useCases: ['Edge deployment', 'Mobile vision', 'Quick image queries', 'Lightweight apps', 'Resource-limited environments'],
+                strengths: ['Tiny model size', 'Good accuracy for size', 'Low resource usage', 'Fast'],
+                context: '8K tokens'
+            },
             'gpt-oss-120b': {
                 name: 'GPT-OSS 120B',
                 developer: 'Open Source Community',
@@ -1081,6 +1180,17 @@
                 strengths: ['Strong benchmarks', 'Google support', 'Well documented', 'Research friendly'],
                 context: '8K tokens'
             },
+            'qwen25vl-72b': {
+                name: 'Qwen 2.5 VL 72B',
+                developer: 'Alibaba',
+                type: 'Vision',
+                size: '72B',
+                tokensPerSec: 2.1,
+                description: 'The largest and most capable Qwen vision model. Delivers excellent image understanding and reasoning, ideal for complex visual analysis tasks requiring maximum accuracy.',
+                useCases: ['Complex visual reasoning', 'Detailed image analysis', 'Document understanding', 'High-stakes vision tasks', 'Research'],
+                strengths: ['Highest vision accuracy', 'Excellent reasoning', 'Best for complex tasks', 'Detailed outputs'],
+                context: '32K tokens'
+            },
             'gemma3': {
                 name: 'Gemma 3 27B',
                 developer: 'Google DeepMind',
@@ -1091,6 +1201,17 @@
                 useCases: ['General chat', 'Reasoning tasks', 'Code assistance', 'Analysis', 'Research'],
                 strengths: ['Much faster than Gemma 2', 'Improved reasoning', 'Better instruction following', 'Good quality'],
                 context: '128K tokens'
+            },
+            'qwen3-vl-32b': {
+                name: 'Qwen3 VL 32B',
+                developer: 'Alibaba',
+                type: 'Vision',
+                size: '32B',
+                tokensPerSec: 8.3,
+                description: 'A large vision-language model with excellent image understanding capabilities. Good balance of speed and accuracy for complex vision tasks.',
+                useCases: ['Complex image analysis', 'Document understanding', 'Visual reasoning', 'Chart/graph analysis', 'Detailed descriptions'],
+                strengths: ['High accuracy', 'Good reasoning', 'Detailed outputs', 'Strong multimodal'],
+                context: '32K tokens'
             },
             'llama33': {
                 name: 'Llama 3.3 70B Instruct',
@@ -1113,6 +1234,17 @@
                 useCases: ['General chat', 'Multimodal tasks', 'Complex reasoning', 'Analysis', 'Vision tasks'],
                 strengths: ['MoE efficiency', 'Multimodal', 'Good quality', 'Fast for size'],
                 context: '128K tokens'
+            },
+            'minicpm-v': {
+                name: 'MiniCPM-V',
+                developer: 'OpenBMB',
+                type: 'Vision',
+                size: '~8B',
+                tokensPerSec: 1.5,
+                description: 'A compact vision-language model designed for efficient multimodal understanding. Good for basic image tasks but may hallucinate on complex queries.',
+                useCases: ['Basic image analysis', 'Simple visual Q&A', 'Image captioning', 'Lightweight vision tasks'],
+                strengths: ['Compact', 'Low resource usage', 'Basic vision tasks', 'Edge friendly'],
+                context: '8K tokens'
             },
             'qwen25-72b': {
                 name: 'Qwen 2.5 72B Instruct',
