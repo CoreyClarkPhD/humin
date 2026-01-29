@@ -360,7 +360,7 @@ document.querySelectorAll('th[data-s]').forEach(h=>h.onclick=()=>{
     const c=h.dataset.s;
     sD=(sC===c)?(sD==='asc'?'desc':'asc'):'asc';
     sC=c;
-    document.querySelectorAll('th').forEach(x=>{x.classList.remove('sorted');x.querySelector('.sort-icon').textContent='↕';});
+    document.querySelectorAll('th[data-s]').forEach(x=>{x.classList.remove('sorted');x.querySelector('.sort-icon').textContent='↕';});
     h.classList.add('sorted');
     h.querySelector('.sort-icon').textContent=sD==='asc'?'▲':'▼';
     sort();
