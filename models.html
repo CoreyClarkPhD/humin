@@ -835,6 +835,7 @@
         <div class="note" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); border-color: #6366f1;">
             💰 These models are accessed via commercial APIs and incur per-request costs. They are routed through KĀDI but billed by the respective providers.
         </div>
+        <div class="click-hint">💡 Click on any model name to see detailed information about capabilities and use cases</div>
 
         <h3 style="color: #10b981; margin-top: 24px;">OpenAI GPT-5 Series</h3>
         <table>
@@ -850,7 +851,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>gpt-5</td>
+                    <td class="model-name" onclick="showModal('gpt-5')">gpt-5</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Base</td>
                     <td>128K</td>
@@ -858,7 +859,7 @@
                     <td>GPT-5 base model</td>
                 </tr>
                 <tr>
-                    <td>gpt-5-mini</td>
+                    <td class="model-name" onclick="showModal('gpt-5-mini')">gpt-5-mini</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Compact</td>
                     <td>128K</td>
@@ -866,7 +867,7 @@
                     <td>Smaller, faster, cheaper (no tools)</td>
                 </tr>
                 <tr>
-                    <td>gpt-5-nano</td>
+                    <td class="model-name" onclick="showModal('gpt-5-nano')">gpt-5-nano</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Tiny</td>
                     <td>32K</td>
@@ -874,7 +875,7 @@
                     <td>Smallest GPT-5, lowest cost (no tools)</td>
                 </tr>
                 <tr>
-                    <td>gpt-5-pro</td>
+                    <td class="model-name" onclick="showModal('gpt-5-pro')">gpt-5-pro</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Premium</td>
                     <td>128K</td>
@@ -882,7 +883,7 @@
                     <td>Enhanced reasoning (no tools)</td>
                 </tr>
                 <tr>
-                    <td>gpt-5-codex</td>
+                    <td class="model-name" onclick="showModal('gpt-5-codex')">gpt-5-codex</td>
                     <td><span class="type-badge type-code">Code</span></td>
                     <td>Base</td>
                     <td>128K</td>
@@ -890,7 +891,7 @@
                     <td>Code-optimized GPT-5</td>
                 </tr>
                 <tr>
-                    <td>gpt-5-chat-latest</td>
+                    <td class="model-name" onclick="showModal('gpt-5-chat-latest')">gpt-5-chat-latest</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Latest</td>
                     <td>128K</td>
@@ -898,7 +899,7 @@
                     <td>Always points to newest GPT-5</td>
                 </tr>
                 <tr>
-                    <td>gpt-5.1</td>
+                    <td class="model-name" onclick="showModal('gpt-5-1')">gpt-5.1</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Updated</td>
                     <td>128K</td>
@@ -906,7 +907,7 @@
                     <td>GPT-5.1 release</td>
                 </tr>
                 <tr>
-                    <td>gpt-5.1-chat-latest</td>
+                    <td class="model-name" onclick="showModal('gpt-5-1-chat-latest')">gpt-5.1-chat-latest</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Latest</td>
                     <td>128K</td>
@@ -914,7 +915,7 @@
                     <td>Always points to newest GPT-5.1</td>
                 </tr>
                 <tr>
-                    <td>gpt-5.1-codex</td>
+                    <td class="model-name" onclick="showModal('gpt-5-1-codex')">gpt-5.1-codex</td>
                     <td><span class="type-badge type-code">Code</span></td>
                     <td>Base</td>
                     <td>128K</td>
@@ -922,7 +923,7 @@
                     <td>Code-optimized GPT-5.1</td>
                 </tr>
                 <tr>
-                    <td>gpt-5.1-codex-mini</td>
+                    <td class="model-name" onclick="showModal('gpt-5-1-codex-mini')">gpt-5.1-codex-mini</td>
                     <td><span class="type-badge type-code">Code</span></td>
                     <td>Compact</td>
                     <td>64K</td>
@@ -930,7 +931,7 @@
                     <td>Smaller code model</td>
                 </tr>
                 <tr>
-                    <td>gpt-5.1-codex-max</td>
+                    <td class="model-name" onclick="showModal('gpt-5-1-codex-max')">gpt-5.1-codex-max</td>
                     <td><span class="type-badge type-code">Code</span></td>
                     <td>Premium</td>
                     <td>256K</td>
@@ -938,7 +939,7 @@
                     <td>Maximum context code model</td>
                 </tr>
                 <tr>
-                    <td>gpt-5.2</td>
+                    <td class="model-name" onclick="showModal('gpt-5-2')">gpt-5.2</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Latest</td>
                     <td>128K</td>
@@ -946,7 +947,7 @@
                     <td>GPT-5.2 release (newest)</td>
                 </tr>
                 <tr>
-                    <td>gpt-5.2-pro</td>
+                    <td class="model-name" onclick="showModal('gpt-5-2-pro')">gpt-5.2-pro</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Premium</td>
                     <td>256K</td>
@@ -954,7 +955,7 @@
                     <td>Enhanced GPT-5.2 with reasoning</td>
                 </tr>
                 <tr>
-                    <td>gpt-5.2-chat-latest</td>
+                    <td class="model-name" onclick="showModal('gpt-5-2-chat-latest')">gpt-5.2-chat-latest</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Latest</td>
                     <td>128K</td>
@@ -962,7 +963,7 @@
                     <td>Always points to newest GPT-5.2</td>
                 </tr>
                 <tr>
-                    <td>gpt-5.2-codex</td>
+                    <td class="model-name" onclick="showModal('gpt-5-2-codex')">gpt-5.2-codex</td>
                     <td><span class="type-badge type-code">Code</span></td>
                     <td>Latest</td>
                     <td>128K</td>
@@ -986,7 +987,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>claude-sonnet-4-5</td>
+                    <td class="model-name" onclick="showModal('claude-sonnet-4-5')">claude-sonnet-4-5</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Mid-tier</td>
                     <td>200K</td>
@@ -994,7 +995,7 @@
                     <td>Balanced speed and intelligence</td>
                 </tr>
                 <tr>
-                    <td>claude-haiku-4-5</td>
+                    <td class="model-name" onclick="showModal('claude-haiku-4-5')">claude-haiku-4-5</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Fast</td>
                     <td>200K</td>
@@ -1018,7 +1019,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>kimi-k2.5</td>
+                    <td class="model-name" onclick="showModal('kimi-k2-5')">kimi-k2.5</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Latest</td>
                     <td>128K</td>
@@ -1026,7 +1027,7 @@
                     <td>Kimi K2.5 release (newest)</td>
                 </tr>
                 <tr>
-                    <td>kimi-k2-turbo-preview</td>
+                    <td class="model-name" onclick="showModal('kimi-k2-turbo')">kimi-k2-turbo-preview</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Fast</td>
                     <td>128K</td>
@@ -1034,7 +1035,7 @@
                     <td>Faster, optimized for speed</td>
                 </tr>
                 <tr>
-                    <td>kimi-k2-0905-preview</td>
+                    <td class="model-name" onclick="showModal('kimi-k2-0905')">kimi-k2-0905-preview</td>
                     <td><span class="type-badge type-chat">Chat</span></td>
                     <td>Preview</td>
                     <td>128K</td>
@@ -1042,7 +1043,7 @@
                     <td>September 2025 preview build</td>
                 </tr>
                 <tr>
-                    <td>kimi-k2-thinking</td>
+                    <td class="model-name" onclick="showModal('kimi-k2-thinking')">kimi-k2-thinking</td>
                     <td><span class="type-badge type-reason">Reasoning</span></td>
                     <td>Reasoning</td>
                     <td>128K</td>
@@ -1050,7 +1051,7 @@
                     <td>Extended thinking capabilities</td>
                 </tr>
                 <tr>
-                    <td>kimi-k2-thinking-turbo</td>
+                    <td class="model-name" onclick="showModal('kimi-k2-thinking-turbo')">kimi-k2-thinking-turbo</td>
                     <td><span class="type-badge type-reason">Reasoning</span></td>
                     <td>Fast Reasoning</td>
                     <td>128K</td>
@@ -1073,21 +1074,21 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>text-embedding-ada-002</td>
+                    <td class="model-name" onclick="showModal('text-embedding-ada-002')">text-embedding-ada-002</td>
                     <td><span class="type-badge type-embed">Embedding</span></td>
                     <td>1536</td>
                     <td>8191</td>
                     <td>Legacy model, widely compatible</td>
                 </tr>
                 <tr>
-                    <td>text-embedding-3-small</td>
+                    <td class="model-name" onclick="showModal('text-embedding-3-small')">text-embedding-3-small</td>
                     <td><span class="type-badge type-embed">Embedding</span></td>
                     <td>1536</td>
                     <td>8191</td>
                     <td>Smaller, faster, cheaper</td>
                 </tr>
                 <tr>
-                    <td>text-embedding-3-large</td>
+                    <td class="model-name" onclick="showModal('text-embedding-3-large')">text-embedding-3-large</td>
                     <td><span class="type-badge type-embed">Embedding</span></td>
                     <td>3072</td>
                     <td>8191</td>
@@ -1609,6 +1610,285 @@
                 useCases: ['Search reranking', 'RAG improvement', 'Result refinement', 'Two-stage retrieval'],
                 strengths: ['Improves retrieval', 'Cross-encoder quality', 'Production ready', 'Easy integration'],
                 context: '512 tokens'
+            },
+            // Commercial Models - OpenAI GPT-5
+            'gpt-5': {
+                name: 'GPT-5',
+                developer: 'OpenAI',
+                type: 'Chat',
+                size: 'Unknown',
+                tokensPerSec: null,
+                description: 'OpenAI\'s GPT-5 base model. State-of-the-art general purpose AI with excellent reasoning and instruction following.',
+                useCases: ['General chat', 'Complex reasoning', 'Content creation', 'Analysis', 'Problem solving'],
+                strengths: ['State-of-the-art', 'Excellent reasoning', 'Tool use', 'Instruction following'],
+                context: '128K tokens'
+            },
+            'gpt-5-mini': {
+                name: 'GPT-5 Mini',
+                developer: 'OpenAI',
+                type: 'Chat',
+                size: 'Compact',
+                tokensPerSec: null,
+                description: 'Smaller, faster GPT-5 variant optimized for cost efficiency. Good balance of capability and speed.',
+                useCases: ['High-volume tasks', 'Cost-sensitive apps', 'Quick responses', 'Simple queries'],
+                strengths: ['Fast', 'Cost efficient', 'Good quality', 'Low latency'],
+                context: '128K tokens'
+            },
+            'gpt-5-nano': {
+                name: 'GPT-5 Nano',
+                developer: 'OpenAI',
+                type: 'Chat',
+                size: 'Tiny',
+                tokensPerSec: null,
+                description: 'Smallest GPT-5 variant. Ultra-low cost option for simple tasks and high-volume applications.',
+                useCases: ['Simple tasks', 'Classification', 'Extraction', 'High volume', 'Edge cases'],
+                strengths: ['Lowest cost', 'Fastest', 'Simple tasks', 'High throughput'],
+                context: '32K tokens'
+            },
+            'gpt-5-pro': {
+                name: 'GPT-5 Pro',
+                developer: 'OpenAI',
+                type: 'Chat',
+                size: 'Premium',
+                tokensPerSec: null,
+                description: 'Premium GPT-5 with enhanced reasoning capabilities. Best for complex, high-stakes tasks.',
+                useCases: ['Complex analysis', 'Research', 'Strategic planning', 'Expert tasks', 'High-stakes decisions'],
+                strengths: ['Best reasoning', 'Most capable', 'Deep analysis', 'Expert level'],
+                context: '128K tokens'
+            },
+            'gpt-5-codex': {
+                name: 'GPT-5 Codex',
+                developer: 'OpenAI',
+                type: 'Code',
+                size: 'Unknown',
+                tokensPerSec: null,
+                description: 'Code-optimized GPT-5 for software development. Excellent code generation and tool use.',
+                useCases: ['Code generation', 'Debugging', 'Code review', 'Refactoring', 'Documentation'],
+                strengths: ['Code optimized', 'Tool use', 'Multi-language', 'Production quality'],
+                context: '128K tokens'
+            },
+            'gpt-5-chat-latest': {
+                name: 'GPT-5 Chat Latest',
+                developer: 'OpenAI',
+                type: 'Chat',
+                size: 'Unknown',
+                tokensPerSec: null,
+                description: 'Always points to the newest GPT-5 chat model. Use for latest improvements and capabilities.',
+                useCases: ['General chat', 'Latest features', 'Best quality', 'Production apps'],
+                strengths: ['Always current', 'Latest improvements', 'Tool use', 'Best practices'],
+                context: '128K tokens'
+            },
+            'gpt-5-1': {
+                name: 'GPT-5.1',
+                developer: 'OpenAI',
+                type: 'Chat',
+                size: 'Unknown',
+                tokensPerSec: null,
+                description: 'GPT-5.1 release with improved capabilities over base GPT-5.',
+                useCases: ['General chat', 'Complex reasoning', 'Content creation', 'Analysis'],
+                strengths: ['Improved over 5.0', 'Better reasoning', 'Tool use', 'Reliable'],
+                context: '128K tokens'
+            },
+            'gpt-5-1-chat-latest': {
+                name: 'GPT-5.1 Chat Latest',
+                developer: 'OpenAI',
+                type: 'Chat',
+                size: 'Unknown',
+                tokensPerSec: null,
+                description: 'Always points to the newest GPT-5.1 chat model.',
+                useCases: ['General chat', 'Latest 5.1 features', 'Production apps'],
+                strengths: ['Always current', 'Stable API', 'Tool use'],
+                context: '128K tokens'
+            },
+            'gpt-5-1-codex': {
+                name: 'GPT-5.1 Codex',
+                developer: 'OpenAI',
+                type: 'Code',
+                size: 'Unknown',
+                tokensPerSec: null,
+                description: 'Code-optimized GPT-5.1 for software development.',
+                useCases: ['Code generation', 'Debugging', 'Code review', 'Multi-language'],
+                strengths: ['Code optimized', 'Tool use', 'Production quality'],
+                context: '128K tokens'
+            },
+            'gpt-5-1-codex-mini': {
+                name: 'GPT-5.1 Codex Mini',
+                developer: 'OpenAI',
+                type: 'Code',
+                size: 'Compact',
+                tokensPerSec: null,
+                description: 'Smaller code model for cost-efficient development tasks.',
+                useCases: ['Simple code tasks', 'High volume', 'Cost sensitive'],
+                strengths: ['Fast', 'Cost efficient', 'Good for simple tasks'],
+                context: '64K tokens'
+            },
+            'gpt-5-1-codex-max': {
+                name: 'GPT-5.1 Codex Max',
+                developer: 'OpenAI',
+                type: 'Code',
+                size: 'Premium',
+                tokensPerSec: null,
+                description: 'Maximum context code model for large codebases and complex projects.',
+                useCases: ['Large codebases', 'Complex refactoring', 'Full project context', 'Architecture'],
+                strengths: ['Huge context', 'Best code quality', 'Complex projects', 'Tool use'],
+                context: '256K tokens'
+            },
+            'gpt-5-2': {
+                name: 'GPT-5.2',
+                developer: 'OpenAI',
+                type: 'Chat',
+                size: 'Unknown',
+                tokensPerSec: null,
+                description: 'Latest GPT-5.2 release with newest capabilities and improvements.',
+                useCases: ['General chat', 'Complex reasoning', 'Latest features', 'Production'],
+                strengths: ['Newest model', 'Best capabilities', 'Tool use', 'Reliable'],
+                context: '128K tokens'
+            },
+            'gpt-5-2-pro': {
+                name: 'GPT-5.2 Pro',
+                developer: 'OpenAI',
+                type: 'Chat',
+                size: 'Premium',
+                tokensPerSec: null,
+                description: 'Premium GPT-5.2 with enhanced reasoning and extended context.',
+                useCases: ['Complex analysis', 'Research', 'Long documents', 'Strategic tasks'],
+                strengths: ['Best reasoning', 'Extended context', 'Premium quality', 'Tool use'],
+                context: '256K tokens'
+            },
+            'gpt-5-2-chat-latest': {
+                name: 'GPT-5.2 Chat Latest',
+                developer: 'OpenAI',
+                type: 'Chat',
+                size: 'Unknown',
+                tokensPerSec: null,
+                description: 'Always points to the newest GPT-5.2 chat model.',
+                useCases: ['General chat', 'Latest features', 'Production apps'],
+                strengths: ['Always current', 'Latest improvements', 'Tool use'],
+                context: '128K tokens'
+            },
+            'gpt-5-2-codex': {
+                name: 'GPT-5.2 Codex',
+                developer: 'OpenAI',
+                type: 'Code',
+                size: 'Unknown',
+                tokensPerSec: null,
+                description: 'Latest code-optimized GPT-5.2 for software development.',
+                useCases: ['Code generation', 'Debugging', 'Latest code features'],
+                strengths: ['Newest code model', 'Tool use', 'Multi-language'],
+                context: '128K tokens'
+            },
+            // Commercial Models - Anthropic Claude
+            'claude-sonnet-4-5': {
+                name: 'Claude Sonnet 4.5',
+                developer: 'Anthropic',
+                type: 'Chat',
+                size: 'Mid-tier',
+                tokensPerSec: null,
+                description: 'Anthropic\'s balanced Claude model. Excellent reasoning, safety, and instruction following with good speed.',
+                useCases: ['General chat', 'Complex reasoning', 'Writing', 'Analysis', 'Code assistance'],
+                strengths: ['Balanced', 'Safe', 'Good reasoning', 'Tool use', 'Long context'],
+                context: '200K tokens'
+            },
+            'claude-haiku-4-5': {
+                name: 'Claude Haiku 4.5',
+                developer: 'Anthropic',
+                type: 'Chat',
+                size: 'Fast',
+                tokensPerSec: null,
+                description: 'Anthropic\'s fastest Claude model. Optimized for speed and cost while maintaining quality.',
+                useCases: ['High volume', 'Quick tasks', 'Cost sensitive', 'Simple queries', 'Rapid responses'],
+                strengths: ['Fastest Claude', 'Low cost', 'Good quality', 'Tool use', 'Long context'],
+                context: '200K tokens'
+            },
+            // Commercial Models - Moonshot Kimi
+            'kimi-k2-5': {
+                name: 'Kimi K2.5',
+                developer: 'Moonshot AI',
+                type: 'Chat',
+                size: 'Unknown',
+                tokensPerSec: null,
+                description: 'Moonshot\'s latest Kimi K2.5 model. Strong multilingual and reasoning capabilities from China\'s leading AI lab.',
+                useCases: ['General chat', 'Multilingual tasks', 'Chinese content', 'Analysis', 'Writing'],
+                strengths: ['Latest Kimi', 'Multilingual', 'Strong reasoning', 'Tool use', 'Good quality'],
+                context: '128K tokens'
+            },
+            'kimi-k2-turbo': {
+                name: 'Kimi K2 Turbo Preview',
+                developer: 'Moonshot AI',
+                type: 'Chat',
+                size: 'Fast',
+                tokensPerSec: null,
+                description: 'Speed-optimized Kimi K2 variant. Faster responses while maintaining quality.',
+                useCases: ['Quick tasks', 'High volume', 'Real-time apps', 'Cost efficient'],
+                strengths: ['Fast', 'Good quality', 'Tool use', 'Cost efficient'],
+                context: '128K tokens'
+            },
+            'kimi-k2-0905': {
+                name: 'Kimi K2 0905 Preview',
+                developer: 'Moonshot AI',
+                type: 'Chat',
+                size: 'Unknown',
+                tokensPerSec: null,
+                description: 'September 2025 preview build of Kimi K2 with experimental features.',
+                useCases: ['Testing new features', 'Early access', 'Feedback', 'Development'],
+                strengths: ['Latest features', 'Preview access', 'Tool use'],
+                context: '128K tokens'
+            },
+            'kimi-k2-thinking': {
+                name: 'Kimi K2 Thinking',
+                developer: 'Moonshot AI',
+                type: 'Reasoning',
+                size: 'Unknown',
+                tokensPerSec: null,
+                description: 'Kimi K2 with extended thinking capabilities. Shows reasoning process for complex problems.',
+                useCases: ['Complex reasoning', 'Math', 'Logic puzzles', 'Analysis', 'Step-by-step'],
+                strengths: ['Extended thinking', 'Transparent reasoning', 'Complex problems', 'Tool use'],
+                context: '128K tokens'
+            },
+            'kimi-k2-thinking-turbo': {
+                name: 'Kimi K2 Thinking Turbo',
+                developer: 'Moonshot AI',
+                type: 'Reasoning',
+                size: 'Fast',
+                tokensPerSec: null,
+                description: 'Faster reasoning model combining thinking capabilities with optimized speed.',
+                useCases: ['Quick reasoning', 'Real-time analysis', 'Balanced speed/depth'],
+                strengths: ['Fast reasoning', 'Good quality', 'Tool use', 'Efficient'],
+                context: '128K tokens'
+            },
+            // Commercial Models - OpenAI Embeddings
+            'text-embedding-ada-002': {
+                name: 'Text Embedding Ada 002',
+                developer: 'OpenAI',
+                type: 'Embedding',
+                size: '1536 dims',
+                tokensPerSec: null,
+                description: 'OpenAI\'s legacy embedding model. Widely compatible and battle-tested in production.',
+                useCases: ['Semantic search', 'RAG', 'Similarity', 'Clustering', 'Classification'],
+                strengths: ['Battle tested', 'Widely compatible', 'Good quality', 'Stable'],
+                context: '8191 tokens'
+            },
+            'text-embedding-3-small': {
+                name: 'Text Embedding 3 Small',
+                developer: 'OpenAI',
+                type: 'Embedding',
+                size: '1536 dims',
+                tokensPerSec: null,
+                description: 'Smaller, faster embedding model. Good balance of quality and cost.',
+                useCases: ['High volume', 'Cost sensitive', 'Quick embeddings', 'Real-time'],
+                strengths: ['Fast', 'Cost efficient', 'Good quality', 'Flexible dimensions'],
+                context: '8191 tokens'
+            },
+            'text-embedding-3-large': {
+                name: 'Text Embedding 3 Large',
+                developer: 'OpenAI',
+                type: 'Embedding',
+                size: '3072 dims',
+                tokensPerSec: null,
+                description: 'OpenAI\'s highest quality embedding model. Best for accuracy-critical applications.',
+                useCases: ['High accuracy search', 'Critical RAG', 'Fine-grained similarity', 'Research'],
+                strengths: ['Best quality', 'Highest dimensions', 'Most accurate', 'Flexible'],
+                context: '8191 tokens'
             }
         };
 
