@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KĀDI Model Benchmark Results</title>
+    <title>KĀDI Network Models</title>
     <style>
         * {
             margin: 0;
@@ -120,6 +120,7 @@
         .type-chat { background: rgba(59, 130, 246, 0.3); color: #60a5fa; }
         .type-code { background: rgba(16, 185, 129, 0.3); color: #34d399; }
         .type-reasoning { background: rgba(245, 158, 11, 0.3); color: #fbbf24; }
+        .type-reason { background: rgba(236, 72, 153, 0.3); color: #f472b6; }
         .type-sql { background: rgba(236, 72, 153, 0.3); color: #f472b6; }
         .type-vision { background: rgba(168, 85, 247, 0.3); color: #c084fc; }
         .type-embed { background: rgba(107, 114, 128, 0.3); color: #9ca3af; }
@@ -341,31 +342,34 @@
 </head>
 <body>
     <div class="container">
-        <h1>KĀDI Model Benchmark Results</h1>
+        <h1>KĀDI Network Models</h1>
         <p class="subtitle">Distributed AI Inference Network Performance Test</p>
         
         <div class="stats-row">
             <div class="stat-card">
                 <div class="stat-number">33</div>
-                <div class="stat-label">Chat Models Working</div>
+                <div class="stat-label">Self-Hosted Models</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">3+1</div>
-                <div class="stat-label">Embed + Reranker</div>
+                <div class="stat-number">25</div>
+                <div class="stat-label">Commercial APIs</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">37</div>
+                <div class="stat-number">58</div>
                 <div class="stat-label">Total Models</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">37.5</div>
-                <div class="stat-label">Max Tok/s</div>
+                <div class="stat-label">Max Tok/s (Local)</div>
             </div>
         </div>
 
-        <span class="success-badge">🎉 33/33 Chat Models + 3/3 Embedding Models Operational (100%)</span>
+        <span class="success-badge">🎉 33/33 Self-Hosted + 25 Commercial API Models Available</span>
 
-        <h2>Chat & Vision Models</h2>
+        <h2>Self-Hosted Open Source Models (Free)</h2>
+        <div class="note" style="background: linear-gradient(135deg, #064e3b 0%, #065f46 100%); border-color: #10b981;">
+            🆓 These models run on the KĀDI distributed network and are free to use with no per-request costs.
+        </div>
         <div class="click-hint">💡 Click on any model name to see detailed information about capabilities and use cases</div>
         <table>
             <thead>
@@ -782,7 +786,7 @@
             </tbody>
         </table>
 
-        <h2>Embedding & Reranker Models</h2>
+        <h2>Self-Hosted Embedding & Reranker Models (Free)</h2>
         <table>
             <thead>
                 <tr>
@@ -827,7 +831,274 @@
 
         <hr class="section-divider">
 
-        <h2>Performance Tiers</h2>
+        <h2>Commercial API Models (Pay-per-use)</h2>
+        <div class="note" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); border-color: #6366f1;">
+            💰 These models are accessed via commercial APIs and incur per-request costs. They are routed through KĀDI but billed by the respective providers.
+        </div>
+
+        <h3 style="color: #10b981; margin-top: 24px;">OpenAI GPT-5 Series</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Type</th>
+                    <th>Tier</th>
+                    <th>Context</th>
+                    <th>Tools</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>gpt-5</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Base</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>GPT-5 base model</td>
+                </tr>
+                <tr>
+                    <td>gpt-5-mini</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Compact</td>
+                    <td>128K</td>
+                    <td>❌</td>
+                    <td>Smaller, faster, cheaper (no tools)</td>
+                </tr>
+                <tr>
+                    <td>gpt-5-nano</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Tiny</td>
+                    <td>32K</td>
+                    <td>❌</td>
+                    <td>Smallest GPT-5, lowest cost (no tools)</td>
+                </tr>
+                <tr>
+                    <td>gpt-5-pro</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Premium</td>
+                    <td>128K</td>
+                    <td>❌</td>
+                    <td>Enhanced reasoning (no tools)</td>
+                </tr>
+                <tr>
+                    <td>gpt-5-codex</td>
+                    <td><span class="type-badge type-code">Code</span></td>
+                    <td>Base</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>Code-optimized GPT-5</td>
+                </tr>
+                <tr>
+                    <td>gpt-5-chat-latest</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Latest</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>Always points to newest GPT-5</td>
+                </tr>
+                <tr>
+                    <td>gpt-5.1</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Updated</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>GPT-5.1 release</td>
+                </tr>
+                <tr>
+                    <td>gpt-5.1-chat-latest</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Latest</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>Always points to newest GPT-5.1</td>
+                </tr>
+                <tr>
+                    <td>gpt-5.1-codex</td>
+                    <td><span class="type-badge type-code">Code</span></td>
+                    <td>Base</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>Code-optimized GPT-5.1</td>
+                </tr>
+                <tr>
+                    <td>gpt-5.1-codex-mini</td>
+                    <td><span class="type-badge type-code">Code</span></td>
+                    <td>Compact</td>
+                    <td>64K</td>
+                    <td>✅</td>
+                    <td>Smaller code model</td>
+                </tr>
+                <tr>
+                    <td>gpt-5.1-codex-max</td>
+                    <td><span class="type-badge type-code">Code</span></td>
+                    <td>Premium</td>
+                    <td>256K</td>
+                    <td>✅</td>
+                    <td>Maximum context code model</td>
+                </tr>
+                <tr>
+                    <td>gpt-5.2</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Latest</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>GPT-5.2 release (newest)</td>
+                </tr>
+                <tr>
+                    <td>gpt-5.2-pro</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Premium</td>
+                    <td>256K</td>
+                    <td>✅</td>
+                    <td>Enhanced GPT-5.2 with reasoning</td>
+                </tr>
+                <tr>
+                    <td>gpt-5.2-chat-latest</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Latest</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>Always points to newest GPT-5.2</td>
+                </tr>
+                <tr>
+                    <td>gpt-5.2-codex</td>
+                    <td><span class="type-badge type-code">Code</span></td>
+                    <td>Latest</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>Code-optimized GPT-5.2</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="color: #f59e0b; margin-top: 24px;">Anthropic Claude</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Type</th>
+                    <th>Tier</th>
+                    <th>Context</th>
+                    <th>Tools</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>claude-sonnet-4-5</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Mid-tier</td>
+                    <td>200K</td>
+                    <td>✅</td>
+                    <td>Balanced speed and intelligence</td>
+                </tr>
+                <tr>
+                    <td>claude-haiku-4-5</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Fast</td>
+                    <td>200K</td>
+                    <td>✅</td>
+                    <td>Fastest Claude, lowest cost</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="color: #ec4899; margin-top: 24px;">Moonshot Kimi K2</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Type</th>
+                    <th>Tier</th>
+                    <th>Context</th>
+                    <th>Tools</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>kimi-k2.5</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Latest</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>Kimi K2.5 release (newest)</td>
+                </tr>
+                <tr>
+                    <td>kimi-k2-turbo-preview</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Fast</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>Faster, optimized for speed</td>
+                </tr>
+                <tr>
+                    <td>kimi-k2-0905-preview</td>
+                    <td><span class="type-badge type-chat">Chat</span></td>
+                    <td>Preview</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>September 2025 preview build</td>
+                </tr>
+                <tr>
+                    <td>kimi-k2-thinking</td>
+                    <td><span class="type-badge type-reason">Reasoning</span></td>
+                    <td>Reasoning</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>Extended thinking capabilities</td>
+                </tr>
+                <tr>
+                    <td>kimi-k2-thinking-turbo</td>
+                    <td><span class="type-badge type-reason">Reasoning</span></td>
+                    <td>Fast Reasoning</td>
+                    <td>128K</td>
+                    <td>✅</td>
+                    <td>Faster reasoning model</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="color: #818cf8; margin-top: 24px;">OpenAI Embeddings</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Type</th>
+                    <th>Dimensions</th>
+                    <th>Max Tokens</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>text-embedding-ada-002</td>
+                    <td><span class="type-badge type-embed">Embedding</span></td>
+                    <td>1536</td>
+                    <td>8191</td>
+                    <td>Legacy model, widely compatible</td>
+                </tr>
+                <tr>
+                    <td>text-embedding-3-small</td>
+                    <td><span class="type-badge type-embed">Embedding</span></td>
+                    <td>1536</td>
+                    <td>8191</td>
+                    <td>Smaller, faster, cheaper</td>
+                </tr>
+                <tr>
+                    <td>text-embedding-3-large</td>
+                    <td><span class="type-badge type-embed">Embedding</span></td>
+                    <td>3072</td>
+                    <td>8191</td>
+                    <td>Highest quality embeddings</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="section-divider">
+
+        <h2>Self-Hosted Model Performance Tiers</h2>
         <div class="tiers">
             <div class="tier-card tier-fast">
                 <h3>🚀 Fast (15-24 tok/s)</h3>
