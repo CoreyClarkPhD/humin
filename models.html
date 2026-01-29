@@ -5,1972 +5,449 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KĀDI Network Models</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: #e4e4e7;
-            padding: 40px;
+            padding: 30px;
             min-height: 100vh;
         }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        .container { max-width: 1600px; margin: 0 auto; }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            margin-bottom: 8px;
             background: linear-gradient(90deg, #06b6d4, #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
-        .subtitle {
+        .subtitle { color: #a1a1aa; margin-bottom: 25px; font-size: 1rem; }
+        
+        /* Stats */
+        .stats-row { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+        .stat-card { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 12px 18px; text-align: center; }
+        .stat-number { font-size: 1.6rem; font-weight: 700; color: #06b6d4; }
+        .stat-label { font-size: 0.7rem; color: #a1a1aa; }
+        .stat-card.highlight { background: linear-gradient(135deg, rgba(6,182,212,0.15), rgba(139,92,246,0.15)); border: 1px solid rgba(6,182,212,0.3); }
+        
+        /* Filter Bar */
+        .filter-bar { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 18px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .filter-row { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+        .filter-group { flex: 1; min-width: 160px; }
+        .filter-label { font-size: 0.65rem; color: #a1a1aa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: block; font-weight: 600; }
+        .filter-buttons { display: flex; flex-wrap: wrap; gap: 5px; }
+        .filter-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
             color: #a1a1aa;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
+            padding: 5px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
         }
-        .success-badge {
-            display: inline-block;
-            background: linear-gradient(90deg, #10b981, #059669);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            margin-bottom: 30px;
-        }
-        .stats-row {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 16px 24px;
-            text-align: center;
-        }
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #06b6d4;
-        }
-        .stat-label {
-            font-size: 0.85rem;
-            color: #a1a1aa;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            overflow: hidden;
-        }
+        .filter-btn:hover { background: rgba(255,255,255,0.15); color: #e4e4e7; }
+        .filter-btn.active { background: linear-gradient(90deg, #06b6d4, #8b5cf6); border-color: transparent; color: white; font-weight: 500; }
+        .filter-btn.active-green { background: linear-gradient(90deg, #10b981, #059669); }
+        .filter-btn.active-purple { background: linear-gradient(90deg, #8b5cf6, #6366f1); }
+        .vendor-select { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #e4e4e7; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; }
+        .vendor-select option { background: #1a1a2e; }
+        .filter-actions { display: flex; align-items: center; gap: 12px; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .results-count { background: rgba(6,182,212,0.15); color: #06b6d4; padding: 5px 12px; border-radius: 6px; font-size: 0.8rem; }
+        .clear-btn { background: transparent; border: 1px solid rgba(239,68,68,0.4); color: #f87171; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; }
+        .clear-btn:hover { background: rgba(239,68,68,0.15); }
+        
+        /* Table */
+        .table-wrap { overflow-x: auto; border-radius: 10px; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.05); min-width: 900px; }
         th {
-            background: rgba(139, 92, 246, 0.3);
-            padding: 14px 10px;
+            background: rgba(139,92,246,0.3);
+            padding: 10px 8px;
             text-align: left;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-        td {
-            padding: 12px 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-        }
-        tr:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .model-name {
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            color: #06b6d4;
-            font-size: 0.8rem;
             cursor: pointer;
-            text-decoration: underline;
-            text-decoration-style: dotted;
-            text-underline-offset: 3px;
+            user-select: none;
+            white-space: nowrap;
         }
-        .model-name:hover {
-            color: #22d3ee;
-            text-decoration-style: solid;
-        }
-        .status-ok {
-            color: #10b981;
-            font-weight: bold;
-        }
-        .status-warn {
-            color: #f59e0b;
-            font-weight: bold;
-        }
-        .type-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-        .type-chat { background: rgba(59, 130, 246, 0.3); color: #60a5fa; }
-        .type-code { background: rgba(16, 185, 129, 0.3); color: #34d399; }
-        .type-reasoning { background: rgba(245, 158, 11, 0.3); color: #fbbf24; }
-        .type-reason { background: rgba(236, 72, 153, 0.3); color: #f472b6; }
-        .type-sql { background: rgba(236, 72, 153, 0.3); color: #f472b6; }
-        .type-vision { background: rgba(168, 85, 247, 0.3); color: #c084fc; }
-        .type-embed { background: rgba(107, 114, 128, 0.3); color: #9ca3af; }
-        .highlight {
-            color: #fbbf24;
-            font-weight: 700;
-        }
-        h2 {
-            font-size: 1.5rem;
-            margin: 40px 0 20px 0;
-            color: #8b5cf6;
-        }
-        .tiers {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        .tier-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 20px;
-            border-left: 4px solid;
-        }
+        th:hover { background: rgba(139,92,246,0.45); }
+        th.sorted { background: rgba(139,92,246,0.5); }
+        .sort-icon { margin-left: 3px; opacity: 0.4; font-size: 0.65rem; }
+        th.sorted .sort-icon { opacity: 1; }
+        td { padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.8rem; }
+        tr:hover { background: rgba(255,255,255,0.05); }
+        tr.hidden { display: none; }
+        
+        .model-name { font-family: 'SF Mono', monospace; color: #06b6d4; font-size: 0.75rem; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 2px; }
+        .model-name:hover { color: #22d3ee; text-decoration-style: solid; }
+        
+        .badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; }
+        .type-chat { background: rgba(59,130,246,0.25); color: #60a5fa; }
+        .type-code { background: rgba(16,185,129,0.25); color: #34d399; }
+        .type-reasoning { background: rgba(245,158,11,0.25); color: #fbbf24; }
+        .type-vision { background: rgba(168,85,247,0.25); color: #c084fc; }
+        .type-embedding { background: rgba(107,114,128,0.25); color: #9ca3af; }
+        
+        .cost-free { color: #10b981; font-weight: 600; }
+        .cost-paid { color: #a78bfa; font-weight: 600; }
+        .tools-yes { color: #10b981; }
+        .tools-no { color: #6b7280; }
+        .highlight { color: #fbbf24; font-weight: 700; }
+        
+        .vendor { font-size: 0.65rem; padding: 2px 6px; border-radius: 3px; font-weight: 500; }
+        .v-openai { background: rgba(16,163,127,0.2); color: #10a37f; }
+        .v-anthropic { background: rgba(204,153,102,0.2); color: #d4a574; }
+        .v-moonshot { background: rgba(236,72,153,0.2); color: #ec4899; }
+        .v-meta { background: rgba(59,130,246,0.2); color: #60a5fa; }
+        .v-alibaba { background: rgba(255,106,0,0.2); color: #ff8533; }
+        .v-mistral { background: rgba(255,87,51,0.2); color: #ff7043; }
+        .v-google { background: rgba(66,133,244,0.2); color: #5a9cf4; }
+        .v-nvidia { background: rgba(118,185,0,0.2); color: #8bc34a; }
+        .v-ibm { background: rgba(0,98,152,0.2); color: #42a5f5; }
+        .v-microsoft { background: rgba(0,164,239,0.2); color: #29b6f6; }
+        .v-ai2 { background: rgba(255,193,7,0.2); color: #ffc107; }
+        .v-other { background: rgba(156,163,175,0.2); color: #9ca3af; }
+        
+        /* Modal */
+        .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+        .modal-bg.show { display: flex; }
+        .modal { background: linear-gradient(135deg, #1e1e2e, #2d2d44); border-radius: 12px; padding: 20px; max-width: 500px; width: 100%; max-height: 80vh; overflow-y: auto; border: 1px solid rgba(139,92,246,0.3); }
+        .modal-head { display: flex; justify-content: space-between; margin-bottom: 12px; }
+        .modal-title { font-size: 1.2rem; color: #06b6d4; }
+        .modal-dev { color: #a1a1aa; font-size: 0.8rem; }
+        .modal-close { background: none; border: none; color: #6b7280; font-size: 1.5rem; cursor: pointer; line-height: 1; }
+        .modal-close:hover { color: #e4e4e7; }
+        .modal-stats { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+        .modal-stat { background: rgba(255,255,255,0.05); padding: 8px 14px; border-radius: 6px; text-align: center; flex: 1; min-width: 70px; }
+        .modal-stat-val { font-size: 1rem; font-weight: 600; color: #8b5cf6; }
+        .modal-stat-lbl { font-size: 0.6rem; color: #a1a1aa; text-transform: uppercase; }
+        .modal-desc { color: #d4d4d8; margin-bottom: 12px; line-height: 1.4; font-size: 0.85rem; }
+        .modal-sec { font-size: 0.65rem; color: #a1a1aa; margin-bottom: 6px; text-transform: uppercase; font-weight: 600; }
+        .modal-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+        .modal-tag { background: rgba(6,182,212,0.15); color: #06b6d4; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; }
+        .modal-str { background: rgba(16,185,129,0.15); color: #10b981; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; }
+        
+        hr.divider { border: none; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,92,246,0.4), transparent); margin: 30px 0; }
+        h2 { font-size: 1.2rem; margin: 25px 0 12px; color: #8b5cf6; }
+        
+        .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 25px; }
+        .tier { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 12px; border-left: 3px solid; }
+        .tier h3 { font-size: 0.85rem; margin-bottom: 6px; }
+        .tier p { font-size: 0.75rem; color: #a1a1aa; line-height: 1.3; }
         .tier-fast { border-color: #10b981; }
-        .tier-medium { border-color: #f59e0b; }
+        .tier-med { border-color: #f59e0b; }
         .tier-slow { border-color: #6366f1; }
         .tier-heavy { border-color: #ef4444; }
-        .tier-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-        .tier-card p {
-            color: #a1a1aa;
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-        .winners {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 16px;
-        }
-        .winner-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .winner-category {
-            font-size: 0.85rem;
-            color: #a1a1aa;
-        }
-        .winner-model {
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            color: #06b6d4;
-            font-size: 0.8rem;
-        }
-        .winner-speed {
-            background: linear-gradient(90deg, #10b981, #059669);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-        .footer {
-            margin-top: 40px;
-            text-align: center;
-            color: #71717a;
-            font-size: 0.9rem;
-        }
-        .section-divider {
-            border: none;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            margin: 40px 0;
-        }
-        .note {
-            background: rgba(245, 158, 11, 0.1);
-            border-left: 3px solid #f59e0b;
-            padding: 12px 16px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            color: #fbbf24;
-        }
-        .click-hint {
-            background: rgba(6, 182, 212, 0.1);
-            border-left: 3px solid #06b6d4;
-            padding: 12px 16px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            color: #22d3ee;
-        }
-
-        /* Modal Styles */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(4px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .modal-overlay.active {
-            display: flex;
-        }
-        .modal {
-            background: linear-gradient(135deg, #1e1e3f 0%, #1a1a2e 100%);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 16px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-        .modal-header {
-            padding: 24px 24px 16px 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-        .modal-title {
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            font-size: 1.2rem;
-            color: #06b6d4;
-        }
-        .modal-close {
-            background: none;
-            border: none;
-            color: #71717a;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0;
-            line-height: 1;
-        }
-        .modal-close:hover {
-            color: #e4e4e7;
-        }
-        .modal-body {
-            padding: 24px;
-        }
-        .modal-section {
-            margin-bottom: 20px;
-        }
-        .modal-section:last-child {
-            margin-bottom: 0;
-        }
-        .modal-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #8b5cf6;
-            margin-bottom: 6px;
-        }
-        .modal-value {
-            font-size: 0.95rem;
-            color: #e4e4e7;
-            line-height: 1.6;
-        }
-        .modal-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
-        }
-        .modal-tag {
-            background: rgba(139, 92, 246, 0.2);
-            color: #c4b5fd;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        .modal-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            padding: 16px;
-        }
-        .modal-stat {
-            text-align: center;
-        }
-        .modal-stat-value {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #06b6d4;
-        }
-        .modal-stat-label {
-            font-size: 0.75rem;
-            color: #71717a;
-        }
-        .modal-developer {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 8px 14px;
-            border-radius: 8px;
-        }
-        .modal-developer-logo {
-            width: 20px;
-            height: 20px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.1);
+        
+        .winners { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 25px; }
+        .winner { background: rgba(255,255,255,0.05); border-radius: 6px; padding: 10px; }
+        .winner-cat { font-size: 0.65rem; color: #a1a1aa; }
+        .winner-name { font-weight: 600; color: #06b6d4; font-size: 0.8rem; }
+        
+        .ts { color: #6b7280; font-size: 0.75rem; margin-top: 25px; }
+        
+        @media (max-width: 768px) {
+            body { padding: 15px; }
+            h1 { font-size: 1.5rem; }
+            .filter-row { flex-direction: column; gap: 12px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>KĀDI Network Models</h1>
-        <p class="subtitle">Distributed AI Inference Network Performance Test</p>
-        
-        <div class="stats-row">
-            <div class="stat-card">
-                <div class="stat-number">33</div>
-                <div class="stat-label">Self-Hosted Models</div>
+<div class="container">
+    <h1>KĀDI Network Models</h1>
+    <p class="subtitle">Complete catalog of AI models on the KĀDI distributed network</p>
+
+    <div class="stats-row">
+        <div class="stat-card"><div class="stat-number">58</div><div class="stat-label">Total Models</div></div>
+        <div class="stat-card"><div class="stat-number">37</div><div class="stat-label">Self-Hosted</div></div>
+        <div class="stat-card"><div class="stat-number">25</div><div class="stat-label">Commercial</div></div>
+        <div class="stat-card"><div class="stat-number">34</div><div class="stat-label">Tool Support</div></div>
+        <div class="stat-card highlight"><div class="stat-number" id="vis">58</div><div class="stat-label">Showing</div></div>
+    </div>
+
+    <div class="filter-bar">
+        <div class="filter-row">
+            <div class="filter-group">
+                <span class="filter-label">Type</span>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-f="type" data-v="all">All</button>
+                    <button class="filter-btn" data-f="type" data-v="chat">💬 Chat</button>
+                    <button class="filter-btn" data-f="type" data-v="code">💻 Code</button>
+                    <button class="filter-btn" data-f="type" data-v="vision">👁️ Vision</button>
+                    <button class="filter-btn" data-f="type" data-v="reasoning">🧠 Reasoning</button>
+                    <button class="filter-btn" data-f="type" data-v="embedding">📊 Embedding</button>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">25</div>
-                <div class="stat-label">Commercial APIs</div>
+            <div class="filter-group">
+                <span class="filter-label">Cost</span>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-f="cost" data-v="all">All</button>
+                    <button class="filter-btn" data-f="cost" data-v="free">🆓 Free</button>
+                    <button class="filter-btn" data-f="cost" data-v="paid">💰 Paid</button>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">58</div>
-                <div class="stat-label">Total Models</div>
+            <div class="filter-group">
+                <span class="filter-label">Tools</span>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-f="tools" data-v="all">All</button>
+                    <button class="filter-btn" data-f="tools" data-v="yes">✅ Yes</button>
+                    <button class="filter-btn" data-f="tools" data-v="no">❌ No</button>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">37.5</div>
-                <div class="stat-label">Max Tok/s (Local)</div>
+            <div class="filter-group">
+                <span class="filter-label">Vendor</span>
+                <select class="vendor-select" id="vf">
+                    <option value="all">All Vendors</option>
+                    <option value="alibaba">Alibaba</option>
+                    <option value="anthropic">Anthropic</option>
+                    <option value="google">Google</option>
+                    <option value="ibm">IBM</option>
+                    <option value="meta">Meta</option>
+                    <option value="microsoft">Microsoft</option>
+                    <option value="mistral">Mistral AI</option>
+                    <option value="moonshot">Moonshot</option>
+                    <option value="nvidia">NVIDIA</option>
+                    <option value="openai">OpenAI</option>
+                    <option value="other">Other</option>
+                </select>
             </div>
         </div>
-
-        <span class="success-badge">🎉 33/33 Self-Hosted + 25 Commercial API Models Available</span>
-
-        <h2>Self-Hosted Open Source Models (Free)</h2>
-        <div class="note" style="background: linear-gradient(135deg, #064e3b 0%, #065f46 100%); border-color: #10b981;">
-            🆓 These models run on the KĀDI distributed network and are free to use with no per-request costs.
-        </div>
-        <div class="click-hint">💡 Click on any model name to see detailed information about capabilities and use cases</div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>Status</th>
-                    <th>Type</th>
-                    <th>Size</th>
-                    <th>Context</th>
-                    <th>Tools</th>
-                    <th>Time</th>
-                    <th>Tokens</th>
-                    <th>Tok/s</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="model-name" onclick="showModal('deepseek-ocr')">humin-deepseek-ocr:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-vision">Vision/OCR</span></td>
-                    <td>~8B</td>
-                    <td>16K</td>
-                    <td>❌</td>
-                    <td>~4s</td>
-                    <td>150</td>
-                    <td class="highlight">37.5</td>
-                    <td>OCR specialist, fast but hallucinates</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('qwen3-vl-8b')">humin-qwen3-vl:8b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-vision">Vision</span></td>
-                    <td>8B</td>
-                    <td>32K</td>
-                    <td>❌</td>
-                    <td>~6s</td>
-                    <td>150</td>
-                    <td class="highlight">25.0</td>
-                    <td>Fastest accurate vision model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('mirothinker')">humin-mirothinker15-30b-q8:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-reasoning">Reasoning</span></td>
-                    <td>30B</td>
-                    <td>32K</td>
-                    <td>❌</td>
-                    <td>~17s</td>
-                    <td>400</td>
-                    <td class="highlight">23.5</td>
-                    <td>Shows &lt;think&gt; CoT, excellent</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('qwen3-coder')">humin-qwen3-coder:30b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-code">Code</span></td>
-                    <td>30B</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>~7s</td>
-                    <td>150</td>
-                    <td class="highlight">21.4</td>
-                    <td>Newest Qwen coder, very fast</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('codeqwen')">humin-codeqwen:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-code">Code</span></td>
-                    <td>~7B</td>
-                    <td>64K</td>
-                    <td>❌</td>
-                    <td>~8s</td>
-                    <td>150</td>
-                    <td class="highlight">18.8</td>
-                    <td>Fast, clean code output</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('llama32-vision')">humin-llama3.2-vision:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-vision">Vision</span></td>
-                    <td>11B</td>
-                    <td>128K</td>
-                    <td>❌</td>
-                    <td>~5s</td>
-                    <td>89</td>
-                    <td class="highlight">17.8</td>
-                    <td>Fast vision model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-oss-20b')">humin-gpt-oss:20b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>20B</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>~6s</td>
-                    <td>100</td>
-                    <td class="highlight">16.7</td>
-                    <td>Fastest chat model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('qwen25vl-7b')">humin-qwen2.5vl:7b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-vision">Vision</span></td>
-                    <td>7B</td>
-                    <td>32K</td>
-                    <td>❌</td>
-                    <td>~5s</td>
-                    <td>67</td>
-                    <td>13.4</td>
-                    <td>Small vision model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('devstral-small')">humin-devstral-small-2:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-code">Code</span></td>
-                    <td>~24B</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>~14s</td>
-                    <td>150</td>
-                    <td>10.7</td>
-                    <td>Mistral's small coder</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('mistral-small31')">humin-mistral-small3.1:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>24B</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>~13s</td>
-                    <td>150</td>
-                    <td>11.5</td>
-                    <td>Mistral 3.1 small model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('sqlcoder')">humin-sqlcoder:15b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-sql">SQL</span></td>
-                    <td>15B</td>
-                    <td>16K</td>
-                    <td>❌</td>
-                    <td>~16s</td>
-                    <td>150</td>
-                    <td>9.4</td>
-                    <td>SQL specialist</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('deepseek-r1')">humin-deepseek-r1:32b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-reasoning">Reasoning</span></td>
-                    <td>32B</td>
-                    <td>128K</td>
-                    <td>❌</td>
-                    <td>~50s</td>
-                    <td>374</td>
-                    <td>7.5</td>
-                    <td>Deep reasoning, shows thinking</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('mistral-small32')">humin-mistral-small3.2:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>24B</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>~11s</td>
-                    <td>80</td>
-                    <td>7.3</td>
-                    <td>Latest Mistral small</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gemma3')">humin-gemma3:27b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>27B</td>
-                    <td>128K</td>
-                    <td>❌</td>
-                    <td>~9s</td>
-                    <td>71</td>
-                    <td>7.9</td>
-                    <td>Google's latest Gemma</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('qwen3-vl-32b')">humin-qwen3-vl:32b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-vision">Vision</span></td>
-                    <td>32B</td>
-                    <td>32K</td>
-                    <td>✅</td>
-                    <td>~16s</td>
-                    <td>132</td>
-                    <td>8.3</td>
-                    <td>Large Qwen3 vision model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('phi4')">humin-phi4:14b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>14B</td>
-                    <td>16K</td>
-                    <td>❌</td>
-                    <td>~14s</td>
-                    <td>84</td>
-                    <td>6.0</td>
-                    <td>Microsoft's efficient model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('moondream')">humin-moondream:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-vision">Vision</span></td>
-                    <td>~2B</td>
-                    <td>8K</td>
-                    <td>❌</td>
-                    <td>~10s</td>
-                    <td>62</td>
-                    <td>6.2</td>
-                    <td>Tiny but capable vision model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-oss-120b')">humin-gpt-oss:120b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>120B</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>~17s</td>
-                    <td>100</td>
-                    <td>5.9</td>
-                    <td>Largest model, solid quality</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('qwen25vl-32b')">humin-qwen2.5vl:32b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-vision">Vision</span></td>
-                    <td>32B</td>
-                    <td>32K</td>
-                    <td>❌</td>
-                    <td>~12s</td>
-                    <td>71</td>
-                    <td>5.9</td>
-                    <td>Large vision model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('olmo2')">humin-olmo2:13b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>13B</td>
-                    <td>4K</td>
-                    <td>❌</td>
-                    <td>~12s</td>
-                    <td>62</td>
-                    <td>5.2</td>
-                    <td>AI2's open model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('codestral')">humin-codestral:22b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-code">Code</span></td>
-                    <td>22B</td>
-                    <td>32K</td>
-                    <td>❌</td>
-                    <td>~18s</td>
-                    <td>92</td>
-                    <td>5.1</td>
-                    <td>Clean, concise code</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('devstral')">humin-devstral:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-code">Code</span></td>
-                    <td>~24B</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>~32s</td>
-                    <td>150</td>
-                    <td>4.7</td>
-                    <td>Mistral's dev coder</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('llama4')">humin-llama4:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>109B</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>~22s</td>
-                    <td>104</td>
-                    <td>4.7</td>
-                    <td>Meta's Llama 4 Scout</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('qwen25-coder')">humin-qwen2.5-coder:32b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-code">Code</span></td>
-                    <td>32B</td>
-                    <td>128K</td>
-                    <td>⚠️</td>
-                    <td>~34s</td>
-                    <td>150</td>
-                    <td>4.4</td>
-                    <td>Best code quality, verbose</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('granite-vision')">humin-granite3.2-vision:2b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-vision">Vision</span></td>
-                    <td>2B</td>
-                    <td>8K</td>
-                    <td>❌</td>
-                    <td>~11s</td>
-                    <td>48</td>
-                    <td>4.4</td>
-                    <td>IBM's tiny vision model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('mixtral')">humin-mixtral:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>8x7B</td>
-                    <td>32K</td>
-                    <td>❌</td>
-                    <td>~32s</td>
-                    <td>100</td>
-                    <td>3.1</td>
-                    <td>MoE architecture</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('nemotron')">humin-nemotron-3-nano:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>~8B</td>
-                    <td>16K</td>
-                    <td>❌</td>
-                    <td>~31s</td>
-                    <td>96</td>
-                    <td>3.1</td>
-                    <td>NVIDIA's efficient model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('mistral-small')">humin-mistral-small:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>22B</td>
-                    <td>32K</td>
-                    <td>✅</td>
-                    <td>~22s</td>
-                    <td>62</td>
-                    <td>2.8</td>
-                    <td>Previous Mistral small</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gemma2')">humin-gemma2:27b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>27B</td>
-                    <td>8K</td>
-                    <td>❌</td>
-                    <td>~24s</td>
-                    <td>64</td>
-                    <td>2.7</td>
-                    <td>Google model, good quality</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('qwen25vl-72b')">humin-qwen2.5vl:72b</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-vision">Vision</span></td>
-                    <td>72B</td>
-                    <td>32K</td>
-                    <td>❌</td>
-                    <td>~20s</td>
-                    <td>41</td>
-                    <td>2.1</td>
-                    <td>Largest vision model, excellent quality</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('llama33')">humin-llama3.3:70b-instruct-q4_K_M</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>70B</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>~61s</td>
-                    <td>96</td>
-                    <td>1.6</td>
-                    <td>High quality, slower</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('minicpm-v')">humin-minicpm-v:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-vision">Vision</span></td>
-                    <td>~8B</td>
-                    <td>8K</td>
-                    <td>❌</td>
-                    <td>~15s</td>
-                    <td>22</td>
-                    <td>1.5</td>
-                    <td>Compact vision model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('qwen25-72b')">humin-qwen2.5:72b-instruct-q4_K_M</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>72B</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>~62s</td>
-                    <td>60</td>
-                    <td>1.0</td>
-                    <td>Slowest, but quality output</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h2>Self-Hosted Embedding & Reranker Models (Free)</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>Status</th>
-                    <th>Type</th>
-                    <th>Dimensions</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="model-name" onclick="showModal('bge-m3')">humin-bge-m3:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-embed">Embedding</span></td>
-                    <td>1024</td>
-                    <td>Multi-lingual, best for RAG</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('mxbai-embed')">humin-mxbai-embed-large:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-embed">Embedding</span></td>
-                    <td>1024</td>
-                    <td>High quality embeddings</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('nomic-embed')">humin-nomic-embed-text-v2-moe:latest</td>
-                    <td class="status-ok">✅</td>
-                    <td><span class="type-badge type-embed">Embedding</span></td>
-                    <td>768</td>
-                    <td>MoE architecture, efficient</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('bge-reranker')">humin-qllama/bge-reranker-v2-m3:latest</td>
-                    <td class="status-warn">⚠️</td>
-                    <td><span class="type-badge type-embed">Reranker</span></td>
-                    <td>N/A</td>
-                    <td>Reranker only (not embedding)</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <hr class="section-divider">
-
-        <h2>Commercial API Models (Pay-per-use)</h2>
-        <div class="note" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); border-color: #6366f1;">
-            💰 These models are accessed via commercial APIs and incur per-request costs. They are routed through KĀDI but billed by the respective providers.
-        </div>
-        <div class="click-hint">💡 Click on any model name to see detailed information about capabilities and use cases</div>
-
-        <h3 style="color: #10b981; margin-top: 24px;">OpenAI GPT-5 Series</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>Type</th>
-                    <th>Tier</th>
-                    <th>Context</th>
-                    <th>Tools</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5')">gpt-5</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Base</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>GPT-5 base model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-mini')">gpt-5-mini</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Compact</td>
-                    <td>128K</td>
-                    <td>❌</td>
-                    <td>Smaller, faster, cheaper (no tools)</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-nano')">gpt-5-nano</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Tiny</td>
-                    <td>32K</td>
-                    <td>❌</td>
-                    <td>Smallest GPT-5, lowest cost (no tools)</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-pro')">gpt-5-pro</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Premium</td>
-                    <td>128K</td>
-                    <td>❌</td>
-                    <td>Enhanced reasoning (no tools)</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-codex')">gpt-5-codex</td>
-                    <td><span class="type-badge type-code">Code</span></td>
-                    <td>Base</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>Code-optimized GPT-5</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-chat-latest')">gpt-5-chat-latest</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Latest</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>Always points to newest GPT-5</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-1')">gpt-5.1</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Updated</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>GPT-5.1 release</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-1-chat-latest')">gpt-5.1-chat-latest</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Latest</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>Always points to newest GPT-5.1</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-1-codex')">gpt-5.1-codex</td>
-                    <td><span class="type-badge type-code">Code</span></td>
-                    <td>Base</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>Code-optimized GPT-5.1</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-1-codex-mini')">gpt-5.1-codex-mini</td>
-                    <td><span class="type-badge type-code">Code</span></td>
-                    <td>Compact</td>
-                    <td>64K</td>
-                    <td>✅</td>
-                    <td>Smaller code model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-1-codex-max')">gpt-5.1-codex-max</td>
-                    <td><span class="type-badge type-code">Code</span></td>
-                    <td>Premium</td>
-                    <td>256K</td>
-                    <td>✅</td>
-                    <td>Maximum context code model</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-2')">gpt-5.2</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Latest</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>GPT-5.2 release (newest)</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-2-pro')">gpt-5.2-pro</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Premium</td>
-                    <td>256K</td>
-                    <td>✅</td>
-                    <td>Enhanced GPT-5.2 with reasoning</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-2-chat-latest')">gpt-5.2-chat-latest</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Latest</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>Always points to newest GPT-5.2</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('gpt-5-2-codex')">gpt-5.2-codex</td>
-                    <td><span class="type-badge type-code">Code</span></td>
-                    <td>Latest</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>Code-optimized GPT-5.2</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3 style="color: #f59e0b; margin-top: 24px;">Anthropic Claude</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>Type</th>
-                    <th>Tier</th>
-                    <th>Context</th>
-                    <th>Tools</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="model-name" onclick="showModal('claude-sonnet-4-5')">claude-sonnet-4-5</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Mid-tier</td>
-                    <td>200K</td>
-                    <td>✅</td>
-                    <td>Balanced speed and intelligence</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('claude-haiku-4-5')">claude-haiku-4-5</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Fast</td>
-                    <td>200K</td>
-                    <td>✅</td>
-                    <td>Fastest Claude, lowest cost</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3 style="color: #ec4899; margin-top: 24px;">Moonshot Kimi K2</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>Type</th>
-                    <th>Tier</th>
-                    <th>Context</th>
-                    <th>Tools</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="model-name" onclick="showModal('kimi-k2-5')">kimi-k2.5</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Latest</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>Kimi K2.5 release (newest)</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('kimi-k2-turbo')">kimi-k2-turbo-preview</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Fast</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>Faster, optimized for speed</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('kimi-k2-0905')">kimi-k2-0905-preview</td>
-                    <td><span class="type-badge type-chat">Chat</span></td>
-                    <td>Preview</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>September 2025 preview build</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('kimi-k2-thinking')">kimi-k2-thinking</td>
-                    <td><span class="type-badge type-reason">Reasoning</span></td>
-                    <td>Reasoning</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>Extended thinking capabilities</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('kimi-k2-thinking-turbo')">kimi-k2-thinking-turbo</td>
-                    <td><span class="type-badge type-reason">Reasoning</span></td>
-                    <td>Fast Reasoning</td>
-                    <td>128K</td>
-                    <td>✅</td>
-                    <td>Faster reasoning model</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3 style="color: #818cf8; margin-top: 24px;">OpenAI Embeddings</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>Type</th>
-                    <th>Dimensions</th>
-                    <th>Max Tokens</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="model-name" onclick="showModal('text-embedding-ada-002')">text-embedding-ada-002</td>
-                    <td><span class="type-badge type-embed">Embedding</span></td>
-                    <td>1536</td>
-                    <td>8191</td>
-                    <td>Legacy model, widely compatible</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('text-embedding-3-small')">text-embedding-3-small</td>
-                    <td><span class="type-badge type-embed">Embedding</span></td>
-                    <td>1536</td>
-                    <td>8191</td>
-                    <td>Smaller, faster, cheaper</td>
-                </tr>
-                <tr>
-                    <td class="model-name" onclick="showModal('text-embedding-3-large')">text-embedding-3-large</td>
-                    <td><span class="type-badge type-embed">Embedding</span></td>
-                    <td>3072</td>
-                    <td>8191</td>
-                    <td>Highest quality embeddings</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <hr class="section-divider">
-
-        <h2>Self-Hosted Model Performance Tiers</h2>
-        <div class="tiers">
-            <div class="tier-card tier-fast">
-                <h3>🚀 Fast (15-24 tok/s)</h3>
-                <p>mirothinker, qwen3-coder:30b, codeqwen, llama3.2-vision, gpt-oss:20b, qwen2.5vl:7b</p>
-                <p style="margin-top: 8px; color: #10b981;">Best for: Daily tasks, quick responses</p>
-            </div>
-            <div class="tier-card tier-medium">
-                <h3>⚡ Medium (5-10 tok/s)</h3>
-                <p>devstral-small-2, sqlcoder, deepseek-r1, mistral-small3.2, phi4, gpt-oss:120b, qwen2.5vl:32b, olmo2</p>
-                <p style="margin-top: 8px; color: #f59e0b;">Best for: Balanced speed/quality</p>
-            </div>
-            <div class="tier-card tier-slow">
-                <h3>🐢 Slow (2-5 tok/s)</h3>
-                <p>codestral, devstral, qwen2.5-coder:32b, granite3.2-vision, mixtral, nemotron-3-nano, mistral-small, gemma2</p>
-                <p style="margin-top: 8px; color: #818cf8;">Best for: Quality over speed</p>
-            </div>
-            <div class="tier-card tier-heavy">
-                <h3>🐌 Heavy (1-2 tok/s)</h3>
-                <p>llama3.3:70b, qwen2.5:72b</p>
-                <p style="margin-top: 8px; color: #f87171;">Best for: Maximum quality tasks</p>
-            </div>
-        </div>
-
-        <h2>Category Winners</h2>
-        <div class="winners">
-            <div class="winner-card">
-                <div>
-                    <div class="winner-category">🏆 Fastest Overall</div>
-                    <div class="winner-model">humin-mirothinker15-30b-q8</div>
-                </div>
-                <span class="winner-speed">23.5 tok/s</span>
-            </div>
-            <div class="winner-card">
-                <div>
-                    <div class="winner-category">💬 Fastest Chat</div>
-                    <div class="winner-model">humin-gpt-oss:20b</div>
-                </div>
-                <span class="winner-speed">16.7 tok/s</span>
-            </div>
-            <div class="winner-card">
-                <div>
-                    <div class="winner-category">💻 Fastest Code</div>
-                    <div class="winner-model">humin-qwen3-coder:30b</div>
-                </div>
-                <span class="winner-speed">21.4 tok/s</span>
-            </div>
-            <div class="winner-card">
-                <div>
-                    <div class="winner-category">👁️ Fastest Vision</div>
-                    <div class="winner-model">humin-llama3.2-vision:latest</div>
-                </div>
-                <span class="winner-speed">17.8 tok/s</span>
-            </div>
-            <div class="winner-card">
-                <div>
-                    <div class="winner-category">🧠 Best Reasoning</div>
-                    <div class="winner-model">humin-deepseek-r1:32b</div>
-                </div>
-                <span class="winner-speed">7.5 tok/s</span>
-            </div>
-            <div class="winner-card">
-                <div>
-                    <div class="winner-category">⚡ Best Efficiency</div>
-                    <div class="winner-model">humin-gpt-oss:120b</div>
-                </div>
-                <span class="winner-speed">5.9 tok/s @ 120B</span>
-            </div>
-            <div class="winner-card">
-                <div>
-                    <div class="winner-category">✨ Best Quality Chat</div>
-                    <div class="winner-model">humin-llama3.3:70b</div>
-                </div>
-                <span class="winner-speed">1.6 tok/s</span>
-            </div>
-            <div class="winner-card">
-                <div>
-                    <div class="winner-category">📝 Best Quality Code</div>
-                    <div class="winner-model">humin-qwen2.5-coder:32b</div>
-                </div>
-                <span class="winner-speed">4.4 tok/s</span>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>Tested on M2 Max MacBook Pro with 96GB RAM via KĀDI Distributed Inference Network</p>
-            <p style="margin-top: 8px;">Generated: January 2026</p>
+        <div class="filter-actions">
+            <span class="results-count"><span id="rc">58</span> models</span>
+            <button class="clear-btn" onclick="clearF()">✕ Clear</button>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div id="modal-overlay" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <div class="modal-title" id="modal-title">Model Name</div>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body" id="modal-body">
-                <!-- Content injected by JavaScript -->
-            </div>
-        </div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th data-s="name" class="sorted">Model <span class="sort-icon">▲</span></th>
+                    <th data-s="vendor">Vendor <span class="sort-icon">↕</span></th>
+                    <th data-s="type">Type <span class="sort-icon">↕</span></th>
+                    <th data-s="cost">Cost <span class="sort-icon">↕</span></th>
+                    <th data-s="size">Size <span class="sort-icon">↕</span></th>
+                    <th data-s="context">Context <span class="sort-icon">↕</span></th>
+                    <th data-s="tools">Tools <span class="sort-icon">↕</span></th>
+                    <th data-s="tokps">Tok/s <span class="sort-icon">↕</span></th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody id="tb">
+                <tr data-n="humin-deepseek-ocr:latest" data-t="vision" data-c="free" data-tl="no" data-v="other" data-tp="37.5" data-cx="16" data-sz="8"><td class="model-name" onclick="show('deepseek-ocr')">humin-deepseek-ocr:latest</td><td><span class="vendor v-other">DeepSeek</span></td><td><span class="badge type-vision">Vision</span></td><td class="cost-free">Free</td><td>~8B</td><td>16K</td><td class="tools-no">❌</td><td class="highlight">37.5</td><td>OCR specialist</td></tr>
+                <tr data-n="humin-qwen3-vl:8b" data-t="vision" data-c="free" data-tl="yes" data-v="alibaba" data-tp="25.0" data-cx="32" data-sz="8"><td class="model-name" onclick="show('qwen3-vl-8b')">humin-qwen3-vl:8b</td><td><span class="vendor v-alibaba">Alibaba</span></td><td><span class="badge type-vision">Vision</span></td><td class="cost-free">Free</td><td>8B</td><td>32K</td><td class="tools-yes">✅</td><td class="highlight">25.0</td><td>Fast vision+tools</td></tr>
+                <tr data-n="humin-mirothinker15-30b-q8:latest" data-t="reasoning" data-c="free" data-tl="no" data-v="other" data-tp="23.5" data-cx="32" data-sz="30"><td class="model-name" onclick="show('mirothinker')">humin-mirothinker15-30b-q8:latest</td><td><span class="vendor v-other">MiroAI</span></td><td><span class="badge type-reasoning">Reason</span></td><td class="cost-free">Free</td><td>30B</td><td>32K</td><td class="tools-no">❌</td><td class="highlight">23.5</td><td>Chain-of-thought</td></tr>
+                <tr data-n="humin-qwen3-coder:30b" data-t="code" data-c="free" data-tl="yes" data-v="alibaba" data-tp="20.9" data-cx="128" data-sz="30"><td class="model-name" onclick="show('qwen3-coder')">humin-qwen3-coder:30b</td><td><span class="vendor v-alibaba">Alibaba</span></td><td><span class="badge type-code">Code</span></td><td class="cost-free">Free</td><td>30B</td><td>128K</td><td class="tools-yes">✅</td><td class="highlight">20.9</td><td>Best coder</td></tr>
+                <tr data-n="humin-codeqwen:latest" data-t="code" data-c="free" data-tl="no" data-v="alibaba" data-tp="17.2" data-cx="64" data-sz="7"><td class="model-name" onclick="show('codeqwen')">humin-codeqwen:latest</td><td><span class="vendor v-alibaba">Alibaba</span></td><td><span class="badge type-code">Code</span></td><td class="cost-free">Free</td><td>7B</td><td>64K</td><td class="tools-no">❌</td><td>17.2</td><td>Small coder</td></tr>
+                <tr data-n="humin-llama3.2-vision:latest" data-t="vision" data-c="free" data-tl="no" data-v="meta" data-tp="16.5" data-cx="128" data-sz="11"><td class="model-name" onclick="show('llama32-vision')">humin-llama3.2-vision:latest</td><td><span class="vendor v-meta">Meta</span></td><td><span class="badge type-vision">Vision</span></td><td class="cost-free">Free</td><td>11B</td><td>128K</td><td class="tools-no">❌</td><td>16.5</td><td>Fast multimodal</td></tr>
+                <tr data-n="humin-gpt-oss:20b" data-t="chat" data-c="free" data-tl="yes" data-v="other" data-tp="15.9" data-cx="128" data-sz="20"><td class="model-name" onclick="show('gpt-oss-20b')">humin-gpt-oss:20b</td><td><span class="vendor v-other">GPT-OSS</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>20B</td><td>128K</td><td class="tools-yes">✅</td><td>15.9</td><td>Open GPT</td></tr>
+                <tr data-n="humin-qwen2.5vl:7b" data-t="vision" data-c="free" data-tl="no" data-v="alibaba" data-tp="15.5" data-cx="32" data-sz="7"><td class="model-name" onclick="show('qwen25vl-7b')">humin-qwen2.5vl:7b</td><td><span class="vendor v-alibaba">Alibaba</span></td><td><span class="badge type-vision">Vision</span></td><td class="cost-free">Free</td><td>7B</td><td>32K</td><td class="tools-no">❌</td><td>15.5</td><td>Compact vision</td></tr>
+                <tr data-n="humin-devstral-small-2:latest" data-t="code" data-c="free" data-tl="yes" data-v="mistral" data-tp="10.5" data-cx="128" data-sz="24"><td class="model-name" onclick="show('devstral-small')">humin-devstral-small-2:latest</td><td><span class="vendor v-mistral">Mistral</span></td><td><span class="badge type-code">Code</span></td><td class="cost-free">Free</td><td>24B</td><td>128K</td><td class="tools-yes">✅</td><td>10.5</td><td>Agentic coding</td></tr>
+                <tr data-n="humin-sqlcoder:15b" data-t="code" data-c="free" data-tl="no" data-v="other" data-tp="9.2" data-cx="16" data-sz="15"><td class="model-name" onclick="show('sqlcoder')">humin-sqlcoder:15b</td><td><span class="vendor v-other">Defog</span></td><td><span class="badge type-code">Code</span></td><td class="cost-free">Free</td><td>15B</td><td>16K</td><td class="tools-no">❌</td><td>9.2</td><td>SQL specialist</td></tr>
+                <tr data-n="humin-deepseek-r1:32b" data-t="reasoning" data-c="free" data-tl="no" data-v="other" data-tp="8.4" data-cx="64" data-sz="32"><td class="model-name" onclick="show('deepseek-r1')">humin-deepseek-r1:32b</td><td><span class="vendor v-other">DeepSeek</span></td><td><span class="badge type-reasoning">Reason</span></td><td class="cost-free">Free</td><td>32B</td><td>64K</td><td class="tools-no">❌</td><td>8.4</td><td>Deep reasoning</td></tr>
+                <tr data-n="humin-qwen3-vl:32b" data-t="vision" data-c="free" data-tl="yes" data-v="alibaba" data-tp="8.3" data-cx="32" data-sz="32"><td class="model-name" onclick="show('qwen3-vl-32b')">humin-qwen3-vl:32b</td><td><span class="vendor v-alibaba">Alibaba</span></td><td><span class="badge type-vision">Vision</span></td><td class="cost-free">Free</td><td>32B</td><td>32K</td><td class="tools-yes">✅</td><td>8.3</td><td>Vision+tools</td></tr>
+                <tr data-n="humin-mistral-small3.2:latest" data-t="chat" data-c="free" data-tl="yes" data-v="mistral" data-tp="7.9" data-cx="128" data-sz="24"><td class="model-name" onclick="show('mistral-small32')">humin-mistral-small3.2:latest</td><td><span class="vendor v-mistral">Mistral</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>24B</td><td>128K</td><td class="tools-yes">✅</td><td>7.9</td><td>Balanced</td></tr>
+                <tr data-n="humin-phi4:14b" data-t="chat" data-c="free" data-tl="no" data-v="microsoft" data-tp="7.9" data-cx="16" data-sz="14"><td class="model-name" onclick="show('phi4')">humin-phi4:14b</td><td><span class="vendor v-microsoft">Microsoft</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>14B</td><td>16K</td><td class="tools-no">❌</td><td>7.9</td><td>Efficient</td></tr>
+                <tr data-n="humin-gpt-oss:120b" data-t="chat" data-c="free" data-tl="yes" data-v="other" data-tp="7.2" data-cx="128" data-sz="120"><td class="model-name" onclick="show('gpt-oss-120b')">humin-gpt-oss:120b</td><td><span class="vendor v-other">GPT-OSS</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>120B</td><td>128K</td><td class="tools-yes">✅</td><td>7.2</td><td>Large GPT</td></tr>
+                <tr data-n="humin-mistral-small3.1:latest" data-t="chat" data-c="free" data-tl="yes" data-v="mistral" data-tp="7.0" data-cx="32" data-sz="22"><td class="model-name" onclick="show('mistral-small31')">humin-mistral-small3.1:latest</td><td><span class="vendor v-mistral">Mistral</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>22B</td><td>32K</td><td class="tools-yes">✅</td><td>7.0</td><td>Good chat</td></tr>
+                <tr data-n="humin-gemma3:27b" data-t="chat" data-c="free" data-tl="no" data-v="google" data-tp="6.8" data-cx="128" data-sz="27"><td class="model-name" onclick="show('gemma3')">humin-gemma3:27b</td><td><span class="vendor v-google">Google</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>27B</td><td>128K</td><td class="tools-no">❌</td><td>6.8</td><td>Google open</td></tr>
+                <tr data-n="humin-moondream:latest" data-t="vision" data-c="free" data-tl="no" data-v="other" data-tp="6.2" data-cx="8" data-sz="2"><td class="model-name" onclick="show('moondream')">humin-moondream:latest</td><td><span class="vendor v-other">Moondream</span></td><td><span class="badge type-vision">Vision</span></td><td class="cost-free">Free</td><td>~2B</td><td>8K</td><td class="tools-no">❌</td><td>6.2</td><td>Tiny vision</td></tr>
+                <tr data-n="humin-qwen2.5vl:32b" data-t="vision" data-c="free" data-tl="no" data-v="alibaba" data-tp="6.0" data-cx="32" data-sz="32"><td class="model-name" onclick="show('qwen25vl-32b')">humin-qwen2.5vl:32b</td><td><span class="vendor v-alibaba">Alibaba</span></td><td><span class="badge type-vision">Vision</span></td><td class="cost-free">Free</td><td>32B</td><td>32K</td><td class="tools-no">❌</td><td>6.0</td><td>Mid vision</td></tr>
+                <tr data-n="humin-olmo2:13b" data-t="chat" data-c="free" data-tl="no" data-v="ai2" data-tp="5.2" data-cx="32" data-sz="13"><td class="model-name" onclick="show('olmo2')">humin-olmo2:13b</td><td><span class="vendor v-ai2">AI2</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>13B</td><td>32K</td><td class="tools-no">❌</td><td>5.2</td><td>Fully open</td></tr>
+                <tr data-n="humin-codestral:22b" data-t="code" data-c="free" data-tl="no" data-v="mistral" data-tp="5.1" data-cx="32" data-sz="22"><td class="model-name" onclick="show('codestral')">humin-codestral:22b</td><td><span class="vendor v-mistral">Mistral</span></td><td><span class="badge type-code">Code</span></td><td class="cost-free">Free</td><td>22B</td><td>32K</td><td class="tools-no">❌</td><td>5.1</td><td>Production code</td></tr>
+                <tr data-n="humin-llama4:latest" data-t="chat" data-c="free" data-tl="yes" data-v="meta" data-tp="4.7" data-cx="128" data-sz="109"><td class="model-name" onclick="show('llama4')">humin-llama4:latest</td><td><span class="vendor v-meta">Meta</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>109B MoE</td><td>128K</td><td class="tools-yes">✅</td><td>4.7</td><td>Multimodal</td></tr>
+                <tr data-n="humin-devstral:latest" data-t="code" data-c="free" data-tl="yes" data-v="mistral" data-tp="4.7" data-cx="32" data-sz="24"><td class="model-name" onclick="show('devstral')">humin-devstral:latest</td><td><span class="vendor v-mistral">Mistral</span></td><td><span class="badge type-code">Code</span></td><td class="cost-free">Free</td><td>24B</td><td>32K</td><td class="tools-yes">✅</td><td>4.7</td><td>Agentic</td></tr>
+                <tr data-n="humin-qwen2.5-coder:32b" data-t="code" data-c="free" data-tl="no" data-v="alibaba" data-tp="4.4" data-cx="128" data-sz="32"><td class="model-name" onclick="show('qwen25-coder')">humin-qwen2.5-coder:32b</td><td><span class="vendor v-alibaba">Alibaba</span></td><td><span class="badge type-code">Code</span></td><td class="cost-free">Free</td><td>32B</td><td>128K</td><td class="tools-no">⚠️</td><td>4.4</td><td>Thorough</td></tr>
+                <tr data-n="humin-granite3.2-vision:2b" data-t="vision" data-c="free" data-tl="no" data-v="ibm" data-tp="4.4" data-cx="8" data-sz="2"><td class="model-name" onclick="show('granite-vision')">humin-granite3.2-vision:2b</td><td><span class="vendor v-ibm">IBM</span></td><td><span class="badge type-vision">Vision</span></td><td class="cost-free">Free</td><td>2B</td><td>8K</td><td class="tools-no">❌</td><td>4.4</td><td>Edge</td></tr>
+                <tr data-n="humin-mixtral:latest" data-t="chat" data-c="free" data-tl="no" data-v="mistral" data-tp="4.3" data-cx="32" data-sz="47"><td class="model-name" onclick="show('mixtral')">humin-mixtral:latest</td><td><span class="vendor v-mistral">Mistral</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>8x7B MoE</td><td>32K</td><td class="tools-no">❌</td><td>4.3</td><td>MoE</td></tr>
+                <tr data-n="humin-nemotron-3-nano:latest" data-t="chat" data-c="free" data-tl="no" data-v="nvidia" data-tp="4.0" data-cx="128" data-sz="8"><td class="model-name" onclick="show('nemotron')">humin-nemotron-3-nano:latest</td><td><span class="vendor v-nvidia">NVIDIA</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>8B</td><td>128K</td><td class="tools-no">❌</td><td>4.0</td><td>Optimized</td></tr>
+                <tr data-n="humin-mistral-small:latest" data-t="chat" data-c="free" data-tl="yes" data-v="mistral" data-tp="3.7" data-cx="128" data-sz="22"><td class="model-name" onclick="show('mistral-small')">humin-mistral-small:latest</td><td><span class="vendor v-mistral">Mistral</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>22B</td><td>128K</td><td class="tools-yes">✅</td><td>3.7</td><td>General</td></tr>
+                <tr data-n="humin-gemma2:27b" data-t="chat" data-c="free" data-tl="no" data-v="google" data-tp="3.5" data-cx="8" data-sz="27"><td class="model-name" onclick="show('gemma2')">humin-gemma2:27b</td><td><span class="vendor v-google">Google</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>27B</td><td>8K</td><td class="tools-no">❌</td><td>3.5</td><td>Prev Gemma</td></tr>
+                <tr data-n="humin-qwen2.5vl:72b" data-t="vision" data-c="free" data-tl="no" data-v="alibaba" data-tp="2.1" data-cx="32" data-sz="72"><td class="model-name" onclick="show('qwen25vl-72b')">humin-qwen2.5vl:72b</td><td><span class="vendor v-alibaba">Alibaba</span></td><td><span class="badge type-vision">Vision</span></td><td class="cost-free">Free</td><td>72B</td><td>32K</td><td class="tools-no">❌</td><td>2.1</td><td>Best vision</td></tr>
+                <tr data-n="humin-llama3.3:70b-instruct-q4_K_M" data-t="chat" data-c="free" data-tl="yes" data-v="meta" data-tp="1.6" data-cx="128" data-sz="70"><td class="model-name" onclick="show('llama33')">humin-llama3.3:70b-instruct-q4_K_M</td><td><span class="vendor v-meta">Meta</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>70B</td><td>128K</td><td class="tools-yes">✅</td><td>1.6</td><td>High quality</td></tr>
+                <tr data-n="humin-minicpm-v:latest" data-t="vision" data-c="free" data-tl="no" data-v="other" data-tp="1.5" data-cx="8" data-sz="8"><td class="model-name" onclick="show('minicpm-v')">humin-minicpm-v:latest</td><td><span class="vendor v-other">OpenBMB</span></td><td><span class="badge type-vision">Vision</span></td><td class="cost-free">Free</td><td>~8B</td><td>8K</td><td class="tools-no">❌</td><td>1.5</td><td>Compact</td></tr>
+                <tr data-n="humin-qwen2.5:72b-instruct-q4_K_M" data-t="chat" data-c="free" data-tl="yes" data-v="alibaba" data-tp="1.0" data-cx="128" data-sz="72"><td class="model-name" onclick="show('qwen25-72b')">humin-qwen2.5:72b-instruct-q4_K_M</td><td><span class="vendor v-alibaba">Alibaba</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>72B</td><td>128K</td><td class="tools-yes">✅</td><td>1.0</td><td>Multilingual</td></tr>
+                <!-- Embeddings -->
+                <tr data-n="humin-bge-m3:latest" data-t="embedding" data-c="free" data-tl="no" data-v="other" data-tp="0" data-cx="8" data-sz="0"><td class="model-name" onclick="show('bge-m3')">humin-bge-m3:latest</td><td><span class="vendor v-other">BAAI</span></td><td><span class="badge type-embedding">Embed</span></td><td class="cost-free">Free</td><td>1024d</td><td>8K</td><td>-</td><td>-</td><td>Multi-lingual</td></tr>
+                <tr data-n="humin-mxbai-embed-large:latest" data-t="embedding" data-c="free" data-tl="no" data-v="other" data-tp="0" data-cx="512" data-sz="0"><td class="model-name" onclick="show('mxbai-embed')">humin-mxbai-embed-large:latest</td><td><span class="vendor v-other">MixedBread</span></td><td><span class="badge type-embedding">Embed</span></td><td class="cost-free">Free</td><td>1024d</td><td>512</td><td>-</td><td>-</td><td>High quality</td></tr>
+                <tr data-n="humin-nomic-embed-text-v2-moe:latest" data-t="embedding" data-c="free" data-tl="no" data-v="other" data-tp="0" data-cx="8" data-sz="0"><td class="model-name" onclick="show('nomic-embed')">humin-nomic-embed-text-v2-moe:latest</td><td><span class="vendor v-other">Nomic</span></td><td><span class="badge type-embedding">Embed</span></td><td class="cost-free">Free</td><td>768d</td><td>8K</td><td>-</td><td>-</td><td>MoE</td></tr>
+                <tr data-n="humin-bge-reranker-v2-m3:latest" data-t="embedding" data-c="free" data-tl="no" data-v="other" data-tp="0" data-cx="512" data-sz="0"><td class="model-name" onclick="show('bge-reranker')">humin-qllama/bge-reranker-v2-m3</td><td><span class="vendor v-other">BAAI</span></td><td><span class="badge type-embedding">Rerank</span></td><td class="cost-free">Free</td><td>N/A</td><td>512</td><td>-</td><td>-</td><td>Reranker</td></tr>
+                <!-- Commercial - OpenAI -->
+                <tr data-n="gpt-5" data-t="chat" data-c="paid" data-tl="yes" data-v="openai" data-tp="0" data-cx="128" data-sz="0"><td class="model-name" onclick="show('gpt-5')">gpt-5</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>GPT-5 base</td></tr>
+                <tr data-n="gpt-5-mini" data-t="chat" data-c="paid" data-tl="no" data-v="openai" data-tp="0" data-cx="128" data-sz="0"><td class="model-name" onclick="show('gpt-5-mini')">gpt-5-mini</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-no">❌</td><td>-</td><td>Fast, cheap</td></tr>
+                <tr data-n="gpt-5-nano" data-t="chat" data-c="paid" data-tl="no" data-v="openai" data-tp="0" data-cx="32" data-sz="0"><td class="model-name" onclick="show('gpt-5-nano')">gpt-5-nano</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>32K</td><td class="tools-no">❌</td><td>-</td><td>Smallest</td></tr>
+                <tr data-n="gpt-5-pro" data-t="chat" data-c="paid" data-tl="no" data-v="openai" data-tp="0" data-cx="128" data-sz="0"><td class="model-name" onclick="show('gpt-5-pro')">gpt-5-pro</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-no">❌</td><td>-</td><td>Enhanced</td></tr>
+                <tr data-n="gpt-5-codex" data-t="code" data-c="paid" data-tl="yes" data-v="openai" data-tp="0" data-cx="128" data-sz="0"><td class="model-name" onclick="show('gpt-5-codex')">gpt-5-codex</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-code">Code</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>Code opt</td></tr>
+                <tr data-n="gpt-5-chat-latest" data-t="chat" data-c="paid" data-tl="yes" data-v="openai" data-tp="0" data-cx="128" data-sz="0"><td class="model-name">gpt-5-chat-latest</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>Latest</td></tr>
+                <tr data-n="gpt-5.1" data-t="chat" data-c="paid" data-tl="yes" data-v="openai" data-tp="0" data-cx="128" data-sz="0"><td class="model-name">gpt-5.1</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>GPT-5.1</td></tr>
+                <tr data-n="gpt-5.1-chat-latest" data-t="chat" data-c="paid" data-tl="yes" data-v="openai" data-tp="0" data-cx="128" data-sz="0"><td class="model-name">gpt-5.1-chat-latest</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>Latest 5.1</td></tr>
+                <tr data-n="gpt-5.1-codex" data-t="code" data-c="paid" data-tl="yes" data-v="openai" data-tp="0" data-cx="128" data-sz="0"><td class="model-name">gpt-5.1-codex</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-code">Code</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>Code 5.1</td></tr>
+                <tr data-n="gpt-5.1-codex-mini" data-t="code" data-c="paid" data-tl="yes" data-v="openai" data-tp="0" data-cx="64" data-sz="0"><td class="model-name">gpt-5.1-codex-mini</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-code">Code</span></td><td class="cost-paid">Paid</td><td>-</td><td>64K</td><td class="tools-yes">✅</td><td>-</td><td>Small code</td></tr>
+                <tr data-n="gpt-5.1-codex-max" data-t="code" data-c="paid" data-tl="yes" data-v="openai" data-tp="0" data-cx="256" data-sz="0"><td class="model-name">gpt-5.1-codex-max</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-code">Code</span></td><td class="cost-paid">Paid</td><td>-</td><td>256K</td><td class="tools-yes">✅</td><td>-</td><td>Max ctx</td></tr>
+                <tr data-n="gpt-5.2" data-t="chat" data-c="paid" data-tl="yes" data-v="openai" data-tp="0" data-cx="128" data-sz="0"><td class="model-name" onclick="show('gpt-5-2')">gpt-5.2</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>Newest</td></tr>
+                <tr data-n="gpt-5.2-pro" data-t="chat" data-c="paid" data-tl="yes" data-v="openai" data-tp="0" data-cx="256" data-sz="0"><td class="model-name">gpt-5.2-pro</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>256K</td><td class="tools-yes">✅</td><td>-</td><td>Enhanced</td></tr>
+                <tr data-n="gpt-5.2-chat-latest" data-t="chat" data-c="paid" data-tl="yes" data-v="openai" data-tp="0" data-cx="128" data-sz="0"><td class="model-name">gpt-5.2-chat-latest</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>Latest 5.2</td></tr>
+                <tr data-n="gpt-5.2-codex" data-t="code" data-c="paid" data-tl="yes" data-v="openai" data-tp="0" data-cx="128" data-sz="0"><td class="model-name">gpt-5.2-codex</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-code">Code</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>Code 5.2</td></tr>
+                <!-- Claude -->
+                <tr data-n="claude-sonnet-4-5" data-t="chat" data-c="paid" data-tl="yes" data-v="anthropic" data-tp="0" data-cx="200" data-sz="0"><td class="model-name" onclick="show('claude-sonnet-4-5')">claude-sonnet-4-5</td><td><span class="vendor v-anthropic">Anthropic</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>200K</td><td class="tools-yes">✅</td><td>-</td><td>Balanced</td></tr>
+                <tr data-n="claude-haiku-4-5" data-t="chat" data-c="paid" data-tl="yes" data-v="anthropic" data-tp="0" data-cx="200" data-sz="0"><td class="model-name" onclick="show('claude-haiku-4-5')">claude-haiku-4-5</td><td><span class="vendor v-anthropic">Anthropic</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>200K</td><td class="tools-yes">✅</td><td>-</td><td>Fast</td></tr>
+                <!-- Kimi -->
+                <tr data-n="kimi-k2.5" data-t="chat" data-c="paid" data-tl="yes" data-v="moonshot" data-tp="0" data-cx="128" data-sz="0"><td class="model-name" onclick="show('kimi-k2-5')">kimi-k2.5</td><td><span class="vendor v-moonshot">Moonshot</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>Latest</td></tr>
+                <tr data-n="kimi-k2-turbo-preview" data-t="chat" data-c="paid" data-tl="yes" data-v="moonshot" data-tp="0" data-cx="128" data-sz="0"><td class="model-name">kimi-k2-turbo-preview</td><td><span class="vendor v-moonshot">Moonshot</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>Fast</td></tr>
+                <tr data-n="kimi-k2-0905-preview" data-t="chat" data-c="paid" data-tl="yes" data-v="moonshot" data-tp="0" data-cx="128" data-sz="0"><td class="model-name">kimi-k2-0905-preview</td><td><span class="vendor v-moonshot">Moonshot</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>Preview</td></tr>
+                <tr data-n="kimi-k2-thinking" data-t="reasoning" data-c="paid" data-tl="yes" data-v="moonshot" data-tp="0" data-cx="128" data-sz="0"><td class="model-name" onclick="show('kimi-k2-thinking')">kimi-k2-thinking</td><td><span class="vendor v-moonshot">Moonshot</span></td><td><span class="badge type-reasoning">Reason</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>Thinking</td></tr>
+                <tr data-n="kimi-k2-thinking-turbo" data-t="reasoning" data-c="paid" data-tl="yes" data-v="moonshot" data-tp="0" data-cx="128" data-sz="0"><td class="model-name">kimi-k2-thinking-turbo</td><td><span class="vendor v-moonshot">Moonshot</span></td><td><span class="badge type-reasoning">Reason</span></td><td class="cost-paid">Paid</td><td>-</td><td>128K</td><td class="tools-yes">✅</td><td>-</td><td>Fast think</td></tr>
+                <!-- OpenAI Embeddings -->
+                <tr data-n="text-embedding-ada-002" data-t="embedding" data-c="paid" data-tl="no" data-v="openai" data-tp="0" data-cx="8" data-sz="0"><td class="model-name">text-embedding-ada-002</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-embedding">Embed</span></td><td class="cost-paid">Paid</td><td>1536d</td><td>8K</td><td>-</td><td>-</td><td>Legacy</td></tr>
+                <tr data-n="text-embedding-3-small" data-t="embedding" data-c="paid" data-tl="no" data-v="openai" data-tp="0" data-cx="8" data-sz="0"><td class="model-name">text-embedding-3-small</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-embedding">Embed</span></td><td class="cost-paid">Paid</td><td>1536d</td><td>8K</td><td>-</td><td>-</td><td>Fast</td></tr>
+                <tr data-n="text-embedding-3-large" data-t="embedding" data-c="paid" data-tl="no" data-v="openai" data-tp="0" data-cx="8" data-sz="0"><td class="model-name">text-embedding-3-large</td><td><span class="vendor v-openai">OpenAI</span></td><td><span class="badge type-embedding">Embed</span></td><td class="cost-paid">Paid</td><td>3072d</td><td>8K</td><td>-</td><td>-</td><td>Best</td></tr>
+            </tbody>
+        </table>
     </div>
 
-    <script>
-        const modelData = {
-            'deepseek-ocr': {
-                name: 'DeepSeek OCR',
-                developer: 'DeepSeek',
-                type: 'Vision/OCR',
-                size: '~8B',
-                tokensPerSec: 37.5,
-                description: 'A specialized OCR model optimized for text extraction from images. Extremely fast but may hallucinate on non-text content. Best used for document processing and text extraction tasks.',
-                useCases: ['Document OCR', 'Text extraction', 'Receipt scanning', 'Form processing', 'Screenshot text capture'],
-                strengths: ['Fastest vision model', 'Excellent OCR accuracy', 'Good document understanding', 'Low latency'],
-                context: '16K tokens'
-            },
-            'qwen3-vl-8b': {
-                name: 'Qwen3 VL 8B',
-                developer: 'Alibaba',
-                type: 'Vision',
-                size: '8B',
-                tokensPerSec: 25.0,
-                description: 'The fastest accurate general-purpose vision model. Excellent balance of speed and quality for image understanding tasks.',
-                useCases: ['Image analysis', 'Visual Q&A', 'Object detection', 'Scene understanding', 'Chart interpretation'],
-                strengths: ['Fastest accurate vision', 'Great quality for size', 'Low resource usage', 'Versatile'],
-                context: '32K tokens'
-            },
-            'mirothinker': {
-                name: 'MiroThinker 1.5 30B Q8',
-                developer: 'MiroAI',
-                type: 'Reasoning',
-                size: '30B',
-                tokensPerSec: 23.5,
-                description: 'A reasoning-focused model based on Qwen3-30B-A3B-Thinking-2507, optimized for deep analysis and step-by-step reasoning. Outputs its thinking process in <think> tags before providing final answers.',
-                useCases: ['Complex reasoning tasks', 'Mathematical problem solving', 'Logic puzzles', 'Step-by-step analysis', 'Decision making'],
-                strengths: ['Transparent reasoning process', 'Excellent for debugging thought processes', 'High accuracy on complex tasks', 'Fast for its capability level'],
-                context: '32K tokens'
-            },
-            'qwen3-coder': {
-                name: 'Qwen3 Coder 30B',
-                developer: 'Alibaba',
-                type: 'Code',
-                size: '30B',
-                tokensPerSec: 21.4,
-                description: 'The latest and most capable coding model in the Qwen family. Excels at code generation, understanding, and modification across multiple programming languages.',
-                useCases: ['Code generation', 'Debugging', 'Code review', 'Refactoring', 'Multi-language projects'],
-                strengths: ['Excellent code quality', 'Fast inference', 'Strong across languages', 'Good at explaining code'],
-                context: '128K tokens'
-            },
-            'codeqwen': {
-                name: 'CodeQwen 7B',
-                developer: 'Alibaba',
-                type: 'Code',
-                size: '7B',
-                tokensPerSec: 18.8,
-                description: 'A compact, fast coding model optimized for quick code completions and simple programming tasks. Great for daily coding assistance.',
-                useCases: ['Quick code completions', 'Simple scripts', 'Code snippets', 'Syntax help', 'Boilerplate generation'],
-                strengths: ['Very fast', 'Low resource usage', 'Good for simple tasks', 'Clean output'],
-                context: '64K tokens'
-            },
-            'llama32-vision': {
-                name: 'Llama 3.2 Vision 11B',
-                developer: 'Meta',
-                type: 'Vision',
-                size: '11B',
-                tokensPerSec: 17.8,
-                description: 'Meta\'s multimodal Llama model with vision capabilities. Can understand and analyze images while maintaining strong text performance.',
-                useCases: ['Image analysis', 'Visual Q&A', 'Document understanding', 'Chart/graph interpretation', 'OCR tasks'],
-                strengths: ['Fast vision processing', 'Good image understanding', 'Balanced multimodal', 'Strong text capability'],
-                context: '128K tokens'
-            },
-            'gpt-oss-20b': {
-                name: 'GPT-OSS 20B',
-                developer: 'Open Source Community',
-                type: 'Chat',
-                size: '20B',
-                tokensPerSec: 16.7,
-                description: 'An open-source reproduction of GPT-4 architecture. General-purpose chat model suitable for a wide range of conversational tasks.',
-                useCases: ['General conversation', 'Writing assistance', 'Analysis', 'Brainstorming', 'Summarization'],
-                strengths: ['Fastest chat model', 'Good general quality', 'Versatile', 'Reliable'],
-                context: '32K tokens'
-            },
-            'qwen25vl-7b': {
-                name: 'Qwen 2.5 VL 7B',
-                developer: 'Alibaba',
-                type: 'Vision',
-                size: '7B',
-                tokensPerSec: 13.4,
-                description: 'A compact vision-language model with strong multimodal understanding. Efficient for image analysis tasks.',
-                useCases: ['Image captioning', 'Visual reasoning', 'OCR', 'Document analysis', 'Quick image queries'],
-                strengths: ['Fast and efficient', 'Good accuracy for size', 'Low resource usage', 'Strong OCR'],
-                context: '32K tokens'
-            },
-            'devstral-small': {
-                name: 'Devstral Small 2',
-                developer: 'Mistral AI',
-                type: 'Code',
-                size: '24B',
-                tokensPerSec: 10.7,
-                description: 'Mistral\'s compact development-focused coding model optimized for agentic coding workflows and tool use.',
-                useCases: ['Agentic coding', 'Tool use', 'IDE integration', 'Automated refactoring', 'Code agents'],
-                strengths: ['Good for agents', 'Function calling', 'Balanced speed/quality', 'IDE friendly'],
-                context: '32K tokens'
-            },
-            'mistral-small31': {
-                name: 'Mistral Small 3.1',
-                developer: 'Mistral AI',
-                type: 'Chat',
-                size: '24B',
-                tokensPerSec: 11.5,
-                description: 'Mistral\'s 3.1 generation small model with improved instruction following and reasoning capabilities.',
-                useCases: ['General chat', 'Instruction following', 'Analysis', 'Writing assistance', 'Code explanation'],
-                strengths: ['Fast', 'Good instruction following', 'Balanced quality', 'Efficient'],
-                context: '128K tokens'
-            },
-            'sqlcoder': {
-                name: 'SQLCoder 15B',
-                developer: 'Defog',
-                type: 'SQL',
-                size: '15B',
-                tokensPerSec: 9.4,
-                description: 'Specialized model trained specifically for text-to-SQL generation. Excels at converting natural language queries to SQL.',
-                useCases: ['Text-to-SQL', 'Database querying', 'Schema understanding', 'Query optimization', 'SQL learning'],
-                strengths: ['Best-in-class SQL generation', 'Schema aware', 'Complex query support', 'Multiple SQL dialects'],
-                context: '16K tokens'
-            },
-            'deepseek-r1': {
-                name: 'DeepSeek R1 32B',
-                developer: 'DeepSeek',
-                type: 'Reasoning',
-                size: '32B',
-                tokensPerSec: 7.5,
-                description: 'Advanced reasoning model that shows its thinking process. Excellent for complex problem-solving requiring step-by-step logic.',
-                useCases: ['Math problems', 'Scientific reasoning', 'Complex analysis', 'Research tasks', 'Logical deduction'],
-                strengths: ['Deep reasoning', 'Transparent thinking', 'High accuracy', 'Good at math'],
-                context: '64K tokens'
-            },
-            'mistral-small32': {
-                name: 'Mistral Small 3.2',
-                developer: 'Mistral AI',
-                type: 'Chat',
-                size: '24B',
-                tokensPerSec: 7.3,
-                description: 'Latest generation of Mistral\'s small model with improved function calling and reasoning capabilities.',
-                useCases: ['General chat', 'Tool use', 'Structured outputs', 'Function calling', 'API integration'],
-                strengths: ['Great function calling', 'Fast', 'Good reasoning', 'JSON outputs'],
-                context: '32K tokens'
-            },
-            'phi4': {
-                name: 'Phi-4 14B',
-                developer: 'Microsoft',
-                type: 'Chat',
-                size: '14B',
-                tokensPerSec: 6.0,
-                description: 'Microsoft\'s compact model that punches well above its weight class. Known for strong reasoning despite smaller size.',
-                useCases: ['Reasoning tasks', 'Edge deployment', 'Resource-constrained environments', 'Teaching/learning', 'Analysis'],
-                strengths: ['Excellent for size', 'Strong reasoning', 'Efficient', 'Good for edge'],
-                context: '16K tokens'
-            },
-            'moondream': {
-                name: 'Moondream',
-                developer: 'vikhyat',
-                type: 'Vision',
-                size: '~2B',
-                tokensPerSec: 6.2,
-                description: 'An incredibly tiny vision-language model that delivers surprising capabilities for its size. Great for edge deployment and resource-constrained environments.',
-                useCases: ['Edge deployment', 'Mobile vision', 'Quick image queries', 'Lightweight apps', 'Resource-limited environments'],
-                strengths: ['Tiny model size', 'Good accuracy for size', 'Low resource usage', 'Fast'],
-                context: '8K tokens'
-            },
-            'gpt-oss-120b': {
-                name: 'GPT-OSS 120B',
-                developer: 'Open Source Community',
-                type: 'Chat',
-                size: '120B',
-                tokensPerSec: 5.9,
-                description: 'Large GPT-4 style model for maximum quality outputs. Surprisingly efficient given its massive size.',
-                useCases: ['Complex tasks', 'High-quality writing', 'Nuanced analysis', 'Important outputs', 'Expert-level tasks'],
-                strengths: ['Highest quality', 'Surprisingly fast for size', 'Deep understanding', 'Nuanced outputs'],
-                context: '32K tokens'
-            },
-            'qwen25vl-32b': {
-                name: 'Qwen 2.5 VL 32B',
-                developer: 'Alibaba',
-                type: 'Vision',
-                size: '32B',
-                tokensPerSec: 5.9,
-                description: 'Large vision-language model with strong multimodal understanding and reasoning capabilities.',
-                useCases: ['Complex image analysis', 'Document understanding', 'Visual reasoning', 'Multi-image tasks', 'Detailed descriptions'],
-                strengths: ['High accuracy', 'Complex reasoning', 'Good at details', 'Strong OCR'],
-                context: '32K tokens'
-            },
-            'olmo2': {
-                name: 'OLMo 2 13B',
-                developer: 'AI2 (Allen Institute)',
-                type: 'Chat',
-                size: '13B',
-                tokensPerSec: 5.2,
-                description: 'Fully open model with publicly available weights, training data, and code. Ideal for research and transparency-critical applications.',
-                useCases: ['Research', 'Transparency-critical apps', 'Fine-tuning base', 'Education', 'Reproducible AI'],
-                strengths: ['Fully open', 'Research friendly', 'Reproducible', 'Well documented'],
-                context: '32K tokens'
-            },
-            'codestral': {
-                name: 'Codestral 22B',
-                developer: 'Mistral AI',
-                type: 'Code',
-                size: '22B',
-                tokensPerSec: 5.1,
-                description: 'Mistral\'s dedicated coding model optimized for production code generation across multiple languages.',
-                useCases: ['Production code', 'Multi-language projects', 'Code explanation', 'Documentation', 'Testing'],
-                strengths: ['Clean output', 'Production ready', 'Good explanations', 'Multiple languages'],
-                context: '32K tokens'
-            },
-            'devstral': {
-                name: 'Devstral',
-                developer: 'Mistral AI',
-                type: 'Code',
-                size: '24B',
-                tokensPerSec: 4.7,
-                description: 'Development-focused model designed for agentic coding workflows with strong tool use capabilities.',
-                useCases: ['Autonomous coding agents', 'Complex refactoring', 'Multi-file changes', 'Build systems', 'DevOps'],
-                strengths: ['Agentic capabilities', 'Tool use', 'Multi-file context', 'Build awareness'],
-                context: '32K tokens'
-            },
-            'qwen25-coder': {
-                name: 'Qwen 2.5 Coder 32B',
-                developer: 'Alibaba',
-                type: 'Code',
-                size: '32B',
-                tokensPerSec: 4.4,
-                description: 'High-quality coding model known for thorough, well-documented code generation. Previous best-in-class before Qwen 3.',
-                useCases: ['Complex codebases', 'Detailed documentation', 'Architecture design', 'Code review', 'Best practices'],
-                strengths: ['Best code quality', 'Thorough', 'Good docs', 'Well-structured'],
-                context: '128K tokens'
-            },
-            'granite-vision': {
-                name: 'Granite 3.2 Vision 2B',
-                developer: 'IBM',
-                type: 'Vision',
-                size: '2B',
-                tokensPerSec: 4.4,
-                description: 'Tiny vision model designed for edge and embedded use cases. Runs efficiently on limited hardware.',
-                useCases: ['Edge deployment', 'Mobile apps', 'Embedded systems', 'IoT devices', 'Quick image tasks'],
-                strengths: ['Tiny footprint', 'Fast', 'Low resource', 'Edge optimized'],
-                context: '8K tokens'
-            },
-            'mixtral': {
-                name: 'Mixtral 8x7B',
-                developer: 'Mistral AI',
-                type: 'Chat',
-                size: '8x7B MoE',
-                tokensPerSec: 3.1,
-                description: 'Mixture of Experts model that activates only 2 experts per token. Efficient architecture for diverse tasks.',
-                useCases: ['General chat', 'Diverse tasks', 'Efficient inference', 'Multi-domain', 'Cost-effective quality'],
-                strengths: ['MoE efficiency', 'Good quality', 'Diverse knowledge', 'Cost effective'],
-                context: '32K tokens'
-            },
-            'nemotron': {
-                name: 'Nemotron 3 Nano',
-                developer: 'NVIDIA',
-                type: 'Chat',
-                size: '8B',
-                tokensPerSec: 3.1,
-                description: 'NVIDIA\'s efficient small model optimized for their hardware stack. Good for NVIDIA deployments.',
-                useCases: ['NVIDIA deployments', 'TensorRT optimization', 'Data center', 'Fast inference', 'Cost efficiency'],
-                strengths: ['NVIDIA optimized', 'Efficient', 'TensorRT ready', 'Good quality'],
-                context: '16K tokens'
-            },
-            'mistral-small': {
-                name: 'Mistral Small (Previous)',
-                developer: 'Mistral AI',
-                type: 'Chat',
-                size: '22B',
-                tokensPerSec: 2.8,
-                description: 'Previous generation small model from Mistral. Still capable but superseded by 3.2 version.',
-                useCases: ['General chat', 'Legacy compatibility', 'Proven reliability', 'Simple tasks'],
-                strengths: ['Proven', 'Stable', 'Good general quality', 'Well tested'],
-                context: '32K tokens'
-            },
-            'gemma2': {
-                name: 'Gemma 2 27B',
-                developer: 'Google DeepMind',
-                type: 'Chat',
-                size: '27B',
-                tokensPerSec: 2.7,
-                description: 'Google\'s open model with strong benchmark performance. Good integration with Google ecosystem.',
-                useCases: ['Research', 'General tasks', 'Google ecosystem', 'Benchmarking', 'Fine-tuning'],
-                strengths: ['Strong benchmarks', 'Google support', 'Well documented', 'Research friendly'],
-                context: '8K tokens'
-            },
-            'qwen25vl-72b': {
-                name: 'Qwen 2.5 VL 72B',
-                developer: 'Alibaba',
-                type: 'Vision',
-                size: '72B',
-                tokensPerSec: 2.1,
-                description: 'The largest and most capable Qwen vision model. Delivers excellent image understanding and reasoning, ideal for complex visual analysis tasks requiring maximum accuracy.',
-                useCases: ['Complex visual reasoning', 'Detailed image analysis', 'Document understanding', 'High-stakes vision tasks', 'Research'],
-                strengths: ['Highest vision accuracy', 'Excellent reasoning', 'Best for complex tasks', 'Detailed outputs'],
-                context: '32K tokens'
-            },
-            'gemma3': {
-                name: 'Gemma 3 27B',
-                developer: 'Google DeepMind',
-                type: 'Chat',
-                size: '27B',
-                tokensPerSec: 7.9,
-                description: 'Google\'s latest Gemma model with improved reasoning and instruction following. Significantly faster than Gemma 2.',
-                useCases: ['General chat', 'Reasoning tasks', 'Code assistance', 'Analysis', 'Research'],
-                strengths: ['Much faster than Gemma 2', 'Improved reasoning', 'Better instruction following', 'Good quality'],
-                context: '128K tokens'
-            },
-            'qwen3-vl-32b': {
-                name: 'Qwen3 VL 32B',
-                developer: 'Alibaba',
-                type: 'Vision',
-                size: '32B',
-                tokensPerSec: 8.3,
-                description: 'A large vision-language model with excellent image understanding capabilities. Good balance of speed and accuracy for complex vision tasks.',
-                useCases: ['Complex image analysis', 'Document understanding', 'Visual reasoning', 'Chart/graph analysis', 'Detailed descriptions'],
-                strengths: ['High accuracy', 'Good reasoning', 'Detailed outputs', 'Strong multimodal'],
-                context: '32K tokens'
-            },
-            'llama33': {
-                name: 'Llama 3.3 70B Instruct',
-                developer: 'Meta',
-                type: 'Chat',
-                size: '70B',
-                tokensPerSec: 1.6,
-                description: 'Meta\'s latest flagship model with significantly improved instruction following. High quality for demanding tasks.',
-                useCases: ['High-quality chat', 'Complex reasoning', 'Important outputs', 'Nuanced tasks', 'Expert assistance'],
-                strengths: ['Excellent quality', 'Great instruction following', 'Nuanced', 'Reliable'],
-                context: '128K tokens'
-            },
-            'llama4': {
-                name: 'Llama 4 Scout 109B',
-                developer: 'Meta',
-                type: 'Chat',
-                size: '109B (17B active)',
-                tokensPerSec: 4.7,
-                description: 'Meta\'s latest Llama 4 Scout model using Mixture of Experts architecture. Multimodal capable with efficient inference.',
-                useCases: ['General chat', 'Multimodal tasks', 'Complex reasoning', 'Analysis', 'Vision tasks'],
-                strengths: ['MoE efficiency', 'Multimodal', 'Good quality', 'Fast for size'],
-                context: '128K tokens'
-            },
-            'minicpm-v': {
-                name: 'MiniCPM-V',
-                developer: 'OpenBMB',
-                type: 'Vision',
-                size: '~8B',
-                tokensPerSec: 1.5,
-                description: 'A compact vision-language model designed for efficient multimodal understanding. Good for basic image tasks but may hallucinate on complex queries.',
-                useCases: ['Basic image analysis', 'Simple visual Q&A', 'Image captioning', 'Lightweight vision tasks'],
-                strengths: ['Compact', 'Low resource usage', 'Basic vision tasks', 'Edge friendly'],
-                context: '8K tokens'
-            },
-            'qwen25-72b': {
-                name: 'Qwen 2.5 72B Instruct',
-                developer: 'Alibaba',
-                type: 'Chat',
-                size: '72B',
-                tokensPerSec: 1.0,
-                description: 'Large multilingual model from Alibaba. Excellent for non-English tasks and global content.',
-                useCases: ['Multilingual tasks', 'Translation', 'Global content', 'Non-English chat', 'Cross-lingual'],
-                strengths: ['Best multilingual', 'Many languages', 'Cultural awareness', 'Translation'],
-                context: '128K tokens'
-            },
-            'bge-m3': {
-                name: 'BGE-M3',
-                developer: 'BAAI',
-                type: 'Embedding',
-                size: '1024 dims',
-                tokensPerSec: null,
-                description: 'Multilingual embedding model supporting 100+ languages. Tested and working with KĀDI embedding API. Excellent for semantic search and RAG applications.',
-                useCases: ['Semantic search', 'RAG systems', 'Multilingual retrieval', 'Document similarity', 'Clustering'],
-                strengths: ['100+ languages', '1024 dimensions', 'High quality embeddings', 'Good for RAG', 'Production ready'],
-                context: '8K tokens'
-            },
-            'mxbai-embed': {
-                name: 'MxBai Embed Large',
-                developer: 'Mixedbread AI',
-                type: 'Embedding',
-                size: '1024 dims',
-                tokensPerSec: null,
-                description: 'High-quality embedding model optimized for English text. Tested and working with KĀDI embedding API. Great for document embedding and similarity search.',
-                useCases: ['Document embedding', 'Similarity search', 'RAG', 'Semantic matching', 'Classification'],
-                strengths: ['High quality', '1024 dimensions', 'Fast', 'English optimized', 'Good for RAG'],
-                context: '512 tokens'
-            },
-            'nomic-embed': {
-                name: 'Nomic Embed Text V2 MoE',
-                developer: 'Nomic AI',
-                type: 'Embedding',
-                size: '768 dims',
-                tokensPerSec: null,
-                description: 'MoE architecture embedding model with extended context support. Tested and working with KĀDI embedding API. Good for longer documents with efficient computation.',
-                useCases: ['Long document embedding', 'Extended context', 'Efficient retrieval', 'Large documents'],
-                strengths: ['Long context', '768 dimensions', 'MoE efficiency', 'Good quality', 'Large docs'],
-                context: '8K tokens'
-            },
-            'bge-reranker': {
-                name: 'BGE Reranker V2 M3',
-                developer: 'BAAI',
-                type: 'Reranker',
-                size: 'N/A',
-                tokensPerSec: null,
-                description: 'Cross-encoder reranker for improving search result quality. Does not produce embeddings - use for reranking retrieved documents.',
-                useCases: ['Search reranking', 'RAG improvement', 'Result refinement', 'Two-stage retrieval'],
-                strengths: ['Improves retrieval', 'Cross-encoder quality', 'Production ready', 'Easy integration'],
-                context: '512 tokens'
-            },
-            // Commercial Models - OpenAI GPT-5
-            'gpt-5': {
-                name: 'GPT-5',
-                developer: 'OpenAI',
-                type: 'Chat',
-                size: 'Unknown',
-                tokensPerSec: null,
-                description: 'OpenAI\'s GPT-5 base model. State-of-the-art general purpose AI with excellent reasoning and instruction following.',
-                useCases: ['General chat', 'Complex reasoning', 'Content creation', 'Analysis', 'Problem solving'],
-                strengths: ['State-of-the-art', 'Excellent reasoning', 'Tool use', 'Instruction following'],
-                context: '128K tokens'
-            },
-            'gpt-5-mini': {
-                name: 'GPT-5 Mini',
-                developer: 'OpenAI',
-                type: 'Chat',
-                size: 'Compact',
-                tokensPerSec: null,
-                description: 'Smaller, faster GPT-5 variant optimized for cost efficiency. Good balance of capability and speed.',
-                useCases: ['High-volume tasks', 'Cost-sensitive apps', 'Quick responses', 'Simple queries'],
-                strengths: ['Fast', 'Cost efficient', 'Good quality', 'Low latency'],
-                context: '128K tokens'
-            },
-            'gpt-5-nano': {
-                name: 'GPT-5 Nano',
-                developer: 'OpenAI',
-                type: 'Chat',
-                size: 'Tiny',
-                tokensPerSec: null,
-                description: 'Smallest GPT-5 variant. Ultra-low cost option for simple tasks and high-volume applications.',
-                useCases: ['Simple tasks', 'Classification', 'Extraction', 'High volume', 'Edge cases'],
-                strengths: ['Lowest cost', 'Fastest', 'Simple tasks', 'High throughput'],
-                context: '32K tokens'
-            },
-            'gpt-5-pro': {
-                name: 'GPT-5 Pro',
-                developer: 'OpenAI',
-                type: 'Chat',
-                size: 'Premium',
-                tokensPerSec: null,
-                description: 'Premium GPT-5 with enhanced reasoning capabilities. Best for complex, high-stakes tasks.',
-                useCases: ['Complex analysis', 'Research', 'Strategic planning', 'Expert tasks', 'High-stakes decisions'],
-                strengths: ['Best reasoning', 'Most capable', 'Deep analysis', 'Expert level'],
-                context: '128K tokens'
-            },
-            'gpt-5-codex': {
-                name: 'GPT-5 Codex',
-                developer: 'OpenAI',
-                type: 'Code',
-                size: 'Unknown',
-                tokensPerSec: null,
-                description: 'Code-optimized GPT-5 for software development. Excellent code generation and tool use.',
-                useCases: ['Code generation', 'Debugging', 'Code review', 'Refactoring', 'Documentation'],
-                strengths: ['Code optimized', 'Tool use', 'Multi-language', 'Production quality'],
-                context: '128K tokens'
-            },
-            'gpt-5-chat-latest': {
-                name: 'GPT-5 Chat Latest',
-                developer: 'OpenAI',
-                type: 'Chat',
-                size: 'Unknown',
-                tokensPerSec: null,
-                description: 'Always points to the newest GPT-5 chat model. Use for latest improvements and capabilities.',
-                useCases: ['General chat', 'Latest features', 'Best quality', 'Production apps'],
-                strengths: ['Always current', 'Latest improvements', 'Tool use', 'Best practices'],
-                context: '128K tokens'
-            },
-            'gpt-5-1': {
-                name: 'GPT-5.1',
-                developer: 'OpenAI',
-                type: 'Chat',
-                size: 'Unknown',
-                tokensPerSec: null,
-                description: 'GPT-5.1 release with improved capabilities over base GPT-5.',
-                useCases: ['General chat', 'Complex reasoning', 'Content creation', 'Analysis'],
-                strengths: ['Improved over 5.0', 'Better reasoning', 'Tool use', 'Reliable'],
-                context: '128K tokens'
-            },
-            'gpt-5-1-chat-latest': {
-                name: 'GPT-5.1 Chat Latest',
-                developer: 'OpenAI',
-                type: 'Chat',
-                size: 'Unknown',
-                tokensPerSec: null,
-                description: 'Always points to the newest GPT-5.1 chat model.',
-                useCases: ['General chat', 'Latest 5.1 features', 'Production apps'],
-                strengths: ['Always current', 'Stable API', 'Tool use'],
-                context: '128K tokens'
-            },
-            'gpt-5-1-codex': {
-                name: 'GPT-5.1 Codex',
-                developer: 'OpenAI',
-                type: 'Code',
-                size: 'Unknown',
-                tokensPerSec: null,
-                description: 'Code-optimized GPT-5.1 for software development.',
-                useCases: ['Code generation', 'Debugging', 'Code review', 'Multi-language'],
-                strengths: ['Code optimized', 'Tool use', 'Production quality'],
-                context: '128K tokens'
-            },
-            'gpt-5-1-codex-mini': {
-                name: 'GPT-5.1 Codex Mini',
-                developer: 'OpenAI',
-                type: 'Code',
-                size: 'Compact',
-                tokensPerSec: null,
-                description: 'Smaller code model for cost-efficient development tasks.',
-                useCases: ['Simple code tasks', 'High volume', 'Cost sensitive'],
-                strengths: ['Fast', 'Cost efficient', 'Good for simple tasks'],
-                context: '64K tokens'
-            },
-            'gpt-5-1-codex-max': {
-                name: 'GPT-5.1 Codex Max',
-                developer: 'OpenAI',
-                type: 'Code',
-                size: 'Premium',
-                tokensPerSec: null,
-                description: 'Maximum context code model for large codebases and complex projects.',
-                useCases: ['Large codebases', 'Complex refactoring', 'Full project context', 'Architecture'],
-                strengths: ['Huge context', 'Best code quality', 'Complex projects', 'Tool use'],
-                context: '256K tokens'
-            },
-            'gpt-5-2': {
-                name: 'GPT-5.2',
-                developer: 'OpenAI',
-                type: 'Chat',
-                size: 'Unknown',
-                tokensPerSec: null,
-                description: 'Latest GPT-5.2 release with newest capabilities and improvements.',
-                useCases: ['General chat', 'Complex reasoning', 'Latest features', 'Production'],
-                strengths: ['Newest model', 'Best capabilities', 'Tool use', 'Reliable'],
-                context: '128K tokens'
-            },
-            'gpt-5-2-pro': {
-                name: 'GPT-5.2 Pro',
-                developer: 'OpenAI',
-                type: 'Chat',
-                size: 'Premium',
-                tokensPerSec: null,
-                description: 'Premium GPT-5.2 with enhanced reasoning and extended context.',
-                useCases: ['Complex analysis', 'Research', 'Long documents', 'Strategic tasks'],
-                strengths: ['Best reasoning', 'Extended context', 'Premium quality', 'Tool use'],
-                context: '256K tokens'
-            },
-            'gpt-5-2-chat-latest': {
-                name: 'GPT-5.2 Chat Latest',
-                developer: 'OpenAI',
-                type: 'Chat',
-                size: 'Unknown',
-                tokensPerSec: null,
-                description: 'Always points to the newest GPT-5.2 chat model.',
-                useCases: ['General chat', 'Latest features', 'Production apps'],
-                strengths: ['Always current', 'Latest improvements', 'Tool use'],
-                context: '128K tokens'
-            },
-            'gpt-5-2-codex': {
-                name: 'GPT-5.2 Codex',
-                developer: 'OpenAI',
-                type: 'Code',
-                size: 'Unknown',
-                tokensPerSec: null,
-                description: 'Latest code-optimized GPT-5.2 for software development.',
-                useCases: ['Code generation', 'Debugging', 'Latest code features'],
-                strengths: ['Newest code model', 'Tool use', 'Multi-language'],
-                context: '128K tokens'
-            },
-            // Commercial Models - Anthropic Claude
-            'claude-sonnet-4-5': {
-                name: 'Claude Sonnet 4.5',
-                developer: 'Anthropic',
-                type: 'Chat',
-                size: 'Mid-tier',
-                tokensPerSec: null,
-                description: 'Anthropic\'s balanced Claude model. Excellent reasoning, safety, and instruction following with good speed.',
-                useCases: ['General chat', 'Complex reasoning', 'Writing', 'Analysis', 'Code assistance'],
-                strengths: ['Balanced', 'Safe', 'Good reasoning', 'Tool use', 'Long context'],
-                context: '200K tokens'
-            },
-            'claude-haiku-4-5': {
-                name: 'Claude Haiku 4.5',
-                developer: 'Anthropic',
-                type: 'Chat',
-                size: 'Fast',
-                tokensPerSec: null,
-                description: 'Anthropic\'s fastest Claude model. Optimized for speed and cost while maintaining quality.',
-                useCases: ['High volume', 'Quick tasks', 'Cost sensitive', 'Simple queries', 'Rapid responses'],
-                strengths: ['Fastest Claude', 'Low cost', 'Good quality', 'Tool use', 'Long context'],
-                context: '200K tokens'
-            },
-            // Commercial Models - Moonshot Kimi
-            'kimi-k2-5': {
-                name: 'Kimi K2.5',
-                developer: 'Moonshot AI',
-                type: 'Chat',
-                size: 'Unknown',
-                tokensPerSec: null,
-                description: 'Moonshot\'s latest Kimi K2.5 model. Strong multilingual and reasoning capabilities from China\'s leading AI lab.',
-                useCases: ['General chat', 'Multilingual tasks', 'Chinese content', 'Analysis', 'Writing'],
-                strengths: ['Latest Kimi', 'Multilingual', 'Strong reasoning', 'Tool use', 'Good quality'],
-                context: '128K tokens'
-            },
-            'kimi-k2-turbo': {
-                name: 'Kimi K2 Turbo Preview',
-                developer: 'Moonshot AI',
-                type: 'Chat',
-                size: 'Fast',
-                tokensPerSec: null,
-                description: 'Speed-optimized Kimi K2 variant. Faster responses while maintaining quality.',
-                useCases: ['Quick tasks', 'High volume', 'Real-time apps', 'Cost efficient'],
-                strengths: ['Fast', 'Good quality', 'Tool use', 'Cost efficient'],
-                context: '128K tokens'
-            },
-            'kimi-k2-0905': {
-                name: 'Kimi K2 0905 Preview',
-                developer: 'Moonshot AI',
-                type: 'Chat',
-                size: 'Unknown',
-                tokensPerSec: null,
-                description: 'September 2025 preview build of Kimi K2 with experimental features.',
-                useCases: ['Testing new features', 'Early access', 'Feedback', 'Development'],
-                strengths: ['Latest features', 'Preview access', 'Tool use'],
-                context: '128K tokens'
-            },
-            'kimi-k2-thinking': {
-                name: 'Kimi K2 Thinking',
-                developer: 'Moonshot AI',
-                type: 'Reasoning',
-                size: 'Unknown',
-                tokensPerSec: null,
-                description: 'Kimi K2 with extended thinking capabilities. Shows reasoning process for complex problems.',
-                useCases: ['Complex reasoning', 'Math', 'Logic puzzles', 'Analysis', 'Step-by-step'],
-                strengths: ['Extended thinking', 'Transparent reasoning', 'Complex problems', 'Tool use'],
-                context: '128K tokens'
-            },
-            'kimi-k2-thinking-turbo': {
-                name: 'Kimi K2 Thinking Turbo',
-                developer: 'Moonshot AI',
-                type: 'Reasoning',
-                size: 'Fast',
-                tokensPerSec: null,
-                description: 'Faster reasoning model combining thinking capabilities with optimized speed.',
-                useCases: ['Quick reasoning', 'Real-time analysis', 'Balanced speed/depth'],
-                strengths: ['Fast reasoning', 'Good quality', 'Tool use', 'Efficient'],
-                context: '128K tokens'
-            },
-            // Commercial Models - OpenAI Embeddings
-            'text-embedding-ada-002': {
-                name: 'Text Embedding Ada 002',
-                developer: 'OpenAI',
-                type: 'Embedding',
-                size: '1536 dims',
-                tokensPerSec: null,
-                description: 'OpenAI\'s legacy embedding model. Widely compatible and battle-tested in production.',
-                useCases: ['Semantic search', 'RAG', 'Similarity', 'Clustering', 'Classification'],
-                strengths: ['Battle tested', 'Widely compatible', 'Good quality', 'Stable'],
-                context: '8191 tokens'
-            },
-            'text-embedding-3-small': {
-                name: 'Text Embedding 3 Small',
-                developer: 'OpenAI',
-                type: 'Embedding',
-                size: '1536 dims',
-                tokensPerSec: null,
-                description: 'Smaller, faster embedding model. Good balance of quality and cost.',
-                useCases: ['High volume', 'Cost sensitive', 'Quick embeddings', 'Real-time'],
-                strengths: ['Fast', 'Cost efficient', 'Good quality', 'Flexible dimensions'],
-                context: '8191 tokens'
-            },
-            'text-embedding-3-large': {
-                name: 'Text Embedding 3 Large',
-                developer: 'OpenAI',
-                type: 'Embedding',
-                size: '3072 dims',
-                tokensPerSec: null,
-                description: 'OpenAI\'s highest quality embedding model. Best for accuracy-critical applications.',
-                useCases: ['High accuracy search', 'Critical RAG', 'Fine-grained similarity', 'Research'],
-                strengths: ['Best quality', 'Highest dimensions', 'Most accurate', 'Flexible'],
-                context: '8191 tokens'
-            }
-        };
+    <hr class="divider">
+    <h2>Performance Tiers (Self-Hosted)</h2>
+    <div class="tiers">
+        <div class="tier tier-fast"><h3>🚀 Fast (15-37 tok/s)</h3><p>deepseek-ocr, qwen3-vl:8b, mirothinker, qwen3-coder, codeqwen, llama3.2-vision</p></div>
+        <div class="tier tier-med"><h3>⚡ Medium (5-15 tok/s)</h3><p>devstral-small, sqlcoder, deepseek-r1, mistral-small3.2, phi4, gpt-oss:120b</p></div>
+        <div class="tier tier-slow"><h3>🐢 Slow (2-5 tok/s)</h3><p>codestral, llama4, granite-vision, mixtral, nemotron, mistral-small</p></div>
+        <div class="tier tier-heavy"><h3>🐌 Heavy (1-2 tok/s)</h3><p>qwen2.5vl:72b, llama3.3:70b, minicpm-v, qwen2.5:72b</p></div>
+    </div>
 
-        function showModal(modelId) {
-            const data = modelData[modelId];
-            if (!data) return;
+    <h2>Category Winners</h2>
+    <div class="winners">
+        <div class="winner"><div class="winner-cat">🏆 Fastest</div><div class="winner-name">deepseek-ocr (37.5)</div></div>
+        <div class="winner"><div class="winner-cat">💻 Best Coder</div><div class="winner-name">qwen3-coder:30b</div></div>
+        <div class="winner"><div class="winner-cat">👁️ Best Vision</div><div class="winner-name">qwen2.5vl:72b</div></div>
+        <div class="winner"><div class="winner-cat">🧠 Reasoning</div><div class="winner-name">deepseek-r1:32b</div></div>
+        <div class="winner"><div class="winner-cat">⚡ Balance</div><div class="winner-name">mistral-small3.2</div></div>
+        <div class="winner"><div class="winner-cat">🔧 Vision+Tools</div><div class="winner-name">qwen3-vl:32b</div></div>
+    </div>
 
-            document.getElementById('modal-title').textContent = data.name;
-            
-            const statsHtml = data.tokensPerSec ? `
-                <div class="modal-stats">
-                    <div class="modal-stat">
-                        <div class="modal-stat-value">${data.size}</div>
-                        <div class="modal-stat-label">Parameters</div>
-                    </div>
-                    <div class="modal-stat">
-                        <div class="modal-stat-value">${data.tokensPerSec}</div>
-                        <div class="modal-stat-label">Tokens/sec</div>
-                    </div>
-                    <div class="modal-stat">
-                        <div class="modal-stat-value">${data.context}</div>
-                        <div class="modal-stat-label">Context</div>
-                    </div>
-                </div>
-            ` : `
-                <div class="modal-stats">
-                    <div class="modal-stat">
-                        <div class="modal-stat-value">${data.type}</div>
-                        <div class="modal-stat-label">Type</div>
-                    </div>
-                    <div class="modal-stat">
-                        <div class="modal-stat-value">${data.context}</div>
-                        <div class="modal-stat-label">Max Input</div>
-                    </div>
-                    <div class="modal-stat">
-                        <div class="modal-stat-value">N/A</div>
-                        <div class="modal-stat-label">Tokens/sec</div>
-                    </div>
-                </div>
-            `;
+    <p class="ts">Updated: Jan 28, 2026 • 💡 Click model names for details</p>
+</div>
 
-            const bodyHtml = `
-                <div class="modal-section">
-                    <div class="modal-label">Developer</div>
-                    <div class="modal-developer">${data.developer}</div>
-                </div>
-                <div class="modal-section">
-                    ${statsHtml}
-                </div>
-                <div class="modal-section">
-                    <div class="modal-label">Description</div>
-                    <div class="modal-value">${data.description}</div>
-                </div>
-                <div class="modal-section">
-                    <div class="modal-label">Best Use Cases</div>
-                    <div class="modal-tags">
-                        ${data.useCases.map(u => `<span class="modal-tag">${u}</span>`).join('')}
-                    </div>
-                </div>
-                <div class="modal-section">
-                    <div class="modal-label">Key Strengths</div>
-                    <div class="modal-tags">
-                        ${data.strengths.map(s => `<span class="modal-tag">${s}</span>`).join('')}
-                    </div>
-                </div>
-            `;
+<div class="modal-bg" id="modal" onclick="hide(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-head">
+            <div><h2 class="modal-title" id="mt"></h2><p class="modal-dev" id="md"></p></div>
+            <button class="modal-close" onclick="hide()">&times;</button>
+        </div>
+        <div id="mc"></div>
+    </div>
+</div>
 
-            document.getElementById('modal-body').innerHTML = bodyHtml;
-            document.getElementById('modal-overlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
+<script>
+const F={type:'all',cost:'all',tools:'all',vendor:'all'};
+let sC='name',sD='asc';
+
+document.querySelectorAll('.filter-btn').forEach(b=>b.onclick=()=>{
+    const f=b.dataset.f,v=b.dataset.v;
+    document.querySelectorAll(`[data-f="${f}"]`).forEach(x=>x.classList.remove('active','active-green','active-purple'));
+    b.classList.add('active');
+    if(v==='free')b.classList.add('active-green');
+    if(v==='paid')b.classList.add('active-purple');
+    F[f]=v;apply();
+});
+
+document.getElementById('vf').onchange=e=>{F.vendor=e.target.value;apply();};
+
+document.querySelectorAll('th[data-s]').forEach(h=>h.onclick=()=>{
+    const c=h.dataset.s;
+    sD=(sC===c)?(sD==='asc'?'desc':'asc'):'asc';
+    sC=c;
+    document.querySelectorAll('th').forEach(x=>{x.classList.remove('sorted');x.querySelector('.sort-icon').textContent='↕';});
+    h.classList.add('sorted');
+    h.querySelector('.sort-icon').textContent=sD==='asc'?'▲':'▼';
+    sort();
+});
+
+function apply(){
+    let n=0;
+    document.querySelectorAll('#tb tr').forEach(r=>{
+        const mt=F.type==='all'||r.dataset.t===F.type;
+        const mc=F.cost==='all'||r.dataset.c===F.cost;
+        const mtools=F.tools==='all'||r.dataset.tl===F.tools;
+        const mv=F.vendor==='all'||r.dataset.v===F.vendor;
+        if(mt&&mc&&mtools&&mv){r.classList.remove('hidden');n++;}
+        else r.classList.add('hidden');
+    });
+    document.getElementById('rc').textContent=n;
+    document.getElementById('vis').textContent=n;
+}
+
+function sort(){
+    const tb=document.getElementById('tb');
+    const rows=[...tb.querySelectorAll('tr')];
+    rows.sort((a,b)=>{
+        let av,bv;
+        switch(sC){
+            case'name':av=a.dataset.n.toLowerCase();bv=b.dataset.n.toLowerCase();break;
+            case'vendor':av=a.dataset.v;bv=b.dataset.v;break;
+            case'type':av=a.dataset.t;bv=b.dataset.t;break;
+            case'cost':av=a.dataset.c==='free'?0:1;bv=b.dataset.c==='free'?0:1;break;
+            case'tools':av=a.dataset.tl==='yes'?0:1;bv=b.dataset.tl==='yes'?0:1;break;
+            case'tokps':av=parseFloat(a.dataset.tp)||-1;bv=parseFloat(b.dataset.tp)||-1;break;
+            case'context':av=parseFloat(a.dataset.cx)||0;bv=parseFloat(b.dataset.cx)||0;break;
+            case'size':av=parseFloat(a.dataset.sz)||0;bv=parseFloat(b.dataset.sz)||0;break;
+            default:return 0;
         }
+        let cmp=typeof av==='string'?av.localeCompare(bv):av-bv;
+        return sD==='asc'?cmp:-cmp;
+    });
+    rows.forEach(r=>tb.appendChild(r));
+}
 
-        function closeModal(event) {
-            if (event && event.target !== event.currentTarget) return;
-            document.getElementById('modal-overlay').classList.remove('active');
-            document.body.style.overflow = '';
-        }
+function clearF(){
+    F.type='all';F.cost='all';F.tools='all';F.vendor='all';
+    document.querySelectorAll('.filter-btn').forEach(b=>{
+        b.classList.remove('active','active-green','active-purple');
+        if(b.dataset.v==='all')b.classList.add('active');
+    });
+    document.getElementById('vf').value='all';
+    apply();
+}
 
-        // Close modal on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
-    </script>
+const M={
+    'deepseek-ocr':{n:'DeepSeek OCR',d:'DeepSeek',t:'Vision',s:'~8B',tp:37.5,c:'16K',desc:'Specialized OCR model. Extremely fast.',u:['OCR','Text extraction'],str:['Fastest','OCR specialist']},
+    'qwen3-vl-8b':{n:'Qwen3 VL 8B',d:'Alibaba',t:'Vision',s:'8B',tp:25.0,c:'32K',desc:'Fast vision with tool support.',u:['Image analysis','Visual Q&A'],str:['Fast','Tool support']},
+    'qwen3-coder':{n:'Qwen3 Coder 30B',d:'Alibaba',t:'Code',s:'30B',tp:20.9,c:'128K',desc:'Best free coding model.',u:['Code gen','Debugging'],str:['Best quality','Fast']},
+    'mirothinker':{n:'MiroThinker 30B',d:'MiroAI',t:'Reasoning',s:'30B',tp:23.5,c:'32K',desc:'Chain-of-thought reasoning.',u:['Math','Logic'],str:['Transparent','Good at math']},
+    'gpt-5':{n:'GPT-5',d:'OpenAI',t:'Chat',s:'-',tp:null,c:'128K',desc:'OpenAI state-of-the-art.',u:['General','Reasoning'],str:['SOTA','Tool support']},
+    'claude-sonnet-4-5':{n:'Claude Sonnet 4.5',d:'Anthropic',t:'Chat',s:'-',tp:null,c:'200K',desc:'Balanced Claude model.',u:['Chat','Writing'],str:['Safe','Long context']},
+    'claude-haiku-4-5':{n:'Claude Haiku 4.5',d:'Anthropic',t:'Chat',s:'-',tp:null,c:'200K',desc:'Fastest Claude.',u:['Quick tasks','High volume'],str:['Fast','Low cost']},
+    'kimi-k2-5':{n:'Kimi K2.5',d:'Moonshot',t:'Chat',s:'-',tp:null,c:'128K',desc:'Latest Kimi model.',u:['Chat','Multilingual'],str:['Latest','Tool support']},
+    'kimi-k2-thinking':{n:'Kimi K2 Thinking',d:'Moonshot',t:'Reasoning',s:'-',tp:null,c:'128K',desc:'Extended thinking.',u:['Complex reasoning','Math'],str:['Deep thinking','Tools']},
+    'bge-m3':{n:'BGE-M3',d:'BAAI',t:'Embedding',s:'1024d',tp:null,c:'8K',desc:'Multilingual embedding.',u:['Search','RAG'],str:['100+ languages','Production ready']}
+};
+
+function show(id){
+    const m=M[id];
+    document.getElementById('mt').textContent=m?m.n:id;
+    document.getElementById('md').textContent=m?'by '+m.d:'';
+    if(!m){document.getElementById('mc').innerHTML='<p style="color:#a1a1aa">Details coming soon.</p>';}
+    else{
+        document.getElementById('mc').innerHTML=`
+            <div class="modal-stats">
+                <div class="modal-stat"><div class="modal-stat-val">${m.s}</div><div class="modal-stat-lbl">Size</div></div>
+                <div class="modal-stat"><div class="modal-stat-val">${m.tp||'-'}</div><div class="modal-stat-lbl">Tok/s</div></div>
+                <div class="modal-stat"><div class="modal-stat-val">${m.c}</div><div class="modal-stat-lbl">Context</div></div>
+            </div>
+            <p class="modal-desc">${m.desc}</p>
+            <p class="modal-sec">Use Cases</p>
+            <div class="modal-tags">${m.u.map(x=>`<span class="modal-tag">${x}</span>`).join('')}</div>
+            <p class="modal-sec">Strengths</p>
+            <div class="modal-tags">${m.str.map(x=>`<span class="modal-str">${x}</span>`).join('')}</div>
+        `;
+    }
+    document.getElementById('modal').classList.add('show');
+}
+
+function hide(e){if(!e||e.target.id==='modal')document.getElementById('modal').classList.remove('show');}
+document.onkeydown=e=>{if(e.key==='Escape')hide();};
+</script>
 </body>
 </html>
