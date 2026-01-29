@@ -161,11 +161,11 @@
     <p class="subtitle">Complete catalog of AI models on the KĀDI distributed network</p>
 
     <div class="stats-row">
-        <div class="stat-card"><div class="stat-number">58</div><div class="stat-label">Total Models</div></div>
-        <div class="stat-card"><div class="stat-number">37</div><div class="stat-label">Self-Hosted</div></div>
+        <div class="stat-card"><div class="stat-number">59</div><div class="stat-label">Total Models</div></div>
+        <div class="stat-card"><div class="stat-number">38</div><div class="stat-label">Self-Hosted</div></div>
         <div class="stat-card"><div class="stat-number">25</div><div class="stat-label">Commercial</div></div>
-        <div class="stat-card"><div class="stat-number">34</div><div class="stat-label">Tool Support</div></div>
-        <div class="stat-card highlight"><div class="stat-number" id="vis">58</div><div class="stat-label">Showing</div></div>
+        <div class="stat-card"><div class="stat-number">35</div><div class="stat-label">Tool Support</div></div>
+        <div class="stat-card highlight"><div class="stat-number" id="vis">59</div><div class="stat-label">Showing</div></div>
     </div>
 
     <div class="filter-bar">
@@ -216,7 +216,7 @@
             </div>
         </div>
         <div class="filter-actions">
-            <span class="results-count"><span id="rc">58</span> models</span>
+            <span class="results-count"><span id="rc">59</span> models</span>
             <button class="clear-btn" onclick="clearF()">✕ Clear</button>
         </div>
     </div>
@@ -237,6 +237,7 @@
                 </tr>
             </thead>
             <tbody id="tb">
+                <tr data-n="humin-glm-4.7-flash:latest" data-t="chat" data-c="free" data-tl="yes" data-v="other" data-tp="44.0" data-cx="128" data-sz="9"><td class="model-name" onclick="show('glm-47-flash')">humin-glm-4.7-flash:latest</td><td><span class="vendor v-other">Zhipu AI</span></td><td><span class="badge type-chat">Chat</span></td><td class="cost-free">Free</td><td>~9B</td><td>128K</td><td class="tools-yes">✅</td><td class="highlight">44.0</td><td>🏆 Fastest + reasoning</td></tr>
                 <tr data-n="humin-deepseek-ocr:latest" data-t="vision" data-c="free" data-tl="no" data-v="other" data-tp="37.5" data-cx="16" data-sz="8"><td class="model-name" onclick="show('deepseek-ocr')">humin-deepseek-ocr:latest</td><td><span class="vendor v-other">DeepSeek</span></td><td><span class="badge type-vision">Vision</span></td><td class="cost-free">Free</td><td>~8B</td><td>16K</td><td class="tools-no">❌</td><td class="highlight">37.5</td><td>OCR specialist</td></tr>
                 <tr data-n="humin-qwen3-vl:8b" data-t="vision" data-c="free" data-tl="yes" data-v="alibaba" data-tp="25.0" data-cx="32" data-sz="8"><td class="model-name" onclick="show('qwen3-vl-8b')">humin-qwen3-vl:8b</td><td><span class="vendor v-alibaba">Alibaba</span></td><td><span class="badge type-vision">Vision</span></td><td class="cost-free">Free</td><td>8B</td><td>32K</td><td class="tools-yes">✅</td><td class="highlight">25.0</td><td>Fast vision+tools</td></tr>
                 <tr data-n="humin-mirothinker15-30b-q8:latest" data-t="reasoning" data-c="free" data-tl="no" data-v="other" data-tp="23.5" data-cx="32" data-sz="30"><td class="model-name" onclick="show('mirothinker')">humin-mirothinker15-30b-q8:latest</td><td><span class="vendor v-other">MiroAI</span></td><td><span class="badge type-reasoning">Reason</span></td><td class="cost-free">Free</td><td>30B</td><td>32K</td><td class="tools-no">❌</td><td class="highlight">23.5</td><td>Chain-of-thought</td></tr>
@@ -311,7 +312,7 @@
     <hr class="divider">
     <h2>Performance Tiers (Self-Hosted)</h2>
     <div class="tiers">
-        <div class="tier tier-fast"><h3>🚀 Fast (15-37 tok/s)</h3><p>deepseek-ocr, qwen3-vl:8b, mirothinker, qwen3-coder, codeqwen, llama3.2-vision</p></div>
+        <div class="tier tier-fast"><h3>🚀 Fast (15-44 tok/s)</h3><p>glm-4.7-flash, deepseek-ocr, qwen3-vl:8b, mirothinker, qwen3-coder, codeqwen, llama3.2-vision</p></div>
         <div class="tier tier-med"><h3>⚡ Medium (5-15 tok/s)</h3><p>devstral-small, sqlcoder, deepseek-r1, mistral-small3.2, phi4, gpt-oss:120b</p></div>
         <div class="tier tier-slow"><h3>🐢 Slow (2-5 tok/s)</h3><p>codestral, llama4, granite-vision, mixtral, nemotron, mistral-small</p></div>
         <div class="tier tier-heavy"><h3>🐌 Heavy (1-2 tok/s)</h3><p>qwen2.5vl:72b, llama3.3:70b, minicpm-v, qwen2.5:72b</p></div>
@@ -319,7 +320,7 @@
 
     <h2>Category Winners</h2>
     <div class="winners">
-        <div class="winner"><div class="winner-cat">🏆 Fastest</div><div class="winner-name">deepseek-ocr (37.5)</div></div>
+        <div class="winner"><div class="winner-cat">🏆 Fastest</div><div class="winner-name">glm-4.7-flash (44.0)</div></div>
         <div class="winner"><div class="winner-cat">💻 Best Coder</div><div class="winner-name">qwen3-coder:30b</div></div>
         <div class="winner"><div class="winner-cat">👁️ Best Vision</div><div class="winner-name">qwen2.5vl:72b</div></div>
         <div class="winner"><div class="winner-cat">🧠 Reasoning</div><div class="winner-name">deepseek-r1:32b</div></div>
@@ -327,7 +328,7 @@
         <div class="winner"><div class="winner-cat">🔧 Vision+Tools</div><div class="winner-name">qwen3-vl:32b</div></div>
     </div>
 
-    <p class="ts">Updated: Jan 28, 2026 • 💡 Click model names for details</p>
+    <p class="ts">Updated: Jan 29, 2026 • 💡 Click model names for details</p>
 </div>
 
 <div class="modal-bg" id="modal" onclick="hide(event)">
@@ -412,7 +413,8 @@ function clearF(){
 }
 
 const M={
-    'deepseek-ocr':{n:'DeepSeek OCR',d:'DeepSeek',t:'Vision',s:'~8B',tp:37.5,c:'16K',desc:'Specialized OCR model. Extremely fast.',u:['OCR','Text extraction'],str:['Fastest','OCR specialist']},
+    'glm-47-flash':{n:'GLM-4.7 Flash',d:'Zhipu AI',t:'Chat',s:'~9B',tp:44.0,c:'128K',desc:'Fastest model with built-in reasoning. Needs higher max_tokens for thinking headroom.',u:['General chat','Reasoning','Analysis'],str:['Fastest overall','Tool support','Built-in reasoning']},
+    'deepseek-ocr':{n:'DeepSeek OCR',d:'DeepSeek',t:'Vision',s:'~8B',tp:37.5,c:'16K',desc:'Specialized OCR model. Extremely fast.',u:['OCR','Text extraction'],str:['Fastest vision','OCR specialist']},
     'qwen3-vl-8b':{n:'Qwen3 VL 8B',d:'Alibaba',t:'Vision',s:'8B',tp:25.0,c:'32K',desc:'Fast vision with tool support.',u:['Image analysis','Visual Q&A'],str:['Fast','Tool support']},
     'qwen3-coder':{n:'Qwen3 Coder 30B',d:'Alibaba',t:'Code',s:'30B',tp:20.9,c:'128K',desc:'Best free coding model.',u:['Code gen','Debugging'],str:['Best quality','Fast']},
     'mirothinker':{n:'MiroThinker 30B',d:'MiroAI',t:'Reasoning',s:'30B',tp:23.5,c:'32K',desc:'Chain-of-thought reasoning.',u:['Math','Logic'],str:['Transparent','Good at math']},
