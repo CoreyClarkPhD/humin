@@ -1,69 +1,228 @@
 {
-  "title": "Enigma Literacy Test",
-  "introText": "Enigma Literacy Test",
   "tests": [
     {
       "type": "info",
       "audioFileName": "esiInstructions.mp3",
-      "paragraph": "\tI am going to ask you to spell some words.  Spell them the best you can.  Some of the words may be easy to spell; some may be difficult.  When you do not know how to spell a word, spell it the best you can.  You can press the triangle play button in the middle of the screen to replay the word.  Press the Start button below when you are ready.",
+      "paragraph": "\tI am going to ask you to spell some words. Spell them the best you can. Some of the words may be easy to spell; some may be difficult. When you do not know how to spell a word, spell it the best you can. You can press the triangle play button in the middle of the screen to replay the word. Press the Start button below when you are ready.",
       "buttonName": "Start"
     },
     {
       "type": "spelling",
       "timeLimitSeconds": 900,
+      "isPractice": false,
       "words": [
-        "bed",
-        "ship",
-        "when",
-        "lump",
-        "float",
-        "train",
-        "place",
-        "drive",
-        "bright",
-        "shopping",
-        "spoil",
-        "serving",
-        "chewed",
-        "carries",
-        "marched",
-        "shower",
-        "bottle",
-        "favor",
-        "ripen",
-        "cellar",
-        "pleasure",
-        "fortunate",
-        "confident",
-        "civilize",
-        "opposition"
-      ],
-      "audioFileNames": [
-        "bed.mp3",
-        "ship.mp3",
-        "when.mp3",
-        "lump.mp3",
-        "float.mp3",
-        "train.mp3",
-        "place.mp3",
-        "drive.mp3",
-        "bright.mp3",
-        "shopping.mp3",
-        "spoil.mp3",
-        "serving.mp3",
-        "chewed.mp3",
-        "carries.mp3",
-        "marched.mp3",
-        "shower.mp3",
-        "bottle.mp3",
-        "favor.mp3",
-        "ripen.mp3",
-        "cellar.mp3",
-        "pleasure.mp3",
-        "fortunate.mp3",
-        "confident.mp3",
-        "civilize.mp3",
-        "opposition.mp3"
+        {
+          "text": "bed",
+          "audioFileName": "bed.mp3",
+          "tags": [
+            { "crit": "CI" },
+            { "crit": "CF" },
+            { "crit": "VS", "param": "e" }
+          ]
+        },
+        {
+          "text": "ship",
+          "audioFileName": "ship.mp3",
+          "tags": [
+            { "crit": "CF" },
+            { "crit": "VS", "param": "i" },
+            { "crit": "DG", "param": "sh" }
+          ]
+        },
+        {
+          "text": "when",
+          "audioFileName": "when.mp3",
+          "tags": [
+            { "crit": "VS", "param": "e" },
+            { "crit": "DG", "param": "wh" }
+          ]
+        },
+        {
+          "text": "lump",
+          "audioFileName": "lump.mp3",
+          "tags": [
+            { "crit": "CI" },
+            { "crit": "BL", "param": "mp" },
+            { "crit": "VS", "param": "u" }
+          ]
+        },
+        {
+          "text": "float",
+          "audioFileName": "float.mp3",
+          "tags": [
+            { "crit": "CF" },
+            { "crit": "BL", "param": "fl" },
+            { "crit": "VL", "param": "oa" }
+          ]
+        },
+        {
+          "text": "train",
+          "audioFileName": "train.mp3",
+          "tags": [
+            { "crit": "CF" },
+            { "crit": "BL", "param": "tr" },
+            { "crit": "VL", "param": "ai" }
+          ]
+        },
+        {
+          "text": "place",
+          "audioFileName": "place.mp3",
+          "tags": [
+            { "crit": "BL", "param": "pl" },
+            { "crit": "VL", "param": "a-e" }
+          ]
+        },
+        {
+          "text": "drive",
+          "audioFileName": "drive.mp3",
+          "tags": [
+            { "crit": "CF" },
+            { "crit": "BL", "param": "dr" },
+            { "crit": "VL", "param": "i-e" }
+          ]
+        },
+        {
+          "text": "bright",
+          "audioFileName": "bright.mp3",
+          "tags": [
+            { "crit": "BL", "param": "br" },
+            { "crit": "VL", "param": "igh" }
+          ]
+        },
+        {
+          "text": "shopping",
+          "audioFileName": "shopping.mp3",
+          "tags": [
+            { "crit": "VS", "param": "o" },
+            { "crit": "DG", "param": "sh" },
+            { "crit": "IE", "param": "pping" }
+          ]
+        },
+        {
+          "text": "spoil",
+          "audioFileName": "spoil.mp3",
+          "tags": [
+            { "crit": "BL", "param": "sp" },
+            { "crit": "VO", "param": "oi" }
+          ]
+        },
+        {
+          "text": "serving",
+          "audioFileName": "serving.mp3",
+          "tags": [
+            { "crit": "VO", "param": "er" },
+            { "crit": "IE", "param": "ving" }
+          ]
+        },
+        {
+          "text": "chewed",
+          "audioFileName": "chewed.mp3",
+          "tags": [
+            { "crit": "DG", "param": "ch" },
+            { "crit": "VO", "param": "ew" },
+            { "crit": "IE", "param": "ed" }
+          ]
+        },
+        {
+          "text": "carries",
+          "audioFileName": "carries.mp3",
+          "tags": [
+            { "crit": "VO", "param": "ar" },
+            { "crit": "IE", "param": "ies" },
+            { "crit": "SJ", "param": "rr" }
+          ]
+        },
+        {
+          "text": "marched",
+          "audioFileName": "marched.mp3",
+          "tags": [
+            { "crit": "DG", "param": "ch" },
+            { "crit": "VO", "param": "ar" },
+            { "crit": "IE", "param": "ed" }
+          ]
+        },
+        {
+          "text": "shower",
+          "audioFileName": "shower.mp3",
+          "tags": [
+            { "crit": "DG", "param": "sh" },
+            { "crit": "VO", "param": "ow" },
+            { "crit": "UFS", "param": "er" }
+          ]
+        },
+        {
+          "text": "bottle",
+          "audioFileName": "bottle.mp3",
+          "tags": [
+            { "crit": "SJ", "param": "tt" },
+            { "crit": "UFS", "param": "le" }
+          ]
+        },
+        {
+          "text": "favor",
+          "audioFileName": "favor.mp3",
+          "tags": [
+            { "crit": "SJ", "param": "v" },
+            { "crit": "UFS", "param": "or" }
+          ]
+        },
+        {
+          "text": "ripen",
+          "audioFileName": "ripen.mp3",
+          "tags": [
+            { "crit": "SJ", "param": "p" },
+            { "crit": "UFS", "param": "en" }
+          ]
+        },
+        {
+          "text": "cellar",
+          "audioFileName": "cellar.mp3",
+          "tags": [
+            { "crit": "SJ", "param": "ll" },
+            { "crit": "UFS", "param": "ar" }
+          ]
+        },
+        {
+          "text": "pleasure",
+          "audioFileName": "pleasure.mp3",
+          "tags": [
+            { "crit": "HS", "param": "ure" },
+            { "crit": "BR", "param": "pleas" }
+          ]
+        },
+        {
+          "text": "fortunate",
+          "audioFileName": "fortunate.mp3",
+          "tags": [
+            { "crit": "VO", "param": "or" },
+            { "crit": "HS", "param": "ate" },
+            { "crit": "BR", "param": "fortun" }
+          ]
+        },
+        {
+          "text": "confident",
+          "audioFileName": "confident.mp3",
+          "tags": [
+            { "crit": "HS", "param": "ent" },
+            { "crit": "BR", "param": "confid" }
+          ]
+        },
+        {
+          "text": "civilize",
+          "audioFileName": "civilize.mp3",
+          "tags": [
+            { "crit": "HS", "param": "ize" },
+            { "crit": "BR", "param": "civil" }
+          ]
+        },
+        {
+          "text": "opposition",
+          "audioFileName": "opposition.mp3",
+          "tags": [
+            { "crit": "HS", "param": "tion" },
+            { "crit": "BR", "param": "pos" }
+          ]
+        }
       ]
     },
     {
@@ -81,7 +240,7 @@
     {
       "type": "literacy",
       "title": "Practice Passage",
-      "timeLimitSeconds": 180,
+      "timeLimitSeconds": 5,
       "isTimerHidden": true,
       "paragraph": "\tTom goes to school far from his house.  Every morning, he takes a % to go to school.  In the %, he also takes a bus home.",
       "questions": [
@@ -113,6 +272,7 @@
       "type": "literacy",
       "title": "Maze Benchmark",
       "timeLimitSeconds": 180,
+      "isPractice": false,
       "paragraph": "\tAnnabelle liked to work on cars with her dad.  Her dad owned a classic 1965 Mustang % he was busily restoring, and she % helping him with the work.  They % together in the garage with the % wide open to let in some %, and fans blowing on them.  On % days Annabelle wore an old, torn % of blue jeans and a faded %.  She tied her hair up in % bun to keep it out of % eyes.  Her dad wore sweatpants and % frayed flannel shirt that was missing two %, and a pair of old carpet % that he didn't mind ruining.  By % end of a day of work % both looked as if they had % crawling around in puddles of oil % grease for hours at a time, % of course they had.  \n\tWhenever her % asked for a part or tool, % would rummage in the tool box % find it and then hand it % to him as quickly as possible.  % knew the names of all the % in his toolbox and all of the % tools on his workbench as well.  % knew about hammers and pullers, about % that raised the car up and % that let her father slide underneath % chassis.  She knew how to handle % these items safely. \n\tAnnabelle was proud % all the skills she'd learned in % a short time - in under a %.  Her father was proud of her, %.  He often said things to Annabelle %, 'Good work,' or 'You're learning this % ,' or 'Thatta girl'.  Working on cars % her dad lifted Annabelle's spirits.  It % hard not to feel good when % were together like this on a % day with the smell of grease % the clatter of tools and the % playing loudly.\n\tOne day, they were% together when a boy from the % walked by.  He stopped in front % the garage door and stared at Annabelle.  % had grease on her shirt and % was handing a ball peen hammer % her father.  \n\t'Hey!' the boy said.  '% don't work on cars.' \n\tAnnabelle shook % head.  'Whatever gave you that strange %?' she said.  'I'm a girl, and % is a car that I'm working %.  So, I guess we do.' \n\tThe % thought about what Annabell had said.  Then laughed and asked, 'Can you teach me how to do it sometime?' ",
       "questions": [
         {
