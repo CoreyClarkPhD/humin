@@ -1,4 +1,6 @@
 {
+  "title": "Enigma Literacy Test",
+  "introText": "Welcome to the Enigma Literacy Test. This test has two parts: a spelling test and a reading test. Press Begin Test when you are ready.",
   "tests": [
     {
       "type": "info",
