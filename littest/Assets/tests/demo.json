@@ -1,0 +1,145 @@
+{
+  "tests": [
+    {
+      "type": "info",
+      "audioFileName": "esiInstructions.mp3",
+      "paragraph": "\tI am going to ask you to spell some words. Spell them the best you can. Some of the words may be easy to spell; some may be difficult. When you do not know how to spell a word, spell it the best you can. You can press the triangle play button in the middle of the screen to replay the word. Press the Start button below when you are ready.",
+      "buttonName": "Start"
+    },
+    {
+      "type": "spelling",
+      "timeLimitSeconds": 120,
+      "isPractice": false,
+      "words": [
+        {
+          "text": "bed",
+          "audioFileName": "bed.mp3",
+          "tags": [
+            { "crit": "CI" },
+            { "crit": "CF" },
+            { "crit": "VS", "param": "e" }
+          ]
+        },
+        {
+          "text": "ship",
+          "audioFileName": "ship.mp3",
+          "tags": [
+            { "crit": "CF" },
+            { "crit": "VS", "param": "i" },
+            { "crit": "DG", "param": "sh" }
+          ]
+        },
+        {
+          "text": "train",
+          "audioFileName": "train.mp3",
+          "tags": [
+            { "crit": "CF" },
+            { "crit": "BL", "param": "tr" },
+            { "crit": "VL", "param": "ai" }
+          ]
+        },
+        {
+          "text": "drive",
+          "audioFileName": "drive.mp3",
+          "tags": [
+            { "crit": "CF" },
+            { "crit": "BL", "param": "dr" },
+            { "crit": "VL", "param": "i-e" }
+          ]
+        },
+        {
+          "text": "bright",
+          "audioFileName": "bright.mp3",
+          "tags": [
+            { "crit": "BL", "param": "br" },
+            { "crit": "VL", "param": "igh" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "info",
+      "audioFileName": "continue.mp3",
+      "paragraph": "\tGreat job!  You completed a test.  Press the Continue button below to goto the next one.",
+      "buttonName": "Continue"
+    },
+    {
+      "type": "info",
+      "audioFileName": "mazeDemo.mp3",
+      "paragraph": "\tYou'll be reading a passage with some missing words. For each missing word, you'll see a box with three word choices. Choose the word that makes the most sense in the passage. Let's try a practice sentence together.  Read the next sentence silently. When you come to a box, read all three options and click on the word that fits best.  Press the Start button below when you are ready.",
+      "buttonName": "Start"
+    },
+    {
+      "type": "literacy",
+      "title": "Practice Passage",
+      "timeLimitSeconds": 5,
+      "isTimerHidden": true,
+      "paragraph": "\tTom goes to school far from his house.  Every morning, he takes a % to go to school.  In the %, he also takes a bus home.",
+      "questions": [
+        {
+          "answer": "bus",
+          "choices": ["art", "bus", "work"]
+        },
+        {
+          "answer": "afternoon",
+          "choices": ["afternoon", "library", "morning"]
+        }
+      ]
+    },
+    {
+      "type": "info",
+      "audioFileName": "mazeInstructions.mp3",
+      "paragraph": "\tGreat! You'll have 2 minutes to complete the next passage.  Read the passage silently, choosing the best word from each box by clicking on it. When you come to the end of the passage, click the SUBMIT button. If you do not finish within 2 minutes, the timer will end to complete the activity. When you are ready to begin, click the START button below.",
+      "buttonName": "Start"
+    },
+    {
+      "type": "literacy",
+      "title": "Maze Benchmark",
+      "timeLimitSeconds": 120,
+      "isPractice": false,
+      "paragraph": "\tAnnabelle liked to work on cars with her dad.  Her dad owned a classic 1965 Mustang % he was busily restoring, and she % helping him with the work.  They % together in the garage with the % wide open to let in some %, and fans blowing on them.  On % days Annabelle wore an old, torn % of blue jeans and a faded %.  She tied her hair up in % bun to keep it out of % eyes.",
+      "questions": [
+        {
+          "answer": "that",
+          "choices": ["before", "that", "until"]
+        },
+        {
+          "answer": "enjoyed",
+          "choices": ["assumed", "enjoyed", "refused"]
+        },
+        {
+          "answer": "worked",
+          "choices": ["cooked", "shopped", "worked"]
+        },
+        {
+          "answer": "door",
+          "choices": ["box", "door", "floor"]
+        },
+        {
+          "answer": "air",
+          "choices": ["air", "food", "trees"]
+        },
+        {
+          "answer": "those",
+          "choices": ["ever", "our", "those"]
+        },
+        {
+          "answer": "pair",
+          "choices": ["pair", "gate", "song"]
+        },
+        {
+          "answer": "shirt",
+          "choices": ["poem", "shirt", "town"]
+        },
+        {
+          "answer": "a",
+          "choices": ["a", "it", "on"]
+        },
+        {
+          "answer": "her",
+          "choices": ["her", "my", "our"]
+        }
+      ]
+    }
+  ]
+}

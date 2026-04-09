@@ -1,0 +1,142 @@
+{
+  "tests": [
+    {
+      "type": "info",
+      "audioFileName": "esiInstructions.mp3",
+      "paragraph": "\tI am going to ask you to spell some words. Spell them the best you can. Some of the words may be easy to spell; some may be difficult. When you do not know how to spell a word, spell it the best you can. You can press the triangle play button in the middle of the screen to replay the word. Press the Start button below when you are ready.",
+      "buttonName": "Start"
+    },
+    {
+      "type": "spelling",
+      "timeLimitSeconds": 900,
+      "isPractice": false,
+      "words": [
+        {
+          "text": "bed",
+          "audioFileName": "bed.mp3",
+          "tags": ["CI", "CF", "SV"]
+        },
+        {
+          "text": "ship",
+          "audioFileName": "ship.mp3",
+          "tags": ["CF", "SV", "DG"]
+        },
+        {
+          "text": "when",
+          "audioFileName": "when.mp3",
+          "tags": ["SV", "DG"]
+        },
+        {
+          "text": "lump",
+          "audioFileName": "lump.mp3",
+          "tags": ["CI", "SV"]
+        },
+        {
+          "text": "float",
+          "audioFileName": "float.mp3",
+          "tags": ["CF", "BL", "VL"]
+        },
+        {
+          "text": "train",
+          "audioFileName": "train.mp3",
+          "tags": ["CF", "BL", "VL"]
+        },
+        {
+          "text": "place",
+          "audioFileName": "place.mp3",
+          "tags": ["BL", "VL"]
+        },
+        {
+          "text": "drive",
+          "audioFileName": "drive.mp3",
+          "tags": ["CF", "BL", "VL"]
+        },
+        {
+          "text": "bright",
+          "audioFileName": "bright.mp3",
+          "tags": ["BL", "VL"]
+        },
+        {
+          "text": "shopping",
+          "audioFileName": "shopping.mp3",
+          "tags": ["SV", "DG", "IE"]
+        },
+        {
+          "text": "spoil",
+          "audioFileName": "spoil.mp3",
+          "tags": ["BL", "VO"]
+        },
+        {
+          "text": "serving",
+          "audioFileName": "serving.mp3",
+          "tags": ["VO", "IE"]
+        },
+        {
+          "text": "chewed",
+          "audioFileName": "chewed.mp3",
+          "tags": ["DG", "VO", "IE"]
+        },
+        {
+          "text": "carries",
+          "audioFileName": "carries.mp3",
+          "tags": ["VO", "IE", "SJ"]
+        },
+        {
+          "text": "marched",
+          "audioFileName": "marched.mp3",
+          "tags": ["DG", "VO", "IE"]
+        },
+        {
+          "text": "shower",
+          "audioFileName": "shower.mp3",
+          "tags": ["DG", "VO", "UFS"]
+        },
+        {
+          "text": "bottle",
+          "audioFileName": "bottle.mp3",
+          "tags": ["SJ", "UFS"]
+        },
+        {
+          "text": "favor",
+          "audioFileName": "favor.mp3",
+          "tags": ["SJ", "UFS"]
+        },
+        {
+          "text": "ripen",
+          "audioFileName": "ripen.mp3",
+          "tags": ["SJ", "UFS"]
+        },
+        {
+          "text": "cellar",
+          "audioFileName": "cellar.mp3",
+          "tags": ["SJ", "UFS"]
+        },
+        {
+          "text": "pleasure",
+          "audioFileName": "pleasure.mp3",
+          "tags": ["HS", "BR"]
+        },
+        {
+          "text": "fortunate",
+          "audioFileName": "fortunate.mp3",
+          "tags": ["VO", "HS", "BR"]
+        },
+        {
+          "text": "confident",
+          "audioFileName": "confident.mp3",
+          "tags": ["HS", "BR"]
+        },
+        {
+          "text": "civilize",
+          "audioFileName": "civilize.mp3",
+          "tags": ["HS", "BR"]
+        },
+        {
+          "text": "opposition",
+          "audioFileName": "opposition.mp3",
+          "tags": ["HS", "BR"]
+        }
+      ]
+    }
+  ]
+}
