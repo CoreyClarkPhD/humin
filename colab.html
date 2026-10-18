@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KĀDI Colab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="KĀDI Colab: one calm place where people and AI agents plan work, hand it to each other and finish it, while you always know what needs you.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0ndXRmLTgnPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJiZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyMzI3MzIiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzE0MTYxYSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHJ4PSIyMjUuMyIgcnk9IjIyNS4zIiBmaWxsPSJ1cmwoI2JnKSIgLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNjEuOTEgMTI4KSBzY2FsZSg3LjY4KSIgZmlsbD0iI2ZmZmZmZiI+CiAgICA8cmVjdCB4PSI2NS42MiIgd2lkdGg9IjI1LjU1IiBoZWlnaHQ9IjI1LjU1IiByeD0iNSIgcnk9IjUiIC8+CiAgICA8cmVjdCB4PSI2NS42MiIgeT0iNzQuNDUiIHdpZHRoPSIyNS41NSIgaGVpZ2h0PSIyNS41NSIgcng9IjUiIHJ5PSI1IiAvPgogICAgPHBhdGggZD0iTTUxLjgzLDU4LjExYzAtLjExLjAzLS4yMS4wMy0uMzJ2LTE1LjI0bDE1Ljc3LTE1LjEyYy0xLjk4LS44Ny0zLjUyLTIuNTYtNC4xNy00LjY1bC0xNS4yOSwxNC42NmMtLjQyLS4xMS0uODUtLjItMS4zMS0uMmgtMTUuNTVjLTIuNzYsMC01LDIuMjQtNSw1djE1LjU1YzAsMi43NiwyLjI0LDUsNSw1aDE1LjU1Yy4yNiwwLC41LS4wNC43NC0uMDhsMTUuNzksMTQuNzZjLjU4LTIuMTIsMi4wNy0zLjg2LDQuMDItNC43OWwtMTUuNTgtMTQuNTdaIiAvPgogICAgPHJlY3QgeT0iLjA0IiB3aWR0aD0iMTgiIGhlaWdodD0iOTkuOTYiIHJ4PSI1IiByeT0iNSIgLz4KICA8L2c+Cjwvc3ZnPgo=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --night:#0e1014; --tile:#232732; --tile-2:#14161a; --tile-3:#1b1e26;
+  --brand:#1945A3; --brand-hi:#5d8cf0; --brand-glow:#2f62d6; --brand-soft:#e7eefc;
+  --slate:#9BAFB5; --slate-soft:#e6ecee;
+  --paper:#f7f8f6; --card:#ffffff; --ink:#14161a; --ink-2:#3c434d; --muted:#67707c; --line:#dfe3e2;
+  --on-night:#f3f5f8; --on-night-2:#b7bfcc; --on-night-3:#8590a1; --night-line:rgba(255,255,255,.09);
+  --a-arch:#8c80f0; --a-pm:#ec6fa1; --a-eng:#5d8cf0; --a-int:#f08a58; --a-ui:#3fc596; --a-data:#e3b13c; --a-win:#a6b4c0;
+  --good:#3fc596; --warn:#e3b13c; --stop:#f08a58;
+  --radius:16px;
+  --display:"Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --body:"Source Sans 3", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --gutter-l:max(20px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(20px, env(safe-area-inset-right, 0px));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,svg{max-width:100%}
+h1,h2,h3{font-family:var(--display);line-height:1.12;text-wrap:balance;margin:0;letter-spacing:-.015em}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
+.night .eyebrow{color:var(--brand-hi)}
+.lead{font-size:20px;color:var(--ink-2);max-width:62ch}
+.night .lead{color:var(--on-night-2)}
+
+/* ---------- top bar ---------- */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(14,16,20,.82);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--night-line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.lockup{display:flex;align-items:center;gap:12px;color:var(--on-night);text-decoration:none}
+.lockup svg.word{height:26px;width:auto;fill:currentColor;overflow:visible;flex:0 0 auto}
+.lockup .sep{width:1px;height:26px;background:var(--on-night-3);opacity:.6}
+.lockup .prod{font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:-.01em}
+.navlinks{display:flex;gap:22px;font-size:15px}
+.navlinks a{color:var(--on-night-2);text-decoration:none}
+.navlinks a:hover{color:var(--on-night)}
+@media (max-width:760px){.navlinks{display:none}}
+
+/* ---------- hero ---------- */
+.night{background:var(--night);color:var(--on-night)}
+.hero{position:relative;overflow:hidden;padding-block:72px 96px}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:780px;height:780px;background:radial-gradient(closest-side,rgba(47,98,214,.42),rgba(25,69,163,.12) 55%,transparent 72%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(180deg,#000 0%,transparent 85%);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 85%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:56px;align-items:center}
+@media (max-width:980px){.hero .wrap{grid-template-columns:1fr;gap:44px}.hero{padding-block:48px 64px}}
+.hero h1{font-size:clamp(38px,5.4vw,64px);font-weight:800;margin:18px 0 22px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#8fb0ff,#5d8cf0 45%,#3fc596);-webkit-background-clip:text;background-clip:text;color:transparent}
+.badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--on-night-2);border:1px solid var(--night-line);background:rgba(255,255,255,.04);padding:6px 12px;border-radius:99px}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(63,197,150,.18)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:600;font-size:16px;padding:13px 20px;border-radius:12px;text-decoration:none;transition:transform .15s ease,background .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--brand);color:#fff;box-shadow:0 10px 30px -10px rgba(47,98,214,.8)}
+.btn.primary:hover{background:var(--brand-glow)}
+.btn.ghost{color:var(--on-night);border:1px solid rgba(255,255,255,.18)}
+.hero-note{margin-top:26px;font-size:15px;color:var(--on-night-3)}
+
+/* hero device mock */
+.device{position:relative;background:linear-gradient(180deg,var(--tile),var(--tile-2));border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:18px 18px 52px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7),0 0 0 1px rgba(0,0,0,.4) inset}
+.dev-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.dev-top .t{font-family:var(--display);font-weight:600;font-size:15px}
+.dev-top .s{font-size:12.5px;color:var(--on-night-3)}
+.dots{display:flex;gap:6px}.dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.16)}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:520px){.cols{grid-template-columns:1fr}}
+.col{background:rgba(255,255,255,.035);border:1px solid var(--night-line);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.col h4{margin:0 0 2px;font-family:var(--display);font-size:13px;font-weight:600;display:flex;justify-content:space-between;color:var(--on-night-2)}
+.col h4 b{font-weight:700;color:var(--on-night)}
+.tcard{background:rgba(255,255,255,.06);border-radius:10px;padding:9px 10px;font-size:13.5px;line-height:1.35;border:1px solid transparent}
+.tcard .who{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--on-night-3);margin-top:6px}
+.av{width:18px;height:18px;border-radius:6px;display:inline-grid;place-items:center;font-size:10px;font-weight:700;color:#0e1014;flex:0 0 auto;font-family:var(--display)}
+.mini-bar{height:5px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:7px}
+.mini-bar i{display:block;height:100%;border-radius:99px;background:var(--brand-hi);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.tcard.need{border-color:rgba(93,140,240,.45);background:rgba(93,140,240,.12)}
+.tcard.stuck{border-color:rgba(240,138,88,.4);background:rgba(240,138,88,.1)}
+.approve{margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;background:var(--brand);color:#fff;border-radius:7px;padding:4px 9px}
+.toast{position:absolute;left:18px;right:18px;bottom:-20px;margin:auto;max-width:440px;display:flex;align-items:center;gap:10px;background:#0b0d11;border:1px solid rgba(93,140,240,.35);border-radius:12px;padding:10px 14px;font-size:14px;color:var(--on-night-2);box-shadow:0 20px 40px -20px rgba(0,0,0,.8);transition:opacity .35s ease,transform .35s ease}
+.toast.hide{opacity:0;transform:translateY(6px)}
+.toast .pulse{width:9px;height:9px;border-radius:50%;background:var(--good);flex:0 0 auto;animation:pulse 1.6s infinite}
+.toast b{color:var(--on-night)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(63,197,150,.55)}100%{box-shadow:0 0 0 10px rgba(63,197,150,0)}}
+
+/* ---------- sections ---------- */
+section{padding-block:96px;scroll-margin-top:64px}
+@media (max-width:760px){section{padding-block:64px}}
+.sec-head{display:flex;flex-direction:column;gap:14px;max-width:760px;margin-bottom:44px}
+.sec-head h2{font-size:clamp(30px,3.8vw,46px);font-weight:700}
+
+/* problem → shift */
+.shift{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+@media (max-width:820px){.shift{grid-template-columns:1fr}}
+.panel{border-radius:var(--radius);padding:28px;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel h3{font-size:22px}
+.panel.before{background:var(--slate-soft);border-color:#d3dcdf}
+.panel.after{background:linear-gradient(160deg,#0f1a33,#14161a);color:var(--on-night);border-color:#203462}
+.panel ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.panel li{display:flex;gap:10px;align-items:flex-start}
+.panel li::before{content:"";flex:0 0 18px;height:18px;margin-top:4px;border-radius:6px;background:var(--c,#b8c2c6)}
+.panel.before li::before{--c:#c3ced1;mask:none}
+.panel.after li::before{--c:var(--brand-hi)}
+.panel.after .lead{color:var(--on-night-2)}
+
+/* features bento */
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.feat{grid-column:span 2;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px;min-width:0;position:relative;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease}
+.feat:hover{transform:translateY(-3px);box-shadow:0 22px 40px -28px rgba(20,22,26,.45)}
+.feat.wide{grid-column:span 3}
+.feat.dark{background:linear-gradient(165deg,var(--tile),var(--tile-2));color:var(--on-night);border-color:#2b303b}
+.feat.dark p{color:var(--on-night-2)}
+@media (max-width:980px){.feat,.feat.wide{grid-column:span 3}}
+@media (max-width:640px){.bento{grid-template-columns:1fr}.feat,.feat.wide{grid-column:auto}}
+.feat h3{font-size:21px}
+.feat p{color:var(--ink-2);font-size:16.5px}
+.ficon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand)}
+.feat.dark .ficon{background:rgba(93,140,240,.16);color:var(--brand-hi)}
+.ficon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.viz{margin-top:auto;padding-top:8px}
+/* relay viz */
+.relay{display:flex;align-items:center;gap:8px;font-size:13px}
+.relay .node{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--on-night-2)}
+.relay .node .av{width:34px;height:34px;border-radius:10px;font-size:13px}
+.relay .wire{flex:1 1 auto;height:2px;background:repeating-linear-gradient(90deg,rgba(93,140,240,.6) 0 6px,transparent 6px 12px);position:relative;min-width:30px}
+.relay .wire::after{content:"";position:absolute;top:-4px;left:0;width:10px;height:10px;border-radius:50%;background:var(--good);box-shadow:0 0 12px var(--good);animation:travel 2.4s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes travel{0%{left:0;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:calc(100% - 10px);opacity:0}}
+/* milestone viz */
+.ms{display:flex;flex-direction:column;gap:9px;font-size:14px}
+.ms-row{display:grid;grid-template-columns:minmax(0,1fr) 92px 44px;gap:10px;align-items:center}
+.ms-row span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar{height:8px;border-radius:99px;background:#e9edec;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:var(--brand)}
+.ms-row small{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-align:right}
+/* machines viz */
+.hosts{display:flex;flex-wrap:wrap;gap:8px}
+.host{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:var(--paper)}
+.host i{width:8px;height:8px;border-radius:50%;background:var(--good)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;font-weight:600;border-radius:99px;padding:5px 11px;background:var(--brand-soft);color:var(--brand)}
+.feat.dark .chip{background:rgba(255,255,255,.08);color:var(--on-night)}
+.ask{font-size:14px;display:flex;flex-direction:column;gap:8px}
+.bubble{border-radius:12px;padding:9px 12px;max-width:92%}
+.bubble.q{align-self:flex-end;background:var(--brand);color:#fff;border-bottom-right-radius:4px}
+.bubble.a{background:rgba(255,255,255,.08);color:var(--on-night);border-bottom-left-radius:4px}
+.passkey{display:flex;align-items:center;gap:12px;font-size:14px;border:1px dashed #c7d3f3;border-radius:12px;padding:10px 12px;background:#f5f8ff}
+.passkey .fp{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--brand);color:#fff}
+.passkey .fp svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round}
+.ledger{font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;white-space:pre-wrap;overflow-wrap:anywhere}
+
+/* views tabs */
+.views{background:linear-gradient(180deg,var(--paper),#eef1ef)}
+.tabs{display:inline-flex;flex-wrap:wrap;gap:6px;padding:6px;border-radius:14px;background:#e4e8e6;border:1px solid var(--line);margin-bottom:28px}
+.tab{appearance:none;border:0;background:transparent;font-family:var(--display);font-weight:600;font-size:15.5px;color:var(--ink-2);padding:10px 18px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.tab[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 6px 18px -10px rgba(20,22,26,.4)}
+.tab:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.tab .dot{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.tabpanel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.tabpanel[hidden]{display:none!important}
+@media (max-width:900px){.tabpanel{grid-template-columns:1fr}}
+.story{display:flex;flex-direction:column;gap:18px}
+.story h3{font-size:clamp(24px,2.6vw,32px)}
+.quote{font-family:var(--display);font-size:19px;line-height:1.45;color:var(--ink);border-left:3px solid var(--brand);padding-left:16px}
+.gains{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.gains li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start}
+.gains .ck{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand);font-weight:800;font-family:var(--display);font-size:14px}
+.gains b{display:block;font-family:var(--display);font-size:16.5px}
+.gains span{color:var(--ink-2);font-size:16px}
+.screen{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 30px 60px -40px rgba(20,22,26,.5);display:flex;flex-direction:column;gap:14px;min-width:0}
+.screen .stitle{display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:15px}
+.screen .stitle small{font-family:var(--body);font-weight:400;color:var(--muted);font-size:13px}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi b{display:block;font-family:var(--display);font-size:24px;line-height:1.1}
+.kpi span{font-size:13px;color:var(--muted)}
+.rowline{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14.5px;padding:9px 0;border-bottom:1px solid var(--line)}
+.rowline:last-child{border-bottom:0}
+.rowline .l{display:flex;align-items:center;gap:8px;min-width:0}
+.rowline .l span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{font-size:12px;font-weight:700;border-radius:99px;padding:3px 9px;white-space:nowrap}
+.pill.ok{background:#e2f6ee;color:#17734f}
+.pill.wait{background:#fbf1d8;color:#7a5b06}
+.pill.you{background:var(--brand-soft);color:var(--brand)}
+.pill.risk{background:#fde9df;color:#9a3f13}
+.lanes{display:flex;flex-direction:column;gap:8px}
+.lane{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;align-items:center;font-size:13px}
+.lane .track{position:relative;height:22px;background:var(--paper);border-radius:7px;border:1px solid var(--line)}
+.lane .seg{position:absolute;top:2px;bottom:2px;border-radius:5px;background:var(--c);opacity:.9}
+.lane .seg.crit{outline:2px solid var(--ink);outline-offset:-1px}
+.code{font-family:var(--mono);font-size:12.5px;line-height:1.65;background:var(--tile-2);color:#d7deea;border-radius:12px;padding:14px 16px;overflow-x:auto;white-space:pre}
+.code .k{color:#8fb0ff}.code .s{color:#7fdcb4}.code .c{color:#7c8698}
+
+/* unique / compare */
+.compare{width:100%;border-collapse:separate;border-spacing:0;font-size:16px;min-width:640px}
+.compare th,.compare td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--night-line)}
+.compare th{font-family:var(--display);font-weight:600;font-size:15px;color:var(--on-night-2)}
+.compare td{color:var(--on-night-2)}
+.compare th.us,.compare td.us{background:rgba(93,140,240,.1);color:var(--on-night)}
+.compare th.us{border-top-left-radius:12px;border-top-right-radius:12px;color:#fff}
+.compare tr:last-child td.us{border-bottom-left-radius:12px;border-bottom-right-radius:12px}
+.compare td.yes{color:var(--good);font-weight:700}.compare td.no{color:var(--on-night-3)}.compare td.part{color:var(--warn);font-weight:600}
+.compare td.us{font-weight:700;color:#fff}.compare td.us::before{content:"✓";display:inline-grid;place-items:center;width:20px;height:20px;margin-right:8px;border-radius:6px;background:var(--good);color:#0e1014;font-size:12px;font-weight:800;vertical-align:1px}
+.compare td:first-child{color:var(--on-night);font-weight:600}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* how it works */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;counter-reset:s}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:13px;color:var(--brand)}
+.step h3{font-size:19px}
+.step p{color:var(--ink-2);font-size:16px}
+
+/* ecosystem */
+.eco{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:center}
+@media (max-width:900px){.eco{grid-template-columns:1fr}}
+.eco-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:480px){.eco-grid{grid-template-columns:1fr}}
+.eco-item{border:1px solid var(--night-line);border-radius:14px;padding:16px;background:rgba(255,255,255,.03);display:flex;flex-direction:column;gap:6px;min-width:0}
+.eco-item b{font-family:var(--display);font-size:16px;color:var(--on-night)}
+.eco-item span{font-size:15px;color:var(--on-night-2)}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative}
+.road::before{content:"";position:absolute;left:0;right:0;top:15px;height:2px;background:linear-gradient(90deg,var(--brand),var(--good))}
+@media (max-width:820px){.road{grid-template-columns:1fr;gap:18px}.road::before{left:15px;right:auto;top:0;bottom:0;width:2px;height:auto;background:linear-gradient(180deg,var(--brand),var(--good))}}
+.mile{position:relative;padding:44px 18px 0 0;display:flex;flex-direction:column;gap:6px;min-width:0}
+@media (max-width:820px){.mile{padding:0 0 0 44px}}
+.mile::before{content:"";position:absolute;top:6px;left:0;width:20px;height:20px;border-radius:50%;background:var(--paper);border:3px solid var(--brand)}
+@media (max-width:820px){.mile::before{top:2px;left:6px}}
+.mile.last::before{border-color:var(--good);background:var(--good)}
+.mile .when{font-family:var(--mono);font-size:12.5px;color:var(--brand);letter-spacing:.06em}
+.mile b{font-family:var(--display);font-size:18px}
+.mile span{font-size:15.5px;color:var(--ink-2)}
+
+/* closing */
+.closing{text-align:center}
+.closing .wrap{display:flex;flex-direction:column;align-items:center;gap:20px}
+.closing h2{font-size:clamp(30px,4.2vw,52px);font-weight:800;max-width:900px}
+.closing .lead{margin:0 auto}
+.closing .symbol{width:64px;height:auto;fill:var(--on-night)}
+footer{background:var(--night);color:var(--on-night-3);font-size:14px;border-top:1px solid var(--night-line)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:22px}
+
+/* use cases */
+.uc .story p{color:var(--ink-2);font-size:17px}
+.uc-kicker{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);font-weight:500}
+.uc .story h3{color:var(--ink)}
+.vocab{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.vocab .vl{font-size:13px;color:var(--muted);margin-right:4px}
+.vchip{font-size:13px;font-weight:700;border-radius:8px;padding:4px 10px;background:var(--acc-soft);color:var(--acc)}
+.team{display:flex;flex-wrap:wrap;gap:8px}
+.member{display:inline-flex;align-items:center;gap:7px;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:4px 12px 4px 5px}
+.member .av{width:24px;height:24px;border-radius:8px;font-size:11px}
+.av.h{border-radius:50%!important}
+.chat{display:flex;flex-direction:column;gap:8px;font-size:15px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.chat .bubble{max-width:90%;line-height:1.45}
+.chat .bubble.q{background:var(--acc);color:#fff}
+.chat .bubble.a{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.uc .screen{border-top:4px solid var(--acc)}
+.uc .kpi b{color:var(--acc)}
+.uc .bar i{background:var(--acc)}
+.doclist{display:flex;flex-direction:column}
+.doc{display:grid;grid-template-columns:26px minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.doc:last-child{border-bottom:0}
+.doc .dt{font-size:17px}
+.doc .dn{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.doc .dn small{display:block;color:var(--muted);font-size:12.5px}
+.doc .dv{font-family:var(--mono);font-size:13px;color:var(--ink-2)}
+@media (max-width:520px){.doc{grid-template-columns:22px minmax(0,1fr) auto}.doc .dv{display:none}}
+.outputs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;border-top:1px dashed var(--line);padding-top:12px;font-size:13.5px}
+.outputs b{font-family:var(--display);font-size:13.5px;margin-right:4px}
+.outputs span{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:3px 9px}
+.funnel{display:flex;flex-direction:column;gap:6px}
+.fstep{position:relative;display:flex;justify-content:space-between;align-items:center;font-size:14px;padding:8px 12px;border-radius:10px;overflow:hidden;background:var(--paper);border:1px solid var(--line)}
+.fstep::before{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--acc-soft);z-index:0}
+.fstep span,.fstep b{position:relative;z-index:1}
+.fstep b{font-family:var(--display);color:var(--acc)}
+.runs{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:5px}
+.run{display:grid;place-items:center;height:26px;border-radius:7px;font-size:11.5px;font-weight:700;background:#eceff0;color:var(--muted)}
+.run.ok{background:#d9f3e8;color:#17734f}.run.bad{background:#fde3d6;color:#9a3f13}.run.go{background:var(--acc-soft);color:var(--acc);animation:breathe 1.8s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.55}}
+.run.sm{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-1px;margin:0 3px 0 8px;animation:none}
+.runkey{font-size:12.5px;color:var(--muted)}
+.more-uses{margin-top:30px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:15px}
+.more-uses span{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:5px 12px}
+.tabs .tab{white-space:normal;text-align:left}
+/* simple */
+.easy{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.easy{grid-template-columns:1fr}}
+.ez{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.ezn{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;font-family:var(--display);font-weight:700}
+.ez h3{font-size:21px}
+.ez p{color:var(--ink-2);font-size:16.5px}
+.cmd{font-family:var(--mono);font-size:14px;background:var(--tile-2);color:#e6ebf3;border-radius:10px;padding:12px 14px;overflow-x:auto;white-space:nowrap}
+.cmd span{color:var(--brand-hi);margin-right:6px}
+.cmd.small{font-size:13px}
+.tpls{display:flex;flex-wrap:wrap;gap:6px}
+.tpl{font-size:14px;border:1px solid var(--line);border-radius:10px;padding:6px 10px;background:var(--paper)}
+.tpl.on{border-color:var(--brand);background:var(--brand-soft);color:var(--brand);font-weight:700}
+.invite{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.invite .av{width:32px;height:32px;font-size:13px;border-radius:10px}
+.invite .plus{font-size:14px;font-weight:700;color:var(--brand);border:1.5px dashed var(--brand);border-radius:10px;padding:5px 10px}
+.grow{margin-top:18px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px;align-items:center;background:linear-gradient(120deg,var(--brand-soft),#eef7f3);border:1px solid #d5e0f6;border-radius:var(--radius);padding:22px 24px;font-size:17px;color:var(--ink-2)}
+.grow b{color:var(--ink);font-family:var(--display)}
+@media (max-width:760px){.grow{grid-template-columns:1fr}}
+/* ecosystem rings */
+.eco2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:44px;align-items:center}
+@media (max-width:960px){.eco2{grid-template-columns:1fr}}
+.rings svg{width:100%;height:auto;max-width:520px;display:block;margin:0 auto;overflow:visible}
+.rings text{font-family:var(--body)}
+.eco-points{display:flex;flex-direction:column;gap:14px}
+.ep{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:start}
+.epi{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid var(--night-line);color:var(--c)}
+.epi svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ep b{display:block;font-family:var(--display);font-size:17px;color:var(--on-night)}
+.ep span{color:var(--on-night-2);font-size:15.5px}
+.spin{transform-origin:260px 260px;animation:spin 60s linear infinite}
+.spin.rev{animation-direction:reverse;animation-duration:90s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin .lab{animation:spin 60s linear infinite reverse;transform-box:fill-box;transform-origin:center}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="lockup" href="#top" aria-label="KĀDI Colab">
+      <svg class="word" viewBox="0 -17.16 291.48 117.16" aria-hidden="true"><g> <rect x="65.62" width="25.55" height="25.55" rx="5" ry="5"/> <rect x="65.62" y="74.45" width="25.55" height="25.55" rx="5" ry="5"/> <path d="M51.83,58.11c0-.11.03-.21.03-.32v-15.24l15.77-15.12c-1.98-.87-3.52-2.56-4.17-4.65l-15.29,14.66c-.42-.11-.85-.2-1.31-.2h-15.55c-2.76,0-5,2.24-5,5v15.55c0,2.76,2.24,5,5,5h15.55c.26,0,.5-.04.74-.08l15.79,14.76c.58-2.12,2.07-3.86,4.02-4.79l-15.58-14.57Z"/> <rect y=".04" width="18" height="99.96" rx="5" ry="5"/> </g> <g> <path d="M163.714,100.000A5,5,0,0,1,158.934,96.470L155.751,86.118A3,3,0,0,0,152.884,84.000L117.119,84.000A3,3,0,0,0,114.250,86.122L111.083,96.464A5,5,0,0,1,106.302,100.000L97.930,100.000A5,5,0,0,1,93.149,93.536L120.697,3.576A5,5,0,0,1,125.478,0.040L144.426,0.040A5,5,0,0,1,149.205,3.571L176.861,93.531A5,5,0,0,1,172.082,100.000ZM137.354,26.279A2.5,2.5,0,0,0,132.574,26.281L120.988,64.122A3,3,0,0,0,123.856,68.000L146.119,68.000A3,3,0,0,0,148.987,64.118Z"/> <rect x="113.61" y="-17.16" width="42.56" height="10.37" rx="5" ry="5"/> <path d="M189.82,100a5,5,0,0,1-5-5V5.04a5,5,0,0,1,5-5h29.15c25.61,0,44.02,18.89,44.02,49.91s-18.41,50.05-43.9,50.05h-29.27ZM207.82,83h11.15c16.15,0,25.52-14.77,25.52-33.05s-8.55-32.91-25.4-32.91h-11.27a5,5,0,0,0-5,5V78a5,5,0,0,0,5,5Z"/> <rect x="273.47" y=".04" width="18" height="99.96" rx="5" ry="5"/> </g></svg>
+      <span class="sep" aria-hidden="true"></span>
+      <span class="prod">Colab</span>
+    </a>
+    <nav class="navlinks" aria-label="Sections">
+      <a href="#features">Features</a>
+      <a href="#work">Any kind of work</a>
+      <a href="#simple">Getting started</a>
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="#different">Why it's different</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="night hero">
+  <div class="wrap">
+    <div>
+      <span class="badge"><i></i>In development · built on KĀDI</span>
+      <h1>Your people and your AI agents, <em>finally on the same team.</em></h1>
+      <p class="lead">KĀDI Colab is one calm place where people and AI agents plan work, hand it to each other and get it done. You always know what's finished, what's moving, and what needs you.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#features">See what it does</a>
+        <a class="btn ghost" href="#work">See it in your world →</a>
+      </div>
+      <p class="hero-note">For software teams, research labs and small businesses. Runs on your own machines, with no outside services required.</p>
+    </div>
+    <div class="device" aria-label="Illustration of the Colab home screen: what needs you, what's moving and what's stuck." role="img">
+      <div class="dev-top"><div><div class="t">Home</div><div class="s">Website relaunch · Tuesday</div></div><div class="dots"><i></i><i></i><i></i></div></div>
+      <div class="cols">
+        <div class="col">
+          <h4>Needs you <b>2</b></h4>
+          <div class="tcard need">Approve the new pricing page copy<div class="approve">✓ Approve with passkey</div></div>
+          <div class="tcard need">Pick one of two logo layouts<div class="who"><span class="av" style="background:var(--a-ui)">D</span>Design agent asked 5 min ago</div></div>
+        </div>
+        <div class="col">
+          <h4>Moving <b>4</b></h4>
+          <div class="tcard">Product photos resized<div class="mini-bar"><i data-w="88" style="width:20%"></i></div><div class="who"><span class="av" style="background:var(--a-eng)">B</span>Build agent · step 7 of 8</div></div>
+          <div class="tcard">Checkout tested on phones<div class="mini-bar"><i data-w="60" style="width:10%"></i></div><div class="who"><span class="av" style="background:var(--a-int)">T</span>Test agent · step 3 of 5</div></div>
+          <div class="tcard">Launch email drafted<div class="mini-bar"><i data-w="34" style="width:5%"></i></div><div class="who"><span class="av" style="background:var(--a-pm)">M</span>Maya (marketing)</div></div>
+        </div>
+        <div class="col">
+          <h4>Stuck <b>1</b></h4>
+          <div class="tcard stuck">Shipping rates import<div class="who"><span class="av" style="background:var(--a-data)">S</span>Waiting on supplier file · 2 h</div></div>
+        </div>
+      </div>
+      <div class="toast" id="toast" aria-live="polite"><span class="pulse"></span><span id="toastText"><b>Test agent → Build agent:</b> hand-off delivered, Build agent is back at work</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="shift">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The shift</span>
+      <h2>AI agents can do real work now. Keeping them coordinated is the hard part.</h2>
+      <p class="lead">One agent in a chat window is easy. Five agents, three people and two machines working on the same project is a mess of copied messages, lost context and "wait, is this done?". Colab is built for that second picture.</p>
+    </div>
+    <div class="shift">
+      <div class="panel before reveal">
+        <h3>Today, without Colab</h3>
+        <ul>
+          <li>You copy and paste messages between agents to keep work moving.</li>
+          <li>Tasks say "in progress" for weeks, and nobody can say how far along they are.</li>
+          <li>Agents step on each other's work, or wait for hours without anyone noticing.</li>
+          <li>Decisions live in chat history, and the "why" gets lost.</li>
+        </ul>
+      </div>
+      <div class="panel after reveal">
+        <h3>With KĀDI Colab</h3>
+        <ul>
+          <li>Agents hand work to each other, and the next one starts automatically.</li>
+          <li>Progress is counted in small, checkable steps, with a forecast you can trust.</li>
+          <li>Every agent owns its own part of the work, so they never collide.</li>
+          <li>Every decision is recorded with your exact words, signed and kept.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" style="padding-top:0;padding-bottom:40px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What it does</span>
+      <h2>Ten things that make Colab feel like magic</h2>
+      <p class="lead">Each one solves a problem we hit while running a team of AI agents on real projects.</p>
+    </div>
+    <div class="bento">
+      <article class="feat wide dark reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M4 12h12M12 6l6 6-6 6"/></svg></div>
+        <h3>Agents wake each other up</h3>
+        <p>When one agent finishes or gets stuck, it leaves a hand-off and the right agent starts within seconds. No copy-paste, no waiting for someone to notice. In our tests, a waiting agent was back at work a fraction of a second after it was unblocked.</p>
+        <div class="viz"><div class="relay"><div class="node"><span class="av" style="background:var(--a-int)">T</span>Test</div><div class="wire"></div><div class="node"><span class="av" style="background:var(--a-eng)">B</span>Build</div><div class="wire" style="--d:1.2s"></div><div class="node"><span class="av" style="background:var(--a-ui)">D</span>Design</div></div></div>
+      </article>
+      <article class="feat wide reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l3-4 3 2 5-6"/></svg></div>
+        <h3>Always know where you stand</h3>
+        <p>Goals are written as plain sentences you can check in a demo. Work is counted in small steps, so "54% done, finishing Thursday" is a real number, not a guess.</p>
+        <div class="viz ms">
+          <div class="ms-row"><span>Customers can sign in</span><span class="bar"><i style="width:100%"></i></span><small>6/6</small></div>
+          <div class="ms-row"><span>Orders reach the warehouse</span><span class="bar"><i style="width:57%"></i></span><small>4/7</small></div>
+          <div class="ms-row"><span>Weekly report sends itself</span><span class="bar"><i style="width:20%"></i></span><small>1/5</small></div>
+        </div>
+      </article>
+      <article class="feat reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+        <h3>"What needs me?" in two minutes</h3>
+        <p>A calm home screen with three lists: needs you, moving, stuck. Anyone can use it without training.</p>
+      </article>
+      <article class="feat reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Nothing big happens without you</h3>
+        <p>Important steps wait for your approval, confirmed with your passkey. Agents can't fake it.</p>
+        <div class="viz"><div class="passkey"><span class="fp"><svg viewBox="0 0 24 24"><path d="M12 11v4M8 9a4 4 0 0 1 8 0v3M6 13c0 3 2 6 6 7M18 13c0 2-1 4-3 5"/></svg></span><span><b>Approve launch</b><br><small>Signed by you · recorded</small></span></div></div>
+      </article>
+      <article class="feat reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="8" height="6" rx="1.5"/><rect x="13" y="13" width="8" height="6" rx="1.5"/><path d="M7 11v4h6M17 13V9h-6"/></svg></div>
+        <h3>Any agent, any machine</h3>
+        <p>Bring Codex, Claude or your own open models. Run them on a Mac, a Windows PC, a home server or the cloud.</p>
+        <div class="viz hosts"><span class="host"><i></i>Mac</span><span class="host"><i></i>Windows</span><span class="host"><i></i>Home server</span><span class="host"><i></i>Akash cloud</span></div>
+      </article>
+      <article class="feat wide dark reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg></div>
+        <h3>Ask it anything, in plain words</h3>
+        <p>A built-in project assistant answers questions about your work and writes the weekly summary for you.</p>
+        <div class="viz ask"><div class="bubble q">Where do we stand on the launch?</div><div class="bubble a">4 of 7 goals done. Checkout testing finishes tomorrow. One thing needs you: the pricing copy. We're on track for Friday.</div></div>
+      </article>
+      <article class="feat wide reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></div>
+        <h3>A record you can trust</h3>
+        <p>Every decision, hand-off and result is kept with who did it and why, so audits, reviews and "why did we do this?" have answers.</p>
+        <div class="viz"><div class="ledger">D-014 · approved by Corey · "Ship the pricing page as drafted."
+signed with passkey · 2026-11-12 14:03</div></div>
+      </article>
+      <article class="feat reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/><path d="M9 20v-6h6v6"/></svg></div>
+        <h3>Yours to own</h3>
+        <p>Runs on your machines or your cloud. Your data never has to leave, and no third-party service is required.</p>
+      </article>
+      <article class="feat reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></div>
+        <h3><a href="#work" style="text-decoration:none">Fits any kind of work →</a></h3>
+        <p>Ready-made templates speak your language: software projects, research labs, small-business operations.</p>
+        <div class="viz chips"><span class="chip">Software</span><span class="chip">Research lab</span><span class="chip">Back office</span></div>
+      </article>
+      <article class="feat reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M4 18c4 0 4-12 8-12s4 12 8 12"/></svg></div>
+        <h3>Forecasts that learn</h3>
+        <p>Colab learns how long work really takes for each person and agent, and gives honest ranges. Personal data stays private.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<section id="work" class="views">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Any kind of work</span>
+      <h2>One Colab. A bakery's books, a software release, a research lab.</h2>
+      <p class="lead">Colab isn't only for programmers. Pick a template and it speaks your language: your words, your kind of helpers, your kind of results. Here are three very different teams using it.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Choose a use case">
+      <button class="tab" role="tab" id="tab-biz" aria-controls="panel-biz" aria-selected="true"><span class="dot" style="--c:var(--a-ui)"></span>Small business: receipts &amp; invoices</button>
+      <button class="tab" role="tab" id="tab-dev" aria-controls="panel-dev" aria-selected="false" tabindex="-1"><span class="dot" style="--c:var(--a-eng)"></span>Software team: code &amp; releases</button>
+      <button class="tab" role="tab" id="tab-lab" aria-controls="panel-lab" aria-selected="false" tabindex="-1"><span class="dot" style="--c:var(--a-arch)"></span>Research lab: papers to experiments</button>
+    </div>
+
+    <!-- ===== Small business ===== -->
+    <div class="tabpanel uc" role="tabpanel" id="panel-biz" aria-labelledby="tab-biz" style="--acc:#1f9e70;--acc-soft:#e2f6ee">
+      <div class="story">
+        <span class="uc-kicker">Template: Back office</span>
+        <h3>Month-end, handled while you run the shop.</h3>
+        <p>Rosa owns a bakery with two locations. Receipts arrive as phone photos and emails, invoices go out by hand, and the books are always behind. With Colab, three helpers do the paperwork and Rosa only makes the calls that need her.</p>
+        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Month-end close</span><span class="vchip">Batch</span><span class="vchip">Receipt · Invoice</span><span class="vchip">Approve payment</span></div>
+        <div class="team">
+          <span class="member"><span class="av h" style="background:#f4c7a1">R</span>Rosa, owner</span>
+          <span class="member"><span class="av h" style="background:#c9d6f5">S</span>Sam, accountant</span>
+          <span class="member"><span class="av" style="background:var(--a-ui)">I</span>Intake agent</span>
+          <span class="member"><span class="av" style="background:var(--a-data)">K</span>Bookkeeper agent</span>
+          <span class="member"><span class="av" style="background:var(--a-pm)">C</span>Collections agent</span>
+        </div>
+        <div class="chat">
+          <div class="bubble q">What's still unpaid this month, and who's late?</div>
+          <div class="bubble a">Three invoices, $5,920 in total. Harbor Café is 12 days late on $2,400; the Collections agent sends a friendly second reminder tomorrow, unless you'd rather call them yourself.</div>
+          <div class="bubble q">Anything I need to sign off?</div>
+          <div class="bubble a">Two supplier payments: flour ($1,180) and the oven repair ($2,000). Approve both with your passkey and they're scheduled for Friday.</div>
+        </div>
+      </div>
+      <div class="screen" role="img" aria-label="Illustration of the back-office screen: October close 82% done, documents read, payments to approve, unpaid invoices, and a document list with categories and statuses.">
+        <div class="stitle">October close <small>2 locations · 82% done</small></div>
+        <div class="kpis"><div class="kpi"><b>146</b><span>receipts read</span></div><div class="kpi"><b>2</b><span>payments to approve</span></div><div class="kpi"><b>$5,920</b><span>unpaid invoices</span></div></div>
+        <div class="doclist">
+          <div class="doc"><span class="dt">🧾</span><span class="dn">Flour Mill Co.<small>Receipt · photo · Oct 14</small></span><span class="dv">$412.80</span><span class="pill ok">Supplies</span></div>
+          <div class="doc"><span class="dt">🧾</span><span class="dn">Shell station<small>Receipt · email · Oct 15</small></span><span class="dv">$64.10</span><span class="pill ok">Delivery fuel</span></div>
+          <div class="doc"><span class="dt">📄</span><span class="dn">Invoice #1043 · Harbor Café<small>Sent Oct 3 · reminder sent</small></span><span class="dv">$2,400.00</span><span class="pill risk">12 days late</span></div>
+          <div class="doc"><span class="dt">🔧</span><span class="dn">Oven repair · ProTech<small>Supplier bill · Oct 20</small></span><span class="dv">$2,000.00</span><span class="pill you">Approve</span></div>
+          <div class="doc"><span class="dt">🧾</span><span class="dn">Market stall fee<small>Receipt · blurry photo</small></span><span class="dv">?</span><span class="pill wait">Retake photo</span></div>
+        </div>
+        <div class="outputs"><b>What comes out</b><span>Categorised expense ledger for Sam</span><span>Invoices sent and chased</span><span>Tax-ready monthly totals</span><span>One-page month summary</span></div>
+      </div>
+    </div>
+
+    <!-- ===== Software team ===== -->
+    <div class="tabpanel uc" role="tabpanel" id="panel-dev" aria-labelledby="tab-dev" hidden style="--acc:var(--brand);--acc-soft:var(--brand-soft)">
+      <div class="story">
+        <span class="uc-kicker">Template: Software</span>
+        <h3>Ship features, not status updates.</h3>
+        <p>Priya manages a small product team; Alex is the lead developer. Coding agents write and test the code in parallel, each in its own part of the codebase. Priya sees the release take shape in plain sentences, and Alex reviews finished work instead of herding agents.</p>
+        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Release</span><span class="vchip">Milestone · Card · Step</span><span class="vchip">Pull request</span><span class="vchip">Test run</span></div>
+        <div class="team">
+          <span class="member"><span class="av h" style="background:#f2b6cf">P</span>Priya, PM</span>
+          <span class="member"><span class="av h" style="background:#c9d6f5">A</span>Alex, developer</span>
+          <span class="member"><span class="av" style="background:var(--a-eng)">B</span>Build agent</span>
+          <span class="member"><span class="av" style="background:var(--a-int)">T</span>Test agent</span>
+          <span class="member"><span class="av" style="background:var(--a-ui)">D</span>Design agent</span>
+        </div>
+        <div class="chat">
+          <div class="bubble q">Will release 2.4 make Friday? What's the risk?</div>
+          <div class="bubble a">Yes, if the payments key arrives today. It's the only thing on the critical path; everything else is ahead. Alex owns it and was reminded an hour ago.</div>
+          <div class="bubble q">Draft the release notes for customers.</div>
+          <div class="bubble a">Done: four highlights in plain language, linked to the finished cards. Ready for your review.</div>
+        </div>
+      </div>
+      <div class="screen" role="img" aria-label="Illustration of the software screen: release 2.4 with milestones, three pull requests with test results, and a blocked item.">
+        <div class="stitle">Release 2.4 <small>forecast Friday · 4 of 7 milestones</small></div>
+        <div class="ms">
+          <div class="ms-row"><span>Customers sign in with passkeys</span><span class="bar"><i style="width:100%"></i></span><small>6/6</small></div>
+          <div class="ms-row"><span>Checkout works on phones</span><span class="bar"><i style="width:60%"></i></span><small>3/5</small></div>
+          <div class="ms-row"><span>Pay with saved cards</span><span class="bar"><i style="width:29%"></i></span><small>2/7</small></div>
+        </div>
+        <div>
+          <div class="rowline"><span class="l"><span class="av" style="background:var(--a-eng)">B</span><span>PR #212 · Passkey sign-in · tests 148/148</span></span><span class="pill ok">Ready to merge</span></div>
+          <div class="rowline"><span class="l"><span class="av" style="background:var(--a-int)">T</span><span>Phone checkout · Test agent, step 3 of 5</span></span><span class="pill wait">In progress</span></div>
+          <div class="rowline"><span class="l"><span class="av h" style="background:#c9d6f5">A</span><span>Payments API key · waiting on Alex</span></span><span class="pill risk">Blocks release</span></div>
+        </div>
+<div class="code"><span class="c"># the Test agent, through the KĀDI broker</span>
+<span class="k">colab_task_finish</span>(<span class="s">"CHK-03"</span>, evidence=<span class="s">"tests: 52/52"</span>)
+<span class="c">→ hand-off: Build agent woken to merge</span></div>
+        <div class="outputs"><b>What comes out</b><span>Reviewed pull requests</span><span>Test reports with evidence</span><span>Customer release notes</span><span>Release burn-up chart</span></div>
+      </div>
+    </div>
+
+    <!-- ===== Research lab ===== -->
+    <div class="tabpanel uc" role="tabpanel" id="panel-lab" aria-labelledby="tab-lab" hidden style="--acc:#6250d6;--acc-soft:#ece9fb">
+      <div class="story">
+        <span class="uc-kicker">Template: Research</span>
+        <h3>From 1,240 papers to a running experiment.</h3>
+        <p>Dr. Lee's lab is testing whether a new training method holds up. Agents search and screen the literature, pull the evidence into a table, draft experiment protocols, and run them on the lab's own GPU machine. The PI approves the protocols; the students focus on thinking.</p>
+        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Research question</span><span class="vchip">Paper · Evidence</span><span class="vchip">Protocol</span><span class="vchip">Run · Result</span></div>
+        <div class="team">
+          <span class="member"><span class="av h" style="background:#d9cff7">L</span>Dr. Lee, PI</span>
+          <span class="member"><span class="av h" style="background:#c9ecdc">J</span>Jordan, PhD student</span>
+          <span class="member"><span class="av" style="background:var(--a-arch)">R</span>Literature agent</span>
+          <span class="member"><span class="av" style="background:var(--a-data)">M</span>Methods agent</span>
+          <span class="member"><span class="av" style="background:var(--a-win)">G</span>Lab-run agent · GPU box</span>
+        </div>
+        <div class="chat">
+          <div class="bubble q">Which papers support hypothesis H2, and how strong is the evidence?</div>
+          <div class="bubble a">11 of the 47 included papers support H2: three strong (randomised, large samples), eight moderate. The evidence table and citations are attached.</div>
+          <div class="bubble q">Why did run 7 fail? Same as run 4?</div>
+          <div class="bubble a">Yes: both ran out of GPU memory at step 40,000. The Methods agent suggests halving the batch size. Approve to re-run tonight on the lab machine?</div>
+        </div>
+      </div>
+      <div class="screen" role="img" aria-label="Illustration of the research screen: a funnel from 1,240 papers found to 47 included, an evidence table, three protocols, and twelve experiment runs with statuses.">
+        <div class="stitle">Question: does method X generalise? <small>week 3</small></div>
+        <div class="funnel">
+          <div class="fstep" style="--w:100%"><span>Papers found</span><b>1,240</b></div>
+          <div class="fstep" style="--w:62%"><span>Screened in</span><b>312</b></div>
+          <div class="fstep" style="--w:34%"><span>Included</span><b>47</b></div>
+          <div class="fstep" style="--w:22%"><span>Support H2</span><b>11</b></div>
+        </div>
+        <div class="runs" aria-hidden="true">
+          <span class="run ok">1</span><span class="run ok">2</span><span class="run ok">3</span><span class="run bad">4</span><span class="run ok">5</span><span class="run ok">6</span><span class="run bad">7</span><span class="run ok">8</span><span class="run ok">9</span><span class="run go">10</span><span class="run go">11</span><span class="run">12</span>
+        </div>
+        <p class="runkey"><span class="run ok sm"></span>done <span class="run go sm"></span>running <span class="run bad sm"></span>failed <span class="run sm"></span>queued · runs on the lab's own GPU machine</p>
+        <div>
+          <div class="rowline"><span class="l"><span class="av" style="background:var(--a-data)">M</span><span>Protocol P2 · 6 GPU hours</span></span><span class="pill you">Approve</span></div>
+        </div>
+        <div class="outputs"><b>What comes out</b><span>Annotated bibliography</span><span>Evidence table with citations</span><span>Versioned protocols</span><span>Run results, data and plots</span><span>Draft methods section</span></div>
+      </div>
+    </div>
+
+    <p class="more-uses reveal"><b>Also a good fit:</b> <span>grant writing</span><span>customer support</span><span>event planning</span><span>compliance checks</span><span>content and marketing</span><span>your own template</span></p>
+  </div>
+</section>
+
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>Four steps, then it runs itself</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Say what you want</h3><p>Describe the goal in plain words. A planning agent turns it into milestones you can check, and small pieces of work.</p></div>
+      <div class="step reveal"><h3>Agents take their part</h3><p>Each agent owns its own area and picks up whatever is ready. People join where they're needed.</p></div>
+      <div class="step reveal"><h3>Work flows on its own</h3><p>Finished or stuck, an agent hands off and the next one starts. No one has to babysit the chain.</p></div>
+      <div class="step reveal"><h3>You approve and watch it land</h3><p>You see where things stand, approve what matters with your passkey, and get a summary every week.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="simple">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Simple for anyone</span>
+      <h2>Up and running in minutes, on the computer you already have.</h2>
+      <p class="lead">KĀDI takes care of the hard parts: sign-in, connections, storage and security. You don't need servers, a cloud account or an IT department to start.</p>
+    </div>
+    <div class="easy">
+      <div class="ez reveal">
+        <span class="ezn">1</span>
+        <h3>Install it like an app</h3>
+        <p>One click in the KĀDI desktop app, or one line for people who like the terminal:</p>
+        <div class="cmd"><span>$</span> kadi install kadi-colab</div>
+      </div>
+      <div class="ez reveal">
+        <span class="ezn">2</span>
+        <h3>Pick a template</h3>
+        <p>Back office, software, research, or start blank. The words, steps and helpers come set up.</p>
+        <div class="tpls"><span class="tpl on">🧾 Back office</span><span class="tpl">💻 Software</span><span class="tpl">🔬 Research</span><span class="tpl">＋ Blank</span></div>
+      </div>
+      <div class="ez reveal">
+        <span class="ezn">3</span>
+        <h3>Sign in and invite</h3>
+        <p>Sign in with your passkey; no passwords to remember. Invite teammates with a link, and add AI helpers from a list.</p>
+        <div class="invite"><span class="av h" style="background:#f4c7a1">R</span><span class="av h" style="background:#c9d6f5">S</span><span class="av" style="background:var(--a-ui)">I</span><span class="av" style="background:var(--a-data)">K</span><span class="plus">＋ Add</span></div>
+      </div>
+    </div>
+    <div class="grow reveal">
+      <div><b>Grows when you do.</b> Start on a laptop. When the team grows, move Colab to an office machine, a home server or the Akash decentralised cloud with one command, with backups and updates built in.</div>
+      <div class="cmd small"><span>$</span> kadi deploy kadi-colab --to akash</div>
+    </div>
+  </div>
+</section>
+
+
+<section id="ecosystem" class="night">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The KĀDI ecosystem</span>
+      <h2>Thousands of tools at your fingertips. Your machines, your data, your AI.</h2>
+      <p class="lead">Colab sits on KĀDI, a network that connects agents, tools and machines. Start with everything private and local. Bring in outside services or the most powerful AI models only when you choose to.</p>
+    </div>
+    <div class="eco2">
+      <div class="rings reveal" role="img" aria-label="Diagram: KĀDI Colab at the centre; an inner ring of things you own (your machines, your data, your AI models); an outer, dashed ring of optional extras (frontier AI models, third-party services, thousands of tools).">
+        <svg viewBox="0 0 520 520" id="ringsvg"></svg>
+      </div>
+      <div class="eco-points">
+        <div class="ep reveal"><span class="epi" style="--c:var(--brand-hi)"><svg viewBox="0 0 24 24"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg></span><div><b>Thousands of tools, one connection</b><span>The KĀDI broker connects every agent to every tool: KĀDI's own abilities plus any tool that speaks MCP, the open standard thousands of tools already support.</span></div></div>
+        <div class="ep reveal"><span class="epi" style="--c:var(--a-ui)"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><div><b>Your machines</b><span>Agents run on your laptop, office PC, the lab's GPU machine or a home server. Each one connects out to KĀDI, so there are no ports to open and nothing to configure.</span></div></div>
+        <div class="ep reveal"><span class="epi" style="--c:var(--a-data)"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><div><b>Your data stays yours</b><span>Documents, databases and Colab's memory live on your machines by default. Nothing leaves unless you send it.</span></div></div>
+        <div class="ep reveal"><span class="epi" style="--c:var(--a-arch)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg></span><div><b>Your AI first</b><span>Open models running on your own hardware handle everyday work: private, and with no per-use bill.</span></div></div>
+        <div class="ep reveal"><span class="epi" style="--c:var(--a-pm)"><svg viewBox="0 0 24 24"><path d="M5 15c-1 2-1 4-1 4s2 0 4-1M9 15l-3-3c2-6 7-9 13-9 0 6-3 11-9 13z"/><circle cx="14.5" cy="9.5" r="1.5"/></svg></span><div><b>Frontier power when it matters</b><span>Switch on Claude, GPT or Gemini for the hard problems, per helper and with spending limits. Connect Google Drive, Dropbox, Slack, GitHub and the like the same way: only if and when you want.</span></div></div>
+        <div class="ep reveal"><span class="epi" style="--c:var(--a-int)"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.8-1.5 1.8-2 3-2s2.2.5 3 2M14 10h4M14 13h3"/></svg></span><div><b>One identity everywhere</b><span>Sign in with KĀDI once. People and agents carry the same trusted identity across every tool and machine.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="different" class="night" style="background:#171a21;border-top:1px solid rgba(255,255,255,.06)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why it's different</span>
+      <h2>Task boards were built for people. Agent tools were built for engineers. Colab is built for both.</h2>
+    </div>
+    <div class="scroll-x reveal">
+      <table class="compare">
+        <thead><tr><th></th><th>Task boards</th><th>AI agent tools</th><th class="us">KĀDI Colab</th></tr></thead>
+        <tbody>
+          <tr><td>People and agents on one team</td><td class="no">People only</td><td class="part">Agents only</td><td class="us yes">Both</td></tr>
+          <tr><td>Agents start the next agent</td><td class="no">No</td><td class="part">Sometimes</td><td class="us yes">Yes, within seconds</td></tr>
+          <tr><td>Progress you can trust</td><td class="part">Status labels</td><td class="no">Logs</td><td class="us yes">Checkable steps + forecast</td></tr>
+          <tr><td>A view for owners and managers</td><td class="yes">Yes</td><td class="no">No</td><td class="us yes">Yes</td></tr>
+          <tr><td>Any kind of work, in its own words</td><td class="part">Generic boards</td><td class="part">Mostly code</td><td class="us yes">Books, code, research and more</td></tr>
+          <tr><td>Thousands of tools, local or frontier AI</td><td class="part">Add-ons</td><td class="part">One vendor's models</td><td class="us yes">Your choice, per helper</td></tr>
+          <tr><td>Agents on many machines</td><td class="no">n/a</td><td class="part">Usually one</td><td class="us yes">Mac, Windows, cloud</td></tr>
+          <tr><td>Approvals signed with your passkey</td><td class="no">No</td><td class="no">No</td><td class="us yes">Yes</td></tr>
+          <tr><td>Runs on your own machines</td><td class="part">Rarely</td><td class="part">Sometimes</td><td class="us yes">Yes, no third parties needed</td></tr>
+          <tr><td>Set up without an IT team</td><td class="yes">Yes</td><td class="no">Rarely</td><td class="us yes">Install, pick a template, invite</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Roadmap</span>
+      <h2>Proven on our own work first, then shared with the world</h2>
+      <p class="lead">We build Colab with a team of AI agents, coordinated the Colab way, and switch to Colab itself once it's ready.</p>
+    </div>
+    <div class="road reveal">
+      <div class="mile"><span class="when">MONTH 1</span><b>Proof</b><span>Sign in with KĀDI, agents waking each other, a live home screen.</span></div>
+      <div class="mile"><span class="when">MONTHS 2–4</span><b>We run on it</b><span>Our own agent team works in Colab every day, across machines, with no copy-paste.</span></div>
+      <div class="mile"><span class="when">MONTHS 4–7</span><b>For everyone</b><span>Templates for labs and businesses, the calm screens, the project assistant.</span></div>
+      <div class="mile last"><span class="when">VERSION 1.0</span><b>Real teams</b><span>Two pilot teams outside software, running on their own machines.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="night closing">
+  <div class="wrap">
+    <svg class="symbol" viewBox="0 0 91.17 100" aria-hidden="true"><rect x="65.62" width="25.55" height="25.55" rx="5" ry="5" /> <rect x="65.62" y="74.45" width="25.55" height="25.55" rx="5" ry="5" /> <path d="M51.83,58.11c0-.11.03-.21.03-.32v-15.24l15.77-15.12c-1.98-.87-3.52-2.56-4.17-4.65l-15.29,14.66c-.42-.11-.85-.2-1.31-.2h-15.55c-2.76,0-5,2.24-5,5v15.55c0,2.76,2.24,5,5,5h15.55c.26,0,.5-.04.74-.08l15.79,14.76c.58-2.12,2.07-3.86,4.02-4.79l-15.58-14.57Z" /> <rect y=".04" width="18" height="99.96" rx="5" ry="5" /></svg>
+    <h2>Stop managing your AI. Start working with it.</h2>
+    <p class="lead">KĀDI Colab is in development. We're looking for a research lab and a small business to be our first pilot teams. Interested? Talk to Corey Clark.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>KĀDI Colab · part of the KĀDI ecosystem</span><span>Product vision, 2026. Screens and examples are illustrations; features are in development.</span></div>
+</footer>
+
+<script>
+(function(){
+  // tabs (keyboard accessible)
+  const tabs=[...document.querySelectorAll('[role="tab"]')];
+  function select(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});}
+  tabs.forEach((t,i)=>{t.addEventListener('click',()=>select(t));t.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowRight')j=(i+1)%tabs.length;if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;if(e.key==='Home')j=0;if(e.key==='End')j=tabs.length-1;if(j!==null){e.preventDefault();select(tabs[j]);tabs[j].focus();}});});
+
+  const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // hero bars
+  const bars=[...document.querySelectorAll('.mini-bar i')];
+  const grow=()=>bars.forEach(b=>b.style.width=b.dataset.w+'%');
+  if(reduce)grow();else setTimeout(grow,400);
+  // hero toast
+  const msgs=[
+    ['Test agent → Build agent:','hand-off delivered, Build agent is back at work'],
+    ['Design agent:','finished "logo layouts", step 4 of 4 ✓'],
+    ['Waiting on you:','approve the pricing page copy'],
+    ['Assistant:','launch still on track for Friday'],
+    ['Windows PC:','Test agent started, checking checkout on Edge']
+  ];
+  const toast=document.getElementById('toast'),txt=document.getElementById('toastText');let k=0;
+  if(!reduce)setInterval(()=>{toast.classList.add('hide');setTimeout(()=>{k=(k+1)%msgs.length;txt.innerHTML='<b></b> ';txt.firstChild.textContent=msgs[k][0];txt.appendChild(document.createTextNode(msgs[k][1]));toast.classList.remove('hide');if(k===0)bars.forEach(b=>{b.style.width='5%';setTimeout(grow,300);});},380);},3600);
+
+  // ecosystem rings
+  (function(){const s=document.getElementById('ringsvg'); if(!s) return; const NS='http://www.w3.org/2000/svg';
+    const el=(p,t,a,x)=>{const n=document.createElementNS(NS,t);for(const k in a)n.setAttribute(k,a[k]);if(x!=null)n.textContent=x;p.appendChild(n);return n;};
+    const C=260;
+    el(s,'circle',{cx:C,cy:C,r:226,fill:'none',stroke:'rgba(255,255,255,.18)','stroke-dasharray':'3 7','stroke-width':1.5});
+    el(s,'circle',{cx:C,cy:C,r:150,fill:'rgba(25,69,163,.16)',stroke:'rgba(93,140,240,.45)','stroke-width':1.5});
+    el(s,'circle',{cx:C,cy:C,r:66,fill:'#1945A3'});
+    const g0=el(s,'g',{transform:`translate(${C-22} ${C-30}) scale(.48)`,fill:'#fff'});
+    g0.innerHTML='<rect x="65.62" width="25.55" height="25.55" rx="5" ry="5"/><rect x="65.62" y="74.45" width="25.55" height="25.55" rx="5" ry="5"/><path d="M51.83,58.11c0-.11.03-.21.03-.32v-15.24l15.77-15.12c-1.98-.87-3.52-2.56-4.17-4.65l-15.29,14.66c-.42-.11-.85-.2-1.31-.2h-15.55c-2.76,0-5,2.24-5,5v15.55c0,2.76,2.24,5,5,5h15.55c.26,0,.5-.04.74-.08l15.79,14.76c.58-2.12,2.07-3.86,4.02-4.79l-15.58-14.57Z"/><rect y=".04" width="18" height="99.96" rx="5" ry="5"/>';
+    el(s,'text',{x:C,y:C+48,'text-anchor':'middle','font-size':14,'font-weight':700,fill:'#fff'},'Colab');
+    el(s,'text',{x:C,y:C-92,'text-anchor':'middle','font-size':11,fill:'#8fb0ff','letter-spacing':'.12em'},'YOURS');
+    el(s,'text',{x:C,y:C-236,'text-anchor':'middle','font-size':12,fill:'#8590a1','letter-spacing':'.12em'},'WHEN YOU CHOOSE');
+    const lines=el(s,'g',{});s.insertBefore(lines,s.children[3]);
+    const node=(g,ang,r,label,sub,fill,stroke,dash)=>{const a=ang*Math.PI/180,x=C+r*Math.cos(a),y=C+r*Math.sin(a);
+      const id='ln'+Math.round(ang)+'_'+r; const ln=el(lines,'path',{id,d:`M${C+66*Math.cos(a)} ${C+66*Math.sin(a)} L${x} ${y}`,stroke:dash?'rgba(166,180,192,.35)':'rgba(93,140,240,.55)','stroke-width':1.5,fill:'none',...(dash?{'stroke-dasharray':'4 5'}:{})});
+      if(!reduce){const dot=el(lines,'circle',{r:3.5,fill:dash?'#a6b4c0':'#3fc596'});const am=el(dot,'animateMotion',{dur:(dash?3.6:2.4)+'s',repeatCount:'indefinite',begin:(Math.abs(ang)%7)/3+'s'});el(am,'mpath',{href:'#'+id});}
+      const n=el(g,'g',{});
+      el(n,'rect',{x:x-58,y:y-22,width:116,height:44,rx:12,fill,stroke,'stroke-width':1.5,...(dash?{'stroke-dasharray':'4 4'}:{})});
+      el(n,'text',{x,y:y-3,'text-anchor':'middle','font-size':13,'font-weight':700,fill:'#f3f5f8'},label);
+      el(n,'text',{x,y:y+13,'text-anchor':'middle','font-size':10.5,fill:'#b7bfcc'},sub);};
+    const inner=el(s,'g',{});
+    node(inner,-90,150,'Your machines','laptop · lab GPU · server','#152452','#5d8cf0');
+    node(inner,30,150,'Your data','files · databases','#152452','#5d8cf0');
+    node(inner,150,150,'Your AI','open models, local','#152452','#5d8cf0');
+    const outer=el(s,'g',{});
+    node(outer,-30,226,'Frontier AI','Claude · GPT · Gemini','#1d2029','#a6b4c0',true);
+    node(outer,90,226,'1,000s of tools','KĀDI abilities + MCP','#1d2029','#a6b4c0',true);
+    node(outer,210,226,'Services','Drive · Slack · GitHub…','#1d2029','#a6b4c0',true);
+  })();
+  // reveal on scroll
+  const els=[...document.querySelectorAll('.reveal')];
+  if(reduce||!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));}
+  else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{rootMargin:'0px 0px -8% 0px'});els.forEach(e=>io.observe(e));}
+})();
+</script>
+</body>
+</html>
