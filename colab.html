@@ -6,6 +6,22 @@
 <title>KĀDI Colab</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="KĀDI Colab: a whole AI team, one download away. AI teammates join your people, files and tools in any industry, and you always know what needs you.">
+<link rel="canonical" href="https://humingamelab.com/colab.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KĀDI">
+<meta property="og:url" content="https://humingamelab.com/colab.html">
+<meta property="og:title" content="KĀDI Colab: a whole AI team, one download away">
+<meta property="og:description" content="AI researchers, engineers, bookkeepers and analysts that join your people, files and tools, in any industry. Runs entirely on your own systems.">
+<meta property="og:image" content="https://humingamelab.com/colab-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KĀDI Colab: a whole AI team, one download away. A team panel shows people and AI teammates working on cards.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KĀDI Colab: a whole AI team, one download away">
+<meta name="twitter:description" content="AI teammates that join your people, files and tools, in any industry. Runs entirely on your own systems.">
+<meta name="twitter:image" content="https://humingamelab.com/colab-preview.png">
+<meta name="theme-color" content="#0e1014">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0ndXRmLTgnPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJiZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyMzI3MzIiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzE0MTYxYSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHJ4PSIyMjUuMyIgcnk9IjIyNS4zIiBmaWxsPSJ1cmwoI2JnKSIgLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNjEuOTEgMTI4KSBzY2FsZSg3LjY4KSIgZmlsbD0iI2ZmZmZmZiI+CiAgICA8cmVjdCB4PSI2NS42MiIgd2lkdGg9IjI1LjU1IiBoZWlnaHQ9IjI1LjU1IiByeD0iNSIgcnk9IjUiIC8+CiAgICA8cmVjdCB4PSI2NS42MiIgeT0iNzQuNDUiIHdpZHRoPSIyNS41NSIgaGVpZ2h0PSIyNS41NSIgcng9IjUiIHJ5PSI1IiAvPgogICAgPHBhdGggZD0iTTUxLjgzLDU4LjExYzAtLjExLjAzLS4yMS4wMy0uMzJ2LTE1LjI0bDE1Ljc3LTE1LjEyYy0xLjk4LS44Ny0zLjUyLTIuNTYtNC4xNy00LjY1bC0xNS4yOSwxNC42NmMtLjQyLS4xMS0uODUtLjItMS4zMS0uMmgtMTUuNTVjLTIuNzYsMC01LDIuMjQtNSw1djE1LjU1YzAsMi43NiwyLjI0LDUsNSw1aDE1LjU1Yy4yNiwwLC41LS4wNC43NC0uMDhsMTUuNzksMTQuNzZjLjU4LTIuMTIsMi4wNy0zLjg2LDQuMDItNC43OWwtMTUuNTgtMTQuNTdaIiAvPgogICAgPHJlY3QgeT0iLjA0IiB3aWR0aD0iMTgiIGhlaWdodD0iOTkuOTYiIHJ4PSI1IiByeT0iNSIgLz4KICA8L2c+Cjwvc3ZnPgo=">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,10 +60,10 @@ p{margin:0}
 /* ---------- top bar ---------- */
 .topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(14,16,20,.82);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--night-line)}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
-.lockup{display:flex;align-items:center;gap:12px;color:var(--on-night);text-decoration:none}
+.lockup{display:flex;align-items:baseline;gap:12px;color:var(--on-night);text-decoration:none}
 .lockup svg.word{height:26px;width:auto;fill:currentColor;overflow:visible;flex:0 0 auto}
-.lockup .sep{width:1px;height:26px;background:var(--on-night-3);opacity:.6}
-.lockup .prod{font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:-.01em}
+.lockup .sep{align-self:center;width:1px;height:26px;background:var(--on-night-3);opacity:.6}
+.lockup .prod{font-family:var(--display);font-weight:700;font-size:30.4px;line-height:1;letter-spacing:-.01em}
 .navlinks{display:flex;gap:22px;font-size:15px}
 .navlinks a{color:var(--on-night-2);text-decoration:none}
 .navlinks a:hover{color:var(--on-night)}
