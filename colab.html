@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>KĀDI Colab</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="KĀDI Colab: one calm place where people and AI agents plan work, hand it to each other and finish it, while you always know what needs you.">
+<meta name="description" content="KĀDI Colab: a whole AI team, one download away. AI teammates join your people, files and tools in any industry, and you always know what needs you.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0ndXRmLTgnPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJiZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyMzI3MzIiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzE0MTYxYSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiIHJ4PSIyMjUuMyIgcnk9IjIyNS4zIiBmaWxsPSJ1cmwoI2JnKSIgLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNjEuOTEgMTI4KSBzY2FsZSg3LjY4KSIgZmlsbD0iI2ZmZmZmZiI+CiAgICA8cmVjdCB4PSI2NS42MiIgd2lkdGg9IjI1LjU1IiBoZWlnaHQ9IjI1LjU1IiByeD0iNSIgcnk9IjUiIC8+CiAgICA8cmVjdCB4PSI2NS42MiIgeT0iNzQuNDUiIHdpZHRoPSIyNS41NSIgaGVpZ2h0PSIyNS41NSIgcng9IjUiIHJ5PSI1IiAvPgogICAgPHBhdGggZD0iTTUxLjgzLDU4LjExYzAtLjExLjAzLS4yMS4wMy0uMzJ2LTE1LjI0bDE1Ljc3LTE1LjEyYy0xLjk4LS44Ny0zLjUyLTIuNTYtNC4xNy00LjY1bC0xNS4yOSwxNC42NmMtLjQyLS4xMS0uODUtLjItMS4zMS0uMmgtMTUuNTVjLTIuNzYsMC01LDIuMjQtNSw1djE1LjU1YzAsMi43NiwyLjI0LDUsNSw1aDE1LjU1Yy4yNiwwLC41LS4wNC43NC0uMDhsMTUuNzksMTQuNzZjLjU4LTIuMTIsMi4wNy0zLjg2LDQuMDItNC43OWwtMTUuNTgtMTQuNTdaIiAvPgogICAgPHJlY3QgeT0iLjA0IiB3aWR0aD0iMTgiIGhlaWdodD0iOTkuOTYiIHJ4PSI1IiByeT0iNSIgLz4KICA8L2c+Cjwvc3ZnPgo=">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -437,6 +437,157 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
 .more-wow b{color:var(--on-night)}
 .more-wow span{background:rgba(255,255,255,.05);border:1px solid var(--night-line);border-radius:99px;padding:5px 12px}
 
+/* superpowers extras */
+.planned{display:inline-block;font-family:var(--body);font-size:11px;font-weight:700;letter-spacing:.04em;background:rgba(227,177,60,.18);color:#f0c869;border:1px solid rgba(227,177,60,.45);border-radius:99px;padding:1px 8px;margin-right:6px;vertical-align:1px}
+.planned-head{font-size:20px;margin:36px 0 14px;color:var(--ink-2)}
+.more-wow.light{color:var(--ink-2)}
+.more-wow.light b{color:var(--ink)}
+.more-wow.light span{background:var(--card);border-color:var(--line)}
+.feat.full{grid-column:1 / -1}
+.qrrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.qr{width:54px;height:54px;flex:0 0 auto;border-radius:8px;background:#fff;border:1px solid var(--line);background-image:linear-gradient(#14161a 0 0),linear-gradient(#14161a 0 0),linear-gradient(#14161a 0 0),repeating-conic-gradient(#14161a 0 25%,#fff 0 50%);background-size:14px 14px,14px 14px,14px 14px,8px 8px;background-position:5px 5px,35px 5px,5px 35px,0 0;background-repeat:no-repeat,no-repeat,no-repeat,repeat;box-shadow:inset 0 0 0 4px #fff}
+.qr.big{width:84px;height:84px;background-size:22px 22px,22px 22px,22px 22px,10px 10px;background-position:7px 7px,55px 7px,7px 55px,0 0;box-shadow:inset 0 0 0 6px #fff}
+.phone-brief{background:#0b0d11;border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:12px 14px;display:flex;flex-direction:column;gap:7px;font-size:14px;max-width:360px}
+.pb-head{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.pb-head b{font-family:var(--display);color:#fff}
+.pb-head span{font-size:12px;color:var(--on-night-3)}
+.pb-line{color:var(--on-night-2);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pb-line.ok{color:#7fe0b8}.pb-line.you{color:#cfe0ff}
+.pb-btn{background:var(--brand);color:#fff;font-size:12px;font-weight:700;border-radius:7px;padding:2px 9px}
+.orgs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:8px;align-items:center}
+.org{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--paper);display:flex;flex-wrap:wrap;gap:5px;align-items:center;font-size:13.5px}
+.org b{flex-basis:100%;font-family:var(--display)}
+.org small{flex-basis:100%;color:var(--muted);font-size:12px}
+.shared{border:2px dashed var(--brand);border-radius:12px;padding:10px;text-align:center;color:var(--brand);font-weight:700;font-size:14px;background:var(--brand-soft)}
+.shared small{display:block;font-weight:400;color:var(--ink-2);font-size:12px}
+@media (max-width:520px){.orgs{grid-template-columns:1fr}}
+/* team */
+.teamsec{background:linear-gradient(180deg,#eef1ef,var(--paper))}
+.teamgrid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.15fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:1060px){.teamgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.roles{grid-column:1 / -1}}
+@media (max-width:700px){.teamgrid{grid-template-columns:1fr}}
+.roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (max-width:1060px){.roles{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:700px){.roles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.role{appearance:none;text-align:left;font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;min-width:0;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+.role:hover{transform:translateY(-2px)}
+.role[aria-selected="true"]{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.role:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.role .ic{--sz:30px}
+.role b{font-family:var(--display);font-size:15px}
+.role small{color:var(--muted);font-size:12.5px;line-height:1.35}
+.role .add{align-self:flex-start;font-size:12px;font-weight:700;color:var(--brand);background:var(--brand-soft);border-radius:99px;padding:2px 9px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px;box-shadow:0 30px 60px -45px rgba(20,22,26,.6);min-width:0}
+.pcard header{display:flex;align-items:center;gap:12px}
+.pcard header .ic{--sz:46px}
+.pcard header div{flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
+.pcard header b{font-family:var(--display);font-size:19px}
+.pcard header span:not(.ic):not(.kind){color:var(--muted);font-size:14px}
+.kind{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:99px;padding:3px 9px;background:var(--brand-soft);color:var(--brand);white-space:nowrap}
+.kind.human{background:#fbeee2;color:#9a5a17}
+.status{display:flex;align-items:center;gap:8px;font-size:14.5px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.dotlive{width:9px;height:9px;border-radius:50%;background:var(--good);animation:pulse 1.6s infinite;flex:0 0 auto}
+.dotaway{width:9px;height:9px;border-radius:50%;background:var(--warn);flex:0 0 auto}
+.pcard dl{display:grid;grid-template-columns:88px minmax(0,1fr);gap:8px 12px;margin:0;font-size:14.5px}
+.pcard dt{color:var(--muted)}
+.pcard dd{margin:0;color:var(--ink);display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.tchip{font-size:12.5px;background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:2px 8px}
+.tchip.no{background:#fdeee6;border-color:#f6d3c2;color:#9a3f13}
+.tchip.yes{background:#e6f6ee;border-color:#c5ead8;color:#17734f}
+.teamicons .ic{--sz:24px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.stats div{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.stats b{display:block;font-family:var(--display);font-size:19px}
+.stats span{font-size:12px;color:var(--muted)}
+.pbtns{display:flex;gap:6px;flex-wrap:wrap}
+.pbtn{font-size:13px;font-weight:700;border:1px solid var(--line);border-radius:9px;padding:5px 11px;background:var(--paper)}
+/* install */
+.installer{display:flex;align-items:center;gap:14px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px}
+.appicon{width:58px;height:58px;flex:0 0 auto;filter:drop-shadow(0 8px 14px rgba(20,22,26,.35))}
+.inst-txt{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:6px}
+.inst-txt b{font-family:var(--display)}
+.inst-txt small{color:var(--muted);font-size:12.5px}
+.inst-bar{height:6px;border-radius:99px;background:#e3e7e6;overflow:hidden}
+.inst-bar i{display:block;height:100%;width:30%;border-radius:99px;background:var(--brand);animation:inst 3.2s ease-in-out infinite}
+@keyframes inst{0%{width:8%}70%{width:100%}100%{width:100%}}
+.dl{display:flex;gap:6px;flex-wrap:wrap}
+.dlb{font-family:var(--display);font-weight:600;font-size:14px;background:var(--ink);color:#fff;border-radius:10px;padding:8px 14px}
+.dlb::before{content:"⬇ ";opacity:.7}
+.growviz{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.setting{display:flex;flex-direction:column;gap:5px;font-size:13.5px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:160px}
+.setting b{font-family:var(--display);font-size:13.5px}
+.opt{display:flex;align-items:center;gap:8px;color:var(--ink-2)}
+.opt::before{content:"";width:12px;height:12px;border-radius:50%;border:2px solid var(--line)}
+.opt.on{color:var(--ink);font-weight:700}
+.opt.on::before{border-color:var(--brand);background:radial-gradient(var(--brand) 45%,transparent 50%)}
+
+.worksin{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.worksin span{font-size:14px;color:var(--on-night);background:rgba(255,255,255,.06);border:1px solid var(--night-line);border-radius:99px;padding:5px 12px}
+/* outcome, industries, day one, join, trust */
+.outcome{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;background:var(--acc-soft);border-radius:14px;padding:12px 16px}
+.outcome b{font-family:var(--display);font-size:22px;color:var(--acc)}
+.outcome span{flex:1 1 220px;color:var(--ink-2);font-size:15.5px}
+.outcome small{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.industries{margin-top:40px;display:flex;flex-direction:column;gap:14px}
+.industries h3{font-size:22px}
+.indtiles{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px}
+@media (max-width:1180px){.indtiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:480px){.indtiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ind{appearance:none;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--card);text-align:left;min-width:0}
+.ind .em{font-size:22px}
+.ind b{font-family:var(--display);font-size:14.5px}
+.ind[aria-selected="true"]{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.ind:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.indpanel{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+@media (max-width:820px){.indpanel{grid-template-columns:1fr}}
+.indpanel h4{margin:0 0 8px;font-family:var(--display);font-size:15px;color:var(--muted);font-weight:600}
+.mate{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;padding:8px 0;border-bottom:1px solid var(--line)}
+.mate:last-child{border-bottom:0}
+.mate .ic{--sz:30px}
+.mate b{font-family:var(--display);font-size:15.5px}
+.mate div span{display:block;color:var(--ink-2);font-size:14.5px}
+.plug{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.plug span{font-size:13px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:3px 9px}
+.firstweek{background:var(--brand-soft);border-radius:12px;padding:12px 14px;font-size:15px;color:var(--ink)}
+.firstweek b{display:block;font-family:var(--display);font-size:13px;color:var(--brand);margin-bottom:4px}
+.addteam{display:inline-block;margin-top:12px;font-family:var(--display);font-weight:600;font-size:14px;background:var(--brand);color:#fff;border-radius:10px;padding:8px 14px}
+.dayone{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px}
+.dayone h3{font-size:21px;margin-bottom:16px}
+.day{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;position:relative}
+.day::before{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:linear-gradient(90deg,var(--brand),var(--good))}
+.day li{position:relative;padding-top:28px;display:flex;flex-direction:column;gap:3px;min-width:0;font-size:14px}
+.day li::before{content:"";position:absolute;top:2px;left:0;width:16px;height:16px;border-radius:50%;background:var(--card);border:3px solid var(--brand)}
+.day li:last-child::before{border-color:var(--good);background:var(--good)}
+.day time{font-family:var(--mono);font-size:12.5px;color:var(--brand)}
+.day b{font-family:var(--display);font-size:14.5px;line-height:1.3}
+.day span{color:var(--ink-2);font-size:13.5px}
+@media (max-width:980px){.day{grid-template-columns:1fr;gap:14px}.day::before{left:7px;right:auto;top:0;bottom:0;width:2px;height:auto;background:linear-gradient(180deg,var(--brand),var(--good))}.day li{padding:0 0 0 30px}.day li::before{top:2px}}
+.joinrow{display:flex;align-items:center;gap:8px;margin:-4px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--night-line);position:relative;min-height:34px}
+.jl{font-size:12px;color:var(--on-night-3);font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.jicons{display:inline-flex;gap:4px;flex-wrap:wrap}
+.jicons .ic{--sz:22px}
+.jicons .ic.new{animation:popin .6s cubic-bezier(.2,1.4,.4,1)}
+@keyframes popin{0%{transform:scale(0)}100%{transform:scale(1)}}
+.joined{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#fff;background:rgba(63,197,150,.16);border:1px solid rgba(63,197,150,.5);border-radius:10px;padding:4px 10px;opacity:0;transform:translateX(16px);transition:opacity .4s ease,transform .4s ease;flex:0 0 auto}
+.joined .jt{display:flex;flex-direction:column;line-height:1.2}
+.joined .jt small{color:var(--on-night-2);font-size:11px}
+.joined.show{opacity:1;transform:none}
+.joined .ic{--sz:18px}
+.trustgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.trustgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.trustgrid{grid-template-columns:1fr}}
+.tr{display:flex;flex-direction:column;gap:8px;background:rgba(255,255,255,.04);border:1px solid var(--night-line);border-radius:var(--radius);padding:20px}
+.tr b{font-family:var(--display);font-size:17px;color:var(--on-night)}
+.tr span:not(.epi){color:var(--on-night-2);font-size:15.5px}
+
+.uc .uc-day{grid-column:1 / -1;margin-top:4px;border-top:4px solid var(--acc)}
+.uc .uc-day h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.uc .uc-day h3 small{font-family:var(--body);font-weight:400;font-size:14.5px;color:var(--muted)}
+.uc .day::before{background:linear-gradient(90deg,var(--acc),var(--good))}
+.uc .day li::before{border-color:var(--acc)}
+.uc .day li:last-child::before{border-color:var(--good)}
+.uc .day time{color:var(--acc)}
+@media (max-width:980px){.uc .day::before{background:linear-gradient(180deg,var(--acc),var(--good))}}
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 </style>
@@ -451,10 +602,10 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
       <span class="prod">Colab</span>
     </a>
     <nav class="navlinks" aria-label="Sections">
-      <a href="#features">Features</a>
       <a href="#work">Any kind of work</a>
-      <a href="#wow">Wow</a>
-      <a href="#simple">Getting started</a>
+      <a href="#features">Superpowers</a>
+      <a href="#team">Your AI team</a>
+      <a href="#simple">Get started</a>
       <a href="#ecosystem">Ecosystem</a>
     </nav>
   </div>
@@ -465,35 +616,343 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
   <div class="wrap">
     <div>
       <span class="badge"><i></i>In development · built on KĀDI</span>
-      <h1>Your people and your AI agents, <em>finally on the same team.</em></h1>
-      <p class="lead">KĀDI Colab is one calm place where people and AI agents plan work, hand it to each other and get it done. You always know what's finished, what's moving, and what needs you.</p>
+      <h1>A whole AI team, <em>one download away.</em></h1>
+      <p class="lead">Add AI researchers, engineers, bookkeepers and analysts at the push of a button. They join your people right where the work already lives: your files, your databases and the software you use every day. KĀDI Colab keeps everyone on the same cards, and you always know what needs you.</p>
       <div class="ctas">
-        <a class="btn primary" href="#features">See what it does</a>
+        <a class="btn primary" href="#team">Meet your AI team</a>
         <a class="btn ghost" href="#work">See it in your world →</a>
       </div>
-      <p class="hero-note">For software teams, research labs and small businesses. Runs on your own machines, with no outside services required.</p>
+      <p class="hero-note">For research labs, software teams, small businesses and every industry in between. Runs on your own machines, with your data staying yours.</p>
     </div>
     <div class="device" aria-label="Illustration of the Colab home screen: what needs you, what's moving and what's stuck." role="img">
+      <div class="joinrow" aria-hidden="true"><span class="jl">Team</span><span class="jicons" id="jIcons"></span><span class="joined" id="joined"></span></div>
       <div class="dev-top"><div><div class="t">Home</div><div class="s">Website relaunch · Tuesday</div></div><div class="legend mini"><span class="ic person" style="--c:#c9d6f5" title="Person" aria-label="Person"></span><span>Person</span><span class="ic agent" style="--c:var(--a-eng)" title="AI agent" aria-label="AI agent"></span><span>Agent</span><span class="ring"></span><span>Working</span></div></div>
       <div class="cols">
         <div class="col">
           <h4>Needs you <b>2</b></h4>
-          <div class="tcard need">Approve the new pricing page copy<div class="who"><span class="ic agent" style="--c:var(--a-ui)" title="Design agent" aria-label="Design agent"></span><span class="arrow">→</span><span class="ic person" style="--c:#f4c7a1" title="You" aria-label="You"></span><span class="wt">Design agent wrote it · you approve</span></div><div class="approve">✓ Approve with passkey</div></div>
-          <div class="tcard need">Pick one of two logo layouts<div class="who"><span class="ic agent" style="--c:var(--a-ui)" title="Design agent" aria-label="Design agent"></span><span class="wt">Design agent asked 5 min ago</span></div></div>
+          <div class="tcard need">Approve the new pricing page copy<div class="who"><span class="ic agent" style="--c:var(--a-ui)" title="Dani" aria-label="Dani"></span><span class="arrow">→</span><span class="ic person" style="--c:#f4c7a1" title="You" aria-label="You"></span><span class="wt">Dani wrote it · you approve</span></div><div class="approve">✓ Approve with passkey</div></div>
+          <div class="tcard need">Pick one of two logo layouts<div class="who"><span class="ic agent" style="--c:var(--a-ui)" title="Dani" aria-label="Dani"></span><span class="wt">Dani asked 5 min ago</span></div></div>
         </div>
         <div class="col">
           <h4>Moving <b>4</b></h4>
-          <div class="tcard">Product photos resized<div class="mini-bar"><i data-w="88" style="width:20%"></i></div><div class="who"><span class="ic agent live" style="--c:var(--a-eng)" title="Build agent, working now" aria-label="Build agent, working now"></span><span class="wt">Build agent · step 7 of 8</span></div></div>
-          <div class="tcard">Checkout tested on phones<div class="mini-bar"><i data-w="60" style="width:10%"></i></div><div class="who"><span class="stack"><span class="ic agent live" style="--c:var(--a-int)" title="Test agent, working now" aria-label="Test agent, working now"></span><span class="ic person" style="--c:#c9ecdc" title="Ana" aria-label="Ana"></span></span><span class="wt">Test agent + Ana · step 3 of 5</span></div></div>
-          <div class="tcard">Launch email drafted<div class="mini-bar"><i data-w="34" style="width:5%"></i></div><div class="who"><span class="stack"><span class="ic person live" style="--c:#f2b6cf" title="Maya, working now" aria-label="Maya, working now"></span><span class="ic agent" style="--c:var(--a-pm)" title="Writer agent" aria-label="Writer agent"></span></span><span class="wt">Maya, with the Writer agent</span></div></div>
+          <div class="tcard">Product photos resized<div class="mini-bar"><i data-w="88" style="width:20%"></i></div><div class="who"><span class="ic agent live" style="--c:var(--a-eng)" title="Max, working now" aria-label="Max, working now"></span><span class="wt">Max · step 7 of 8</span></div></div>
+          <div class="tcard">Checkout tested on phones<div class="mini-bar"><i data-w="60" style="width:10%"></i></div><div class="who"><span class="stack"><span class="ic agent live" style="--c:var(--a-int)" title="Tess, working now" aria-label="Tess, working now"></span><span class="ic person" style="--c:#c9ecdc" title="Ana" aria-label="Ana"></span></span><span class="wt">Tess + Ana · step 3 of 5</span></div></div>
+          <div class="tcard">Launch email drafted<div class="mini-bar"><i data-w="34" style="width:5%"></i></div><div class="who"><span class="stack"><span class="ic person live" style="--c:#f2b6cf" title="Maya, working now" aria-label="Maya, working now"></span><span class="ic agent" style="--c:var(--a-pm)" title="Wren" aria-label="Wren"></span></span><span class="wt">Maya, with Wren</span></div></div>
         </div>
         <div class="col">
           <h4>Stuck <b>1</b></h4>
-          <div class="tcard stuck">Shipping rates import<div class="who"><span class="ic agent" style="--c:var(--a-data)" title="Data agent" aria-label="Data agent"></span><span class="wt">Data agent · waiting on supplier file · 2 h</span></div></div>
+          <div class="tcard stuck">Shipping rates import<div class="who"><span class="ic agent" style="--c:var(--a-data)" title="Dex" aria-label="Dex"></span><span class="wt">Dex · waiting on supplier file · 2 h</span></div></div>
         </div>
       </div>
-      <div class="toast" id="toast" aria-live="polite"><span class="pulse"></span><span id="toastText"><b>Test agent → Build agent:</b> hand-off delivered, Build agent is back at work</span></div>
+      <div class="toast" id="toast" aria-live="polite"><span class="pulse"></span><span id="toastText"><b>Tess → Max:</b> hand-off delivered, Max is back at work</span></div>
     </div>
+  </div>
+</section>
+
+<section id="work" class="views">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Any kind of work</span>
+      <h2>One Colab. A research lab, a software release, a bakery's books.</h2>
+      <p class="lead">Colab isn't only for programmers. Pick a template and it speaks your language: your words, your kind of helpers, your kind of results. Here are three very different teams using it.</p>
+      <div class="legend"><span class="ic person" style="--c:#d9cff7"></span><span>Person</span><span class="ic agent" style="--c:var(--a-arch)"></span><span>AI agent</span><span class="ring"></span><span>Working right now</span><span>· People and agents share the same cards.</span></div>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Choose a use case">
+      <button class="tab" role="tab" id="tab-lab" aria-controls="panel-lab" aria-selected="true"><span class="dot" style="--c:var(--a-arch)"></span>Research lab: papers to experiments</button>
+      <button class="tab" role="tab" id="tab-dev" aria-controls="panel-dev" aria-selected="false" tabindex="-1"><span class="dot" style="--c:var(--a-eng)"></span>Software team: code &amp; releases</button>
+      <button class="tab" role="tab" id="tab-biz" aria-controls="panel-biz" aria-selected="false" tabindex="-1"><span class="dot" style="--c:var(--a-ui)"></span>Small business: receipts &amp; invoices</button>
+    </div>
+
+    <!-- ===== Research lab ===== -->
+    <div class="tabpanel uc" role="tabpanel" id="panel-lab" aria-labelledby="tab-lab" style="--acc:#6250d6;--acc-soft:#ece9fb">
+      <div class="story">
+        <span class="uc-kicker">Template: Research</span>
+        <h3>From 1,240 papers to a running experiment.</h3>
+        <p>Dr. Lee's lab is testing whether a new training method holds up. Agents search and screen the literature, pull the evidence into a table, draft experiment protocols, and run them on the lab's own GPU machine. The PI approves the protocols; the students focus on thinking.</p>
+        <div class="outcome"><b>3 weeks → 3 days</b><span>for a full literature review, with experiment runs going overnight on the lab's own GPU machine.</span><small>Illustration</small></div>
+        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Research question</span><span class="vchip">Paper · Evidence</span><span class="vchip">Protocol</span><span class="vchip">Run · Result</span></div>
+        <div class="team">
+          <span class="member"><span class="ic person" style="--c:#d9cff7" title="Person" aria-label="Person"></span>Dr. Lee, PI</span>
+          <span class="member"><span class="ic person" style="--c:#c9ecdc" title="Person" aria-label="Person"></span>Jordan, PhD student</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-arch)" title="AI agent" aria-label="AI agent"></span>Ada · literature agent</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-data)" title="AI agent" aria-label="AI agent"></span>Milo · methods agent</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-win)" title="AI agent" aria-label="AI agent"></span>Gus · lab-run agent, GPU box</span>
+        </div>
+        <div class="chat">
+          <div class="bubble q">Which papers support hypothesis H2, and how strong is the evidence?</div>
+          <div class="bubble a">11 of the 47 included papers support H2: three strong (randomised, large samples), eight moderate. The evidence table and citations are attached.</div>
+          <div class="bubble q">Why did run 7 fail? Same as run 4?</div>
+          <div class="bubble a">Yes: both ran out of GPU memory at step 40,000. Milo suggests halving the batch size. Approve to re-run tonight on the lab machine?</div>
+        </div>
+      </div>
+      <div class="screen" role="img" aria-label="Illustration of the research screen: a funnel from 1,240 papers found to 47 included, an evidence table, three protocols, and twelve experiment runs with statuses.">
+        <div class="stitle">Question: does method X generalise? <small>week 3</small></div>
+        <div class="funnel">
+          <div class="fstep" style="--w:100%"><span>Papers found</span><b>1,240</b></div>
+          <div class="fstep" style="--w:62%"><span>Screened in</span><b>312</b></div>
+          <div class="fstep" style="--w:34%"><span>Included</span><b>47</b></div>
+          <div class="fstep" style="--w:22%"><span>Support H2</span><b>11</b></div>
+        </div>
+        <div class="runs" aria-hidden="true">
+          <span class="run ok">1</span><span class="run ok">2</span><span class="run ok">3</span><span class="run bad">4</span><span class="run ok">5</span><span class="run ok">6</span><span class="run bad">7</span><span class="run ok">8</span><span class="run ok">9</span><span class="run go">10</span><span class="run go">11</span><span class="run">12</span>
+        </div>
+        <p class="runkey"><span class="run ok sm"></span>done <span class="run go sm"></span>running <span class="run bad sm"></span>failed <span class="run sm"></span>queued · runs on the lab's own GPU machine</p>
+        <div class="cardrows">
+          <div class="cardrow"><span class="ct">Screen 1,240 abstracts<small>Ada · done in 2 hours</small></span><span class="whoz"><span class="ic agent" style="--c:var(--a-arch)" title="Ada" aria-label="Ada"></span></span><span class="pill ok">Done</span></div>
+          <div class="cardrow active"><span class="ct">Evidence table for H1–H3<small>Ada extracting · Jordan checking</small></span><span class="stack"><span class="ic agent live" style="--c:var(--a-arch)" title="Ada, working now" aria-label="Ada, working now"></span><span class="ic person live" style="--c:#c9ecdc" title="Jordan, reviewing" aria-label="Jordan, reviewing"></span></span><span class="pill wait">In progress</span></div>
+          <div class="cardrow"><span class="ct">Protocol P2 · halve batch size<small>Milo drafted · 6 GPU hours</small></span><span class="stack"><span class="ic agent" style="--c:var(--a-data)" title="Milo" aria-label="Milo"></span><span class="ic person" style="--c:#d9cff7" title="Dr. Lee" aria-label="Dr. Lee"></span></span><span class="pill you">Dr. Lee to approve</span></div>
+          <div class="cardrow"><span class="ct">Re-run 7 on the lab GPU box<small>Starts after approval</small></span><span class="whoz"><span class="ic agent" style="--c:var(--a-win)" title="Gus" aria-label="Gus"></span></span><span class="pill">Queued</span></div>
+        </div>
+        <div class="outputs"><b>What comes out</b><span>Annotated bibliography</span><span>Evidence table with citations</span><span>Versioned protocols</span><span>Run results, data and plots</span><span>Draft methods section</span></div>
+      </div>
+          <div class="dayone uc-day">
+        <h3>Day one at Lee Lab <small>from download to the first experiment</small></h3>
+        <ol class="day">
+          <li><time>9:00</time><b>Download the KĀDI app</b><span>Open Colab; it sets itself up.</span></li>
+          <li><time>9:05</time><b>Pick the Research template</b><span>The question, milestones and roles appear.</span></li>
+          <li><time>9:08</time><b>Add Ada and Milo</b><span>Point them at the lab drive, the reference library and the GPU box.</span></li>
+          <li><time>9:15</time><b>Ada starts screening papers</b><span>Dr. Lee heads off to teach.</span></li>
+          <li><time>11:30</time><b>First findings on the phone</b><span>42 relevant papers, three strong.</span></li>
+          <li><time>16:00</time><b>Approve the first protocol</b><span>One tap, confirmed with a passkey.</span></li>
+          <li><time>17:00</time><b>Gus starts the first run</b><span>It runs overnight; results arrive in the morning briefing.</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ===== Software team ===== -->
+    <div class="tabpanel uc" role="tabpanel" id="panel-dev" aria-labelledby="tab-dev" hidden style="--acc:var(--brand);--acc-soft:var(--brand-soft)">
+      <div class="story">
+        <span class="uc-kicker">Template: Software</span>
+        <h3>Ship features, not status updates.</h3>
+        <p>Priya manages a small product team; Alex is the lead developer. Coding agents write and test the code in parallel, each in its own part of the codebase. Priya sees the release take shape in plain sentences, and Alex reviews finished work instead of herding agents.</p>
+        <div class="outcome"><b>1 hour → 10 minutes</b><span>for the weekly status meeting, because the release page already answers "where are we?".</span><small>Illustration</small></div>
+        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Release</span><span class="vchip">Milestone · Card · Step</span><span class="vchip">Pull request</span><span class="vchip">Test run</span></div>
+        <div class="team">
+          <span class="member"><span class="ic person" style="--c:#f2b6cf" title="Person" aria-label="Person"></span>Priya, PM</span>
+          <span class="member"><span class="ic person" style="--c:#c9d6f5" title="Person" aria-label="Person"></span>Alex, developer</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-eng)" title="AI agent" aria-label="AI agent"></span>Max · build agent</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-int)" title="AI agent" aria-label="AI agent"></span>Tess · test agent</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-ui)" title="AI agent" aria-label="AI agent"></span>Dani · design agent</span>
+        </div>
+        <div class="chat">
+          <div class="bubble q">Will release 2.4 make Friday? What's the risk?</div>
+          <div class="bubble a">Yes, if the payments key arrives today. It's the only thing on the critical path; everything else is ahead. Alex owns it and was reminded an hour ago.</div>
+          <div class="bubble q">Draft the release notes for customers.</div>
+          <div class="bubble a">Done: four highlights in plain language, linked to the finished cards. Ready for your review.</div>
+        </div>
+      </div>
+      <div class="screen" role="img" aria-label="Illustration of the software screen: release 2.4 with milestones, three pull requests with test results, and a blocked item.">
+        <div class="stitle">Release 2.4 <small>forecast Friday · 4 of 7 milestones</small></div>
+        <div class="ms">
+          <div class="ms-row"><span>Customers sign in with passkeys</span><span class="bar"><i style="width:100%"></i></span><small>6/6</small></div>
+          <div class="ms-row"><span>Checkout works on phones</span><span class="bar"><i style="width:60%"></i></span><small>3/5</small></div>
+          <div class="ms-row"><span>Pay with saved cards</span><span class="bar"><i style="width:29%"></i></span><small>2/7</small></div>
+        </div>
+        <div class="cardrows">
+          <div class="cardrow"><span class="ct">PR #212 · Passkey sign-in<small>Max wrote it · Alex reviewing · tests 148/148</small></span><span class="stack"><span class="ic agent" style="--c:var(--a-eng)" title="Max" aria-label="Max"></span><span class="ic person live" style="--c:#c9d6f5" title="Alex, reviewing" aria-label="Alex, reviewing"></span></span><span class="pill ok">Ready to merge</span></div>
+          <div class="cardrow active"><span class="ct">Checkout on phones<small>Tess · step 3 of 5</small></span><span class="whoz"><span class="ic agent live" style="--c:var(--a-int)" title="Tess, working now" aria-label="Tess, working now"></span></span><span class="pill wait">In progress</span></div>
+          <div class="cardrow"><span class="ct">Release notes for customers<small>Priya with Dani</small></span><span class="stack"><span class="ic person" style="--c:#f2b6cf" title="Priya" aria-label="Priya"></span><span class="ic agent live" style="--c:var(--a-ui)" title="Dani" aria-label="Dani"></span></span><span class="pill wait">Drafting</span></div>
+          <div class="cardrow"><span class="ct">Payments API key<small>Waiting on Alex · 3 h</small></span><span class="whoz"><span class="ic person" style="--c:#c9d6f5" title="Alex" aria-label="Alex"></span></span><span class="pill risk">Blocks release</span></div>
+        </div>
+<div class="code"><span class="c"># Tess, through the KĀDI broker</span>
+<span class="k">colab_task_finish</span>(<span class="s">"CHK-03"</span>, evidence=<span class="s">"tests: 52/52"</span>)
+<span class="c">→ hand-off: Max woken to merge</span></div>
+        <div class="outputs"><b>What comes out</b><span>Reviewed pull requests</span><span>Test reports with evidence</span><span>Customer release notes</span><span>Release burn-up chart</span></div>
+      </div>
+          <div class="dayone uc-day">
+        <h3>Day one for the product team <small>from download to a merged feature</small></h3>
+        <ol class="day">
+          <li><time>9:00</time><b>Download the KĀDI app</b><span>On Priya's laptop.</span></li>
+          <li><time>9:05</time><b>Pick the Software template</b><span>Connect the code repository; release 2.4 milestones appear from the issue tracker.</span></li>
+          <li><time>9:10</time><b>Add Max, Tess and Dani</b><span>Each gets its own part of the code, so nobody collides.</span></li>
+          <li><time>9:30</time><b>Max picks up the first card</b><span>Passkey sign-in, step 1 of 6.</span></li>
+          <li><time>12:00</time><b>Tess finds two bugs on phones</b><span>Hands them to Max; fixed before lunch is over.</span></li>
+          <li><time>15:00</time><b>Alex reviews the first pull request</b><span>148 tests passing. Merged.</span></li>
+          <li><time>17:00</time><b>The release page updates itself</b><span>Forecast: Friday. No status meeting needed.</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ===== Small business ===== -->
+    <div class="tabpanel uc" role="tabpanel" id="panel-biz" aria-labelledby="tab-biz" hidden style="--acc:#1f9e70;--acc-soft:#e2f6ee">
+      <div class="story">
+        <span class="uc-kicker">Template: Back office</span>
+        <h3>Month-end, handled while you run the shop.</h3>
+        <p>Rosa owns a bakery with two locations. Receipts arrive as phone photos and emails, invoices go out by hand, and the books are always behind. With Colab, three helpers do the paperwork and Rosa only makes the calls that need the owner.</p>
+        <div class="outcome"><b>2 days → 20 minutes</b><span>for month-end: Rosa approves, the AI teammates do the rest. Sundays are free again.</span><small>Illustration</small></div>
+        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Month-end close</span><span class="vchip">Batch</span><span class="vchip">Receipt · Invoice</span><span class="vchip">Approve payment</span></div>
+        <div class="team">
+          <span class="member"><span class="ic person" style="--c:#f4c7a1" title="Person" aria-label="Person"></span>Rosa, owner</span>
+          <span class="member"><span class="ic person" style="--c:#c9d6f5" title="Person" aria-label="Person"></span>Sam, accountant</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-ui)" title="AI agent" aria-label="AI agent"></span>Ivy · intake agent</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-data)" title="AI agent" aria-label="AI agent"></span>Ken · bookkeeper agent</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-pm)" title="AI agent" aria-label="AI agent"></span>Cole · collections agent</span>
+        </div>
+        <div class="chat">
+          <div class="bubble q">What's still unpaid this month, and who's late?</div>
+          <div class="bubble a">Three invoices, $5,920 in total. Harbor Café is 12 days late on $2,400; Cole sends a friendly second reminder tomorrow, unless you'd rather call them yourself.</div>
+          <div class="bubble q">Anything I need to sign off?</div>
+          <div class="bubble a">Two supplier payments: flour ($1,180) and the oven repair ($2,000). Approve both with your passkey and they're scheduled for Friday.</div>
+        </div>
+      </div>
+      <div class="screen" role="img" aria-label="Illustration of the back-office screen: October close 82% done, documents read, payments to approve, unpaid invoices, and a document list with categories and statuses.">
+        <div class="stitle">October close <small>2 locations · 82% done</small></div>
+        <div class="kpis"><div class="kpi"><b>146</b><span>receipts read</span></div><div class="kpi"><b>2</b><span>payments to approve</span></div><div class="kpi"><b>$5,920</b><span>unpaid invoices</span></div></div>
+        <div class="doclist">
+          <div class="doc"><span class="dt">🧾</span><span class="dn">Flour Mill Co.<small>Receipt · photo · Oct 14</small></span><span class="dv">$412.80</span><span class="whoz"><span class="ic agent" style="--c:var(--a-data)" title="Ken" aria-label="Ken"></span></span><span class="pill ok">Supplies</span></div>
+          <div class="doc"><span class="dt">🧾</span><span class="dn">Shell station<small>Receipt · email · Oct 15</small></span><span class="dv">$64.10</span><span class="whoz"><span class="ic agent" style="--c:var(--a-ui)" title="Ivy" aria-label="Ivy"></span></span><span class="pill ok">Delivery fuel</span></div>
+          <div class="doc"><span class="dt">📄</span><span class="dn">Invoice #1043 · Harbor Café<small>Sent Oct 3 · reminder sent</small></span><span class="dv">$2,400.00</span><span class="whoz"><span class="stack"><span class="ic agent live" style="--c:var(--a-pm)" title="Cole, working now" aria-label="Cole, working now"></span><span class="ic person" style="--c:#f4c7a1" title="Rosa" aria-label="Rosa"></span></span></span><span class="pill risk">12 days late</span></div>
+          <div class="doc"><span class="dt">🔧</span><span class="dn">Oven repair · ProTech<small>Supplier bill · Oct 20</small></span><span class="dv">$2,000.00</span><span class="whoz"><span class="ic person" style="--c:#f4c7a1" title="Rosa" aria-label="Rosa"></span></span><span class="pill you">Approve</span></div>
+          <div class="doc"><span class="dt">🧾</span><span class="dn">Market stall fee<small>Receipt · blurry photo</small></span><span class="dv">?</span><span class="whoz"><span class="ic person" style="--c:#f4c7a1" title="Rosa" aria-label="Rosa"></span></span><span class="pill wait">Retake photo</span></div>
+        </div>
+        <div class="outputs"><b>What comes out</b><span>Categorised expense ledger for Sam</span><span>Invoices sent and chased</span><span>Tax-ready monthly totals</span><span>One-page month summary</span></div>
+      </div>
+          <div class="dayone uc-day">
+        <h3>Day one at the bakery <small>from download to a month-end summary</small></h3>
+        <ol class="day">
+          <li><time>7:30</time><b>Download the KĀDI app</b><span>Before the shop opens.</span></li>
+          <li><time>7:35</time><b>Pick the Back-office template</b><span>Month-end steps and roles appear.</span></li>
+          <li><time>7:40</time><b>Add Ivy, Ken and Cole</b><span>Connect the receipts inbox, the bank export and the invoices folder.</span></li>
+          <li><time>8:00</time><b>Snap receipts with the phone</b><span>Ivy reads them as they arrive.</span></li>
+          <li><time>12:00</time><b>Ken has sorted 146 receipts</b><span>Two need a clearer photo.</span></li>
+          <li><time>15:00</time><b>Cole sends friendly reminders</b><span>Three late invoices, $5,920 in total.</span></li>
+          <li><time>18:00</time><b>Rosa approves two payments</b><span>On the phone. The month-end summary is ready for Sam.</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="industries reveal">
+      <h3>Pick your industry and see your ready-made AI team</h3>
+      <div class="indtiles" id="indTiles" role="tablist" aria-label="Industries"></div>
+      <div class="indpanel" id="indPanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Superpowers</span>
+      <h2>Everything a great team needs, with AI teammates built in</h2>
+      <p class="lead">Start with the three moments people remember. Try them: these demos move.</p>
+    </div>
+    <div class="wowgrid">
+      <article class="wow w-wide reveal">
+        <div class="wtag">Describe it, get a team</div>
+        <h3>Type what you want. Colab builds the plan and the team.</h3>
+        <p>Describe the goal in a sentence. Colab proposes milestones, picks the right mix of people and AI helpers, and estimates time and cost before anything starts. Change what you like, then approve.</p>
+        <div class="gen" aria-live="polite">
+          <div class="prompt"><span class="caret-wrap"><span id="genText"></span><span class="caret"></span></span><span class="gobtn">Plan it</span></div>
+          <div class="genout" id="genOut">
+            <div class="gcol"><b>Milestones</b><ol id="genMs"></ol></div>
+            <div class="gcol"><b>Team</b><div class="gteam" id="genTeam"></div></div>
+            <div class="gcol"><b>Estimate</b><div class="gest" id="genEst"></div></div>
+          </div>
+        </div>
+      </article>
+      <article class="wow reveal">
+        <div class="wtag">Mission control</div>
+        <h3>Watch every helper work, live, on every machine.</h3>
+        <p>See what each agent is doing right now, wherever it runs. Need to steer one mid-task? Just tell it.</p>
+        <div class="mc">
+          <div class="mhost"><span class="mh">Laptop</span><div class="mline"><span class="ic agent live" style="--c:var(--a-arch)"></span><span class="mlog" data-log="Reading paper 212 of 312|Extracting effect sizes|Adding row 31 to the evidence table"></span></div></div>
+          <div class="mhost"><span class="mh">Lab GPU box</span><div class="mline"><span class="ic agent live" style="--c:var(--a-win)"></span><span class="mlog" data-log="Run 10 · step 38,200 / 60,000|Run 10 · loss 0.412, falling|Run 11 · warming up"></span></div></div>
+          <div class="mhost"><span class="mh">Office PC</span><div class="mline"><span class="ic person live" style="--c:#c9ecdc"></span><span class="mlog" data-log="Jordan · checking rows 1–30|Jordan · flagged 2 rows|Jordan · approved rows 1–28"></span></div></div>
+          <div class="whisper"><span class="ic person" style="--c:#d9cff7"></span><span>"Only include studies after 2019."</span><span class="ok">✓ Ada: will do</span></div>
+        </div>
+      </article>
+      <article class="wow reveal">
+        <div class="wtag">Rewind and explain</div>
+        <h3>Scrub through the whole project. Ask "why?" about anything.</h3>
+        <p>Every hand-off, decision and result is kept, so you can replay the project like a video and trace any result back to its evidence.</p>
+        <div class="rewind">
+          <label for="scrub" class="sr">Project day</label>
+          <input type="range" id="scrub" min="1" max="15" value="9">
+          <div class="rwrow"><span class="rday" id="rDay">Day 9</span><span class="bar"><i id="rBar" style="width:60%"></i></span></div>
+          <div class="revent" id="rEvent">Run 7 failed: out of GPU memory. Milo proposed a fix.</div>
+          <div class="chain"><span class="cnode">Result: H2 holds</span><span class="carrow">←</span><span class="cnode">11 papers</span><span class="carrow">←</span><span class="cnode">Runs 8–12</span><span class="carrow">←</span><span class="cnode"><span class="ic person" style="--c:#d9cff7"></span>Dr. Lee approved P2</span></div>
+        </div>
+      </article>
+    </div>
+    <div class="bento" style="margin-top:16px">
+      <article class="feat wide dark reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M4 12h12M12 6l6 6-6 6"/></svg></div>
+        <h3>Agents wake each other up</h3>
+        <p>When one agent finishes or gets stuck, it leaves a hand-off and the right agent starts within seconds. No copy-paste, no waiting for someone to notice. In our tests, a waiting agent was back at work a fraction of a second after it was unblocked.</p>
+        <div class="viz"><div class="relay"><div class="node"><span class="ic agent" style="--c:var(--a-int)" title="AI agent" aria-label="AI agent"></span>Test</div><div class="wire"></div><div class="node"><span class="ic agent" style="--c:var(--a-eng)" title="AI agent" aria-label="AI agent"></span>Build</div><div class="wire" style="--d:1.2s"></div><div class="node"><span class="ic agent" style="--c:var(--a-ui)" title="AI agent" aria-label="AI agent"></span>Design</div></div></div>
+      </article>
+      <article class="feat wide reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l3-4 3 2 5-6"/></svg></div>
+        <h3>Always know where you stand</h3>
+        <p>Goals are written as plain sentences you can check in a demo. Work is counted in small steps, so "54% done, finishing Thursday" is a real number, not a guess.</p>
+        <div class="viz ms">
+          <div class="ms-row"><span>Customers can sign in</span><span class="bar"><i style="width:100%"></i></span><small>6/6</small></div>
+          <div class="ms-row"><span>Orders reach the warehouse</span><span class="bar"><i style="width:57%"></i></span><small>4/7</small></div>
+          <div class="ms-row"><span>Weekly report sends itself</span><span class="bar"><i style="width:20%"></i></span><small>1/5</small></div>
+        </div>
+      </article>
+      <article class="feat reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+        <h3>"What needs me?" in two minutes</h3>
+        <p>A clear home screen with three lists: needs you, moving, stuck. Anyone can use it without training.</p>
+      </article>
+      <article class="feat reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Nothing big happens without you</h3>
+        <p>Important steps wait for your approval, confirmed with your passkey. Agents can't fake it.</p>
+        <div class="viz"><div class="passkey"><span class="fp"><svg viewBox="0 0 24 24"><path d="M12 11v4M8 9a4 4 0 0 1 8 0v3M6 13c0 3 2 6 6 7M18 13c0 2-1 4-3 5"/></svg></span><span><b>Approve launch</b><br><small>Signed by you · recorded</small></span></div></div>
+      </article>
+      <article class="feat reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="8" height="6" rx="1.5"/><rect x="13" y="13" width="8" height="6" rx="1.5"/><path d="M7 11v4h6M17 13V9h-6"/></svg></div>
+        <h3>Any agent, any machine</h3>
+        <p>Bring Codex, Claude or your own open models. Add a machine by scanning a QR code with the KĀDI app, and it joins the team in seconds.</p>
+        <div class="viz qrrow"><span class="qr" aria-hidden="true"></span><div class="hosts"><span class="host"><i></i>Mac</span><span class="host"><i></i>Windows</span><span class="host"><i></i>Home server</span><span class="host"><i></i>Akash cloud</span></div></div>
+      </article>
+      <article class="feat wide dark reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
+        <h3>A morning briefing on your phone</h3>
+        <p>Ask anything in plain words, any time. Every morning, get a two-minute briefing on your phone: what got done, what's moving, what needs you. Approve right there.</p>
+        <div class="viz phone-brief"><div class="pb-head"><b>Good morning, Dr. Lee</b><span>7:58 · Tuesday</span></div><div class="pb-line ok">✓ 3 experiment runs finished overnight</div><div class="pb-line">● Evidence table 64% done, on track</div><div class="pb-line you">! Protocol P2 needs your approval <span class="pb-btn">Approve</span></div></div>
+      </article>
+      <article class="feat wide reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><circle cx="8" cy="12" r="5"/><circle cx="16" cy="12" r="5"/></svg></div>
+        <h3>Two organisations, one project</h3>
+        <p>Work with a partner lab, a client or a supplier on a shared project. Each side keeps its own Colab and its own data; only the shared cards and hand-offs cross over.</p>
+        <div class="viz orgs"><div class="org"><b>Lee Lab</b><span class="ic person" style="--c:#d9cff7"></span><span class="ic agent" style="--c:var(--a-arch)"></span><small>own data stays here</small></div><div class="shared"><span>Shared project</span><small>cards · hand-offs</small></div><div class="org"><b>Partner Lab</b><span class="ic person" style="--c:#c9ecdc"></span><span class="ic agent" style="--c:var(--a-data)"></span><small>own data stays here</small></div></div>
+      </article>
+      <article class="feat full reveal">
+        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/><path d="M9 20v-6h6v6"/></svg></div>
+        <h3>Yours to own</h3>
+        <p>Runs on your machines or your cloud. Your data never has to leave, and no third-party service is required.</p>
+      </article>
+    </div>
+    <h3 class="planned-head reveal">Planned next</h3>
+    <div class="wowgrid">
+      <article class="wow reveal">
+        <div class="wtag"><span class="planned">Planned</span> Smart model autopilot</div>
+        <h3>The right AI for each job, automatically.</h3>
+        <p>Routine work goes to private models on your own machines. Colab calls a frontier model only when a task needs it, within your limits.</p>
+        <div class="route">
+          <div class="rt"><span>Sort 146 receipts</span><span class="mchip local">Local model</span></div>
+          <div class="rt"><span>Screen 1,240 abstracts</span><span class="mchip local">Local model</span></div>
+          <div class="rt"><span>Design the experiment</span><span class="mchip front">Frontier model</span></div>
+          <div class="rt"><span>Write release notes</span><span class="mchip local">Local model</span></div>
+          <div class="saved"><span>AI spend this month</span><span class="bar"><i style="width:24%"></i></span><b>$18</b><small>vs about $75 if everything used a frontier model (example)</small></div>
+        </div>
+      </article>
+      <article class="wow reveal">
+        <div class="wtag"><span class="planned">Planned</span> What-if planning</div>
+        <h3>Move a slider, see the future.</h3>
+        <p>Add a helper, change the deadline or tighten the budget, and the finish date and cost update instantly, based on how your team really works.</p>
+        <div class="whatif">
+          <label for="helpers">AI helpers on this project: <b id="hN">2</b></label>
+          <input type="range" id="helpers" min="1" max="6" value="2">
+          <div class="wiout"><div><span>Finish</span><b id="wFinish">Fri, Nov 21</b></div><div><span>AI cost</span><b id="wCost">$46</b></div><div><span>Your time</span><b id="wYou">2.5 h</b></div></div>
+          <p class="winote" id="wNote">Balanced: on time, low cost.</p>
+        </div>
+      </article>
+    </div>
+    <p class="more-wow light reveal"><b>Also planned:</b> <span>rules in plain words ("never email customers without my OK")</span><span>one-click templates and teammates from the KĀDI registry</span></p>
   </div>
 </section>
 
@@ -527,304 +986,62 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
   </div>
 </section>
 
-<section id="features" style="padding-top:0;padding-bottom:40px">
+<section id="team" class="teamsec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">What it does</span>
-      <h2>Ten things that make Colab feel like magic</h2>
-      <p class="lead">Each one solves a problem we hit while running a team of AI agents on real projects.</p>
+      <span class="eyebrow">Your AI team</span>
+      <h2>Add an AI teammate the way you'd welcome a new colleague.</h2>
+      <p class="lead">Pick a role, choose where it works and what it may touch, and it joins your team, your files and your tools. Every teammate, AI or human, has a card that shows who they are, what they can do, and what they're doing right now.</p>
     </div>
-    <div class="bento">
-      <article class="feat wide dark reveal">
-        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M4 12h12M12 6l6 6-6 6"/></svg></div>
-        <h3>Agents wake each other up</h3>
-        <p>When one agent finishes or gets stuck, it leaves a hand-off and the right agent starts within seconds. No copy-paste, no waiting for someone to notice. In our tests, a waiting agent was back at work a fraction of a second after it was unblocked.</p>
-        <div class="viz"><div class="relay"><div class="node"><span class="ic agent" style="--c:var(--a-int)" title="AI agent" aria-label="AI agent"></span>Test</div><div class="wire"></div><div class="node"><span class="ic agent" style="--c:var(--a-eng)" title="AI agent" aria-label="AI agent"></span>Build</div><div class="wire" style="--d:1.2s"></div><div class="node"><span class="ic agent" style="--c:var(--a-ui)" title="AI agent" aria-label="AI agent"></span>Design</div></div></div>
+    <div class="teamgrid">
+      <div class="roles reveal" role="listbox" aria-label="AI teammate roles" id="roles"></div>
+      <article class="pcard agentcard reveal" aria-live="polite">
+        <header><span class="ic agent live" id="acIcon" style="--c:var(--a-arch)"></span><div><b id="acName">Ada</b><span id="acRole">Researcher · Research template</span></div><span class="kind">AI teammate</span></header>
+        <div class="status"><span class="dotlive"></span><span id="acDoing">Working on: Evidence table, step 3 of 6</span></div>
+        <dl>
+          <dt>Works on</dt><dd id="acWhere">Lab GPU box</dd>
+          <dt>Thinks with</dt><dd id="acModel">Open model on this machine; frontier model allowed for hard steps</dd>
+          <dt>Uses</dt><dd id="acTools"></dd>
+          <dt>Can</dt><dd id="acCan"></dd>
+          <dt>Can't</dt><dd id="acCant"></dd>
+          <dt>Reports to</dt><dd id="acBoss"></dd>
+        </dl>
+        <div class="stats"><div><b id="acSteps">42</b><span>steps this week</span></div><div><b id="acCost">$11</b><span id="acBudget">of $20 budget</span></div><div><b id="acHand">3</b><span>hand-offs</span></div></div>
+        <div class="pbtns"><span class="pbtn">Message</span><span class="pbtn">Pause</span><span class="pbtn">Duplicate</span></div>
       </article>
-      <article class="feat wide reveal">
-        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l3-4 3 2 5-6"/></svg></div>
-        <h3>Always know where you stand</h3>
-        <p>Goals are written as plain sentences you can check in a demo. Work is counted in small steps, so "54% done, finishing Thursday" is a real number, not a guess.</p>
-        <div class="viz ms">
-          <div class="ms-row"><span>Customers can sign in</span><span class="bar"><i style="width:100%"></i></span><small>6/6</small></div>
-          <div class="ms-row"><span>Orders reach the warehouse</span><span class="bar"><i style="width:57%"></i></span><small>4/7</small></div>
-          <div class="ms-row"><span>Weekly report sends itself</span><span class="bar"><i style="width:20%"></i></span><small>1/5</small></div>
-        </div>
-      </article>
-      <article class="feat reveal">
-        <div class="ficon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
-        <h3>"What needs me?" in two minutes</h3>
-        <p>A calm home screen with three lists: needs you, moving, stuck. Anyone can use it without training.</p>
-      </article>
-      <article class="feat reveal">
-        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>Nothing big happens without you</h3>
-        <p>Important steps wait for your approval, confirmed with your passkey. Agents can't fake it.</p>
-        <div class="viz"><div class="passkey"><span class="fp"><svg viewBox="0 0 24 24"><path d="M12 11v4M8 9a4 4 0 0 1 8 0v3M6 13c0 3 2 6 6 7M18 13c0 2-1 4-3 5"/></svg></span><span><b>Approve launch</b><br><small>Signed by you · recorded</small></span></div></div>
-      </article>
-      <article class="feat reveal">
-        <div class="ficon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="8" height="6" rx="1.5"/><rect x="13" y="13" width="8" height="6" rx="1.5"/><path d="M7 11v4h6M17 13V9h-6"/></svg></div>
-        <h3>Any agent, any machine</h3>
-        <p>Bring Codex, Claude or your own open models. Run them on a Mac, a Windows PC, a home server or the cloud.</p>
-        <div class="viz hosts"><span class="host"><i></i>Mac</span><span class="host"><i></i>Windows</span><span class="host"><i></i>Home server</span><span class="host"><i></i>Akash cloud</span></div>
-      </article>
-      <article class="feat wide dark reveal">
-        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg></div>
-        <h3>Ask it anything, in plain words</h3>
-        <p>A built-in project assistant answers questions about your work and writes the weekly summary for you.</p>
-        <div class="viz ask"><div class="bubble q">Where do we stand on the launch?</div><div class="bubble a">4 of 7 goals done. Checkout testing finishes tomorrow. One thing needs you: the pricing copy. We're on track for Friday.</div></div>
-      </article>
-      <article class="feat wide reveal">
-        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></div>
-        <h3>A record you can trust</h3>
-        <p>Every decision, hand-off and result is kept with who did it and why, so audits, reviews and "why did we do this?" have answers.</p>
-        <div class="viz"><div class="ledger">D-014 · approved by Corey · "Ship the pricing page as drafted."
-signed with passkey · 2026-11-12 14:03</div></div>
-      </article>
-      <article class="feat reveal">
-        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3z"/><path d="M9 20v-6h6v6"/></svg></div>
-        <h3>Yours to own</h3>
-        <p>Runs on your machines or your cloud. Your data never has to leave, and no third-party service is required.</p>
-      </article>
-      <article class="feat reveal">
-        <div class="ficon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></div>
-        <h3><a href="#work" style="text-decoration:none">Fits any kind of work →</a></h3>
-        <p>Ready-made templates speak your language: software projects, research labs, small-business operations.</p>
-        <div class="viz chips"><span class="chip">Software</span><span class="chip">Research lab</span><span class="chip">Back office</span></div>
-      </article>
-      <article class="feat reveal">
-        <div class="ficon"><svg viewBox="0 0 24 24"><path d="M4 18c4 0 4-12 8-12s4 12 8 12"/></svg></div>
-        <h3>Forecasts that learn</h3>
-        <p>Colab learns how long work really takes for each person and agent, and gives honest ranges. Personal data stays private.</p>
+      <article class="pcard personcard reveal">
+        <header><span class="ic person" style="--c:#d9cff7"></span><div><b>Dr. Lee</b><span>Principal investigator · Lee Lab</span></div><span class="kind human">Person</span></header>
+        <div class="status"><span class="dotaway"></span><span>Teaching until 2 pm</span></div>
+        <dl>
+          <dt>Needs to</dt><dd><span class="pill you">Approve protocol P2</span></dd>
+          <dt>Working on</dt><dd>Grant renewal, with Wren</dd>
+          <dt>Briefing</dt><dd>8:00 every morning, on phone</dd>
+          <dt>Signs in</dt><dd>Passkey (Sign in with KĀDI)</dd>
+          <dt>Team</dt><dd class="teamicons"><span class="ic person" style="--c:#c9ecdc" title="Jordan"></span><span class="ic agent" style="--c:var(--a-arch)" title="Ada"></span><span class="ic agent" style="--c:var(--a-data)" title="Milo"></span><span class="ic agent" style="--c:var(--a-win)" title="Gus"></span></dd>
+        </dl>
+        <div class="stats"><div><b>1</b><span>approval waiting</span></div><div><b>6</b><span>cards owned</span></div><div><b>4</b><span>teammates</span></div></div>
       </article>
     </div>
   </div>
 </section>
 
-
-
-
-
-
-
-
-
-<section id="work" class="views">
+<section id="trust" class="night">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Any kind of work</span>
-      <h2>One Colab. A research lab, a software release, a bakery's books.</h2>
-      <p class="lead">Colab isn't only for programmers. Pick a template and it speaks your language: your words, your kind of helpers, your kind of results. Here are three very different teams using it.</p>
-      <div class="legend"><span class="ic person" style="--c:#d9cff7"></span><span>Person</span><span class="ic agent" style="--c:var(--a-arch)"></span><span>AI agent</span><span class="ring"></span><span>Working right now</span><span>· People and agents share the same cards.</span></div>
+      <span class="eyebrow">Built to be trusted</span>
+      <h2>AI teammates you can actually let into the business.</h2>
+      <p class="lead">Owners, managers and IT ask the same questions first. Here are the answers.</p>
     </div>
-    <div class="tabs" role="tablist" aria-label="Choose a use case">
-      <button class="tab" role="tab" id="tab-lab" aria-controls="panel-lab" aria-selected="true"><span class="dot" style="--c:var(--a-arch)"></span>Research lab: papers to experiments</button>
-      <button class="tab" role="tab" id="tab-dev" aria-controls="panel-dev" aria-selected="false" tabindex="-1"><span class="dot" style="--c:var(--a-eng)"></span>Software team: code &amp; releases</button>
-      <button class="tab" role="tab" id="tab-biz" aria-controls="panel-biz" aria-selected="false" tabindex="-1"><span class="dot" style="--c:var(--a-ui)"></span>Small business: receipts &amp; invoices</button>
+    <div class="trustgrid">
+      <div class="tr reveal"><span class="epi" style="--c:var(--a-data)"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><b>Your data stays on your machines</b><span>Files, databases and Colab's memory stay where they are. Nothing leaves unless you send it.</span></div>
+      <div class="tr reveal"><span class="epi" style="--c:var(--a-ui)"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><b>Nothing big happens without you</b><span>Payments, sending, publishing and other big steps wait for your approval, confirmed with your passkey.</span></div>
+      <div class="tr reveal"><span class="epi" style="--c:var(--a-arch)"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></span><b>Every action is recorded</b><span>Who did what, when and why, kept as a signed history you can replay and audit.</span></div>
+      <div class="tr reveal"><span class="epi" style="--c:var(--a-int)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M9.5 9.5c0-1 1.1-1.5 2.5-1.5s2.5.7 2.5 1.8c0 2.4-5 1.4-5 3.9 0 1.1 1.1 1.8 2.5 1.8s2.5-.6 2.5-1.6"/></svg></span><b>Each AI teammate has a budget</b><span>Set a weekly spending limit per teammate. They stop and ask before going over.</span></div>
+      <div class="tr reveal"><span class="epi" style="--c:var(--a-pm)"><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/><path d="M5 5l14 14" opacity=".001"/></svg></span><b>A clear list of can and can't</b><span>Every teammate's card shows exactly what it may read, change and use, and what it never may.</span></div>
+      <div class="tr reveal"><span class="epi" style="--c:var(--a-win)"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></span><b>Pause or remove anytime</b><span>One click pauses a teammate mid-task; its work and notes stay on the card.</span></div>
     </div>
-
-    <!-- ===== Research lab ===== -->
-    <div class="tabpanel uc" role="tabpanel" id="panel-lab" aria-labelledby="tab-lab" style="--acc:#6250d6;--acc-soft:#ece9fb">
-      <div class="story">
-        <span class="uc-kicker">Template: Research</span>
-        <h3>From 1,240 papers to a running experiment.</h3>
-        <p>Dr. Lee's lab is testing whether a new training method holds up. Agents search and screen the literature, pull the evidence into a table, draft experiment protocols, and run them on the lab's own GPU machine. The PI approves the protocols; the students focus on thinking.</p>
-        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Research question</span><span class="vchip">Paper · Evidence</span><span class="vchip">Protocol</span><span class="vchip">Run · Result</span></div>
-        <div class="team">
-          <span class="member"><span class="ic person" style="--c:#d9cff7" title="Person" aria-label="Person"></span>Dr. Lee, PI</span>
-          <span class="member"><span class="ic person" style="--c:#c9ecdc" title="Person" aria-label="Person"></span>Jordan, PhD student</span>
-          <span class="member"><span class="ic agent" style="--c:var(--a-arch)" title="AI agent" aria-label="AI agent"></span>Literature agent</span>
-          <span class="member"><span class="ic agent" style="--c:var(--a-data)" title="AI agent" aria-label="AI agent"></span>Methods agent</span>
-          <span class="member"><span class="ic agent" style="--c:var(--a-win)" title="AI agent" aria-label="AI agent"></span>Lab-run agent · GPU box</span>
-        </div>
-        <div class="chat">
-          <div class="bubble q">Which papers support hypothesis H2, and how strong is the evidence?</div>
-          <div class="bubble a">11 of the 47 included papers support H2: three strong (randomised, large samples), eight moderate. The evidence table and citations are attached.</div>
-          <div class="bubble q">Why did run 7 fail? Same as run 4?</div>
-          <div class="bubble a">Yes: both ran out of GPU memory at step 40,000. The Methods agent suggests halving the batch size. Approve to re-run tonight on the lab machine?</div>
-        </div>
-      </div>
-      <div class="screen" role="img" aria-label="Illustration of the research screen: a funnel from 1,240 papers found to 47 included, an evidence table, three protocols, and twelve experiment runs with statuses.">
-        <div class="stitle">Question: does method X generalise? <small>week 3</small></div>
-        <div class="funnel">
-          <div class="fstep" style="--w:100%"><span>Papers found</span><b>1,240</b></div>
-          <div class="fstep" style="--w:62%"><span>Screened in</span><b>312</b></div>
-          <div class="fstep" style="--w:34%"><span>Included</span><b>47</b></div>
-          <div class="fstep" style="--w:22%"><span>Support H2</span><b>11</b></div>
-        </div>
-        <div class="runs" aria-hidden="true">
-          <span class="run ok">1</span><span class="run ok">2</span><span class="run ok">3</span><span class="run bad">4</span><span class="run ok">5</span><span class="run ok">6</span><span class="run bad">7</span><span class="run ok">8</span><span class="run ok">9</span><span class="run go">10</span><span class="run go">11</span><span class="run">12</span>
-        </div>
-        <p class="runkey"><span class="run ok sm"></span>done <span class="run go sm"></span>running <span class="run bad sm"></span>failed <span class="run sm"></span>queued · runs on the lab's own GPU machine</p>
-        <div class="cardrows">
-          <div class="cardrow"><span class="ct">Screen 1,240 abstracts<small>Literature agent · done in 2 hours</small></span><span class="whoz"><span class="ic agent" style="--c:var(--a-arch)" title="Literature agent" aria-label="Literature agent"></span></span><span class="pill ok">Done</span></div>
-          <div class="cardrow active"><span class="ct">Evidence table for H1–H3<small>Literature agent extracting · Jordan checking</small></span><span class="stack"><span class="ic agent live" style="--c:var(--a-arch)" title="Literature agent, working now" aria-label="Literature agent, working now"></span><span class="ic person live" style="--c:#c9ecdc" title="Jordan, reviewing" aria-label="Jordan, reviewing"></span></span><span class="pill wait">In progress</span></div>
-          <div class="cardrow"><span class="ct">Protocol P2 · halve batch size<small>Methods agent drafted · 6 GPU hours</small></span><span class="stack"><span class="ic agent" style="--c:var(--a-data)" title="Methods agent" aria-label="Methods agent"></span><span class="ic person" style="--c:#d9cff7" title="Dr. Lee" aria-label="Dr. Lee"></span></span><span class="pill you">Dr. Lee to approve</span></div>
-          <div class="cardrow"><span class="ct">Re-run 7 on the lab GPU box<small>Starts after approval</small></span><span class="whoz"><span class="ic agent" style="--c:var(--a-win)" title="Lab-run agent" aria-label="Lab-run agent"></span></span><span class="pill">Queued</span></div>
-        </div>
-        <div class="outputs"><b>What comes out</b><span>Annotated bibliography</span><span>Evidence table with citations</span><span>Versioned protocols</span><span>Run results, data and plots</span><span>Draft methods section</span></div>
-      </div>
-    </div>
-
-    <!-- ===== Software team ===== -->
-    <div class="tabpanel uc" role="tabpanel" id="panel-dev" aria-labelledby="tab-dev" hidden style="--acc:var(--brand);--acc-soft:var(--brand-soft)">
-      <div class="story">
-        <span class="uc-kicker">Template: Software</span>
-        <h3>Ship features, not status updates.</h3>
-        <p>Priya manages a small product team; Alex is the lead developer. Coding agents write and test the code in parallel, each in its own part of the codebase. Priya sees the release take shape in plain sentences, and Alex reviews finished work instead of herding agents.</p>
-        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Release</span><span class="vchip">Milestone · Card · Step</span><span class="vchip">Pull request</span><span class="vchip">Test run</span></div>
-        <div class="team">
-          <span class="member"><span class="ic person" style="--c:#f2b6cf" title="Person" aria-label="Person"></span>Priya, PM</span>
-          <span class="member"><span class="ic person" style="--c:#c9d6f5" title="Person" aria-label="Person"></span>Alex, developer</span>
-          <span class="member"><span class="ic agent" style="--c:var(--a-eng)" title="AI agent" aria-label="AI agent"></span>Build agent</span>
-          <span class="member"><span class="ic agent" style="--c:var(--a-int)" title="AI agent" aria-label="AI agent"></span>Test agent</span>
-          <span class="member"><span class="ic agent" style="--c:var(--a-ui)" title="AI agent" aria-label="AI agent"></span>Design agent</span>
-        </div>
-        <div class="chat">
-          <div class="bubble q">Will release 2.4 make Friday? What's the risk?</div>
-          <div class="bubble a">Yes, if the payments key arrives today. It's the only thing on the critical path; everything else is ahead. Alex owns it and was reminded an hour ago.</div>
-          <div class="bubble q">Draft the release notes for customers.</div>
-          <div class="bubble a">Done: four highlights in plain language, linked to the finished cards. Ready for your review.</div>
-        </div>
-      </div>
-      <div class="screen" role="img" aria-label="Illustration of the software screen: release 2.4 with milestones, three pull requests with test results, and a blocked item.">
-        <div class="stitle">Release 2.4 <small>forecast Friday · 4 of 7 milestones</small></div>
-        <div class="ms">
-          <div class="ms-row"><span>Customers sign in with passkeys</span><span class="bar"><i style="width:100%"></i></span><small>6/6</small></div>
-          <div class="ms-row"><span>Checkout works on phones</span><span class="bar"><i style="width:60%"></i></span><small>3/5</small></div>
-          <div class="ms-row"><span>Pay with saved cards</span><span class="bar"><i style="width:29%"></i></span><small>2/7</small></div>
-        </div>
-        <div class="cardrows">
-          <div class="cardrow"><span class="ct">PR #212 · Passkey sign-in<small>Build agent wrote it · Alex reviewing · tests 148/148</small></span><span class="stack"><span class="ic agent" style="--c:var(--a-eng)" title="Build agent" aria-label="Build agent"></span><span class="ic person live" style="--c:#c9d6f5" title="Alex, reviewing" aria-label="Alex, reviewing"></span></span><span class="pill ok">Ready to merge</span></div>
-          <div class="cardrow active"><span class="ct">Checkout on phones<small>Test agent · step 3 of 5</small></span><span class="whoz"><span class="ic agent live" style="--c:var(--a-int)" title="Test agent, working now" aria-label="Test agent, working now"></span></span><span class="pill wait">In progress</span></div>
-          <div class="cardrow"><span class="ct">Release notes for customers<small>Priya with the Design agent</small></span><span class="stack"><span class="ic person" style="--c:#f2b6cf" title="Priya" aria-label="Priya"></span><span class="ic agent live" style="--c:var(--a-ui)" title="Design agent" aria-label="Design agent"></span></span><span class="pill wait">Drafting</span></div>
-          <div class="cardrow"><span class="ct">Payments API key<small>Waiting on Alex · 3 h</small></span><span class="whoz"><span class="ic person" style="--c:#c9d6f5" title="Alex" aria-label="Alex"></span></span><span class="pill risk">Blocks release</span></div>
-        </div>
-<div class="code"><span class="c"># the Test agent, through the KĀDI broker</span>
-<span class="k">colab_task_finish</span>(<span class="s">"CHK-03"</span>, evidence=<span class="s">"tests: 52/52"</span>)
-<span class="c">→ hand-off: Build agent woken to merge</span></div>
-        <div class="outputs"><b>What comes out</b><span>Reviewed pull requests</span><span>Test reports with evidence</span><span>Customer release notes</span><span>Release burn-up chart</span></div>
-      </div>
-    </div>
-
-    <!-- ===== Small business ===== -->
-    <div class="tabpanel uc" role="tabpanel" id="panel-biz" aria-labelledby="tab-biz" hidden style="--acc:#1f9e70;--acc-soft:#e2f6ee">
-      <div class="story">
-        <span class="uc-kicker">Template: Back office</span>
-        <h3>Month-end, handled while you run the shop.</h3>
-        <p>Rosa owns a bakery with two locations. Receipts arrive as phone photos and emails, invoices go out by hand, and the books are always behind. With Colab, three helpers do the paperwork and Rosa only makes the calls that need her.</p>
-        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Month-end close</span><span class="vchip">Batch</span><span class="vchip">Receipt · Invoice</span><span class="vchip">Approve payment</span></div>
-        <div class="team">
-          <span class="member"><span class="ic person" style="--c:#f4c7a1" title="Person" aria-label="Person"></span>Rosa, owner</span>
-          <span class="member"><span class="ic person" style="--c:#c9d6f5" title="Person" aria-label="Person"></span>Sam, accountant</span>
-          <span class="member"><span class="ic agent" style="--c:var(--a-ui)" title="AI agent" aria-label="AI agent"></span>Intake agent</span>
-          <span class="member"><span class="ic agent" style="--c:var(--a-data)" title="AI agent" aria-label="AI agent"></span>Bookkeeper agent</span>
-          <span class="member"><span class="ic agent" style="--c:var(--a-pm)" title="AI agent" aria-label="AI agent"></span>Collections agent</span>
-        </div>
-        <div class="chat">
-          <div class="bubble q">What's still unpaid this month, and who's late?</div>
-          <div class="bubble a">Three invoices, $5,920 in total. Harbor Café is 12 days late on $2,400; the Collections agent sends a friendly second reminder tomorrow, unless you'd rather call them yourself.</div>
-          <div class="bubble q">Anything I need to sign off?</div>
-          <div class="bubble a">Two supplier payments: flour ($1,180) and the oven repair ($2,000). Approve both with your passkey and they're scheduled for Friday.</div>
-        </div>
-      </div>
-      <div class="screen" role="img" aria-label="Illustration of the back-office screen: October close 82% done, documents read, payments to approve, unpaid invoices, and a document list with categories and statuses.">
-        <div class="stitle">October close <small>2 locations · 82% done</small></div>
-        <div class="kpis"><div class="kpi"><b>146</b><span>receipts read</span></div><div class="kpi"><b>2</b><span>payments to approve</span></div><div class="kpi"><b>$5,920</b><span>unpaid invoices</span></div></div>
-        <div class="doclist">
-          <div class="doc"><span class="dt">🧾</span><span class="dn">Flour Mill Co.<small>Receipt · photo · Oct 14</small></span><span class="dv">$412.80</span><span class="whoz"><span class="ic agent" style="--c:var(--a-data)" title="Bookkeeper agent" aria-label="Bookkeeper agent"></span></span><span class="pill ok">Supplies</span></div>
-          <div class="doc"><span class="dt">🧾</span><span class="dn">Shell station<small>Receipt · email · Oct 15</small></span><span class="dv">$64.10</span><span class="whoz"><span class="ic agent" style="--c:var(--a-ui)" title="Intake agent" aria-label="Intake agent"></span></span><span class="pill ok">Delivery fuel</span></div>
-          <div class="doc"><span class="dt">📄</span><span class="dn">Invoice #1043 · Harbor Café<small>Sent Oct 3 · reminder sent</small></span><span class="dv">$2,400.00</span><span class="whoz"><span class="stack"><span class="ic agent live" style="--c:var(--a-pm)" title="Collections agent, working now" aria-label="Collections agent, working now"></span><span class="ic person" style="--c:#f4c7a1" title="Rosa" aria-label="Rosa"></span></span></span><span class="pill risk">12 days late</span></div>
-          <div class="doc"><span class="dt">🔧</span><span class="dn">Oven repair · ProTech<small>Supplier bill · Oct 20</small></span><span class="dv">$2,000.00</span><span class="whoz"><span class="ic person" style="--c:#f4c7a1" title="Rosa" aria-label="Rosa"></span></span><span class="pill you">Approve</span></div>
-          <div class="doc"><span class="dt">🧾</span><span class="dn">Market stall fee<small>Receipt · blurry photo</small></span><span class="dv">?</span><span class="whoz"><span class="ic person" style="--c:#f4c7a1" title="Rosa" aria-label="Rosa"></span></span><span class="pill wait">Retake photo</span></div>
-        </div>
-        <div class="outputs"><b>What comes out</b><span>Categorised expense ledger for Sam</span><span>Invoices sent and chased</span><span>Tax-ready monthly totals</span><span>One-page month summary</span></div>
-      </div>
-    </div>
-
-    <p class="more-uses reveal"><b>Also a good fit:</b> <span>grant writing</span><span>customer support</span><span>event planning</span><span>compliance checks</span><span>content and marketing</span><span>your own template</span></p>
   </div>
 </section>
-
-
-<section id="wow" class="night wowsec">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Wait, it can do that?</span>
-      <h2>Five moments that make people say "wow"</h2>
-      <p class="lead">Try them: the sliders on this page really move.</p>
-    </div>
-    <div class="wowgrid">
-
-      <article class="wow w-wide reveal">
-        <div class="wtag">1 · Describe it, get a team</div>
-        <h3>Type what you want. Colab builds the plan and the team.</h3>
-        <p>Describe the goal in a sentence. Colab proposes milestones, picks the right mix of people and AI helpers, and estimates time and cost before anything starts. Change what you like, then approve.</p>
-        <div class="gen" aria-live="polite">
-          <div class="prompt"><span class="caret-wrap"><span id="genText"></span><span class="caret"></span></span><span class="gobtn">Plan it</span></div>
-          <div class="genout" id="genOut">
-            <div class="gcol"><b>Milestones</b><ol id="genMs"></ol></div>
-            <div class="gcol"><b>Team</b><div class="gteam" id="genTeam"></div></div>
-            <div class="gcol"><b>Estimate</b><div class="gest" id="genEst"></div></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="wow reveal">
-        <div class="wtag">2 · Mission control</div>
-        <h3>Watch every helper work, live, on every machine.</h3>
-        <p>See what each agent is doing right now, wherever it runs. Need to steer one mid-task? Just tell it.</p>
-        <div class="mc">
-          <div class="mhost"><span class="mh">Laptop</span><div class="mline"><span class="ic agent live" style="--c:var(--a-arch)"></span><span class="mlog" data-log="Reading paper 212 of 312|Extracting effect sizes|Adding row 31 to the evidence table"></span></div></div>
-          <div class="mhost"><span class="mh">Lab GPU box</span><div class="mline"><span class="ic agent live" style="--c:var(--a-win)"></span><span class="mlog" data-log="Run 10 · step 38,200 / 60,000|Run 10 · loss 0.412, falling|Run 11 · warming up"></span></div></div>
-          <div class="mhost"><span class="mh">Office PC</span><div class="mline"><span class="ic person live" style="--c:#c9ecdc"></span><span class="mlog" data-log="Jordan · checking rows 1–30|Jordan · flagged 2 rows|Jordan · approved rows 1–28"></span></div></div>
-          <div class="whisper"><span class="ic person" style="--c:#d9cff7"></span><span>"Only include studies after 2019."</span><span class="ok">✓ Literature agent: will do</span></div>
-        </div>
-      </article>
-
-      <article class="wow reveal">
-        <div class="wtag">3 · Rewind and explain</div>
-        <h3>Scrub through the whole project. Ask "why?" about anything.</h3>
-        <p>Every hand-off, decision and result is kept, so you can replay the project like a video and trace any result back to its evidence.</p>
-        <div class="rewind">
-          <label for="scrub" class="sr">Project day</label>
-          <input type="range" id="scrub" min="1" max="15" value="9">
-          <div class="rwrow"><span class="rday" id="rDay">Day 9</span><span class="bar"><i id="rBar" style="width:60%"></i></span></div>
-          <div class="revent" id="rEvent">Run 7 failed: out of GPU memory. Methods agent proposed a fix.</div>
-          <div class="chain"><span class="cnode">Result: H2 holds</span><span class="carrow">←</span><span class="cnode">11 papers</span><span class="carrow">←</span><span class="cnode">Runs 8–12</span><span class="carrow">←</span><span class="cnode"><span class="ic person" style="--c:#d9cff7"></span>Dr. Lee approved P2</span></div>
-        </div>
-      </article>
-
-      <article class="wow reveal">
-        <div class="wtag">4 · Smart model autopilot</div>
-        <h3>The right AI for each job, automatically.</h3>
-        <p>Routine work goes to private models on your own machines. Colab calls a frontier model only when a task needs it, within your limits.</p>
-        <div class="route">
-          <div class="rt"><span>Sort 146 receipts</span><span class="mchip local">Local model</span></div>
-          <div class="rt"><span>Screen 1,240 abstracts</span><span class="mchip local">Local model</span></div>
-          <div class="rt"><span>Design the experiment</span><span class="mchip front">Frontier model</span></div>
-          <div class="rt"><span>Write release notes</span><span class="mchip local">Local model</span></div>
-          <div class="saved"><span>AI spend this month</span><span class="bar"><i style="width:24%"></i></span><b>$18</b><small>vs about $75 if everything used a frontier model (example)</small></div>
-        </div>
-      </article>
-
-      <article class="wow reveal">
-        <div class="wtag">5 · What-if planning</div>
-        <h3>Move a slider, see the future.</h3>
-        <p>Add a helper, change the deadline or tighten the budget, and the finish date and cost update instantly, based on how your team really works.</p>
-        <div class="whatif">
-          <label for="helpers">AI helpers on this project: <b id="hN">2</b></label>
-          <input type="range" id="helpers" min="1" max="6" value="2">
-          <div class="wiout"><div><span>Finish</span><b id="wFinish">Fri, Nov 21</b></div><div><span>AI cost</span><b id="wCost">$46</b></div><div><span>Your time</span><b id="wYou">2.5 h</b></div></div>
-          <p class="winote" id="wNote">Balanced: on time, low cost.</p>
-        </div>
-      </article>
-
-    </div>
-    <p class="more-wow reveal"><b>Also on the way:</b> <span>morning briefing on your phone</span><span>two organisations sharing one project, each keeping its own data</span><span>add a machine by scanning a QR code</span><span>rules in plain words ("never email customers without my OK")</span><span>one-click templates and helpers from the KĀDI registry</span></p>
-  </div>
-</section>
-
 
 <section id="how">
   <div class="wrap">
@@ -844,44 +1061,59 @@ signed with passkey · 2026-11-12 14:03</div></div>
 <section id="simple">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Simple for anyone</span>
-      <h2>Up and running in minutes, on the computer you already have.</h2>
-      <p class="lead">KĀDI takes care of the hard parts: sign-in, connections, storage and security. You don't need servers, a cloud account or an IT department to start.</p>
+      <span class="eyebrow">Get started</span>
+      <h2>Download it, open it, and your team is ready.</h2>
+      <p class="lead">KĀDI Colab installs like any other app. KĀDI takes care of the hard parts behind the scenes: sign-in, connections, storage and security. No servers, no command line, no IT department.</p>
     </div>
     <div class="easy">
       <div class="ez reveal">
         <span class="ezn">1</span>
-        <h3>Install it like an app</h3>
-        <p>One click in the KĀDI desktop app, or one line for people who like the terminal:</p>
-        <div class="cmd"><span>$</span> kadi install kadi-colab</div>
+        <h3>Download and open</h3>
+        <p>Get the KĀDI app for your computer and open it. Colab sets itself up in about a minute.</p>
+        <div class="installer"><svg xmlns="http://www.w3.org/2000/svg" class="appicon" aria-hidden="true" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="apptile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#232732" />
+      <stop offset="1" stop-color="#14161a" />
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="225.3" ry="225.3" fill="url(#apptile)" />
+  <g transform="translate(222.59 194.56) scale(6.34880)" fill="#ffffff">
+    <rect x="65.62" width="25.55" height="25.55" rx="5" ry="5" />
+    <rect x="65.62" y="74.45" width="25.55" height="25.55" rx="5" ry="5" />
+    <path d="M51.83,58.11c0-.11.03-.21.03-.32v-15.24l15.77-15.12c-1.98-.87-3.52-2.56-4.17-4.65l-15.29,14.66c-.42-.11-.85-.2-1.31-.2h-15.55c-2.76,0-5,2.24-5,5v15.55c0,2.76,2.24,5,5,5h15.55c.26,0,.5-.04.74-.08l15.79,14.76c.58-2.12,2.07-3.86,4.02-4.79l-15.58-14.57Z" />
+    <rect y=".04" width="18" height="99.96" rx="5" ry="5" />
+  </g>
+</svg><div class="inst-txt"><b>KĀDI Colab</b><span class="inst-bar"><i></i></span><small>Setting up your workspace…</small></div></div>
+        <div class="dl"><span class="dlb">Mac</span><span class="dlb">Windows</span><span class="dlb">Linux</span></div>
       </div>
       <div class="ez reveal">
         <span class="ezn">2</span>
         <h3>Pick a template</h3>
-        <p>Back office, software, research, or start blank. The words, steps and helpers come set up.</p>
-        <div class="tpls"><span class="tpl on">🧾 Back office</span><span class="tpl">💻 Software</span><span class="tpl">🔬 Research</span><span class="tpl">＋ Blank</span></div>
+        <p>Research, software, back office, or start blank. The words, steps and AI teammates come set up.</p>
+        <div class="tpls"><span class="tpl on">🔬 Research</span><span class="tpl">💻 Software</span><span class="tpl">🧾 Back office</span><span class="tpl">＋ Blank</span></div>
       </div>
       <div class="ez reveal">
         <span class="ezn">3</span>
-        <h3>Sign in and invite</h3>
-        <p>Sign in with your passkey; no passwords to remember. Invite teammates with a link, and add AI helpers from a list.</p>
-        <div class="invite"><span class="ic person" style="--c:#f4c7a1" title="Person" aria-label="Person"></span><span class="ic person" style="--c:#c9d6f5" title="Person" aria-label="Person"></span><span class="ic agent" style="--c:var(--a-ui)" title="AI agent" aria-label="AI agent"></span><span class="ic agent" style="--c:var(--a-data)" title="AI agent" aria-label="AI agent"></span><span class="plus">＋ Add</span></div>
+        <h3>Add your team</h3>
+        <p>Invite colleagues with a link; they sign in with a passkey. Then <a href="#team">add AI teammates</a> from the gallery.</p>
+        <div class="invite"><span class="ic person" style="--c:#d9cff7"></span><span class="ic person" style="--c:#c9ecdc"></span><span class="ic agent" style="--c:var(--a-arch)"></span><span class="ic agent" style="--c:var(--a-data)"></span><span class="plus">＋ Add</span></div>
       </div>
     </div>
     <div class="grow reveal">
-      <div><b>Grows when you do.</b> Start on a laptop. When the team grows, move Colab to an office machine, a home server or the Akash decentralised cloud with one command, with backups and updates built in.</div>
-      <div class="cmd small"><span>$</span> kadi deploy kadi-colab --to akash</div>
+      <div><b>Grows when you do.</b> Add another computer, like the lab's GPU machine, by scanning a QR code with its KĀDI app. When the team outgrows a laptop, move Colab to an office server or the cloud from Settings, in one click, with backups and updates built in.</div>
+      <div class="growviz"><span class="qr big" aria-hidden="true"></span><div class="setting"><b>Where Colab runs</b><span class="opt">This laptop</span><span class="opt on">Office server</span><span class="opt">Cloud</span></div></div>
     </div>
   </div>
 </section>
-
 
 <section id="ecosystem" class="night">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">The KĀDI ecosystem</span>
       <h2>Thousands of tools at your fingertips. Your machines, your data, your AI.</h2>
-      <p class="lead">Colab sits on KĀDI, a network that connects agents, tools and machines. Start with everything private and local. Bring in outside services or the most powerful AI models only when you choose to.</p>
+      <p class="lead"><b style="color:var(--on-night)">Your AI teammates come to your work, not the other way around.</b> Through KĀDI they plug into the files, databases and software your team already uses, on the machines you already have, in any industry. Start private and local; bring in outside services or frontier AI only when you choose.</p>
+      <div class="worksin"><span>Spreadsheets</span><span>Email</span><span>Shared drives</span><span>Databases</span><span>Accounting apps</span><span>Code repositories</span><span>Lab instruments</span><span>Team chat</span><span>CRMs</span><span>…and thousands more through MCP</span></div>
     </div>
     <div class="eco2">
       <div class="rings reveal" role="img" aria-label="Diagram: KĀDI Colab at the centre; an inner ring of things you own (your machines, your data, your AI models); an outer, dashed ring of optional extras (frontier AI models, third-party services, thousands of tools).">
@@ -898,7 +1130,6 @@ signed with passkey · 2026-11-12 14:03</div></div>
     </div>
   </div>
 </section>
-
 
 <section id="different" class="night" style="background:#171a21;border-top:1px solid rgba(255,255,255,.06)">
   <div class="wrap">
@@ -935,9 +1166,9 @@ signed with passkey · 2026-11-12 14:03</div></div>
     </div>
     <div class="road reveal">
       <div class="mile"><span class="when">MONTH 1</span><b>Proof</b><span>Sign in with KĀDI, agents waking each other, a live home screen.</span></div>
-      <div class="mile"><span class="when">MONTHS 2–4</span><b>We run on it</b><span>Our own agent team works in Colab every day, across machines, with no copy-paste.</span></div>
-      <div class="mile"><span class="when">MONTHS 4–7</span><b>For everyone</b><span>Templates for labs and businesses, the calm screens, the project assistant.</span></div>
-      <div class="mile last"><span class="when">VERSION 1.0</span><b>Real teams</b><span>Two pilot teams outside software, running on their own machines.</span></div>
+      <div class="mile"><span class="when">MONTHS 2–5</span><b>We run on it</b><span>Our own agent team works in Colab every day, across machines, with no copy-paste.</span></div>
+      <div class="mile"><span class="when">MONTHS 5–10</span><b>For everyone</b><span>Templates for labs and businesses, mission control, rewind, the morning briefing.</span></div>
+      <div class="mile last"><span class="when">VERSION 1.0</span><b>Real teams</b><span>Install like a normal app, add machines by QR code, share projects across organisations.</span></div>
     </div>
   </div>
 </section>
@@ -968,11 +1199,11 @@ signed with passkey · 2026-11-12 14:03</div></div>
   if(reduce)grow();else setTimeout(grow,400);
   // hero toast
   const msgs=[
-    ['Test agent → Build agent:','hand-off delivered, Build agent is back at work'],
-    ['Design agent:','finished "logo layouts", step 4 of 4 ✓'],
+    ['Tess → Max:','hand-off delivered, Max is back at work'],
+    ['Dani:','finished "logo layouts", step 4 of 4 ✓'],
     ['Waiting on you:','approve the pricing page copy'],
     ['Assistant:','launch still on track for Friday'],
-    ['Windows PC:','Test agent started, checking checkout on Edge']
+    ['Windows PC:','Tess started, checking checkout on Edge']
   ];
   const toast=document.getElementById('toast'),txt=document.getElementById('toastText');let k=0;
   if(!reduce)setInterval(()=>{toast.classList.add('hide');setTimeout(()=>{k=(k+1)%msgs.length;txt.innerHTML='<b></b> ';txt.firstChild.textContent=msgs[k][0];txt.appendChild(document.createTextNode(msgs[k][1]));toast.classList.remove('hide');if(k===0)bars.forEach(b=>{b.style.width='5%';setTimeout(grow,300);});},380);},3600);
@@ -1010,9 +1241,9 @@ signed with passkey · 2026-11-12 14:03</div></div>
   (function(){const tx=document.getElementById('genText'); if(!tx) return; const out=document.getElementById('genOut');
     const P=(c,n)=>`<span class="m"><span class="ic person" style="--c:${c}"></span>${n}</span>`, A=(c,n)=>`<span class="m"><span class="ic agent" style="--c:var(${c})"></span>${n}</span>`;
     const S=[
-      {q:'Review the literature on sleep and memory, then design two experiments.',ms:['Search and screen papers','Evidence table with citations','Two experiment protocols','Pilot runs and first results'],team:P('#d9cff7','You (PI)')+P('#c9ecdc','A student to review')+A('--a-arch','Literature agent')+A('--a-data','Methods agent'),est:'<b>3 weeks</b><span>≈ $60 in AI · 4 h of your time</span>'},
-      {q:'Get our receipts and invoices sorted every month, and chase late payers.',ms:['Read and sort receipts','Match bank lines','Send and chase invoices','Monthly summary for the accountant'],team:P('#f4c7a1','You (owner)')+P('#c9d6f5','Your accountant')+A('--a-ui','Intake agent')+A('--a-data','Bookkeeper agent')+A('--a-pm','Collections agent'),est:'<b>Every month</b><span>≈ $12 in AI · 30 min of your time</span>'},
-      {q:'Add passkey sign-in to our app and ship it in two weeks.',ms:['Sign-in screens designed','Passkey sign-in built and tested','Works on phones','Release notes and launch'],team:P('#f2b6cf','You (PM)')+P('#c9d6f5','A developer to review')+A('--a-eng','Build agent')+A('--a-int','Test agent')+A('--a-ui','Design agent'),est:'<b>9 work days</b><span>≈ $40 in AI · 3 h of your time</span>'}];
+      {q:'Review the literature on sleep and memory, then design two experiments.',ms:['Search and screen papers','Evidence table with citations','Two experiment protocols','Pilot runs and first results'],team:P('#d9cff7','You (PI)')+P('#c9ecdc','A student to review')+A('--a-arch','Ada · literature agent')+A('--a-data','Milo · methods agent'),est:'<b>3 weeks</b><span>≈ $60 in AI · 4 h of your time</span>'},
+      {q:'Get our receipts and invoices sorted every month, and chase late payers.',ms:['Read and sort receipts','Match bank lines','Send and chase invoices','Monthly summary for the accountant'],team:P('#f4c7a1','You (owner)')+P('#c9d6f5','Your accountant')+A('--a-ui','Ivy · intake agent')+A('--a-data','Ken · bookkeeper agent')+A('--a-pm','Cole · collections agent'),est:'<b>Every month</b><span>≈ $12 in AI · 30 min of your time</span>'},
+      {q:'Add passkey sign-in to our app and ship it in two weeks.',ms:['Sign-in screens designed','Passkey sign-in built and tested','Works on phones','Release notes and launch'],team:P('#f2b6cf','You (PM)')+P('#c9d6f5','A developer to review')+A('--a-eng','Max · build agent')+A('--a-int','Tess · test agent')+A('--a-ui','Dani · design agent'),est:'<b>9 work days</b><span>≈ $40 in AI · 3 h of your time</span>'}];
     const render=x=>{document.getElementById('genMs').innerHTML=x.ms.map(m=>`<li>${m}</li>`).join('');document.getElementById('genTeam').innerHTML=x.team;document.getElementById('genEst').innerHTML=x.est;};
     let k=0; render(S[0]); tx.textContent=S[0].q; if(reduce) return;
     const cycle=()=>{k=(k+1)%S.length;const x=S[k];out.classList.add('dim');tx.textContent='';let i=0;
@@ -1023,7 +1254,7 @@ signed with passkey · 2026-11-12 14:03</div></div>
     setInterval(()=>{L.forEach((l,n)=>{setTimeout(()=>{const a=l.dataset.log.split('|');l.style.opacity=0;setTimeout(()=>{l.dataset.i=(+l.dataset.i+1)%a.length;l.textContent=a[l.dataset.i];l.style.opacity=1;},300);},n*500);});},3200);})();
   // ---- wow 3: rewind ----
   (function(){const r=document.getElementById('scrub'); if(!r) return;
-    const E={1:'Dr. Lee set the question and approved the plan.',2:'Literature agent found 1,240 papers.',3:'312 papers screened in; Jordan spot-checked 40.',4:'47 papers included; evidence table started.',5:'Methods agent drafted protocols P1 and P2.',6:'Dr. Lee approved P1. Runs 1–3 started on the lab GPU box.',7:'Run 4 failed: out of GPU memory.',8:'Runs 5 and 6 done; early results look promising.',9:'Run 7 failed: out of GPU memory. Methods agent proposed a fix.',10:'Dr. Lee approved P2 (halved batch size).',11:'Runs 8–9 done with the fix.',12:'Evidence table finished: 11 papers support H2.',13:'Runs 10–11 done; results agree with the literature.',14:'Draft methods section written; Jordan editing.',15:'Result: H2 holds. Report shared with the lab.'};
+    const E={1:'Dr. Lee set the question and approved the plan.',2:'Ada found 1,240 papers.',3:'312 papers screened in; Jordan spot-checked 40.',4:'47 papers included; evidence table started.',5:'Milo drafted protocols P1 and P2.',6:'Dr. Lee approved P1. Runs 1–3 started on the lab GPU box.',7:'Run 4 failed: out of GPU memory.',8:'Runs 5 and 6 done; early results look promising.',9:'Run 7 failed: out of GPU memory. Milo proposed a fix.',10:'Dr. Lee approved P2 (halved batch size).',11:'Runs 8–9 done with the fix.',12:'Evidence table finished: 11 papers support H2.',13:'Runs 10–11 done; results agree with the literature.',14:'Draft methods section written; Jordan editing.',15:'Result: H2 holds. Report shared with the lab.'};
     const f=()=>{const d=+r.value;document.getElementById('rDay').textContent='Day '+d;document.getElementById('rBar').style.width=Math.round(d/15*100)+'%';document.getElementById('rEvent').textContent=E[d];};
     r.addEventListener('input',f); f();})();
   // ---- wow 5: what-if ----
@@ -1035,6 +1266,50 @@ signed with passkey · 2026-11-12 14:03</div></div>
       document.getElementById('wCost').textContent='$'+Math.round(18+n*14);document.getElementById('wYou').textContent=(1.5+n*0.5).toFixed(1)+' h';
       document.getElementById('wNote').textContent=n<=1?'Cheapest, but slowest.':n<=3?'Balanced: on time, low cost.':n<=4?'Faster; a little more of your time reviewing.':'Fastest, but more to review and diminishing returns.';};
     h.addEventListener('input',f); f();})();
+
+  // ---- team: role gallery drives the agent card ----
+  (function(){const box=document.getElementById('roles'); if(!box) return;
+    const R=[
+      {k:'Researcher',n:'Ada',c:'--a-arch',t:'Research template',w:'Lab GPU box',m:'Open model on this machine; frontier model allowed for hard steps',u:['Paper search','Reference library','Lab drive','Evidence table'],can:['Read papers and the lab drive','Write the evidence table'],cant:['Email anyone','Spend over $20 a week'],b:'Dr. Lee',d:'Evidence table, step 3 of 6',s:42,co:11,bu:20,h:3,blurb:'Finds, screens and summarises papers'},
+      {k:'Engineer',n:'Max',c:'--a-eng',t:'Software template',w:'Alex’s laptop',m:'Frontier coding model; open model for small fixes',u:['Code repository','Test runner','Issue tracker'],can:['Change its own folders','Open pull requests'],cant:['Merge without review','Deploy to customers'],b:'Alex',d:'Passkey sign-in, step 5 of 6',s:61,co:19,bu:40,h:5,blurb:'Writes and tests code in its own lane'},
+      {k:'Bookkeeper',n:'Ken',c:'--a-data',t:'Back-office template',w:'Office PC',m:'Open model on this machine',u:['Receipts inbox','Bank export','Spreadsheet','Accounting app'],can:['Read receipts and statements','Draft ledger entries'],cant:['Pay or move money','Change last month’s books'],b:'Rosa',d:'October close, 82% done',s:146,co:4,bu:10,h:2,blurb:'Sorts receipts, matches payments'},
+      {k:'Analyst',n:'Iris',c:'--a-int',t:'Any template',w:'Office server',m:'Open model; frontier model for long reports',u:['Sales database (read-only)','Spreadsheets','Charts'],can:['Query data read-only','Build charts and reports'],cant:['Change any data'],b:'Priya',d:'Weekly sales report, step 2 of 4',s:18,co:6,bu:15,h:1,blurb:'Turns data into answers and reports'},
+      {k:'Support',n:'Sky',c:'--a-ui',t:'Any template',w:'Cloud (Akash)',m:'Open model; frontier model for tricky cases',u:['Help-desk inbox','Knowledge base'],can:['Draft replies','Tag and route tickets'],cant:['Send replies without approval','Issue refunds'],b:'Sam',d:'12 reply drafts waiting for review',s:88,co:7,bu:15,h:4,blurb:'Drafts replies, routes tickets'},
+      {k:'Writer',n:'Wren',c:'--a-pm',t:'Any template',w:'Laptop',m:'Frontier writing model',u:['Shared documents','Brand guide'],can:['Draft and edit documents'],cant:['Publish anything'],b:'Maya',d:'Grant renewal, section 3 of 5',s:27,co:9,bu:20,h:2,blurb:'Drafts documents in your voice'}];
+    box.innerHTML=R.map((r,i)=>`<button class="role" role="option" aria-selected="${i===0}" data-i="${i}"><span class="ic agent" style="--c:var(${r.c})"></span><b>${r.k}</b><small>${r.blurb}</small><span class="add">＋ Add to team</span></button>`).join('');
+    const $=id=>document.getElementById(id);
+    const show=i=>{const r=R[i];$('acIcon').style.setProperty('--c',`var(${r.c})`);$('acName').textContent=r.n;$('acRole').textContent=r.k+' · '+r.t;$('acDoing').textContent='Working on: '+r.d;$('acWhere').textContent=r.w;$('acModel').textContent=r.m;
+      $('acTools').innerHTML=r.u.map(x=>`<span class="tchip">${x}</span>`).join('');$('acCan').innerHTML=r.can.map(x=>`<span class="tchip yes">${x}</span>`).join('');$('acCant').innerHTML=r.cant.map(x=>`<span class="tchip no">${x}</span>`).join('');
+      $('acBoss').textContent=r.b;$('acSteps').textContent=r.s;$('acCost').textContent='$'+r.co;$('acBudget').textContent='of $'+r.bu+' budget';$('acHand').textContent=r.h;
+      box.querySelectorAll('.role').forEach(b=>b.setAttribute('aria-selected',String(+b.dataset.i===i)));};
+    box.addEventListener('click',e=>{const b=e.target.closest('.role');if(b)show(+b.dataset.i);}); show(0);})();
+
+  // ---- hero: AI teammates joining ----
+  (function(){const box=document.getElementById('jIcons'),j=document.getElementById('joined'); if(!box) return;
+    const P=c=>`<span class="ic person" style="--c:${c}"></span>`, A=c=>`<span class="ic agent" style="--c:var(${c})"></span>`;
+    const base=P('#f4c7a1')+P('#f2b6cf')+P('#c9ecdc')+A('--a-ui')+A('--a-eng')+A('--a-int');
+    const J=[['--a-arch','Ada · research assistant'],['--a-data','Ken · bookkeeper'],['--a-pm','Wren · writer']];
+    box.innerHTML=base; if(reduce){box.innerHTML+=J.map(x=>A(x[0])).join('');return;}
+    let k=0; setInterval(()=>{ if(k===J.length){box.innerHTML=base;k=0;return;} const [c,n]=J[k++];
+      const [nm,role]=n.split(' · ');j.innerHTML=A(c)+'<span class="jt"><b>＋ '+nm+' joined</b><small>'+role+'</small></span>'; j.classList.add('show');
+      setTimeout(()=>{const t=document.createElement('span');t.innerHTML=A(c);const ic=t.firstChild;ic.classList.add('new');box.appendChild(ic);},700);
+      setTimeout(()=>j.classList.remove('show'),3200);},5200);})();
+  // ---- industries: ready-made teams ----
+  (function(){const tiles=document.getElementById('indTiles'),panel=document.getElementById('indPanel'); if(!tiles) return;
+    const I=[
+      ['⚖️','Law firm',[['--a-arch','Pax','paralegal','Summarises discovery and drafts first versions'],['--a-int','Cleo','contract reviewer','Flags risky clauses and missing terms'],['--a-data','Bea','billing assistant','Turns time entries into invoices']],['Document management','Email','Billing software','Court calendar'],'Every new contract gets a risk summary within the hour.'],
+      ['🩺','Clinic',[['--a-ui','Ivy','intake assistant','Prepares pre-visit forms and history'],['--a-eng','Juno','scheduling assistant','Refills cancellations the same day'],['--a-arch','Noor','notes assistant','Drafts visit notes for clinician review']],['Practice management','Calendar','Secure messaging'],'Cancellations refilled the same day; notes ready for review after each visit.'],
+      ['📣','Agency',[['--a-int','Rio','strategist','Turns briefs into campaign plans'],['--a-pm','Wren','copywriter','Drafts copy in each client’s voice'],['--a-ui','Dani','designer','Produces layouts and variations'],['--a-data','Iris','reporting analyst','Builds client reports from analytics']],['Shared drive','Social scheduler','Analytics','Client chat'],'Client reports assemble themselves every Monday morning.'],
+      ['🏫','School',[['--a-arch','Lena','lesson planner','Builds lesson plans from the curriculum'],['--a-eng','Gabe','grading assistant','Drafts feedback for teacher approval'],['--a-pm','Pia','family updates','Writes weekly notes home']],['Learning platform','Gradebook','Email'],'Feedback drafts for 120 essays by morning, approved by the teacher.'],
+      ['🤝','Nonprofit',[['--a-pm','Wren','grant writer','Drafts proposals from past wins'],['--a-ui','Dora','donor relations','Writes thank-yous and updates'],['--a-int','Vic','volunteer coordinator','Fills shifts and sends reminders']],['Donor CRM','Email','Spreadsheets'],'Grant drafts and donor thank-yous go out on time, every time.'],
+      ['🏭','Manufacturing',[['--a-data','Quinn','quality analyst','Spots defect trends in line data'],['--a-eng','Sol','supply planner','Flags late parts and suggests swaps'],['--a-win','Mo','maintenance scheduler','Plans service before breakdowns']],['ERP','Sensor data','Work orders'],'Supplier delays flagged before they stop the line.'],
+      ['🏠','Real estate',[['--a-pm','Lia','listing writer','Writes listings from photos and notes'],['--a-int','Leo','lead follow-up','Answers new leads within minutes'],['--a-ui','Tara','transaction coordinator','Tracks every deadline to closing']],['CRM','Listing feed','E-signature'],'Every lead answered within minutes; no closing deadline missed.'],
+      ['📊','Consultancy',[['--a-arch','Ada','research analyst','Gathers market and competitor facts'],['--a-eng','Sid','slide builder','Turns findings into client decks'],['--a-pm','Wren','proposal writer','Drafts proposals from past work']],['Shared drive','Spreadsheets','Slides'],'Proposal first drafts in an hour, not a week.']];
+    tiles.innerHTML=I.map((x,i)=>`<button class="ind" role="tab" aria-selected="${i===0}" data-i="${i}"><span class="em">${x[0]}</span><b>${x[1]}</b></button>`).join('');
+    const show=i=>{const [em,name,team,plug,week]=I[i];
+      panel.innerHTML=`<div><h4>Your ready-made ${name.toLowerCase()} team</h4>${team.map(([c,n,r,d])=>`<div class="mate"><span class="ic agent" style="--c:var(${c})"></span><div><b>${n} · ${r}</b><span>${d}</span></div></div>`).join('')}<div class="mate"><span class="ic person" style="--c:#f4c7a1"></span><div><b>You and your people</b><span>Stay in charge: approve, review and decide.</span></div></div></div><div><h4>Plugs into</h4><div class="plug">${plug.map(t=>`<span>${t}</span>`).join('')}</div><div class="firstweek"><b>In the first week</b>${week}</div><span class="addteam">＋ Add this team</span></div>`;
+      tiles.querySelectorAll('.ind').forEach(b=>b.setAttribute('aria-selected',String(+b.dataset.i===i)));};
+    tiles.addEventListener('click',e=>{const b=e.target.closest('.ind');if(b)show(+b.dataset.i);}); show(0);})();
   // reveal on scroll
   const els=[...document.querySelectorAll('.reveal')];
   if(reduce||!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));}
