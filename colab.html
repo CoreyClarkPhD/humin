@@ -191,7 +191,7 @@ section{padding-block:96px;scroll-margin-top:64px}
 .rowline:last-child{border-bottom:0}
 .rowline .l{display:flex;align-items:center;gap:8px;min-width:0}
 .rowline .l span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pill{font-size:12px;font-weight:700;border-radius:99px;padding:3px 9px;white-space:nowrap}
+.pill{font-size:12px;font-weight:700;border-radius:99px;padding:3px 9px;white-space:nowrap;background:#eceff0;color:var(--ink-2)}
 .pill.ok{background:#e2f6ee;color:#17734f}
 .pill.wait{background:#fbf1d8;color:#7a5b06}
 .pill.you{background:var(--brand-soft);color:var(--brand)}
@@ -276,13 +276,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
 .uc .kpi b{color:var(--acc)}
 .uc .bar i{background:var(--acc)}
 .doclist{display:flex;flex-direction:column}
-.doc{display:grid;grid-template-columns:26px minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.doc{display:grid;grid-template-columns:26px minmax(0,1fr) auto auto auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
 .doc:last-child{border-bottom:0}
 .doc .dt{font-size:17px}
 .doc .dn{min-width:0;overflow:hidden;text-overflow:ellipsis}
 .doc .dn small{display:block;color:var(--muted);font-size:12.5px}
 .doc .dv{font-family:var(--mono);font-size:13px;color:var(--ink-2)}
-@media (max-width:520px){.doc{grid-template-columns:22px minmax(0,1fr) auto}.doc .dv{display:none}}
+@media (max-width:520px){.doc{grid-template-columns:22px minmax(0,1fr) auto auto}.doc .dv{display:none}}
 .outputs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;border-top:1px dashed var(--line);padding-top:12px;font-size:13.5px}
 .outputs b{font-family:var(--display);font-size:13.5px;margin-right:4px}
 .outputs span{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:3px 9px}
@@ -335,6 +335,108 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin .lab{animation:spin 60s linear infinite reverse;transform-box:fill-box;transform-origin:center}
 
+/* people vs agents */
+.ic{--sz:20px;width:var(--sz);height:var(--sz);flex:0 0 auto;display:inline-grid;place-items:center;position:relative;background:var(--c);vertical-align:middle}
+.ic.person{border-radius:50%}
+.ic.agent{border-radius:28%}
+.ic::before{content:"";width:68%;height:68%;background:#14161a;-webkit-mask:var(--g) center/contain no-repeat;mask:var(--g) center/contain no-repeat}
+.ic.person{--g:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='8.2' r='4.3'/%3E%3Cpath d='M3.6 21.5c.7-4.6 4.1-7.4 8.4-7.4s7.7 2.8 8.4 7.4z'/%3E%3C/svg%3E")}
+.ic.agent{--g:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M8 7.5h8a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-5a4 4 0 0 1 4-4zM7.6 14a1.7 1.7 0 1 0 3.4 0a1.7 1.7 0 1 0-3.4 0zM13 14a1.7 1.7 0 1 0 3.4 0a1.7 1.7 0 1 0-3.4 0z'/%3E%3Crect x='11' y='2' width='2' height='5' rx='1'/%3E%3Ccircle cx='12' cy='2.6' r='1.6'/%3E%3Crect x='1.5' y='12' width='2' height='4' rx='1'/%3E%3Crect x='20.5' y='12' width='2' height='4' rx='1'/%3E%3C/svg%3E")}
+.ic.live::after{content:"";position:absolute;inset:-4px;border-radius:inherit;border:2px solid var(--good);animation:livering 1.8s ease-out infinite}
+.ic.person.live::after{border-radius:50%}
+@keyframes livering{0%{opacity:1;transform:scale(.9)}100%{opacity:0;transform:scale(1.25)}}
+.stack{display:inline-flex}
+.stack .ic{box-shadow:0 0 0 2px var(--stack-bg,#232732)}
+.stack .ic + .ic{margin-left:-5px}
+.arrow{font-size:11px;opacity:.7}
+.legend{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:13px;color:var(--muted)}
+.legend .ic{--sz:18px}
+.legend span:not(.ic){margin-right:6px}
+.legend .ring{width:14px;height:14px;border-radius:50%;border:2px solid var(--good);margin-right:2px!important}
+.legend.mini{font-size:11.5px;color:var(--on-night-3)}
+.legend.mini .ic{--sz:15px}
+.tcard .who .ic{--sz:18px}
+.tcard .who{flex-wrap:wrap}
+.tcard .who .wt{flex:1 1 90px;min-width:0}
+.member .ic{--sz:26px}
+.relay .node .ic{--sz:36px}
+.invite .ic{--sz:32px}
+.rowline .ic,.doc .ic,.cardrow .ic{--sz:22px}
+.screen .stack .ic{--stack-bg:#fff}
+.whoz{display:inline-flex;align-items:center;gap:4px}
+.cardrows{display:flex;flex-direction:column;gap:8px}
+.cardrow{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;font-size:14.5px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+.cardrow .ct{min-width:0}
+.cardrow .ct small{display:block;color:var(--muted);font-size:12.5px}
+.cardrow.active{border-color:var(--acc);background:var(--card);box-shadow:0 0 0 3px var(--acc-soft)}
+@media (max-width:520px){.cardrow{grid-template-columns:minmax(0,1fr) auto}.cardrow .pill{grid-column:1 / -1;justify-self:start}}
+
+/* wow */
+.wowsec{background:radial-gradient(1200px 500px at 80% -10%,rgba(47,98,214,.28),transparent 60%),var(--night)}
+.wowgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.wowgrid{grid-template-columns:1fr}}
+.wow{background:linear-gradient(165deg,var(--tile),var(--tile-2));border:1px solid #2b303b;border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.w-wide{grid-column:1 / -1}
+.wtag{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-hi)}
+.wow h3{font-size:22px;color:var(--on-night)}
+.wow p{color:var(--on-night-2);font-size:16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.gen{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.prompt{display:flex;align-items:center;gap:10px;background:#0b0d11;border:1px solid rgba(93,140,240,.4);border-radius:12px;padding:12px 12px 12px 16px;font-size:16.5px;color:var(--on-night);min-height:52px}
+.caret-wrap{flex:1 1 auto;min-width:0}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--brand-hi);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.gobtn{flex:0 0 auto;background:var(--brand);color:#fff;font-family:var(--display);font-weight:600;font-size:14px;border-radius:9px;padding:7px 12px}
+.genout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,.8fr);gap:12px;transition:opacity .4s ease}
+.genout.dim{opacity:.15}
+@media (max-width:760px){.genout{grid-template-columns:1fr}}
+.gcol{background:rgba(255,255,255,.04);border:1px solid var(--night-line);border-radius:12px;padding:12px 14px;font-size:14.5px;color:var(--on-night-2);min-width:0}
+.gcol b{display:block;font-family:var(--display);font-size:13px;color:var(--on-night);margin-bottom:6px}
+.gcol ol{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.gteam{display:flex;flex-direction:column;gap:6px}
+.gteam span.m{display:flex;align-items:center;gap:8px}
+.gteam .ic{--sz:22px}
+.gest{display:flex;flex-direction:column;gap:6px}
+.gest b{font-size:22px!important;color:#fff!important;margin:0!important}
+.mc{display:flex;flex-direction:column;gap:8px}
+.mhost{background:rgba(255,255,255,.04);border:1px solid var(--night-line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.mh{font-family:var(--mono);font-size:11.5px;color:var(--on-night-3);letter-spacing:.06em;text-transform:uppercase}
+.mline{display:flex;align-items:center;gap:10px;font-size:14.5px;color:var(--on-night);min-width:0}
+.mline .ic{--sz:22px}
+.mlog{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:opacity .3s ease}
+.whisper{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--on-night);background:rgba(93,140,240,.12);border:1px dashed rgba(93,140,240,.5);border-radius:12px;padding:10px 12px}
+.whisper .ic{--sz:22px}
+.whisper .ok{color:var(--good);font-weight:600}
+.rewind{display:flex;flex-direction:column;gap:10px}
+input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
+.rwrow{display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;align-items:center}
+.rday{font-family:var(--mono);font-size:13px;color:var(--on-night)}
+.wow .bar{background:rgba(255,255,255,.1)}
+.wow .bar i{background:linear-gradient(90deg,var(--brand-hi),var(--good))}
+.revent{font-size:14.5px;color:var(--on-night);background:rgba(255,255,255,.04);border:1px solid var(--night-line);border-radius:10px;padding:10px 12px;min-height:44px}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px}
+.cnode{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid var(--night-line);border-radius:8px;padding:5px 9px;color:var(--on-night)}
+.cnode .ic{--sz:16px}
+.carrow{color:var(--on-night-3)}
+.route{display:flex;flex-direction:column;gap:8px}
+.rt{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14.5px;color:var(--on-night);padding:8px 12px;background:rgba(255,255,255,.04);border:1px solid var(--night-line);border-radius:10px}
+.mchip{font-size:12px;font-weight:700;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.mchip.local{background:rgba(63,197,150,.16);color:#7fe0b8}
+.mchip.front{background:rgba(236,111,161,.16);color:#f4a3c4}
+.saved{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;font-size:14px;color:var(--on-night-2);margin-top:4px}
+.saved b{font-family:var(--display);color:#fff;font-size:18px}
+.saved small{grid-column:1 / -1;color:var(--on-night-3);font-size:12.5px}
+.whatif{display:flex;flex-direction:column;gap:10px}
+.whatif label{font-size:15px;color:var(--on-night)}
+.wiout{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.wiout div{background:rgba(255,255,255,.04);border:1px solid var(--night-line);border-radius:10px;padding:10px 12px}
+.wiout span{display:block;font-size:12.5px;color:var(--on-night-3)}
+.wiout b{font-family:var(--display);font-size:18px;color:#fff}
+.winote{font-size:14px!important}
+.more-wow{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:15px;color:var(--on-night-2)}
+.more-wow b{color:var(--on-night)}
+.more-wow span{background:rgba(255,255,255,.05);border:1px solid var(--night-line);border-radius:99px;padding:5px 12px}
+
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 </style>
@@ -351,9 +453,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
     <nav class="navlinks" aria-label="Sections">
       <a href="#features">Features</a>
       <a href="#work">Any kind of work</a>
+      <a href="#wow">Wow</a>
       <a href="#simple">Getting started</a>
       <a href="#ecosystem">Ecosystem</a>
-      <a href="#different">Why it's different</a>
     </nav>
   </div>
 </header>
@@ -372,22 +474,22 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
       <p class="hero-note">For software teams, research labs and small businesses. Runs on your own machines, with no outside services required.</p>
     </div>
     <div class="device" aria-label="Illustration of the Colab home screen: what needs you, what's moving and what's stuck." role="img">
-      <div class="dev-top"><div><div class="t">Home</div><div class="s">Website relaunch · Tuesday</div></div><div class="dots"><i></i><i></i><i></i></div></div>
+      <div class="dev-top"><div><div class="t">Home</div><div class="s">Website relaunch · Tuesday</div></div><div class="legend mini"><span class="ic person" style="--c:#c9d6f5" title="Person" aria-label="Person"></span><span>Person</span><span class="ic agent" style="--c:var(--a-eng)" title="AI agent" aria-label="AI agent"></span><span>Agent</span><span class="ring"></span><span>Working</span></div></div>
       <div class="cols">
         <div class="col">
           <h4>Needs you <b>2</b></h4>
-          <div class="tcard need">Approve the new pricing page copy<div class="approve">✓ Approve with passkey</div></div>
-          <div class="tcard need">Pick one of two logo layouts<div class="who"><span class="av" style="background:var(--a-ui)">D</span>Design agent asked 5 min ago</div></div>
+          <div class="tcard need">Approve the new pricing page copy<div class="who"><span class="ic agent" style="--c:var(--a-ui)" title="Design agent" aria-label="Design agent"></span><span class="arrow">→</span><span class="ic person" style="--c:#f4c7a1" title="You" aria-label="You"></span><span class="wt">Design agent wrote it · you approve</span></div><div class="approve">✓ Approve with passkey</div></div>
+          <div class="tcard need">Pick one of two logo layouts<div class="who"><span class="ic agent" style="--c:var(--a-ui)" title="Design agent" aria-label="Design agent"></span><span class="wt">Design agent asked 5 min ago</span></div></div>
         </div>
         <div class="col">
           <h4>Moving <b>4</b></h4>
-          <div class="tcard">Product photos resized<div class="mini-bar"><i data-w="88" style="width:20%"></i></div><div class="who"><span class="av" style="background:var(--a-eng)">B</span>Build agent · step 7 of 8</div></div>
-          <div class="tcard">Checkout tested on phones<div class="mini-bar"><i data-w="60" style="width:10%"></i></div><div class="who"><span class="av" style="background:var(--a-int)">T</span>Test agent · step 3 of 5</div></div>
-          <div class="tcard">Launch email drafted<div class="mini-bar"><i data-w="34" style="width:5%"></i></div><div class="who"><span class="av" style="background:var(--a-pm)">M</span>Maya (marketing)</div></div>
+          <div class="tcard">Product photos resized<div class="mini-bar"><i data-w="88" style="width:20%"></i></div><div class="who"><span class="ic agent live" style="--c:var(--a-eng)" title="Build agent, working now" aria-label="Build agent, working now"></span><span class="wt">Build agent · step 7 of 8</span></div></div>
+          <div class="tcard">Checkout tested on phones<div class="mini-bar"><i data-w="60" style="width:10%"></i></div><div class="who"><span class="stack"><span class="ic agent live" style="--c:var(--a-int)" title="Test agent, working now" aria-label="Test agent, working now"></span><span class="ic person" style="--c:#c9ecdc" title="Ana" aria-label="Ana"></span></span><span class="wt">Test agent + Ana · step 3 of 5</span></div></div>
+          <div class="tcard">Launch email drafted<div class="mini-bar"><i data-w="34" style="width:5%"></i></div><div class="who"><span class="stack"><span class="ic person live" style="--c:#f2b6cf" title="Maya, working now" aria-label="Maya, working now"></span><span class="ic agent" style="--c:var(--a-pm)" title="Writer agent" aria-label="Writer agent"></span></span><span class="wt">Maya, with the Writer agent</span></div></div>
         </div>
         <div class="col">
           <h4>Stuck <b>1</b></h4>
-          <div class="tcard stuck">Shipping rates import<div class="who"><span class="av" style="background:var(--a-data)">S</span>Waiting on supplier file · 2 h</div></div>
+          <div class="tcard stuck">Shipping rates import<div class="who"><span class="ic agent" style="--c:var(--a-data)" title="Data agent" aria-label="Data agent"></span><span class="wt">Data agent · waiting on supplier file · 2 h</span></div></div>
         </div>
       </div>
       <div class="toast" id="toast" aria-live="polite"><span class="pulse"></span><span id="toastText"><b>Test agent → Build agent:</b> hand-off delivered, Build agent is back at work</span></div>
@@ -437,7 +539,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
         <div class="ficon"><svg viewBox="0 0 24 24"><path d="M4 12h12M12 6l6 6-6 6"/></svg></div>
         <h3>Agents wake each other up</h3>
         <p>When one agent finishes or gets stuck, it leaves a hand-off and the right agent starts within seconds. No copy-paste, no waiting for someone to notice. In our tests, a waiting agent was back at work a fraction of a second after it was unblocked.</p>
-        <div class="viz"><div class="relay"><div class="node"><span class="av" style="background:var(--a-int)">T</span>Test</div><div class="wire"></div><div class="node"><span class="av" style="background:var(--a-eng)">B</span>Build</div><div class="wire" style="--d:1.2s"></div><div class="node"><span class="av" style="background:var(--a-ui)">D</span>Design</div></div></div>
+        <div class="viz"><div class="relay"><div class="node"><span class="ic agent" style="--c:var(--a-int)" title="AI agent" aria-label="AI agent"></span>Test</div><div class="wire"></div><div class="node"><span class="ic agent" style="--c:var(--a-eng)" title="AI agent" aria-label="AI agent"></span>Build</div><div class="wire" style="--d:1.2s"></div><div class="node"><span class="ic agent" style="--c:var(--a-ui)" title="AI agent" aria-label="AI agent"></span>Design</div></div></div>
       </article>
       <article class="feat wide reveal">
         <div class="ficon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l3-4 3 2 5-6"/></svg></div>
@@ -511,103 +613,29 @@ signed with passkey · 2026-11-12 14:03</div></div>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Any kind of work</span>
-      <h2>One Colab. A bakery's books, a software release, a research lab.</h2>
+      <h2>One Colab. A research lab, a software release, a bakery's books.</h2>
       <p class="lead">Colab isn't only for programmers. Pick a template and it speaks your language: your words, your kind of helpers, your kind of results. Here are three very different teams using it.</p>
+      <div class="legend"><span class="ic person" style="--c:#d9cff7"></span><span>Person</span><span class="ic agent" style="--c:var(--a-arch)"></span><span>AI agent</span><span class="ring"></span><span>Working right now</span><span>· People and agents share the same cards.</span></div>
     </div>
     <div class="tabs" role="tablist" aria-label="Choose a use case">
-      <button class="tab" role="tab" id="tab-biz" aria-controls="panel-biz" aria-selected="true"><span class="dot" style="--c:var(--a-ui)"></span>Small business: receipts &amp; invoices</button>
+      <button class="tab" role="tab" id="tab-lab" aria-controls="panel-lab" aria-selected="true"><span class="dot" style="--c:var(--a-arch)"></span>Research lab: papers to experiments</button>
       <button class="tab" role="tab" id="tab-dev" aria-controls="panel-dev" aria-selected="false" tabindex="-1"><span class="dot" style="--c:var(--a-eng)"></span>Software team: code &amp; releases</button>
-      <button class="tab" role="tab" id="tab-lab" aria-controls="panel-lab" aria-selected="false" tabindex="-1"><span class="dot" style="--c:var(--a-arch)"></span>Research lab: papers to experiments</button>
-    </div>
-
-    <!-- ===== Small business ===== -->
-    <div class="tabpanel uc" role="tabpanel" id="panel-biz" aria-labelledby="tab-biz" style="--acc:#1f9e70;--acc-soft:#e2f6ee">
-      <div class="story">
-        <span class="uc-kicker">Template: Back office</span>
-        <h3>Month-end, handled while you run the shop.</h3>
-        <p>Rosa owns a bakery with two locations. Receipts arrive as phone photos and emails, invoices go out by hand, and the books are always behind. With Colab, three helpers do the paperwork and Rosa only makes the calls that need her.</p>
-        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Month-end close</span><span class="vchip">Batch</span><span class="vchip">Receipt · Invoice</span><span class="vchip">Approve payment</span></div>
-        <div class="team">
-          <span class="member"><span class="av h" style="background:#f4c7a1">R</span>Rosa, owner</span>
-          <span class="member"><span class="av h" style="background:#c9d6f5">S</span>Sam, accountant</span>
-          <span class="member"><span class="av" style="background:var(--a-ui)">I</span>Intake agent</span>
-          <span class="member"><span class="av" style="background:var(--a-data)">K</span>Bookkeeper agent</span>
-          <span class="member"><span class="av" style="background:var(--a-pm)">C</span>Collections agent</span>
-        </div>
-        <div class="chat">
-          <div class="bubble q">What's still unpaid this month, and who's late?</div>
-          <div class="bubble a">Three invoices, $5,920 in total. Harbor Café is 12 days late on $2,400; the Collections agent sends a friendly second reminder tomorrow, unless you'd rather call them yourself.</div>
-          <div class="bubble q">Anything I need to sign off?</div>
-          <div class="bubble a">Two supplier payments: flour ($1,180) and the oven repair ($2,000). Approve both with your passkey and they're scheduled for Friday.</div>
-        </div>
-      </div>
-      <div class="screen" role="img" aria-label="Illustration of the back-office screen: October close 82% done, documents read, payments to approve, unpaid invoices, and a document list with categories and statuses.">
-        <div class="stitle">October close <small>2 locations · 82% done</small></div>
-        <div class="kpis"><div class="kpi"><b>146</b><span>receipts read</span></div><div class="kpi"><b>2</b><span>payments to approve</span></div><div class="kpi"><b>$5,920</b><span>unpaid invoices</span></div></div>
-        <div class="doclist">
-          <div class="doc"><span class="dt">🧾</span><span class="dn">Flour Mill Co.<small>Receipt · photo · Oct 14</small></span><span class="dv">$412.80</span><span class="pill ok">Supplies</span></div>
-          <div class="doc"><span class="dt">🧾</span><span class="dn">Shell station<small>Receipt · email · Oct 15</small></span><span class="dv">$64.10</span><span class="pill ok">Delivery fuel</span></div>
-          <div class="doc"><span class="dt">📄</span><span class="dn">Invoice #1043 · Harbor Café<small>Sent Oct 3 · reminder sent</small></span><span class="dv">$2,400.00</span><span class="pill risk">12 days late</span></div>
-          <div class="doc"><span class="dt">🔧</span><span class="dn">Oven repair · ProTech<small>Supplier bill · Oct 20</small></span><span class="dv">$2,000.00</span><span class="pill you">Approve</span></div>
-          <div class="doc"><span class="dt">🧾</span><span class="dn">Market stall fee<small>Receipt · blurry photo</small></span><span class="dv">?</span><span class="pill wait">Retake photo</span></div>
-        </div>
-        <div class="outputs"><b>What comes out</b><span>Categorised expense ledger for Sam</span><span>Invoices sent and chased</span><span>Tax-ready monthly totals</span><span>One-page month summary</span></div>
-      </div>
-    </div>
-
-    <!-- ===== Software team ===== -->
-    <div class="tabpanel uc" role="tabpanel" id="panel-dev" aria-labelledby="tab-dev" hidden style="--acc:var(--brand);--acc-soft:var(--brand-soft)">
-      <div class="story">
-        <span class="uc-kicker">Template: Software</span>
-        <h3>Ship features, not status updates.</h3>
-        <p>Priya manages a small product team; Alex is the lead developer. Coding agents write and test the code in parallel, each in its own part of the codebase. Priya sees the release take shape in plain sentences, and Alex reviews finished work instead of herding agents.</p>
-        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Release</span><span class="vchip">Milestone · Card · Step</span><span class="vchip">Pull request</span><span class="vchip">Test run</span></div>
-        <div class="team">
-          <span class="member"><span class="av h" style="background:#f2b6cf">P</span>Priya, PM</span>
-          <span class="member"><span class="av h" style="background:#c9d6f5">A</span>Alex, developer</span>
-          <span class="member"><span class="av" style="background:var(--a-eng)">B</span>Build agent</span>
-          <span class="member"><span class="av" style="background:var(--a-int)">T</span>Test agent</span>
-          <span class="member"><span class="av" style="background:var(--a-ui)">D</span>Design agent</span>
-        </div>
-        <div class="chat">
-          <div class="bubble q">Will release 2.4 make Friday? What's the risk?</div>
-          <div class="bubble a">Yes, if the payments key arrives today. It's the only thing on the critical path; everything else is ahead. Alex owns it and was reminded an hour ago.</div>
-          <div class="bubble q">Draft the release notes for customers.</div>
-          <div class="bubble a">Done: four highlights in plain language, linked to the finished cards. Ready for your review.</div>
-        </div>
-      </div>
-      <div class="screen" role="img" aria-label="Illustration of the software screen: release 2.4 with milestones, three pull requests with test results, and a blocked item.">
-        <div class="stitle">Release 2.4 <small>forecast Friday · 4 of 7 milestones</small></div>
-        <div class="ms">
-          <div class="ms-row"><span>Customers sign in with passkeys</span><span class="bar"><i style="width:100%"></i></span><small>6/6</small></div>
-          <div class="ms-row"><span>Checkout works on phones</span><span class="bar"><i style="width:60%"></i></span><small>3/5</small></div>
-          <div class="ms-row"><span>Pay with saved cards</span><span class="bar"><i style="width:29%"></i></span><small>2/7</small></div>
-        </div>
-        <div>
-          <div class="rowline"><span class="l"><span class="av" style="background:var(--a-eng)">B</span><span>PR #212 · Passkey sign-in · tests 148/148</span></span><span class="pill ok">Ready to merge</span></div>
-          <div class="rowline"><span class="l"><span class="av" style="background:var(--a-int)">T</span><span>Phone checkout · Test agent, step 3 of 5</span></span><span class="pill wait">In progress</span></div>
-          <div class="rowline"><span class="l"><span class="av h" style="background:#c9d6f5">A</span><span>Payments API key · waiting on Alex</span></span><span class="pill risk">Blocks release</span></div>
-        </div>
-<div class="code"><span class="c"># the Test agent, through the KĀDI broker</span>
-<span class="k">colab_task_finish</span>(<span class="s">"CHK-03"</span>, evidence=<span class="s">"tests: 52/52"</span>)
-<span class="c">→ hand-off: Build agent woken to merge</span></div>
-        <div class="outputs"><b>What comes out</b><span>Reviewed pull requests</span><span>Test reports with evidence</span><span>Customer release notes</span><span>Release burn-up chart</span></div>
-      </div>
+      <button class="tab" role="tab" id="tab-biz" aria-controls="panel-biz" aria-selected="false" tabindex="-1"><span class="dot" style="--c:var(--a-ui)"></span>Small business: receipts &amp; invoices</button>
     </div>
 
     <!-- ===== Research lab ===== -->
-    <div class="tabpanel uc" role="tabpanel" id="panel-lab" aria-labelledby="tab-lab" hidden style="--acc:#6250d6;--acc-soft:#ece9fb">
+    <div class="tabpanel uc" role="tabpanel" id="panel-lab" aria-labelledby="tab-lab" style="--acc:#6250d6;--acc-soft:#ece9fb">
       <div class="story">
         <span class="uc-kicker">Template: Research</span>
         <h3>From 1,240 papers to a running experiment.</h3>
         <p>Dr. Lee's lab is testing whether a new training method holds up. Agents search and screen the literature, pull the evidence into a table, draft experiment protocols, and run them on the lab's own GPU machine. The PI approves the protocols; the students focus on thinking.</p>
         <div class="vocab"><span class="vl">In this template</span><span class="vchip">Research question</span><span class="vchip">Paper · Evidence</span><span class="vchip">Protocol</span><span class="vchip">Run · Result</span></div>
         <div class="team">
-          <span class="member"><span class="av h" style="background:#d9cff7">L</span>Dr. Lee, PI</span>
-          <span class="member"><span class="av h" style="background:#c9ecdc">J</span>Jordan, PhD student</span>
-          <span class="member"><span class="av" style="background:var(--a-arch)">R</span>Literature agent</span>
-          <span class="member"><span class="av" style="background:var(--a-data)">M</span>Methods agent</span>
-          <span class="member"><span class="av" style="background:var(--a-win)">G</span>Lab-run agent · GPU box</span>
+          <span class="member"><span class="ic person" style="--c:#d9cff7" title="Person" aria-label="Person"></span>Dr. Lee, PI</span>
+          <span class="member"><span class="ic person" style="--c:#c9ecdc" title="Person" aria-label="Person"></span>Jordan, PhD student</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-arch)" title="AI agent" aria-label="AI agent"></span>Literature agent</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-data)" title="AI agent" aria-label="AI agent"></span>Methods agent</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-win)" title="AI agent" aria-label="AI agent"></span>Lab-run agent · GPU box</span>
         </div>
         <div class="chat">
           <div class="bubble q">Which papers support hypothesis H2, and how strong is the evidence?</div>
@@ -628,14 +656,172 @@ signed with passkey · 2026-11-12 14:03</div></div>
           <span class="run ok">1</span><span class="run ok">2</span><span class="run ok">3</span><span class="run bad">4</span><span class="run ok">5</span><span class="run ok">6</span><span class="run bad">7</span><span class="run ok">8</span><span class="run ok">9</span><span class="run go">10</span><span class="run go">11</span><span class="run">12</span>
         </div>
         <p class="runkey"><span class="run ok sm"></span>done <span class="run go sm"></span>running <span class="run bad sm"></span>failed <span class="run sm"></span>queued · runs on the lab's own GPU machine</p>
-        <div>
-          <div class="rowline"><span class="l"><span class="av" style="background:var(--a-data)">M</span><span>Protocol P2 · 6 GPU hours</span></span><span class="pill you">Approve</span></div>
+        <div class="cardrows">
+          <div class="cardrow"><span class="ct">Screen 1,240 abstracts<small>Literature agent · done in 2 hours</small></span><span class="whoz"><span class="ic agent" style="--c:var(--a-arch)" title="Literature agent" aria-label="Literature agent"></span></span><span class="pill ok">Done</span></div>
+          <div class="cardrow active"><span class="ct">Evidence table for H1–H3<small>Literature agent extracting · Jordan checking</small></span><span class="stack"><span class="ic agent live" style="--c:var(--a-arch)" title="Literature agent, working now" aria-label="Literature agent, working now"></span><span class="ic person live" style="--c:#c9ecdc" title="Jordan, reviewing" aria-label="Jordan, reviewing"></span></span><span class="pill wait">In progress</span></div>
+          <div class="cardrow"><span class="ct">Protocol P2 · halve batch size<small>Methods agent drafted · 6 GPU hours</small></span><span class="stack"><span class="ic agent" style="--c:var(--a-data)" title="Methods agent" aria-label="Methods agent"></span><span class="ic person" style="--c:#d9cff7" title="Dr. Lee" aria-label="Dr. Lee"></span></span><span class="pill you">Dr. Lee to approve</span></div>
+          <div class="cardrow"><span class="ct">Re-run 7 on the lab GPU box<small>Starts after approval</small></span><span class="whoz"><span class="ic agent" style="--c:var(--a-win)" title="Lab-run agent" aria-label="Lab-run agent"></span></span><span class="pill">Queued</span></div>
         </div>
         <div class="outputs"><b>What comes out</b><span>Annotated bibliography</span><span>Evidence table with citations</span><span>Versioned protocols</span><span>Run results, data and plots</span><span>Draft methods section</span></div>
       </div>
     </div>
 
+    <!-- ===== Software team ===== -->
+    <div class="tabpanel uc" role="tabpanel" id="panel-dev" aria-labelledby="tab-dev" hidden style="--acc:var(--brand);--acc-soft:var(--brand-soft)">
+      <div class="story">
+        <span class="uc-kicker">Template: Software</span>
+        <h3>Ship features, not status updates.</h3>
+        <p>Priya manages a small product team; Alex is the lead developer. Coding agents write and test the code in parallel, each in its own part of the codebase. Priya sees the release take shape in plain sentences, and Alex reviews finished work instead of herding agents.</p>
+        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Release</span><span class="vchip">Milestone · Card · Step</span><span class="vchip">Pull request</span><span class="vchip">Test run</span></div>
+        <div class="team">
+          <span class="member"><span class="ic person" style="--c:#f2b6cf" title="Person" aria-label="Person"></span>Priya, PM</span>
+          <span class="member"><span class="ic person" style="--c:#c9d6f5" title="Person" aria-label="Person"></span>Alex, developer</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-eng)" title="AI agent" aria-label="AI agent"></span>Build agent</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-int)" title="AI agent" aria-label="AI agent"></span>Test agent</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-ui)" title="AI agent" aria-label="AI agent"></span>Design agent</span>
+        </div>
+        <div class="chat">
+          <div class="bubble q">Will release 2.4 make Friday? What's the risk?</div>
+          <div class="bubble a">Yes, if the payments key arrives today. It's the only thing on the critical path; everything else is ahead. Alex owns it and was reminded an hour ago.</div>
+          <div class="bubble q">Draft the release notes for customers.</div>
+          <div class="bubble a">Done: four highlights in plain language, linked to the finished cards. Ready for your review.</div>
+        </div>
+      </div>
+      <div class="screen" role="img" aria-label="Illustration of the software screen: release 2.4 with milestones, three pull requests with test results, and a blocked item.">
+        <div class="stitle">Release 2.4 <small>forecast Friday · 4 of 7 milestones</small></div>
+        <div class="ms">
+          <div class="ms-row"><span>Customers sign in with passkeys</span><span class="bar"><i style="width:100%"></i></span><small>6/6</small></div>
+          <div class="ms-row"><span>Checkout works on phones</span><span class="bar"><i style="width:60%"></i></span><small>3/5</small></div>
+          <div class="ms-row"><span>Pay with saved cards</span><span class="bar"><i style="width:29%"></i></span><small>2/7</small></div>
+        </div>
+        <div class="cardrows">
+          <div class="cardrow"><span class="ct">PR #212 · Passkey sign-in<small>Build agent wrote it · Alex reviewing · tests 148/148</small></span><span class="stack"><span class="ic agent" style="--c:var(--a-eng)" title="Build agent" aria-label="Build agent"></span><span class="ic person live" style="--c:#c9d6f5" title="Alex, reviewing" aria-label="Alex, reviewing"></span></span><span class="pill ok">Ready to merge</span></div>
+          <div class="cardrow active"><span class="ct">Checkout on phones<small>Test agent · step 3 of 5</small></span><span class="whoz"><span class="ic agent live" style="--c:var(--a-int)" title="Test agent, working now" aria-label="Test agent, working now"></span></span><span class="pill wait">In progress</span></div>
+          <div class="cardrow"><span class="ct">Release notes for customers<small>Priya with the Design agent</small></span><span class="stack"><span class="ic person" style="--c:#f2b6cf" title="Priya" aria-label="Priya"></span><span class="ic agent live" style="--c:var(--a-ui)" title="Design agent" aria-label="Design agent"></span></span><span class="pill wait">Drafting</span></div>
+          <div class="cardrow"><span class="ct">Payments API key<small>Waiting on Alex · 3 h</small></span><span class="whoz"><span class="ic person" style="--c:#c9d6f5" title="Alex" aria-label="Alex"></span></span><span class="pill risk">Blocks release</span></div>
+        </div>
+<div class="code"><span class="c"># the Test agent, through the KĀDI broker</span>
+<span class="k">colab_task_finish</span>(<span class="s">"CHK-03"</span>, evidence=<span class="s">"tests: 52/52"</span>)
+<span class="c">→ hand-off: Build agent woken to merge</span></div>
+        <div class="outputs"><b>What comes out</b><span>Reviewed pull requests</span><span>Test reports with evidence</span><span>Customer release notes</span><span>Release burn-up chart</span></div>
+      </div>
+    </div>
+
+    <!-- ===== Small business ===== -->
+    <div class="tabpanel uc" role="tabpanel" id="panel-biz" aria-labelledby="tab-biz" hidden style="--acc:#1f9e70;--acc-soft:#e2f6ee">
+      <div class="story">
+        <span class="uc-kicker">Template: Back office</span>
+        <h3>Month-end, handled while you run the shop.</h3>
+        <p>Rosa owns a bakery with two locations. Receipts arrive as phone photos and emails, invoices go out by hand, and the books are always behind. With Colab, three helpers do the paperwork and Rosa only makes the calls that need her.</p>
+        <div class="vocab"><span class="vl">In this template</span><span class="vchip">Month-end close</span><span class="vchip">Batch</span><span class="vchip">Receipt · Invoice</span><span class="vchip">Approve payment</span></div>
+        <div class="team">
+          <span class="member"><span class="ic person" style="--c:#f4c7a1" title="Person" aria-label="Person"></span>Rosa, owner</span>
+          <span class="member"><span class="ic person" style="--c:#c9d6f5" title="Person" aria-label="Person"></span>Sam, accountant</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-ui)" title="AI agent" aria-label="AI agent"></span>Intake agent</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-data)" title="AI agent" aria-label="AI agent"></span>Bookkeeper agent</span>
+          <span class="member"><span class="ic agent" style="--c:var(--a-pm)" title="AI agent" aria-label="AI agent"></span>Collections agent</span>
+        </div>
+        <div class="chat">
+          <div class="bubble q">What's still unpaid this month, and who's late?</div>
+          <div class="bubble a">Three invoices, $5,920 in total. Harbor Café is 12 days late on $2,400; the Collections agent sends a friendly second reminder tomorrow, unless you'd rather call them yourself.</div>
+          <div class="bubble q">Anything I need to sign off?</div>
+          <div class="bubble a">Two supplier payments: flour ($1,180) and the oven repair ($2,000). Approve both with your passkey and they're scheduled for Friday.</div>
+        </div>
+      </div>
+      <div class="screen" role="img" aria-label="Illustration of the back-office screen: October close 82% done, documents read, payments to approve, unpaid invoices, and a document list with categories and statuses.">
+        <div class="stitle">October close <small>2 locations · 82% done</small></div>
+        <div class="kpis"><div class="kpi"><b>146</b><span>receipts read</span></div><div class="kpi"><b>2</b><span>payments to approve</span></div><div class="kpi"><b>$5,920</b><span>unpaid invoices</span></div></div>
+        <div class="doclist">
+          <div class="doc"><span class="dt">🧾</span><span class="dn">Flour Mill Co.<small>Receipt · photo · Oct 14</small></span><span class="dv">$412.80</span><span class="whoz"><span class="ic agent" style="--c:var(--a-data)" title="Bookkeeper agent" aria-label="Bookkeeper agent"></span></span><span class="pill ok">Supplies</span></div>
+          <div class="doc"><span class="dt">🧾</span><span class="dn">Shell station<small>Receipt · email · Oct 15</small></span><span class="dv">$64.10</span><span class="whoz"><span class="ic agent" style="--c:var(--a-ui)" title="Intake agent" aria-label="Intake agent"></span></span><span class="pill ok">Delivery fuel</span></div>
+          <div class="doc"><span class="dt">📄</span><span class="dn">Invoice #1043 · Harbor Café<small>Sent Oct 3 · reminder sent</small></span><span class="dv">$2,400.00</span><span class="whoz"><span class="stack"><span class="ic agent live" style="--c:var(--a-pm)" title="Collections agent, working now" aria-label="Collections agent, working now"></span><span class="ic person" style="--c:#f4c7a1" title="Rosa" aria-label="Rosa"></span></span></span><span class="pill risk">12 days late</span></div>
+          <div class="doc"><span class="dt">🔧</span><span class="dn">Oven repair · ProTech<small>Supplier bill · Oct 20</small></span><span class="dv">$2,000.00</span><span class="whoz"><span class="ic person" style="--c:#f4c7a1" title="Rosa" aria-label="Rosa"></span></span><span class="pill you">Approve</span></div>
+          <div class="doc"><span class="dt">🧾</span><span class="dn">Market stall fee<small>Receipt · blurry photo</small></span><span class="dv">?</span><span class="whoz"><span class="ic person" style="--c:#f4c7a1" title="Rosa" aria-label="Rosa"></span></span><span class="pill wait">Retake photo</span></div>
+        </div>
+        <div class="outputs"><b>What comes out</b><span>Categorised expense ledger for Sam</span><span>Invoices sent and chased</span><span>Tax-ready monthly totals</span><span>One-page month summary</span></div>
+      </div>
+    </div>
+
     <p class="more-uses reveal"><b>Also a good fit:</b> <span>grant writing</span><span>customer support</span><span>event planning</span><span>compliance checks</span><span>content and marketing</span><span>your own template</span></p>
+  </div>
+</section>
+
+
+<section id="wow" class="night wowsec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Wait, it can do that?</span>
+      <h2>Five moments that make people say "wow"</h2>
+      <p class="lead">Try them: the sliders on this page really move.</p>
+    </div>
+    <div class="wowgrid">
+
+      <article class="wow w-wide reveal">
+        <div class="wtag">1 · Describe it, get a team</div>
+        <h3>Type what you want. Colab builds the plan and the team.</h3>
+        <p>Describe the goal in a sentence. Colab proposes milestones, picks the right mix of people and AI helpers, and estimates time and cost before anything starts. Change what you like, then approve.</p>
+        <div class="gen" aria-live="polite">
+          <div class="prompt"><span class="caret-wrap"><span id="genText"></span><span class="caret"></span></span><span class="gobtn">Plan it</span></div>
+          <div class="genout" id="genOut">
+            <div class="gcol"><b>Milestones</b><ol id="genMs"></ol></div>
+            <div class="gcol"><b>Team</b><div class="gteam" id="genTeam"></div></div>
+            <div class="gcol"><b>Estimate</b><div class="gest" id="genEst"></div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="wow reveal">
+        <div class="wtag">2 · Mission control</div>
+        <h3>Watch every helper work, live, on every machine.</h3>
+        <p>See what each agent is doing right now, wherever it runs. Need to steer one mid-task? Just tell it.</p>
+        <div class="mc">
+          <div class="mhost"><span class="mh">Laptop</span><div class="mline"><span class="ic agent live" style="--c:var(--a-arch)"></span><span class="mlog" data-log="Reading paper 212 of 312|Extracting effect sizes|Adding row 31 to the evidence table"></span></div></div>
+          <div class="mhost"><span class="mh">Lab GPU box</span><div class="mline"><span class="ic agent live" style="--c:var(--a-win)"></span><span class="mlog" data-log="Run 10 · step 38,200 / 60,000|Run 10 · loss 0.412, falling|Run 11 · warming up"></span></div></div>
+          <div class="mhost"><span class="mh">Office PC</span><div class="mline"><span class="ic person live" style="--c:#c9ecdc"></span><span class="mlog" data-log="Jordan · checking rows 1–30|Jordan · flagged 2 rows|Jordan · approved rows 1–28"></span></div></div>
+          <div class="whisper"><span class="ic person" style="--c:#d9cff7"></span><span>"Only include studies after 2019."</span><span class="ok">✓ Literature agent: will do</span></div>
+        </div>
+      </article>
+
+      <article class="wow reveal">
+        <div class="wtag">3 · Rewind and explain</div>
+        <h3>Scrub through the whole project. Ask "why?" about anything.</h3>
+        <p>Every hand-off, decision and result is kept, so you can replay the project like a video and trace any result back to its evidence.</p>
+        <div class="rewind">
+          <label for="scrub" class="sr">Project day</label>
+          <input type="range" id="scrub" min="1" max="15" value="9">
+          <div class="rwrow"><span class="rday" id="rDay">Day 9</span><span class="bar"><i id="rBar" style="width:60%"></i></span></div>
+          <div class="revent" id="rEvent">Run 7 failed: out of GPU memory. Methods agent proposed a fix.</div>
+          <div class="chain"><span class="cnode">Result: H2 holds</span><span class="carrow">←</span><span class="cnode">11 papers</span><span class="carrow">←</span><span class="cnode">Runs 8–12</span><span class="carrow">←</span><span class="cnode"><span class="ic person" style="--c:#d9cff7"></span>Dr. Lee approved P2</span></div>
+        </div>
+      </article>
+
+      <article class="wow reveal">
+        <div class="wtag">4 · Smart model autopilot</div>
+        <h3>The right AI for each job, automatically.</h3>
+        <p>Routine work goes to private models on your own machines. Colab calls a frontier model only when a task needs it, within your limits.</p>
+        <div class="route">
+          <div class="rt"><span>Sort 146 receipts</span><span class="mchip local">Local model</span></div>
+          <div class="rt"><span>Screen 1,240 abstracts</span><span class="mchip local">Local model</span></div>
+          <div class="rt"><span>Design the experiment</span><span class="mchip front">Frontier model</span></div>
+          <div class="rt"><span>Write release notes</span><span class="mchip local">Local model</span></div>
+          <div class="saved"><span>AI spend this month</span><span class="bar"><i style="width:24%"></i></span><b>$18</b><small>vs about $75 if everything used a frontier model (example)</small></div>
+        </div>
+      </article>
+
+      <article class="wow reveal">
+        <div class="wtag">5 · What-if planning</div>
+        <h3>Move a slider, see the future.</h3>
+        <p>Add a helper, change the deadline or tighten the budget, and the finish date and cost update instantly, based on how your team really works.</p>
+        <div class="whatif">
+          <label for="helpers">AI helpers on this project: <b id="hN">2</b></label>
+          <input type="range" id="helpers" min="1" max="6" value="2">
+          <div class="wiout"><div><span>Finish</span><b id="wFinish">Fri, Nov 21</b></div><div><span>AI cost</span><b id="wCost">$46</b></div><div><span>Your time</span><b id="wYou">2.5 h</b></div></div>
+          <p class="winote" id="wNote">Balanced: on time, low cost.</p>
+        </div>
+      </article>
+
+    </div>
+    <p class="more-wow reveal"><b>Also on the way:</b> <span>morning briefing on your phone</span><span>two organisations sharing one project, each keeping its own data</span><span>add a machine by scanning a QR code</span><span>rules in plain words ("never email customers without my OK")</span><span>one-click templates and helpers from the KĀDI registry</span></p>
   </div>
 </section>
 
@@ -679,7 +865,7 @@ signed with passkey · 2026-11-12 14:03</div></div>
         <span class="ezn">3</span>
         <h3>Sign in and invite</h3>
         <p>Sign in with your passkey; no passwords to remember. Invite teammates with a link, and add AI helpers from a list.</p>
-        <div class="invite"><span class="av h" style="background:#f4c7a1">R</span><span class="av h" style="background:#c9d6f5">S</span><span class="av" style="background:var(--a-ui)">I</span><span class="av" style="background:var(--a-data)">K</span><span class="plus">＋ Add</span></div>
+        <div class="invite"><span class="ic person" style="--c:#f4c7a1" title="Person" aria-label="Person"></span><span class="ic person" style="--c:#c9d6f5" title="Person" aria-label="Person"></span><span class="ic agent" style="--c:var(--a-ui)" title="AI agent" aria-label="AI agent"></span><span class="ic agent" style="--c:var(--a-data)" title="AI agent" aria-label="AI agent"></span><span class="plus">＋ Add</span></div>
       </div>
     </div>
     <div class="grow reveal">
@@ -760,7 +946,6 @@ signed with passkey · 2026-11-12 14:03</div></div>
   <div class="wrap">
     <svg class="symbol" viewBox="0 0 91.17 100" aria-hidden="true"><rect x="65.62" width="25.55" height="25.55" rx="5" ry="5" /> <rect x="65.62" y="74.45" width="25.55" height="25.55" rx="5" ry="5" /> <path d="M51.83,58.11c0-.11.03-.21.03-.32v-15.24l15.77-15.12c-1.98-.87-3.52-2.56-4.17-4.65l-15.29,14.66c-.42-.11-.85-.2-1.31-.2h-15.55c-2.76,0-5,2.24-5,5v15.55c0,2.76,2.24,5,5,5h15.55c.26,0,.5-.04.74-.08l15.79,14.76c.58-2.12,2.07-3.86,4.02-4.79l-15.58-14.57Z" /> <rect y=".04" width="18" height="99.96" rx="5" ry="5" /></svg>
     <h2>Stop managing your AI. Start working with it.</h2>
-    <p class="lead">KĀDI Colab is in development. We're looking for a research lab and a small business to be our first pilot teams. Interested? Talk to Corey Clark.</p>
   </div>
 </section>
 </main>
@@ -821,6 +1006,35 @@ signed with passkey · 2026-11-12 14:03</div></div>
     node(outer,90,226,'1,000s of tools','KĀDI abilities + MCP','#1d2029','#a6b4c0',true);
     node(outer,210,226,'Services','Drive · Slack · GitHub…','#1d2029','#a6b4c0',true);
   })();
+  // ---- wow 1: describe it, get a team ----
+  (function(){const tx=document.getElementById('genText'); if(!tx) return; const out=document.getElementById('genOut');
+    const P=(c,n)=>`<span class="m"><span class="ic person" style="--c:${c}"></span>${n}</span>`, A=(c,n)=>`<span class="m"><span class="ic agent" style="--c:var(${c})"></span>${n}</span>`;
+    const S=[
+      {q:'Review the literature on sleep and memory, then design two experiments.',ms:['Search and screen papers','Evidence table with citations','Two experiment protocols','Pilot runs and first results'],team:P('#d9cff7','You (PI)')+P('#c9ecdc','A student to review')+A('--a-arch','Literature agent')+A('--a-data','Methods agent'),est:'<b>3 weeks</b><span>≈ $60 in AI · 4 h of your time</span>'},
+      {q:'Get our receipts and invoices sorted every month, and chase late payers.',ms:['Read and sort receipts','Match bank lines','Send and chase invoices','Monthly summary for the accountant'],team:P('#f4c7a1','You (owner)')+P('#c9d6f5','Your accountant')+A('--a-ui','Intake agent')+A('--a-data','Bookkeeper agent')+A('--a-pm','Collections agent'),est:'<b>Every month</b><span>≈ $12 in AI · 30 min of your time</span>'},
+      {q:'Add passkey sign-in to our app and ship it in two weeks.',ms:['Sign-in screens designed','Passkey sign-in built and tested','Works on phones','Release notes and launch'],team:P('#f2b6cf','You (PM)')+P('#c9d6f5','A developer to review')+A('--a-eng','Build agent')+A('--a-int','Test agent')+A('--a-ui','Design agent'),est:'<b>9 work days</b><span>≈ $40 in AI · 3 h of your time</span>'}];
+    const render=x=>{document.getElementById('genMs').innerHTML=x.ms.map(m=>`<li>${m}</li>`).join('');document.getElementById('genTeam').innerHTML=x.team;document.getElementById('genEst').innerHTML=x.est;};
+    let k=0; render(S[0]); tx.textContent=S[0].q; if(reduce) return;
+    const cycle=()=>{k=(k+1)%S.length;const x=S[k];out.classList.add('dim');tx.textContent='';let i=0;
+      const t=setInterval(()=>{tx.textContent=x.q.slice(0,++i);if(i>=x.q.length){clearInterval(t);setTimeout(()=>{render(x);out.classList.remove('dim');},450);}},28);};
+    setInterval(cycle,9000);})();
+  // ---- wow 2: mission control logs ----
+  (function(){const L=[...document.querySelectorAll('.mlog')]; L.forEach(l=>{l.dataset.i=0;l.textContent=l.dataset.log.split('|')[0];}); if(reduce) return;
+    setInterval(()=>{L.forEach((l,n)=>{setTimeout(()=>{const a=l.dataset.log.split('|');l.style.opacity=0;setTimeout(()=>{l.dataset.i=(+l.dataset.i+1)%a.length;l.textContent=a[l.dataset.i];l.style.opacity=1;},300);},n*500);});},3200);})();
+  // ---- wow 3: rewind ----
+  (function(){const r=document.getElementById('scrub'); if(!r) return;
+    const E={1:'Dr. Lee set the question and approved the plan.',2:'Literature agent found 1,240 papers.',3:'312 papers screened in; Jordan spot-checked 40.',4:'47 papers included; evidence table started.',5:'Methods agent drafted protocols P1 and P2.',6:'Dr. Lee approved P1. Runs 1–3 started on the lab GPU box.',7:'Run 4 failed: out of GPU memory.',8:'Runs 5 and 6 done; early results look promising.',9:'Run 7 failed: out of GPU memory. Methods agent proposed a fix.',10:'Dr. Lee approved P2 (halved batch size).',11:'Runs 8–9 done with the fix.',12:'Evidence table finished: 11 papers support H2.',13:'Runs 10–11 done; results agree with the literature.',14:'Draft methods section written; Jordan editing.',15:'Result: H2 holds. Report shared with the lab.'};
+    const f=()=>{const d=+r.value;document.getElementById('rDay').textContent='Day '+d;document.getElementById('rBar').style.width=Math.round(d/15*100)+'%';document.getElementById('rEvent').textContent=E[d];};
+    r.addEventListener('input',f); f();})();
+  // ---- wow 5: what-if ----
+  (function(){const h=document.getElementById('helpers'); if(!h) return;
+    const base=new Date(2026,10,10); const days=n=>Math.max(4,Math.round(12/Math.pow(n,0.62)));
+    const addWork=(d,n)=>{const x=new Date(d);let c=0;while(c<n){x.setDate(x.getDate()+1);const w=x.getDay();if(w!==0&&w!==6)c++;}return x;};
+    const fmt=d=>d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+    const f=()=>{const n=+h.value;document.getElementById('hN').textContent=n;const d=days(n);document.getElementById('wFinish').textContent=fmt(addWork(base,d));
+      document.getElementById('wCost').textContent='$'+Math.round(18+n*14);document.getElementById('wYou').textContent=(1.5+n*0.5).toFixed(1)+' h';
+      document.getElementById('wNote').textContent=n<=1?'Cheapest, but slowest.':n<=3?'Balanced: on time, low cost.':n<=4?'Faster; a little more of your time reviewing.':'Fastest, but more to review and diminishing returns.';};
+    h.addEventListener('input',f); f();})();
   // reveal on scroll
   const els=[...document.querySelectorAll('.reveal')];
   if(reduce||!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));}
