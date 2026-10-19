@@ -630,6 +630,32 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
 .auto-wide .route{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .auto-wide .route .saved{grid-column:1 / -1}
 @media (max-width:640px){.auto-wide .route{grid-template-columns:1fr}}
+/* sovereignty in hero */
+.badges{display:flex;flex-wrap:wrap;gap:8px}
+.badge.sov{color:#7fe0b8;border-color:rgba(63,197,150,.4);background:rgba(63,197,150,.1)}
+.lockmini{width:9px;height:11px;position:relative;display:inline-block}
+.lockmini::before{content:"";position:absolute;left:1px;right:1px;top:0;height:6px;border:1.8px solid currentColor;border-bottom:0;border-radius:4px 4px 0 0}
+.lockmini::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:currentColor;border-radius:2px}
+
+.sovereign{margin-top:28px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:start;background:linear-gradient(135deg,rgba(63,197,150,.12),rgba(93,140,240,.10));border:1px solid rgba(63,197,150,.35);border-radius:16px;padding:14px 16px;font-size:16px;color:var(--on-night-2);max-width:62ch}
+.sovereign b{color:#fff;font-family:var(--display)}
+.sv-ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(63,197,150,.18);color:#7fe0b8}
+.sv-ic svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.sv-points{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.sv-points li{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;color:var(--on-night);background:rgba(255,255,255,.05);border:1px solid var(--night-line);border-radius:99px;padding:5px 12px}
+.sv-points li::before{content:"✓";color:var(--good);font-weight:800}
+.hero .hero-note{margin-top:16px}
+.privchip{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#7fe0b8;background:rgba(63,197,150,.12);border:1px solid rgba(63,197,150,.4);border-radius:99px;padding:4px 11px;margin:-2px 0 12px}
+.privchip .lock{width:10px;height:12px;position:relative;display:inline-block}
+.privchip .lock::before{content:"";position:absolute;left:1px;right:1px;top:0;height:7px;border:2px solid currentColor;border-bottom:0;border-radius:5px 5px 0 0}
+.privchip .lock::after{content:"";position:absolute;left:0;right:0;bottom:0;height:7px;background:currentColor;border-radius:2px}
+
+.uc-head{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px 24px;align-items:end}
+@media (max-width:900px){.uc-head{grid-template-columns:1fr}}
+.uc-title{display:flex;flex-direction:column;gap:8px}
+.uc-title h3{font-size:clamp(24px,2.6vw,32px)}
+.uc .uc-head .outcome{align-self:end}
+.uc .uc-day{margin-top:0;margin-bottom:6px}
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 </style>
@@ -657,17 +683,25 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
 <section class="night hero">
   <div class="wrap">
     <div>
-      <span class="badge"><i></i>In development · built on KĀDI</span>
+      <div class="badges"><span class="badge"><i></i>In development · built on KĀDI</span><span class="badge sov"><b class="lockmini" aria-hidden="true"></b>Runs entirely on your own systems</span></div>
       <h1>A whole AI team, <em>one download away.</em></h1>
       <p class="lead">Add AI researchers, engineers, bookkeepers and analysts at the push of a button. They join your people right where the work already lives: your files, your databases and the software you use every day. KĀDI Colab keeps everyone on the same cards, and you always know what needs you.</p>
       <div class="ctas">
         <a class="btn primary" href="#team">Meet your AI team</a>
         <a class="btn ghost" href="#work">See it in your world →</a>
       </div>
-      <p class="hero-note">For research labs, software teams, small businesses and every industry in between. Runs on your own machines, with your data staying yours.</p>
+      <div class="sovereign">
+        <span class="sv-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.5l8 3.2v6.1c0 5-3.4 8.6-8 9.9-4.6-1.3-8-4.9-8-9.9V5.7z"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8"/></svg></span>
+        <div><b>Yours, end to end.</b> Run all of Colab on your own systems: your machines, your AI models, your network. No third-party services required. In private mode, your data and your AI teammates never leave your network.</div>
+      </div>
+      <ul class="sv-points" aria-label="Sovereignty">
+        <li>Runs on your own machines</li><li>Private, local AI models</li><li>No third-party services</li><li>Works with no internet</li>
+      </ul>
+      <p class="hero-note">For research labs, software teams, small businesses and every industry in between.</p>
     </div>
     <div class="device" aria-label="Illustration of the Colab home screen: what needs you, what's moving and what's stuck." role="img">
       <div class="joinrow" aria-hidden="true"><span class="jl">Team</span><span class="jicons" id="jIcons"></span><span class="joined" id="joined"></span></div>
+      <div class="privchip" aria-hidden="true"><span class="lock"></span>Private mode · nothing leaves your network</div>
       <div class="dev-top"><div><div class="t">Home</div><div class="s">Website relaunch · Tuesday</div></div><div class="legend mini"><span class="ic person" style="--c:#c9d6f5" title="Person" aria-label="Person"></span><span>Person</span><span class="ic agent" style="--c:var(--a-eng)" title="AI agent" aria-label="AI agent"></span><span>Agent</span><span class="ring"></span><span>Working</span></div></div>
       <div class="cols">
         <div class="col">
@@ -707,11 +741,25 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
 
     <!-- ===== Research lab ===== -->
     <div class="tabpanel uc" role="tabpanel" id="panel-lab" aria-labeledby="tab-lab" style="--acc:#6250d6;--acc-soft:#ece9fb">
-      <div class="story">
-        <span class="uc-kicker">Template: Research</span>
-        <h3>From 1,240 papers to a running experiment.</h3>
-        <p>Dr. Lee's lab is testing whether a new training method holds up. Agents search and screen the literature, pull the evidence into a table, draft experiment protocols, and run them on the lab's own GPU machine. The PI approves the protocols; the students focus on thinking.</p>
+      <div class="uc-head">
+        <div class="uc-title"><span class="uc-kicker">Template: Research</span>
+        <h3>From 1,240 papers to a running experiment.</h3></div>
         <div class="outcome"><b>3 weeks → 3 days</b><span>for a full literature review, with experiment runs going overnight on the lab's own GPU machine.</span><small>Illustration</small></div>
+      </div>
+      <div class="dayone uc-day">
+        <h3>Day one at Lee Lab <small>from download to the first experiment</small></h3>
+        <ol class="day">
+          <li><time>9:00</time><b>Download the KĀDI app</b><span>Open Colab; it sets itself up.</span></li>
+          <li><time>9:05</time><b>Pick the Research template</b><span>The question, milestones and roles appear.</span></li>
+          <li><time>9:08</time><b>Add Ada and Milo</b><span>Point them at the lab drive, the reference library and the GPU box.</span></li>
+          <li><time>9:15</time><b>Ada starts screening papers</b><span>Dr. Lee heads off to teach.</span></li>
+          <li><time>11:30</time><b>First findings on the phone</b><span>42 relevant papers, three strong.</span></li>
+          <li><time>16:00</time><b>Approve the first protocol</b><span>One tap, confirmed with a passkey.</span></li>
+          <li><time>17:00</time><b>Gus starts the first run</b><span>It runs overnight; results arrive in the morning briefing.</span></li>
+        </ol>
+      </div>
+      <div class="story">
+        <p>Dr. Lee's lab is testing whether a new training method holds up. Agents search and screen the literature, pull the evidence into a table, draft experiment protocols, and run them on the lab's own GPU machine. The PI approves the protocols; the students focus on thinking.</p>
         <div class="vocab"><span class="vl">In this template</span><span class="vchip">Research question</span><span class="vchip">Paper · Evidence</span><span class="vchip">Protocol</span><span class="vchip">Run · Result</span></div>
         <div class="team">
           <span class="member"><span class="ic person" style="--c:#d9cff7" title="Person" aria-label="Person"></span>Dr. Lee, PI</span>
@@ -747,27 +795,30 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
         </div>
         <div class="outputs"><b>What comes out</b><span>Annotated bibliography</span><span>Evidence table with citations</span><span>Versioned protocols</span><span>Run results, data and plots</span><span>Draft methods section</span></div>
       </div>
-          <div class="dayone uc-day">
-        <h3>Day one at Lee Lab <small>from download to the first experiment</small></h3>
-        <ol class="day">
-          <li><time>9:00</time><b>Download the KĀDI app</b><span>Open Colab; it sets itself up.</span></li>
-          <li><time>9:05</time><b>Pick the Research template</b><span>The question, milestones and roles appear.</span></li>
-          <li><time>9:08</time><b>Add Ada and Milo</b><span>Point them at the lab drive, the reference library and the GPU box.</span></li>
-          <li><time>9:15</time><b>Ada starts screening papers</b><span>Dr. Lee heads off to teach.</span></li>
-          <li><time>11:30</time><b>First findings on the phone</b><span>42 relevant papers, three strong.</span></li>
-          <li><time>16:00</time><b>Approve the first protocol</b><span>One tap, confirmed with a passkey.</span></li>
-          <li><time>17:00</time><b>Gus starts the first run</b><span>It runs overnight; results arrive in the morning briefing.</span></li>
-        </ol>
-      </div>
+    
     </div>
 
     <!-- ===== Software team ===== -->
     <div class="tabpanel uc" role="tabpanel" id="panel-dev" aria-labeledby="tab-dev" hidden style="--acc:var(--brand);--acc-soft:var(--brand-soft)">
-      <div class="story">
-        <span class="uc-kicker">Template: Software</span>
-        <h3>Ship features, not status updates.</h3>
-        <p>Priya manages a small product team; Alex is the lead developer. Coding agents write and test the code in parallel, each in its own part of the codebase. Priya sees the release take shape in plain sentences, and Alex reviews finished work instead of herding agents.</p>
+      <div class="uc-head">
+        <div class="uc-title"><span class="uc-kicker">Template: Software</span>
+        <h3>Ship features, not status updates.</h3></div>
         <div class="outcome"><b>1 hour → 10 minutes</b><span>for the weekly status meeting, because the release page already answers "where are we?".</span><small>Illustration</small></div>
+      </div>
+      <div class="dayone uc-day">
+        <h3>Day one for the product team <small>from download to a merged feature</small></h3>
+        <ol class="day">
+          <li><time>9:00</time><b>Download the KĀDI app</b><span>On Priya's laptop.</span></li>
+          <li><time>9:05</time><b>Pick the Software template</b><span>Connect the code repository; release 2.4 milestones appear from the issue tracker.</span></li>
+          <li><time>9:10</time><b>Add Max, Tess and Dani</b><span>Each gets its own part of the code, so nobody collides.</span></li>
+          <li><time>9:30</time><b>Max picks up the first card</b><span>Passkey sign-in, step 1 of 6.</span></li>
+          <li><time>12:00</time><b>Tess finds two bugs on phones</b><span>Hands them to Max; fixed before lunch is over.</span></li>
+          <li><time>15:00</time><b>Alex reviews the first pull request</b><span>148 tests passing. Merged.</span></li>
+          <li><time>17:00</time><b>The release page updates itself</b><span>Forecast: Friday. No status meeting needed.</span></li>
+        </ol>
+      </div>
+      <div class="story">
+        <p>Priya manages a small product team; Alex is the lead developer. Coding agents write and test the code in parallel, each in its own part of the codebase. Priya sees the release take shape in plain sentences, and Alex reviews finished work instead of herding agents.</p>
         <div class="vocab"><span class="vl">In this template</span><span class="vchip">Release</span><span class="vchip">Milestone · Card · Step</span><span class="vchip">Pull request</span><span class="vchip">Test run</span></div>
         <div class="team">
           <span class="member"><span class="ic person" style="--c:#f2b6cf" title="Person" aria-label="Person"></span>Priya, PM</span>
@@ -801,27 +852,30 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
 <span class="c">→ hand-off: Max woken to merge</span></div>
         <div class="outputs"><b>What comes out</b><span>Reviewed pull requests</span><span>Test reports with evidence</span><span>Customer release notes</span><span>Release burn-up chart</span></div>
       </div>
-          <div class="dayone uc-day">
-        <h3>Day one for the product team <small>from download to a merged feature</small></h3>
-        <ol class="day">
-          <li><time>9:00</time><b>Download the KĀDI app</b><span>On Priya's laptop.</span></li>
-          <li><time>9:05</time><b>Pick the Software template</b><span>Connect the code repository; release 2.4 milestones appear from the issue tracker.</span></li>
-          <li><time>9:10</time><b>Add Max, Tess and Dani</b><span>Each gets its own part of the code, so nobody collides.</span></li>
-          <li><time>9:30</time><b>Max picks up the first card</b><span>Passkey sign-in, step 1 of 6.</span></li>
-          <li><time>12:00</time><b>Tess finds two bugs on phones</b><span>Hands them to Max; fixed before lunch is over.</span></li>
-          <li><time>15:00</time><b>Alex reviews the first pull request</b><span>148 tests passing. Merged.</span></li>
-          <li><time>17:00</time><b>The release page updates itself</b><span>Forecast: Friday. No status meeting needed.</span></li>
-        </ol>
-      </div>
+    
     </div>
 
     <!-- ===== Small business ===== -->
     <div class="tabpanel uc" role="tabpanel" id="panel-biz" aria-labeledby="tab-biz" hidden style="--acc:#1f9e70;--acc-soft:#e2f6ee">
-      <div class="story">
-        <span class="uc-kicker">Template: Back office</span>
-        <h3>Month-end, handled while you run the shop.</h3>
-        <p>Rosa owns a bakery with two locations. Receipts arrive as phone photos and emails, invoices go out by hand, and the books are always behind. With Colab, three helpers do the paperwork and Rosa only makes the calls that need the owner.</p>
+      <div class="uc-head">
+        <div class="uc-title"><span class="uc-kicker">Template: Back office</span>
+        <h3>Month-end, handled while you run the shop.</h3></div>
         <div class="outcome"><b>2 days → 20 minutes</b><span>for month-end: Rosa approves, the AI teammates do the rest. Sundays are free again.</span><small>Illustration</small></div>
+      </div>
+      <div class="dayone uc-day">
+        <h3>Day one at the bakery <small>from download to a month-end summary</small></h3>
+        <ol class="day">
+          <li><time>7:30</time><b>Download the KĀDI app</b><span>Before the shop opens.</span></li>
+          <li><time>7:35</time><b>Pick the Back-office template</b><span>Month-end steps and roles appear.</span></li>
+          <li><time>7:40</time><b>Add Ivy, Ken and Cole</b><span>Connect the receipts inbox, the bank export and the invoices folder.</span></li>
+          <li><time>8:00</time><b>Snap receipts with the phone</b><span>Ivy reads them as they arrive.</span></li>
+          <li><time>12:00</time><b>Ken has sorted 146 receipts</b><span>Two need a clearer photo.</span></li>
+          <li><time>15:00</time><b>Cole sends friendly reminders</b><span>Three late invoices, $5,920 in total.</span></li>
+          <li><time>18:00</time><b>Rosa approves two payments</b><span>On the phone. The month-end summary is ready for Sam.</span></li>
+        </ol>
+      </div>
+      <div class="story">
+        <p>Rosa owns a bakery with two locations. Receipts arrive as phone photos and emails, invoices go out by hand, and the books are always behind. With Colab, three helpers do the paperwork and Rosa only makes the calls that need the owner.</p>
         <div class="vocab"><span class="vl">In this template</span><span class="vchip">Month-end close</span><span class="vchip">Batch</span><span class="vchip">Receipt · Invoice</span><span class="vchip">Approve payment</span></div>
         <div class="team">
           <span class="member"><span class="ic person" style="--c:#f4c7a1" title="Person" aria-label="Person"></span>Rosa, owner</span>
@@ -849,18 +903,7 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
         </div>
         <div class="outputs"><b>What comes out</b><span>Categorized expense ledger for Sam</span><span>Invoices sent and chased</span><span>Tax-ready monthly totals</span><span>One-page month summary</span></div>
       </div>
-          <div class="dayone uc-day">
-        <h3>Day one at the bakery <small>from download to a month-end summary</small></h3>
-        <ol class="day">
-          <li><time>7:30</time><b>Download the KĀDI app</b><span>Before the shop opens.</span></li>
-          <li><time>7:35</time><b>Pick the Back-office template</b><span>Month-end steps and roles appear.</span></li>
-          <li><time>7:40</time><b>Add Ivy, Ken and Cole</b><span>Connect the receipts inbox, the bank export and the invoices folder.</span></li>
-          <li><time>8:00</time><b>Snap receipts with the phone</b><span>Ivy reads them as they arrive.</span></li>
-          <li><time>12:00</time><b>Ken has sorted 146 receipts</b><span>Two need a clearer photo.</span></li>
-          <li><time>15:00</time><b>Cole sends friendly reminders</b><span>Three late invoices, $5,920 in total.</span></li>
-          <li><time>18:00</time><b>Rosa approves two payments</b><span>On the phone. The month-end summary is ready for Sam.</span></li>
-        </ol>
-      </div>
+    
     </div>
 
     <div class="industries reveal">
