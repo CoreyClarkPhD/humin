@@ -588,6 +588,48 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
 .uc .day li:last-child::before{border-color:var(--good)}
 .uc .day time{color:var(--acc)}
 @media (max-width:980px){.uc .day::before{background:linear-gradient(180deg,var(--acc),var(--good))}}
+/* past-present-future timeline */
+.tline{display:flex;flex-direction:column;gap:12px}
+.tl-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.tl-play{appearance:none;border:0;cursor:pointer;font:inherit;font-family:var(--display);font-weight:600;font-size:14px;background:var(--brand);color:#fff;border-radius:10px;padding:8px 14px}
+.tl-play:focus-visible,.tl-step:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.tl-when{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;color:var(--on-night)}
+.tl-when b{font-family:var(--display);font-size:20px}
+.tl-when span{color:var(--on-night-2);font-size:14px}
+.tl-badge{font-size:11.5px!important;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:99px;padding:2px 9px}
+.tl-badge.past{background:rgba(93,140,240,.18);color:#a9c2ff!important}
+.tl-badge.now{background:rgba(63,197,150,.2);color:#7fe0b8!important}
+.tl-badge.fut{background:rgba(240,200,105,.16);color:#f0c869!important;border:1px dashed rgba(240,200,105,.5)}
+.tl-team{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:14px;color:var(--on-night-2)}
+.tl-team b{font-family:var(--display);color:#fff;font-size:18px;min-width:14px;text-align:center}
+.tl-step{appearance:none;border:1px solid var(--night-line);background:rgba(255,255,255,.06);color:#fff;font-size:16px;width:30px;height:30px;border-radius:8px;cursor:pointer}
+.tl-track{position:relative;padding-top:14px}
+.tl-ticks{position:absolute;left:10px;right:10px;top:0;height:12px}
+.tk{position:absolute;top:2px;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--brand-hi)}
+.tk.today{width:12px;height:12px;margin-left:-6px;top:0;background:var(--good);box-shadow:0 0 0 4px rgba(63,197,150,.2)}
+.tk.fut{background:transparent;border:2px dashed #f0c869}
+.tk.fut.quiet{opacity:.35;width:5px;height:5px;margin-left:-2.5px;top:3.5px;border-style:solid}
+.tl-body{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12px}
+@media (max-width:760px){.tl-body{grid-template-columns:1fr}}
+.tl-event{display:flex;align-items:center;gap:10px;font-size:15.5px;color:var(--on-night);background:rgba(255,255,255,.04);border:1px solid var(--night-line);border-radius:12px;padding:12px 14px;min-height:56px}
+.tl-event.fut{border-style:dashed;border-color:rgba(240,200,105,.45);color:#f6e2b0}
+.tl-who{display:inline-flex;gap:3px;flex:0 0 auto}
+.tl-who .ic{--sz:24px}
+.tl-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.tl-stats div{background:rgba(255,255,255,.04);border:1px solid var(--night-line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.tl-stats span{font-size:12.5px;color:var(--on-night-3)}
+.tl-stats b{font-family:var(--display);font-size:16px;color:#fff}
+.tl-stats small{font-size:12px;color:var(--on-night-2)}
+.tl-bar{display:block;height:6px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
+.tl-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--brand-hi),var(--good));transition:width .4s ease}
+.tl-bar i.fut{background:repeating-linear-gradient(90deg,#f0c869 0 6px,rgba(240,200,105,.4) 6px 10px)}
+.tl-key{font-size:12.5px!important;color:var(--on-night-3)!important}
+.tl-key .k{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 8px;vertical-align:-1px}
+.tl-key .k.past{background:var(--brand-hi)}.tl-key .k.today{background:var(--good)}.tl-key .k.fut{border:2px dashed #f0c869}
+
+.auto-wide .route{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.auto-wide .route .saved{grid-column:1 / -1}
+@media (max-width:640px){.auto-wide .route{grid-template-columns:1fr}}
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 </style>
@@ -928,7 +970,33 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
     </div>
     <h3 class="planned-head reveal">Planned next</h3>
     <div class="wowgrid">
-      <article class="wow reveal">
+      
+      <article class="wow w-wide reveal">
+        <div class="wtag"><span class="planned">Planned</span> Past, present and future</div>
+        <h3>Scrub back through everything that happened. Slide forward to see where it's going.</h3>
+        <p>One timeline for the whole project. Drag left to replay every hand-off, decision and result, with who did it. Drag right to see the forecast, based on how your team really works. Change the team and watch the future move.</p>
+        <div class="tline">
+          <div class="tl-top">
+            <button type="button" class="tl-play" id="tlPlay" aria-pressed="false">▶ Play</button>
+            <div class="tl-when"><b id="tlDay">Day 8</b><span id="tlDate"></span><span class="tl-badge now" id="tlBadge">Today</span></div>
+            <div class="tl-team"><span>AI teammates</span><button type="button" class="tl-step" id="tlMinus" aria-label="Fewer AI teammates">−</button><b id="tlH">3</b><button type="button" class="tl-step" id="tlPlus" aria-label="More AI teammates">+</button></div>
+          </div>
+          <div class="tl-track">
+            <div class="tl-ticks" id="tlTicks" aria-hidden="true"></div>
+            <label for="tlRange" class="sr">Project day</label>
+            <input type="range" id="tlRange" min="1" max="14" value="8">
+          </div>
+          <div class="tl-body">
+            <div class="tl-event" id="tlEvent"></div>
+            <div class="tl-stats">
+              <div><span>Progress</span><b id="tlProg">29 / 38 steps</b><span class="tl-bar"><i id="tlBar"></i></span></div>
+              <div><span>Finish forecast</span><b id="tlFinish">Day 14</b><small id="tlRangeTxt"></small></div>
+            </div>
+          </div>
+          <p class="tl-key"><span class="k past"></span>happened <span class="k today"></span>today <span class="k fut"></span>forecast · Release 2.4 (software template)</p>
+        </div>
+      </article>
+      <article class="wow w-wide reveal auto-wide">
         <div class="wtag"><span class="planned">Planned</span> Smart model autopilot</div>
         <h3>The right AI for each job, automatically.</h3>
         <p>Routine work goes to private models on your own machines. Colab calls a frontier model only when a task needs it, within your limits.</p>
@@ -938,17 +1006,6 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
           <div class="rt"><span>Design the experiment</span><span class="mchip front">Frontier model</span></div>
           <div class="rt"><span>Write release notes</span><span class="mchip local">Local model</span></div>
           <div class="saved"><span>AI spend this month</span><span class="bar"><i style="width:24%"></i></span><b>$18</b><small>vs about $75 if everything used a frontier model (example)</small></div>
-        </div>
-      </article>
-      <article class="wow reveal">
-        <div class="wtag"><span class="planned">Planned</span> What-if planning</div>
-        <h3>Move a slider, see the future.</h3>
-        <p>Add a helper, change the deadline or tighten the budget, and the finish date and cost update instantly, based on how your team really works.</p>
-        <div class="whatif">
-          <label for="helpers">AI helpers on this project: <b id="hN">2</b></label>
-          <input type="range" id="helpers" min="1" max="6" value="2">
-          <div class="wiout"><div><span>Finish</span><b id="wFinish">Fri, Nov 21</b></div><div><span>AI cost</span><b id="wCost">$46</b></div><div><span>Your time</span><b id="wYou">2.5 h</b></div></div>
-          <p class="winote" id="wNote">Balanced: on time, low cost.</p>
         </div>
       </article>
     </div>
@@ -1257,16 +1314,58 @@ input[type=range]{width:100%;accent-color:#5d8cf0;height:28px}
     const E={1:'Dr. Lee set the question and approved the plan.',2:'Ada found 1,240 papers.',3:'312 papers screened in; Jordan spot-checked 40.',4:'47 papers included; evidence table started.',5:'Milo drafted protocols P1 and P2.',6:'Dr. Lee approved P1. Runs 1–3 started on the lab GPU box.',7:'Run 4 failed: out of GPU memory.',8:'Runs 5 and 6 done; early results look promising.',9:'Run 7 failed: out of GPU memory. Milo proposed a fix.',10:'Dr. Lee approved P2 (halved batch size).',11:'Runs 8–9 done with the fix.',12:'Evidence table finished: 11 papers support H2.',13:'Runs 10–11 done; results agree with the literature.',14:'Draft methods section written; Jordan editing.',15:'Result: H2 holds. Report shared with the lab.'};
     const f=()=>{const d=+r.value;document.getElementById('rDay').textContent='Day '+d;document.getElementById('rBar').style.width=Math.round(d/15*100)+'%';document.getElementById('rEvent').textContent=E[d];};
     r.addEventListener('input',f); f();})();
-  // ---- wow 5: what-if ----
-  (function(){const h=document.getElementById('helpers'); if(!h) return;
-    const base=new Date(2026,10,10); const days=n=>Math.max(4,Math.round(12/Math.pow(n,0.62)));
-    const addWork=(d,n)=>{const x=new Date(d);let c=0;while(c<n){x.setDate(x.getDate()+1);const w=x.getDay();if(w!==0&&w!==6)c++;}return x;};
-    const fmt=d=>d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
-    const f=()=>{const n=+h.value;document.getElementById('hN').textContent=n;const d=days(n);document.getElementById('wFinish').textContent=fmt(addWork(base,d));
-      document.getElementById('wCost').textContent='$'+Math.round(18+n*14);document.getElementById('wYou').textContent=(1.5+n*0.5).toFixed(1)+' h';
-      document.getElementById('wNote').textContent=n<=1?'Cheapest, but slowest.':n<=3?'Balanced: on time, low cost.':n<=4?'Faster; a little more of your time reviewing.':'Fastest, but more to review and diminishing returns.';};
-    h.addEventListener('input',f); f();})();
-
+  // ---- wow 5: past, present and future ----
+  (function(){const r=document.getElementById('tlRange'); if(!r) return;
+    const $=id=>document.getElementById(id);
+    const P=c=>`<span class="ic person" style="--c:${c}"></span>`, A=c=>`<span class="ic agent" style="--c:var(${c})"></span>`;
+    const PRI='#f2b6cf', ALEX='#c9d6f5';
+    const TODAY=8, TOTAL=38, PAST_STEPS=[3,7,12,16,21,24,27,29];
+    const PAST=[
+      [P(PRI),'Priya set up release 2.4: 7 milestones, 38 steps.'],
+      [A('--a-eng')+A('--a-ui'),'Max started passkey sign-in; Dani drafted the screens.'],
+      [A('--a-int'),'Tess wrote 52 checkout tests.'],
+      [P(ALEX),'Alex approved the screen designs.'],
+      [A('--a-eng'),'Max finished passkey sign-in and opened PR #212.'],
+      [A('--a-int')+A('--a-eng'),'Tess found two bugs on phones; Max fixed both the same day.'],
+      [P(ALEX)+A('--a-eng'),'Alex merged PR #212: 148 tests passing.'],
+      [P(ALEX),'Today: the payments key is still missing. It is the only thing on the critical path.']];
+    const FUT=[
+      [P(ALEX),'Alex adds the payments key.'],
+      [A('--a-eng'),'Saved-card payments built.'],
+      [A('--a-int'),'Tess tests checkout on 12 phones.'],
+      [A('--a-ui'),'Dani finishes the release notes and help pages.'],
+      [P(PRI),'Release candidate ready; Priya reviews it.'],
+      [P(PRI)+A('--a-eng'),'Release 2.4 ships.']];
+    const F={1:[19,18,21],2:[16,15,17],3:[14,13,15],4:[13,12,14],5:[13,12,15]};
+    let h=3;
+    const start=new Date(2026,10,2);
+    const dateOf=d=>{const x=new Date(start);let c=1;while(c<d){x.setDate(x.getDate()+1);const w=x.getDay();if(w!==0&&w!==6)c++;}return x.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});};
+    const finish=()=>F[h][0];
+    const futDay=k=>Math.round(TODAY+1+k*(finish()-TODAY-1)/(FUT.length-1));
+    const ticks=()=>{const n=finish();let out='';for(let d=1;d<=n;d++){const pos=(d-1)/(n-1)*100;const fe=FUT.findIndex((_,k)=>futDay(k)===d);
+        out+=`<span class="tk ${d<TODAY?'past':d===TODAY?'today':'fut'}${d>TODAY&&fe<0?' quiet':''}" style="left:${pos}%"></span>`;}
+      $('tlTicks').innerHTML=out;};
+    const render=()=>{const d=+r.value,n=finish();
+      $('tlDay').textContent='Day '+d; $('tlDate').textContent=dateOf(d);
+      const b=$('tlBadge'); b.textContent=d<TODAY?'Happened':d===TODAY?'Today':'Forecast'; b.className='tl-badge '+(d<TODAY?'past':d===TODAY?'now':'fut');
+      let who,txt,steps;
+      if(d<=TODAY){[who,txt]=PAST[d-1];steps=PAST_STEPS[d-1];}
+      else{const k=FUT.findIndex((_,i)=>futDay(i)>=d);const [w,t]=FUT[Math.max(0,k)];const exact=futDay(Math.max(0,k))===d;
+        who=w;txt=(exact?'Likely: ':'Next likely: ')+t;steps=Math.round(PAST_STEPS[TODAY-1]+(TOTAL-PAST_STEPS[TODAY-1])*(d-TODAY)/(n-TODAY));}
+      $('tlEvent').innerHTML=`<span class="tl-who">${who}</span><span>${txt}</span>`;
+      $('tlEvent').className='tl-event'+(d>TODAY?' fut':'');
+      $('tlProg').textContent=steps+' / '+TOTAL+' steps'; const bar=$('tlBar'); bar.style.width=Math.round(steps/TOTAL*100)+'%'; bar.className=d>TODAY?'fut':'';
+      $('tlFinish').textContent='Day '+n+' · '+dateOf(n);
+      $('tlRangeTxt').textContent='likely between '+dateOf(F[h][1])+' and '+dateOf(F[h][2]);};
+    const setH=v=>{h=Math.min(5,Math.max(1,v));$('tlH').textContent=h;r.max=finish();if(+r.value>finish())r.value=finish();ticks();render();};
+    $('tlMinus').addEventListener('click',()=>setH(h-1)); $('tlPlus').addEventListener('click',()=>setH(h+1));
+    let timer=null; const play=$('tlPlay');
+    const stop=()=>{clearInterval(timer);timer=null;play.textContent='▶ Play';play.setAttribute('aria-pressed','false');};
+    play.addEventListener('click',()=>{ if(timer){stop();return;} play.textContent='❚❚ Pause';play.setAttribute('aria-pressed','true');
+      if(+r.value>=finish()) r.value=1; render();
+      timer=setInterval(()=>{let v=+r.value+1; if(v>finish()) v=1; r.value=v; render();},1100);});
+    r.addEventListener('input',()=>{ if(timer) stop(); render();});
+    setH(3);})();
   // ---- team: role gallery drives the agent card ----
   (function(){const box=document.getElementById('roles'); if(!box) return;
     const R=[
