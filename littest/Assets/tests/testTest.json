@@ -1,11 +1,11 @@
 {
   "title": "Enigma Literacy Test",
-  "introText": "Welcome to the Enigma Literacy Test. This test has two parts: a spelling test and a reading test. Press Begin Test when you are ready.",
+  "introText": "You will take two assessments to help us figure out which Enigma game is the best fit for you, based on your reading skills.\n\nThere are no grades. Just do your best! Your answers will help us match you with a game that’s fun, challenging, and right for where you are as a reader.",
   "tests": [
     {
       "type": "info",
       "audioFileName": "esiInstructions.mp3",
-      "paragraph": "\tI am going to ask you to spell some words. Spell them the best you can. Some of the words may be easy to spell; some may be difficult. When you do not know how to spell a word, spell it the best you can. You can press the triangle play button in the middle of the screen to replay the word. Press the Start button below when you are ready.",
+      "paragraph": "For the first test, you will hear a word, a sentence with the word, and the word again.\nType the word you hear. Do your best even if you are not sure how to spell it.\nTap the “speaker” if you need to hear the word again.\nPress Start when you’re ready.",
       "buttonName": "Start"
     },
     {
@@ -230,19 +230,19 @@
     {
       "type": "info",
       "audioFileName": "continue.mp3",
-      "paragraph": "\tGreat job!  You completed a test.  Press the Continue button below to goto the next one.",
+      "paragraph": "Great job! You finished the test.\nPress Continue to start the next one.",
       "buttonName": "Continue"
     },
     {
       "type": "info",
       "audioFileName": "mazeDemo.mp3",
-      "paragraph": "\tYou’ll be reading a passage with some missing words. For each missing word, you’ll see a box with three word choices. Choose the word that makes the most sense in the passage. Let’s try a practice sentence together.  Read the next sentence silently. When you come to a box, read all three options and click on the word that fits best.  Press the Start button below when you are ready.",
-      "buttonName": "Start"
+      "paragraph": "Next, you will read a passage.\nAs you read, you will see word choices. Choose the word that makes sense in each sentence.\n\nPress Continue to try an example.",
+      "buttonName": "Continue"
     },
     {
       "type": "literacy",
       "title": "Practice Passage",
-      "timeLimitSeconds": 5,
+      "isPractice": true,
       "isTimerHidden": true,
       "paragraph": "\tTom goes to school far from his house.  Every morning, he takes a % to go to school.  In the %, he also takes a bus home.",
       "questions": [
@@ -267,7 +267,7 @@
     {
       "type": "info",
       "audioFileName": "mazeInstructions.mp3",
-      "paragraph": "\tGreat! You’ll have 3 minutes to complete the next passage.  Read the passage silently, choosing the best word from each box by clicking on it. When you come to the end of the passage, click the SUBMIT button. If you do not finish within 3 minutes, the timer will end to complete the activity. When you are ready to begin, click the START button below.",
+      "paragraph": "You will have 3 minutes to read the passage silently.\nChoose the words that make sense in the sentences. Keep going until time is up.\n\nPress Start when you’re ready.",
       "buttonName": "Start"
     },
     {
